@@ -1,0 +1,47 @@
+		<story>
+			<text></text>
+			<image></image>
+		</story>		
+		
+		<option key="l" command="TEST_LUCK">
+			Luck test
+			<pass>
+				<story>
+					<text>
+					</text>
+				</story>
+				<option key="c" command="GOTO_PAGE" page="269">Continue</option>
+			</pass>
+			<fail>
+				<story>
+					<text>
+					</text>
+				</story>
+				<option key="c" command="GOTO_PAGE" page="16">Continue</option>
+			</fail>
+		</option>
+
+        <option key="l" command="FIGHT_MONSTER">
+			<label>Fight</label>
+			<win>
+				<story>
+					<text>
+					</text>
+				</story>
+				<option key="c" command="GOTO_PAGE" page="269">Continue</option>
+			</win>
+			<defeat>
+				<story>
+					<text>
+					</text>
+				</story>
+				<option key="c" command="GOTO_PAGE" page="16">Continue</option>
+			</defeat>
+		</option>
+
+
+        <monster>
+			<name></name>
+			<skill></skill>
+			<stamina></stamina>
+		</monster>

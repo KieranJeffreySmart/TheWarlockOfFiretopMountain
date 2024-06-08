@@ -40,6 +40,7 @@ NEXT_PAGE = "NEXT_PAGE"
 BACK_PAGE = "BACK_PAGE"
 GOTO_PAGE = "GOTO_PAGE"
 TEST_LUCK = "TEST_LUCK"
+TEST_SKILL = "TEST_SKILL"
 FIGHT_MONSTERS = "FIGHT_MONSTERS"
 
 
@@ -51,6 +52,16 @@ intropage = ("0",
     [(pygame.key.name(pygame.K_s), "Start", START_GAME),
      (pygame.key.name(pygame.K_q), "Quit", QUIT_GAME)]
 )
+
+book = None
+intropages = None
+gamepages = None
+
+currentGameState = INTRO_STATE
+currentPage = 0
+battlestate = None
+
+playerstate = {"luck": 6, "skill": 6, "stamina": 6}
 
 def getLineSpacing(fontSize):
     return math.floor(fontSize+fontSize/2)
@@ -169,6 +180,10 @@ def getOptionArguments(optionNode):
         args["pass"] = getResult(optionNode.find("pass"))
         args["fail"] = getResult(optionNode.find("fail"))
         
+    if optionNode.get("command") == "TEST_SKILL":
+        args["pass"] = getResult(optionNode.find("pass"))
+        args["fail"] = getResult(optionNode.find("fail"))
+        
     if optionNode.get("command") == "FIGHT_MONSTERS":
         args["win"] = getResult(optionNode.find("win"))
         args["defeat"] = getResult(optionNode.find("defeat"))
@@ -196,12 +211,6 @@ book = loadBook(DEFAULT_BOOK)
 intropages = book[0]
 gamepages = book[1]
 
-currentGameState = INTRO_STATE
-currentPage = 0
-battlestate = None
-
-playerstate = {"luck": 6, "skill": 6, "stamina": 6}
-
 def getCurrentState():
     return {"state": currentGameState, "page": currentPage, "luck": playerstate["luck"], "skill": playerstate["skill"], "stamina": playerstate["stamina"] }
 
@@ -222,11 +231,17 @@ def testLuck(page, luck):
     appendTextToStory(page, "Roll: " + str(diceCheck) + "\n")
     return diceCheck <= luck
 
+def testSkill(page, skill):
+    diceCheck = rollDice()
+    appendTextToStory(page, "Skill: " + str(skill) + "\n")
+    appendTextToStory(page, "Roll: " + str(diceCheck) + "\n")
+    return diceCheck <= skill
+
 def resolveBattle(page, battlestate, player):
     newstate = battlestate
     if (battlestate is None):
         print(page)
-        newstate = {"player": {"skill": player["skill"], "stamina": player["stamina"]}, "monsters": [{"name": monster["name"], "skill": monster["skill"], "stamina": monster["stamina"]} for monster in page[3]], "state": -1, "round": 1}
+        newstate = {"player": {"luck": player["luck"], "skill": player["skill"], "stamina": player["stamina"]}, "monsters": [{"name": monster["name"], "skill": monster["skill"], "stamina": monster["stamina"]} for monster in page[3]], "state": -1, "round": 1}
 
     if newstate["player"]["stamina"] > 0:
         monsterIdx = -1
@@ -287,11 +302,11 @@ while running:
                 break
             
             if event.key == pygame.K_F11:
-                state = getCurrentState()
-                setSaveState(state)
+                setSaveState(getCurrentState())
                 break
 
             if event.key == pygame.K_F10:
+                battlestate = None
                 state = getSaveState()
                 if "state" in state: currentGameState = state["state"]
                 if "page" in state: currentPage = state["page"]
@@ -345,6 +360,14 @@ while running:
                             
                     if command == TEST_LUCK:
                         if testLuck(gamepages[currentPage-1], playerstate["luck"]):
+                            appendStory(gamepages[currentPage-1], option[3]["pass"][0])
+                            setOptions(gamepages[currentPage-1], option[3]["pass"][1])
+                        else:
+                            appendStory(gamepages[currentPage-1], option[3]["fail"][0])
+                            setOptions(gamepages[currentPage-1], option[3]["fail"][1])
+                            
+                    if command == TEST_SKILL:
+                        if testSkill(gamepages[currentPage-1], playerstate["skill"]):
                             appendStory(gamepages[currentPage-1], option[3]["pass"][0])
                             setOptions(gamepages[currentPage-1], option[3]["pass"][1])
                         else:

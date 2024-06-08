@@ -1516,17 +1516,19 @@ behind their chairs and turn on you. Turn to 20.
 			<text>
 You arrive back at the junction in the passage. You
 look left to see the cave entrance in the dim distance
-but walk straight on. Turn to 71.
+but walk straight on
 			</text>
 		</story>
+		<option key="c" command="GOTO_PAGE" page="71"><label>Continue</label></option>
 	</gamepage>
 	<gamepage state="published" idx="93">
 		<story>
 			<text>
 You arrive back at the junction and this time you
-turn northwards. Turn to 8.
+turn northwards.
 			</text>
 		</story>
+		<option key="c" command="GOTO_PAGE" page="8"><label>Continue</label></option>
 	</gamepage>
 	<gamepage state="published" idx="94">
 		<story>
@@ -2536,15 +2538,32 @@ corridor. Turn to 300.
 	<gamepage state="published" idx="156">
 		<story>
 			<text>
-You charge the door with your shoulder. Roll two
-dice. If the number rolled is less than or equal to
-your SKILL score, you succeed - turn to 343. If the
-number rolled is greater than your SKILL, you rub
-your bruised shoulder and decide against trying
-again. Turn to 92 to return to the junction.
+You charge the door with your shoulder
 
+Test your skill
 			</text>
 		</story>
+		<option key="s" command="TEST_SKILL">
+			<label>Skill test</label>
+			<pass>
+				<story>
+					<text>
+the door breaks open
+					</text>
+				</story>
+				<option key="c" command="GOTO_PAGE" page="349"><label>Continue</label></option>
+			</pass>
+			<fail>
+				<story>
+					<text>
+you rub your bruised shoulder and decide 
+against trying again. 
+Return to the junction.
+					</text>
+				</story>
+				<option key="c" command="GOTO_PAGE" page="92"><label>Continue</label></option>
+			</fail>
+		</option>
 	</gamepage>
 	<gamepage state="published" idx="157">
 		<story>
@@ -4423,11 +4442,12 @@ west (turn to 11).
 			<text>
 The passageway soon comes to an end at a locked
 wooden door. You listen at the door but hear
-nothing. Will you try to charge the door down? If so,
-turn to 156. If you would rather turn round and go
-back to the junction, turn to 92.
+nothing. Will you try to charge the door down
+or turn around?
 			</text>
 		</story>
+		<option key="c" command="GOTO_PAGE" page="156"><label>Charge the door</label></option>
+		<option key="t" command="GOTO_PAGE" page="92"><label>Turn around</label></option>
 	</gamepage>
 	<gamepage state="published" idx="279">
 		<story>

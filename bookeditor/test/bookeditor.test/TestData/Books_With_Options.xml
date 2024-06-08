@@ -1,0 +1,40 @@
+<library>
+    <book>
+        <name></name>
+    </book>
+    <book>
+        <intropage state="published" idx="1">
+            <story>
+                <text>
+                </text>
+            </story>
+            <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
+            <option key="b" command="PREVIOUS_PAGE"><label>Back</label></option>
+        </intropage>
+        <intropage state="published" idx="2">
+            <story>
+                <text>
+                </text>
+                <text>
+                </text>
+            </story>
+            <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
+            <option key="b" command="PREVIOUS_PAGE"><label>Back</label></option>
+        </intropage>
+    </book>
+    <book>
+        <gamepage state="published" idx="1">
+            <scene>
+                <image></image>
+                <text>
+                </text>
+            </scene>
+            <story>
+                <text>
+                </text>
+            </story>
+            <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
+            <option key="b" command="PREVIOUS_PAGE"><label>Back</label></option>
+        </gamepage>
+    </book>
+</library>

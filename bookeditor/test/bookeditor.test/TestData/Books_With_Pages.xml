@@ -1,0 +1,34 @@
+<library>
+    <book>
+        <name></name>
+    </book>
+    <book>
+        <intropage state="published" idx="1">
+            <story>
+                <text>
+                </text>
+            </story>
+        </intropage>
+        <intropage state="published" idx="2">
+            <story>
+                <text>
+                </text>
+                <text>
+                </text>
+            </story>
+        </intropage>
+    </book>
+    <book>
+        <gamepage state="published" idx="1">
+            <scene>
+                <image></image>
+                <text>
+                </text>
+            </scene>
+            <story>
+                <text>
+                </text>
+            </story>
+        </gamepage>
+    </book>
+</library>

@@ -1,34 +1,42 @@
-<library>
-    <book>
-        <name></name>
-    </book>
-    <book>
-        <intropage state="published" idx="1">
-            <story>
-                <text>
-                </text>
-            </story>
-        </intropage>
-        <intropage state="published" idx="2">
-            <story>
-                <text>
-                </text>
-                <text>
-                </text>
-            </story>
-        </intropage>
-    </book>
-    <book>
-        <gamepage state="published" idx="1">
-            <scene>
-                <image></image>
-                <text>
-                </text>
-            </scene>
-            <story>
-                <text>
-                </text>
-            </story>
-        </gamepage>
-    </book>
-</library>
+<Library>
+    <Book>
+        <Name>Empty Book</Name>
+    </Book>
+    <Book>
+        <Name>Book 1</Name>
+        <Page state="published" idx="1">
+            <Type>Intro</Type>
+            <Index>1</Index>
+            <Story>
+                <Text>
+                </Text>
+            </Story>
+        </Page>
+        <Page state="published" idx="2">
+            <Type>Intro</Type>
+            <Index>2</Index>
+            <Story>
+                <Text>
+                </Text>
+                <Text>
+                </Text>
+            </Story>
+        </Page>
+    </Book>
+    <Book>
+        <Name>Book 2</Name>
+        <Page state="published" idx="1">
+            <Type>Game</Type>
+            <Index>1</Index>
+            <Scene>
+                <Image></Image>
+                <Text>
+                </Text>
+            </Scene>
+            <Story>
+                <Text>
+                </Text>
+            </Story>
+        </Page>
+    </Book>
+</Library>

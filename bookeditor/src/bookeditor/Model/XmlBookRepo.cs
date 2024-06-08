@@ -1,11 +1,29 @@
-﻿namespace bookeditor;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Runtime.ExceptionServices;
+using System.Xml;
+using System.Xml.Serialization;
+
+namespace bookeditor;
 
 public class XmlBookRepo
 {
-    private string v;
+    private string rootpath;
 
-    public XmlBookRepo(string v)
+    public XmlBookRepo(string rootpath)
     {
-        this.v = v;
+        this.rootpath = rootpath;
+    }
+
+    public Book GetBook(string libraryName, string bookName)
+    {
+        var serializer = new XmlSerializer(typeof(Library));
+        using (XmlReader reader = XmlReader.Create(Path.Combine(rootpath, $"{libraryName}.xml")))
+        {
+            Library library = serializer.Deserialize(reader) as Library ?? new Library();
+
+            return library.Books.FirstOrDefault(b => b.Name == bookName, new Book() { Name = bookName });
+        }
     }
 }

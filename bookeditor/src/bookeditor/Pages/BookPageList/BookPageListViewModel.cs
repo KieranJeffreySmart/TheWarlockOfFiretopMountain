@@ -24,12 +24,12 @@ public class BookPageListViewModel : DotvvmViewModelBase
         Book book = testDataRepository.GetBook(library, testBook);
         this.Pages = book.Pages.Select(p => new PageViewModel(p)).ToArray();
 
-        this.RaiseNotification("The book opened but is empty");
+        this.RaiseNotification($"The book {(book.Name == "" ? "was not found" : $"[{book.Name}] opened {(book.Pages.Any() ? $"with {book.Pages.Count} page{(book.Pages.Count != 1 ? "s" : "")}" : "but is empty")}")}");
     }
 
     private void RaiseNotification(string notification)
     {
-        notificationsQueue.Push(notification);
+        this.notificationsQueue.Push(notification);
     }
 }
 
@@ -47,5 +47,5 @@ public class PageViewModel : DotvvmViewModelBase
         this.page = page;
     }
 
-    public string Label { get; } = "Empty";
+    public string Label => $"{page?.Type} Page {page?.Index}";
 }

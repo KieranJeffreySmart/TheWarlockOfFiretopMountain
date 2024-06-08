@@ -19,11 +19,20 @@ public class XmlBookRepo
     public Book GetBook(string libraryName, string bookName)
     {
         var serializer = new XmlSerializer(typeof(Library));
-        using (XmlReader reader = XmlReader.Create(Path.Combine(rootpath, $"{libraryName}.xml")))
-        {
-            Library library = serializer.Deserialize(reader) as Library ?? new Library();
 
-            return library.Books.FirstOrDefault(b => b.Name == bookName, new Book() { Name = bookName });
+        try
+        {
+            using (XmlReader reader = XmlReader.Create(Path.Combine(rootpath, $"{libraryName}.xml")))
+            {
+                Library library = (serializer.Deserialize(reader) as Library) ?? new Library();
+
+                return library.Books.FirstOrDefault(b => b.Name == bookName) ?? new Book() { Name = "" };
+            }
+        }
+        catch (System.Exception)
+        {
+            /// rgR: Dodgy af how should we handle exceptions?
+            return new Book() { Name = "" };
         }
     }
 }

@@ -7,7 +7,7 @@ public class ReadonlyBookView_ViewModelTests
     {
         // Given I have a library
         var library = "Books_With_Pages";
-        var testDataRepository = new XmlBookRepo("./TestData");
+        var testDataRepository = new XmlBookRepo("../../../TestData");
 
         // Given I the library has an empty book
         var testBook = "Empty Book";
@@ -35,7 +35,7 @@ public class ReadonlyBookView_ViewModelTests
     {
         // Given I have a library
         var library = "Books_With_Pages";
-        var testDataRepository = new XmlBookRepo("./TestData");
+        var testDataRepository = new XmlBookRepo("../../../TestData");
 
         // Given I the library has a book with a single intro page
         // Given I the library has a book with many intro pages

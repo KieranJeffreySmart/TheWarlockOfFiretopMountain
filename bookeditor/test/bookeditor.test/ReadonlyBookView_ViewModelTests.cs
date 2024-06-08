@@ -9,16 +9,19 @@ public class ReadonlyBookView_ViewModelTests
         var library = "Books_With_Pages";
         var testDataRepository = new XmlBookRepo("../../../TestData");
 
+        //Given I have a notification service
+        InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
+
         // Given I the library has an empty book
         var testBook = "Empty Book";
 
         // when I open the book
-        var viewModel = new BookPageListViewModel(testDataRepository);
+        var viewModel = new BookPageListViewModel(testDataRepository, notificationQueue);
         viewModel.OpenBook(library, testBook);
         
         // Then I am informed the book is empty
-        Assert.True(viewModel.Notifications.Any());
-        Assert.Equal("The book opened but is empty", viewModel.Notifications.First().Description);
+        Assert.True(notificationQueue.Any());
+        Assert.Equal("The book opened but is empty", notificationQueue.Pop());
         
         // Then there should be no pages displayed
         Assert.False(viewModel.Pages.Any());
@@ -45,7 +48,7 @@ public class ReadonlyBookView_ViewModelTests
         // Given I the library has a book with many intro pages and game pages
 
         // When I open the book
-        var viewModel = new BookPageListViewModel(testDataRepository);
+        var viewModel = new BookPageListViewModel(testDataRepository, null);
         viewModel.OpenBook(library, testBook);
         
         // Then there should be pages displayed

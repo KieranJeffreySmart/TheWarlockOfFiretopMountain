@@ -16,14 +16,14 @@ public class BookPageListViewModel : DotvvmViewModelBase
         this.notificationsQueue = notificationsQueue;
     }
 
-    public ICollection<PageViewModel> Pages { get; internal set; } = Array.Empty<PageViewModel>();
-    public ICollection<NotificationViewModel> Notifications { get; set; } = Array.Empty<NotificationViewModel>();
+    public ICollection<PageItemViewModel> Pages { get; internal set; } = Array.Empty<PageItemViewModel>();
 
     public void OpenBook(string library, string testBook)
     {
         Book book = testDataRepository.GetBook(library, testBook);
-        this.Pages = book.Pages.Select(p => new PageViewModel(p)).ToArray();
+        this.Pages = book.Pages.Select(p => new PageItemViewModel(p)).ToArray();
 
+        // [rgR] I like this but probably should break it down
         this.RaiseNotification($"The book {(book.Name == "" ? "was not found" : $"[{book.Name}] opened {(book.Pages.Any() ? $"with {book.Pages.Count} page{(book.Pages.Count != 1 ? "s" : "")}" : "but is empty")}")}");
     }
 
@@ -31,21 +31,4 @@ public class BookPageListViewModel : DotvvmViewModelBase
     {
         this.notificationsQueue.Push(notification);
     }
-}
-
-public class NotificationViewModel : DotvvmViewModelBase
-{
-    public string Description { get; } = "Empty";
-}
-
-public class PageViewModel : DotvvmViewModelBase
-{
-    private Page page;
-
-    public PageViewModel(Page page)
-    {
-        this.page = page;
-    }
-
-    public string Label => $"{page?.Type} Page {page?.Index}";
 }

@@ -1,12 +1,10 @@
-
-using System;
 using System.Collections.Generic;
 
 namespace bookeditor;
 
 public class InMemoryNotificationsQueue
 {
-    Stack<string> inMemoryQueue = new Stack<string>();
+    readonly Stack<string> inMemoryQueue = new();
 
     public bool Any()
     {

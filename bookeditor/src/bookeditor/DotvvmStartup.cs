@@ -1,7 +1,4 @@
-using DotVVM.Framework;
 using DotVVM.Framework.Configuration;
-using DotVVM.Framework.Compilation;
-using DotVVM.Framework.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace bookeditor;

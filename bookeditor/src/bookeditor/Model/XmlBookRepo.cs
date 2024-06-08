@@ -1,7 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Runtime.ExceptionServices;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -9,7 +7,7 @@ namespace bookeditor;
 
 public class XmlBookRepo
 {
-    private string rootpath;
+    private readonly string rootpath;
 
     public XmlBookRepo(string rootpath)
     {
@@ -31,7 +29,7 @@ public class XmlBookRepo
         }
         catch (System.Exception)
         {
-            /// rgR: Dodgy af how should we handle exceptions?
+            /// [rgR] Dodgy af how should we handle exceptions? (see tests)
             return new Book() { Name = "" };
         }
     }

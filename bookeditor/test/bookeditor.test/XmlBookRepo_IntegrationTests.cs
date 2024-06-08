@@ -15,6 +15,7 @@ public class XmlBookRepo_IntegrationTests
         // when I get the book
         Book book = testDataRepository.GetBook(library, bookname);
 
+        // [rgR] should I receive a book at all?
         // then I should receive a book with:
         Assert.NotNull(book);
         Assert.Equal("", book.Name);
@@ -33,6 +34,7 @@ public class XmlBookRepo_IntegrationTests
         // when I get the book
         Book book = testDataRepository.GetBook(library, bookname);
 
+        // [rgR] should I receive a book at all?
         // then I should receive a book with:
         Assert.NotNull(book);
         Assert.Equal("", book.Name);

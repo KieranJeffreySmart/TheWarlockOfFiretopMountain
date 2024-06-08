@@ -4,38 +4,38 @@
 		</story>		
 		
 		<option key="l" command="TEST_LUCK">
-			Luck test
+			<label>Luck test</label>
 			<pass>
 				<story>
 					<text>
 					</text>
 				</story>
-				<option key="c" command="GOTO_PAGE" page="269">Continue</option>
+				<option key="c" command="GOTO_PAGE" page="269"><label>Continue</label></option>
 			</pass>
 			<fail>
 				<story>
 					<text>
 					</text>
 				</story>
-				<option key="c" command="GOTO_PAGE" page="16">Continue</option>
+				<option key="c" command="GOTO_PAGE" page="16"><label>Continue</label></option>
 			</fail>
 		</option>
 
-        <option key="l" command="FIGHT_MONSTER">
+        <option key="l" command="FIGHT_MONSTERS">
 			<label>Fight</label>
 			<win>
 				<story>
 					<text>
 					</text>
 				</story>
-				<option key="c" command="GOTO_PAGE" page="269">Continue</option>
+				<option key="c" command="GOTO_PAGE" page="269"><label>Continue</label></option>
 			</win>
 			<defeat>
 				<story>
 					<text>
 					</text>
 				</story>
-				<option key="c" command="GOTO_PAGE" page="16">Continue</option>
+				<option key="c" command="GOTO_PAGE" page="16"><label>Continue</label></option>
 			</defeat>
 		</option>
 

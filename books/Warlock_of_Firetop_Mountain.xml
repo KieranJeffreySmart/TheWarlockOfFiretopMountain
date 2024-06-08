@@ -382,7 +382,7 @@ hears you and prepares to attack
 						You have prevailed
 					</text>
 				</story>
-				<option key="c" command="GOTO_PAGE" page="50">Continue</option>
+				<option key="c" command="GOTO_PAGE" page="50"><label>Continue</label></option>
 			</win>
 			<escape>
 				<story>
@@ -390,16 +390,16 @@ hears you and prepares to attack
 						You have escaped down the passage
 					</text>
 				</story>
-				<option key="c" command="GOTO_PAGE" page="269">Continue</option>
+				<option key="c" command="GOTO_PAGE" page="269"><label>Continue</label></option>
 			</escape>
-			<loose>
+			<defeat>
 				<story>
 					<text>
 						You were defeated
 					</text>
 				</story>
-				<option key="c" command="GOTO_PAGE" page="401">Continue</option>
-			</loose>
+				<option key="c" command="GOTO_PAGE" page="401"><label>Continue</label></option>
+			</defeat>
 		</option>
 	</gamepage>
 	<gamepage state="published" idx="17">

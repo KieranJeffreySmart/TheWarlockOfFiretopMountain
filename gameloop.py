@@ -146,7 +146,7 @@ def appendStory(page, carets):
 
 def setOptions(page, options):    
     page[2].clear()
-    for option in options: 
+    for option in options:
         page[2].append(option)
 
 def appendTextToStory(page, text):
@@ -168,6 +168,10 @@ def getOptionArguments(optionNode):
     if optionNode.get("command") == "TEST_LUCK":
         args["pass"] = getResult(optionNode.find("pass"))
         args["fail"] = getResult(optionNode.find("fail"))
+        
+    if optionNode.get("command") == "FIGHT_MONSTERS":
+        args["win"] = getResult(optionNode.find("win"))
+        args["defeat"] = getResult(optionNode.find("defeat"))
     
     return args
 
@@ -180,8 +184,8 @@ def getOptionLabel(optionNode):
 def getPage(pageNode):
     carets = [(child.tag, child.text, child.attrib) for child in pageNode.find("story")]
     options = [(child.get("key"), getOptionLabel(child), child.get("command"), getOptionArguments(child)) for child in pageNode if child.tag == "option"]
-    
-    return (pageNode.get("idx"), carets, options)
+    monsters = [{"name": child.find("name").text, "skill": int(child.find("skill").text), "stamina": int(child.find("stamina").text)} for child in pageNode if child.tag == "monster"]
+    return (pageNode.get("idx"), carets, options, monsters)
 
 def loadBook(name):
     tree = ET.parse("./books/" + name + ".xml")
@@ -194,33 +198,82 @@ gamepages = book[1]
 
 currentGameState = INTRO_STATE
 currentPage = 0
+battlestate = None
 
-luckscore = 6
+playerstate = {"luck": 6, "skill": 6, "stamina": 6}
 
 def getCurrentState():
-    return {"state": currentGameState, "page": currentPage, "luck": luckscore }
+    return {"state": currentGameState, "page": currentPage, "luck": playerstate["luck"], "skill": playerstate["skill"], "stamina": playerstate["stamina"] }
 
 def getSaveState():
     with open('savegame.json', 'r') as save_file:
         return json.load(save_file)
-    
-def resetGameState(state):
-    book = loadBook(DEFAULT_BOOK)
-    intropages = book[0]
-    gamepages = book[1]
-    currentGameState = INTRO_STATE
-    currentPage = 1
-    luckscore = 6
 
 def setSaveState(state):
     with open('savegame.json', 'w') as save_file:
         save_file.write(json.dumps(state))
 
-def testLuck(page):
-    diceCheck = random.randint(1, 6) + random.randint(1, 6)
-    appendTextToStory(page, "Luck: " + str(luckscore) + "\n")
+def rollDice():
+    return random.randint(1, 6) + random.randint(1, 6) 
+
+def testLuck(page, luck):
+    diceCheck = rollDice()
+    appendTextToStory(page, "Luck: " + str(luck) + "\n")
     appendTextToStory(page, "Roll: " + str(diceCheck) + "\n")
-    return diceCheck <= luckscore
+    return diceCheck <= luck
+
+def resolveBattle(page, battlestate, player):
+    newstate = battlestate
+    if (battlestate is None):
+        print(page)
+        newstate = {"player": {"skill": player["skill"], "stamina": player["stamina"]}, "monsters": [{"name": monster["name"], "skill": monster["skill"], "stamina": monster["stamina"]} for monster in page[3]], "state": -1, "round": 1}
+
+    if newstate["player"]["stamina"] > 0:
+        monsterIdx = -1
+        i = 0
+        while i < len(newstate["monsters"]):
+            if newstate["monsters"][i]["stamina"] > 0:
+                monsterIdx = i
+                break
+
+            i = i+1
+
+        if monsterIdx > -1:
+            appendTextToStory(page, "You Attack " + newstate["monsters"][monsterIdx]["name"] + "\n")
+            playerSkillCheck = rollDice() + newstate["player"]["skill"]
+            monsterSkillCheck = rollDice() + newstate["monsters"][monsterIdx]["skill"]
+            appendTextToStory(page, "Player Skill Check: " + str(playerSkillCheck) + "\n")
+            appendTextToStory(page, "Monster Skill Check: " + str(monsterSkillCheck) + "\n")
+
+            if (playerSkillCheck > monsterSkillCheck):
+                newstate["monsters"][monsterIdx]["stamina"] = newstate["monsters"][monsterIdx]["stamina"]-2 
+                appendTextToStory(page, "monster looses new stamina = " + str(newstate["monsters"][monsterIdx]["stamina"]) + "\n")                   
+
+            if playerSkillCheck < monsterSkillCheck:
+                newstate["player"]["stamina"] = newstate["player"]["stamina"]-2
+                appendTextToStory(page, "player looses new stamina = " + str(newstate["player"]["stamina"]) + "\n")   
+
+            if newstate["player"]["stamina"] <= 0:
+                newstate["state"] = 0
+
+            if (len(newstate["monsters"]) and newstate["monsters"][monsterIdx]["stamina"] <= 0):
+                newstate["state"] = 1
+            
+            newstate["round"] = newstate["round"]+1
+        else:
+            newstate["state"] = 1
+    else:
+        newstate["state"] = 0
+        
+    battleStateString = ""
+
+    if newstate["state"] == -1: battleStateString = "New Round (" + str(newstate["round"]) + ")"
+    if newstate["state"] == 0: battleStateString = "Defeat"
+    if newstate["state"] == 1: battleStateString = "Win"
+
+    appendTextToStory(page, "Oucome: " + battleStateString + "\n")
+        
+    return newstate
 
 while running:
     # poll for events
@@ -242,7 +295,9 @@ while running:
                 state = getSaveState()
                 if "state" in state: currentGameState = state["state"]
                 if "page" in state: currentPage = state["page"]
-                if "luck" in state: luckscore = int(state["luck"])
+                if "luck" in state: playerstate["luck"] = int(state["luck"])
+                if "skill" in state: playerstate["skill"] = int(state["skill"])
+                if "stamina" in state: playerstate["stamina"] = int(state["stamina"])
                 break
 
             if (currentPage == 0):
@@ -253,7 +308,7 @@ while running:
                 options = gamepages[currentPage-1][2]
         
             for option in options:
-                if event.key == pygame.key.key_code(option[0]):   
+                if event.key == pygame.key.key_code(option[0]):
                     command = option[2]                
                     if command == START_GAME:
                         book = loadBook(DEFAULT_BOOK)
@@ -261,7 +316,9 @@ while running:
                         gamepages = book[1]
                         currentGameState = INTRO_STATE
                         currentPage = 1
-                        luckscore = 6
+                        playerstate["luck"] = 6
+                        playerstate["skill"] = 6
+                        playerstate["stamina"] = 6
                         break
 
                     if command == QUIT_GAME:
@@ -287,21 +344,28 @@ while running:
                             currentPage = int(option[3]["page"])
                             
                     if command == TEST_LUCK:
-                        if testLuck(gamepages[currentPage-1]):
+                        if testLuck(gamepages[currentPage-1], playerstate["luck"]):
                             appendStory(gamepages[currentPage-1], option[3]["pass"][0])
                             setOptions(gamepages[currentPage-1], option[3]["pass"][1])
                         else:
                             appendStory(gamepages[currentPage-1], option[3]["fail"][0])
-                            setOptions(gamepages[currentPage-1], option[3]["fail"][1])  
+                            setOptions(gamepages[currentPage-1], option[3]["fail"][1])
 
                     if command == FIGHT_MONSTERS:
-                        if resolveBattle(battleState):
+                        battlestate = resolveBattle(gamepages[currentPage-1], battlestate, playerstate)
+                        if battlestate["state"] == 1:
                             appendStory(gamepages[currentPage-1], option[3]["win"][0])
                             setOptions(gamepages[currentPage-1], option[3]["win"][1])
-                        else:
+                        elif battlestate["state"] == 0:
+                            print(option[3])
                             appendStory(gamepages[currentPage-1], option[3]["defeat"][0])
-                            setOptions(gamepages[currentPage-1], option[3]["defeat"][1])  
+                            setOptions(gamepages[currentPage-1], option[3]["defeat"][1]) 
+                        elif battlestate["state"] == -1:
+                            print(option[3])
+                            setOptions(gamepages[currentPage-1], [("a", "attack", "FIGHT_MONSTERS", option[3].copy())])
 
+                        playerstate = battlestate["player"]
+                        
                     break
 
     # fill the screen with a color to wipe away anything from last frame

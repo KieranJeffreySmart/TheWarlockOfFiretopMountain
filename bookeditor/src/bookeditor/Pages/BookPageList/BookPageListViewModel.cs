@@ -7,20 +7,20 @@ namespace bookeditor;
 
 public class BookPageListViewModel : DotvvmViewModelBase
 {
-    private XmlBookRepo testDataRepository;
+    private XmlLibrary library;
     private InMemoryNotificationsQueue notificationsQueue;
 
-    public BookPageListViewModel(XmlBookRepo testDataRepository, InMemoryNotificationsQueue notificationsQueue)
+    public BookPageListViewModel(XmlLibrary library, InMemoryNotificationsQueue notificationsQueue)
     {
-        this.testDataRepository = testDataRepository;
+        this.library = library;
         this.notificationsQueue = notificationsQueue;
     }
 
     public ICollection<PageItemViewModel> Pages { get; internal set; } = Array.Empty<PageItemViewModel>();
 
-    public void OpenBook(string library, string testBook)
+    public void OpenBook(string testBook)
     {
-        Book book = testDataRepository.GetBook(library, testBook);
+        Book book = library.GetBook(testBook);
         this.Pages = book.Pages.Select(p => new PageItemViewModel(p)).ToArray();
 
         // [rgR] I like this but probably should break it down

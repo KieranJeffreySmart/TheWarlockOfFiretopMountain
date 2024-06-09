@@ -7,7 +7,7 @@ public class ReadonlyBookView_ViewModelTests
     {
         // Given I have a library
         var library = "Books_With_Pages";
-        var testDataRepository = new XmlBookRepo("../../../TestData");
+        var testDataRepository = new XmlLibrary("../../../TestData", [library]);
 
         //Given I have a notification service
         InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
@@ -17,7 +17,7 @@ public class ReadonlyBookView_ViewModelTests
 
         // when I open the book
         var viewModel = new BookPageListViewModel(testDataRepository, notificationQueue);
-        viewModel.OpenBook(library, testBook);
+        viewModel.OpenBook(testBook);
         
         // Then I am informed the book is empty
         Assert.True(notificationQueue.Any());
@@ -32,7 +32,7 @@ public class ReadonlyBookView_ViewModelTests
     {
         // Given I have a library
         var library = "Books_With_Pages";
-        var testDataRepository = new XmlBookRepo("../../../TestData");
+        var testDataRepository = new XmlLibrary("../../../TestData", [library]);
 
         //Given I have a notification service
         InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
@@ -42,7 +42,7 @@ public class ReadonlyBookView_ViewModelTests
 
         // when I open the book
         var viewModel = new BookPageListViewModel(testDataRepository, notificationQueue);
-        viewModel.OpenBook(library, testBook);
+        viewModel.OpenBook(testBook);
         
         // Then I am informed the book is empty
         Assert.True(notificationQueue.Any());
@@ -59,15 +59,14 @@ public class ReadonlyBookView_ViewModelTests
     [InlineData("Many Intro book", 3, new[] {"Intro Page 1", "Intro Page 2", "Intro Page 3"})]
     [InlineData("Many Game book", 3, new[] {"Game Page 1", "Game Page 2", "Game Page 3"})]
     [InlineData("Many Game and Intro book", 6, new[] {"Intro Page 1", "Intro Page 2", "Intro Page 3", "Game Page 1", "Game Page 2", "Game Page 3"})]
-    public void OpenBookWithPages(string testBook, int pageCount, string[] pageListItemLabels)
+    public void OpenBookWithSomePages(string testBook, int pageCount, string[] pageListItemLabels)
     {
         // Given I have a library
         var library = "Books_With_Pages";
-        var testDataRepository = new XmlBookRepo("../../../TestData");
+        var testDataRepository = new XmlLibrary("../../../TestData", [library]);
 
         // Given I have a notification service
         InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
-
 
         // Given I the library has a book with a single intro page
         // Given I the library has a book with many intro pages
@@ -78,7 +77,7 @@ public class ReadonlyBookView_ViewModelTests
 
         // When I open the book
         var viewModel = new BookPageListViewModel(testDataRepository, notificationQueue);
-        viewModel.OpenBook(library, testBook);
+        viewModel.OpenBook(testBook);
         
         // Then there should be pages displayed
         Assert.True(viewModel.Pages.Any());

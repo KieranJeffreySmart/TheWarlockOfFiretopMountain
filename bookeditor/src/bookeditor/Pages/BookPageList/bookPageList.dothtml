@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-    <dot:Button Click="{command: OpenBook()}" Text="Sample Button" />
+    <dot:Button Click="{command: OpenSelectedBook()}" Text="Open Book" />
     <h1>{{value: BookTitle}}</h1>
     <dot:ListBox DataSource="{value: Pages}" SelectedValue={value: SelectedValue}  ItemTextBinding="{value: Label}">
     </dot:ListBox>

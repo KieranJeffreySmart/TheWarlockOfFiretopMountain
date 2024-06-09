@@ -20,11 +20,11 @@ public class BookPageListViewModel : DotvvmViewModelBase
 
     public ICollection<PageItemViewModel> Pages { get; private set; } = Array.Empty<PageItemViewModel>();
 
-    public PageItemViewModel? SelectedValue { get; set; } = null;
+    public PageItemViewModel? SelectedPage { get; set; } = null;
 
     public string? LibraryPath { get {return this.library?.RootPath; } set { if (this.library != null) {this.library.RootPath = value; } } }
 
-    public string BookTitle { get; private set; } = "";
+    public string BookTitle { get; private set; } = string.Empty;
 
     public void OpenBook(string testBook)
     {
@@ -51,6 +51,7 @@ public class BookPageListViewModel : DotvvmViewModelBase
     private void SetBookProperties(Book book)
     {
         this.Pages = book.Pages.Select(p => new PageItemViewModel(p)).ToArray();
+        this.SelectedPage = this.Pages.FirstOrDefault();
         this.BookTitle = SelectedBookTitle = book.Title; 
     }
 

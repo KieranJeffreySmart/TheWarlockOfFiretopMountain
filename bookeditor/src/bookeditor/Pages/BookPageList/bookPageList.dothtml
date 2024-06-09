@@ -9,8 +9,12 @@
 <body>
     <dot:Button Click="{command: OpenSelectedBook()}" Text="Open Book" />
     <h1>{{value: BookTitle}}</h1>
-    <dot:ListBox DataSource="{value: Pages}" SelectedValue={value: SelectedValue}  ItemTextBinding="{value: Label}">
-    </dot:ListBox>
+    <div>
+        <dot:ListBox Style-width="400px" DataSource="{value: Pages}" SelectedValue={value: SelectedPage}  ItemTextBinding="{value: Label}" />
+    </div>
+    <div DataContext="{value: SelectedPage}">
+        {{value: StoryTextRaw}}
+    </div>
 </p>
 </body>
 </html>

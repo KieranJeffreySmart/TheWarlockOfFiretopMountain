@@ -1,6 +1,6 @@
 using DotVVM.Framework.ViewModel;
 
-namespace bookeditor;
+namespace bookeditor.ViewModels;
 
 public class PageItemViewModel : DotvvmViewModelBase
 {

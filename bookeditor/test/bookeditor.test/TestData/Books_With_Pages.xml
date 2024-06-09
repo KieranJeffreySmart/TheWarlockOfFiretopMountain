@@ -1,9 +1,9 @@
 <Library>
     <book>
-        <name>Empty book</name>
+        <title>Empty book</title>
     </book>
     <book>
-        <name>Single Intro book</name>
+        <title>Single Intro book</title>
         <page>
             <type>Intro</type>
             <index>1</index>
@@ -14,7 +14,7 @@
         </page>
     </book>
     <book>
-        <name>Single Game book</name>
+        <title>Single Game book</title>
         <page>
             <type>Game</type>
             <index>1</index>
@@ -30,7 +30,7 @@
         </page>
     </book>
     <book>
-        <name>Single Game and Intro book</name>
+        <title>Single Game and Intro book</title>
         <page>
             <type>Intro</type>
             <index>1</index>
@@ -49,7 +49,7 @@
         </page>
     </book>
     <book>
-        <name>Many Intro book</name>
+        <title>Many Intro book</title>
         <page>
             <type>Intro</type>
             <index>1</index>
@@ -80,7 +80,7 @@
         </page>
     </book>
     <book>
-        <name>Many Game book</name>
+        <title>Many Game book</title>
         <page>
             <type>Game</type>
             <index>1</index>
@@ -107,7 +107,7 @@
         </page>
     </book>
     <book>
-        <name>Many Game and Intro book</name>
+        <title>Many Game and Intro book</title>
         <page>
             <type>Intro</type>
             <index>1</index>

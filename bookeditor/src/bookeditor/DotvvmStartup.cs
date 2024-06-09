@@ -28,6 +28,10 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
     private void ConfigureRoutes(DotvvmConfiguration config, string applicationPath)
     {
         config.RouteTable.Add("Default", "", "Pages/Default/default.dothtml");
+        config.RouteTable.Add(
+            "BookPageListViewModel", 
+            "bookPages", 
+            "Pages/BookPageList/bookPageList.dothtml");
         config.RouteTable.Add("Error", "error", "Pages/Error/error.dothtml");
 
         // Uncomment the following line to auto-register all dothtml files in the Pages folder

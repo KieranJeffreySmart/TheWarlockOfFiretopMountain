@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
@@ -7,7 +8,7 @@ namespace bookeditor;
 
 public class XmlLibrary
 {
-    private readonly string rootpath;
+    private string rootpath;
     private readonly string[] librarieNames;
 
     public XmlLibrary(string rootpath, string[] librarieNames)
@@ -16,28 +17,44 @@ public class XmlLibrary
         this.librarieNames = librarieNames;
     }
 
+    public string? RootPath { get => rootpath; set => rootpath = value ?? string.Empty; }
+
     public Book GetBook(string bookName)
     {
-        var serializer = new XmlSerializer(typeof(Library));
 
         try
         {
+            var serializer = new XmlSerializer(typeof(Library));
             foreach (string libraryName in librarieNames)
             {
                 using (XmlReader reader = XmlReader.Create(Path.Combine(rootpath, $"{libraryName}.xml")))
                 {
-                    Library library = (serializer.Deserialize(reader) as Library) ?? new Library();
+                    Library libraryModel = (serializer.Deserialize(reader) as Library) ?? new Library();
 
-                    return library.Books.FirstOrDefault(b => b.Name == bookName) ?? new Book() { Name = "" };
+                    return libraryModel?.Books?.FirstOrDefault(b => b.Title == bookName) ?? new Book() { Title = "" };
                 }
             }
         }
         catch (System.Exception)
         {
             /// [rgR] Dodgy af how should we handle exceptions? (see tests)
-            return new Book() { Name = "" };
+            return new Book() { Title = "" };
         }
 
-        return new Book() { Name = "" };
+        return new Book() { Title = "" };
+    }
+
+    public Book GetFirstBook()
+    {
+        if (!librarieNames.Any())
+            return new Book() { Title = "" };
+
+        using (XmlReader reader = XmlReader.Create(Path.Combine(rootpath, $"{librarieNames.First()}.xml")))
+        {
+            var serializer = new XmlSerializer(typeof(Library));
+            Library libraryModel = (serializer.Deserialize(reader) as Library) ?? new Library();
+
+            return libraryModel?.Books?.FirstOrDefault() ?? new Book() { Title = "" };
+        }
     }
 }

@@ -15,6 +15,8 @@ public class Startup
         services.AddWebEncoders();
 
         services.AddDotVVM<DotvvmStartup>();
+        services.AddSingleton(new XmlLibrary("./books", ["Warlock_of_Firetop_Mountain"]));
+        services.AddSingleton(new InMemoryNotificationsQueue());
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

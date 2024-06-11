@@ -1,4 +1,5 @@
-@viewModel bookeditor.ViewModels.PageDetailViewModel, bookeditor
+@baseType bookeditor.Controls.PageDetailPanel, bookeditor
+@viewModel bookeditor.ViewModels.PageDetailViewModel
 
-<h2>{{value: Page.Type}} page {{value: Page.Index}}</h2>
+<h2 DataContext={value: Page} >{{value: PageType}} page {{value: Index}}</h2>
 {{value: StoryTextRaw}}

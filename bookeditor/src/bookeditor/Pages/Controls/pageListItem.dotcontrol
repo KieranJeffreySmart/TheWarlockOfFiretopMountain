@@ -1,2 +1,0 @@
-@viewModel bookeditor.ViewModels.PageDetailPanelViewModel, bookeditor
-<label>{{value: Label}}</label>

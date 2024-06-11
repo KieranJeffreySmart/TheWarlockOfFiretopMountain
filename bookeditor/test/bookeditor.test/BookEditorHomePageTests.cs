@@ -1,9 +1,35 @@
+using bookeditor.ViewModels;
+
 namespace bookeditor.test;
 
 public class BookEditorHomePage_LandingTests
 {
     [Fact]
-    public void FirstTimeOpenningHomePage()
+    public async Task OpenningHomePageWithNoBooks()
+    {
+        // Given I have a library
+        var libraryName = "Empty_Library";
+        var library = new XmlLibrary("../../../TestData", [libraryName]);
+        var notificationQueue = new InMemoryNotificationsQueue();
+
+        // given I have a home page 
+        BookEditorHomeViewModel homePage = new(library, notificationQueue);
+
+        // when I open the home page
+        await homePage.PreRender();
+
+        // then a book selector is displayed with no books
+        Assert.NotNull(homePage);
+        Assert.NotNull(homePage.Books);
+        Assert.Empty(homePage.Books);
+        
+        // then I am informed that the library opened with 1 book
+        Assert.True(notificationQueue.Any());
+        Assert.Equal($"no books were found", notificationQueue.Pop());
+    }
+
+    [Fact]
+    public async Task OpenningHomePageWithSingleBook()
     {
         // Given I have a library
         var libraryName = "Warlock_Of_Firetop_Mountain";
@@ -14,58 +40,54 @@ public class BookEditorHomePage_LandingTests
         BookEditorHomeViewModel homePage = new BookEditorHomeViewModel(library, notificationQueue);
 
         // when I open the home page
+        await homePage.PreRender();
 
         // then a book selector is displayed with 1 book
         Assert.NotNull(homePage);
-        Assert.NotNull(homePage.LibraryBookSelector);
-        Assert.Single(homePage.LibraryBookSelector.Books);
-
-        // then an empty page list is displayed
-        Assert.Null(homePage.SelectedBook);
-        Assert.Null(homePage.SelectedBookPageList);
         Assert.NotNull(homePage.Books);
-        Assert.Empty(homePage.Books);
+        Assert.Single(homePage.Books);
+        Assert.Equal("Warlock of Firetop Mountain", homePage.Books.First().Title);
 
-        // then an empty page detail panel is displayed
-        Assert.Null(homePage.SelectedPage);
-        Assert.Null(homePage.SelectedPageDetail);
+        // then I am informed that the library opened with 1 book
+        Assert.True(notificationQueue.Any());
+        Assert.Equal($"1 book was found", notificationQueue.Pop());
     }
 
 
+
     [Fact]
-    public void SelectABook()
+    public async Task OpenningHomePageWithManyBooks()
     {
         // Given I have a library
-        var libraryName = "Warlock_Of_Firetop_Mountain";
-        var library = new XmlLibrary("../../../TestData", [libraryName]);
+        string[] libraryNames = ["Warlock_Of_Firetop_Mountain", "Books_With_Pages"];
+        var library = new XmlLibrary("../../../TestData", libraryNames);
         var notificationQueue = new InMemoryNotificationsQueue();
 
         // given I have a home page 
-        BookEditorHomeViewModel homePage = new BookEditorHomeViewModel(library, notificationQueue);
+        BookEditorHomeViewModel homePage = new(library, notificationQueue);
 
         // when I open the home page
+        await homePage.PreRender();
 
         // then a book selector is displayed with 1 book
         Assert.NotNull(homePage);
-        Assert.NotNull(homePage.LibraryBookSelector);
-        Assert.Single(homePage.LibraryBookSelector.Books);
+        Assert.NotNull(homePage.Books);
+        Assert.Equal(8, homePage.Books.Count());
 
-        // when I open the selected book
-        homePage.OpenSelectedBook();
+        // when I select the book
+        homePage.SelectedBook = homePage.Books.First();
 
         // then the title of the book is displayed
-        Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBookPageList);
-        Assert.NotNull(homePage.SelectedBookPageList.Book);
-        Assert.Equal("Warlock Of Firetop Mountain", homePage.SelectedBook.Title);
-        Assert.Equal(homePage.SelectedBook.Title, homePage.SelectedBookPageList.Book.Title);
+        Assert.Equal("Warlock of Firetop Mountain", homePage.SelectedBook.Title);
         
         // then 403 page list is displayed
         Assert.Equal(403, homePage.SelectedBook.Pages.Length);
-        Assert.Equal(homePage.SelectedBook.Pages.Length, homePage.SelectedBookPageList.Book.Pages.Length);
 
         // then an empty page detail panel is displayed
         Assert.Null(homePage.SelectedPage);
-        Assert.Null(homePage.SelectedPageDetail);
+        
+        // then I am informed that the library opened with 1 book
+        Assert.True(notificationQueue.Any());
+        Assert.Equal($"8 books were found", notificationQueue.Pop());
     }
 }

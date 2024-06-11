@@ -1,6 +1,0 @@
-@viewModel bookeditor.ViewModels.BookPageListViewModel, bookeditor
-
-<h1>{{value: Book.Title}}</h1>
-<dot:ListBox Style-width="400px" DataSource="{value: Pages}" SelectedValue={value: SelectedPage} ItemValueBinding={value: Page}  ItemTextBinding="{value: Label}" >
-    <bookctrl:PageListItem Page={value: Page} />
-</dot:ListBox>

@@ -6,7 +6,7 @@ namespace bookeditor;
 public class Page
 {
     [XmlElement("type")]
-    public string? Type { get; set; } = "";
+    public string? PageType { get; set; } = "";
 
     [XmlElement("index")]
     public int? Index { get; set; } = -1;

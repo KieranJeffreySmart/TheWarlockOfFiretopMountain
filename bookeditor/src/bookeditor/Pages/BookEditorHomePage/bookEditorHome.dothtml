@@ -9,9 +9,19 @@
 <body>
 <p>
     <div>
-        <bookCtrl:LibraryBookSelect DataContext={value: LibraryBookList} />
-        <bookCtrl:BookPageList DataContext={value: SelectedBookPageList} Book={value: SelectedBook} SelectedPage={value: SelectedPage} />
-        <bookCtrl:PageDetailPanel DataContext={value: SelectedPageDetail} Page={value: SelectedPage} />
+        <dot:ComboBox Style-width="200px" 
+            DataSource="{value: Books}" 
+            SelectedValue="{value: SelectedBook}" 
+            ItemTextBinding="{value: Title}" />
+
+        <h1>{{value: SelectedBook.Title}}</h1>
+        <dot:ListBox Style-width="400px" 
+            DataSource="{value: SelectedBook.Pages}" 
+            SelectedValue={value: SelectedPage} 
+            ItemTextBinding="{value: (PageType + " page " + Index)}" 
+            SelectionChanged={command: SetSelectedPageDetails()}/>
+
+        <bookctrl:PageDetailPanel DataContext={value: SelectedPageDetails} />
     </div>
 </p>
 </body>

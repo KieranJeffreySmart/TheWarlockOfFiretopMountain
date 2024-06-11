@@ -1,12 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using bookeditor.ViewModels;
-using DotVVM.Framework.Utils;
 using DotVVM.Framework.ViewModel;
-using Microsoft.CodeAnalysis.CSharp;
 
-namespace bookeditor;
+namespace bookeditor.ViewModels;
 
 public class BookEditorHomeViewModel : DotvvmViewModelBase
 {
@@ -29,41 +27,39 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         await base.PreRender();
     }
 
-    public IQueryable<Book>? Books => books.AsQueryable();
-
-    public LibraryBookSelectViewModel LibraryBookSelector { get; } = new LibraryBookSelectViewModel();
+    public IQueryable<Book>? Books => books.AsQueryable(); 
 
     public Book? SelectedBook { get; set; }
 
-    public BookPageListViewModel SelectedBookPageList { get; } = new BookPageListViewModel();
+    public string? SelectedBookTitle { get; set; }
 
     public Page? SelectedPage { get; set; }
 
-    public PageDetailViewModel? SelectedPageDetail { get; } = new PageDetailViewModel();
+    public PageDetailViewModel SelectedPageDetails { get; } = new PageDetailViewModel();
+    
+    public void SetSelectedPageDetails()
+    {
+        SelectedPageDetails.Page = this.SelectedPage;
+    }
     
     public async Task OpenLibrary()
     {
         if ( library != null)
         {
-            await foreach (var item in library.GetAllBooks())
+            List<Book> asyncBooks = new List<Book>();
+            await foreach (var book in library.GetAllBooks())
             {
-                this.books.Append(item);
+                asyncBooks.Add(book);
             }
 
-            if (this.books.Length == 0)
-            {
-                this.RaiseNotification($"{(this.books.Length > 0 ? "no" : this.books.Length)} books were found");
-            }
+            this.books = [.. asyncBooks];
+
+            this.RaiseNotification($"{(this.books.Length == 0 ? "no" : this.books.Length)} book{(this.books.Length != 1 ? "s were" : " was")} found");
         }
     }
 
     private void RaiseNotification(string notification)
     {
         this.notificationsQueue?.Push(notification);
-    }
-
-    public void OpenSelectedBook()
-    {
-        throw new NotImplementedException();
     }
 }

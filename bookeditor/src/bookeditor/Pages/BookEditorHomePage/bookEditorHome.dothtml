@@ -12,14 +12,15 @@
         <dot:ComboBox Style-width="200px" 
             DataSource="{value: Books}" 
             SelectedValue="{value: SelectedBook}" 
-            ItemTextBinding="{value: Title}" />
+            ItemTextBinding="{value: Title}" 
+            SelectionChanged={command: UpdateSelectedViewModels()}/>
 
-        <h1>{{value: SelectedBook.Title}}</h1>
+        <bookctrl:BookDetailPanel DataContext={value: SelectedBookDetails}  />
         <dot:ListBox Style-width="400px" 
             DataSource="{value: SelectedBook.Pages}" 
             SelectedValue={value: SelectedPage} 
             ItemTextBinding="{value: (PageType + " page " + Index)}" 
-            SelectionChanged={command: SetSelectedPageDetails()}/>
+            SelectionChanged={command: UpdateSelectedViewModels()}/>
 
         <bookctrl:PageDetailPanel DataContext={value: SelectedPageDetails} />
     </div>

@@ -52,9 +52,7 @@ public class BookEditorHomePage_LandingTests
         Assert.True(notificationQueue.Any());
         Assert.Equal($"1 book was found", notificationQueue.Pop());
     }
-
-
-
+    
     [Fact]
     public async Task OpenningHomePageWithManyBooks()
     {
@@ -73,18 +71,6 @@ public class BookEditorHomePage_LandingTests
         Assert.NotNull(homePage);
         Assert.NotNull(homePage.Books);
         Assert.Equal(8, homePage.Books.Count());
-
-        // when I select the book
-        homePage.SelectedBook = homePage.Books.First();
-
-        // then the title of the book is displayed
-        Assert.Equal("Warlock of Firetop Mountain", homePage.SelectedBook.Title);
-        
-        // then 403 page list is displayed
-        Assert.Equal(403, homePage.SelectedBook.Pages.Length);
-
-        // then an empty page detail panel is displayed
-        Assert.Null(homePage.SelectedPage);
         
         // then I am informed that the library opened with 1 book
         Assert.True(notificationQueue.Any());

@@ -42,6 +42,7 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
     {
         // register code-only controls and markup controls
         config.Markup.AddMarkupControl("bookctrl", "PageDetailPanel", "Pages/Controls/pageDetailPanel.dotcontrol");
+        config.Markup.AddMarkupControl("bookctrl", "BookDetailPanel", "Pages/Controls/bookDetailPanel.dotcontrol");
     }
 
     private void ConfigureResources(DotvvmConfiguration config, string applicationPath)

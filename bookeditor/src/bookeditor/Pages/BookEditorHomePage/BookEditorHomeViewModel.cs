@@ -31,16 +31,16 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     public Book? SelectedBook { get; set; }
 
-    public string? SelectedBookTitle { get; set; }
+    public BookDetailViewModel SelectedBookDetails { get; } = new BookDetailViewModel();
+    public void UpdateSelectedViewModels()
+    {
+        this.SelectedBookDetails.Book = SelectedBook;
+        this.SelectedPageDetails.Page = this.SelectedPage;
+    }
 
     public Page? SelectedPage { get; set; }
 
     public PageDetailViewModel SelectedPageDetails { get; } = new PageDetailViewModel();
-    
-    public void SetSelectedPageDetails()
-    {
-        SelectedPageDetails.Page = this.SelectedPage;
-    }
     
     public async Task OpenLibrary()
     {
@@ -56,7 +56,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
             this.RaiseNotification($"{(this.books.Length == 0 ? "no" : this.books.Length)} book{(this.books.Length != 1 ? "s were" : " was")} found");
         }
-    }
+    } 
 
     private void RaiseNotification(string notification)
     {

@@ -2,7 +2,7 @@ using bookeditor.ViewModels;
 
 namespace bookeditor.test;
 
-public class ReadonlyBookView_ListPagesTests
+public class ListPages_ViewModelTests
 {
     [Theory]
     [InlineData("Single Intro book", 1, new[] {"Intro Page 1"})]
@@ -34,18 +34,15 @@ public class ReadonlyBookView_ListPagesTests
         Assert.NotNull(viewModel.Books);
         Assert.NotEmpty(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
+        viewModel.UpdateSelectedViewModels();
         
-        // Then there should be pages displayed
-        Assert.NotEmpty(viewModel.SelectedBook.Pages);
-        Assert.Equal(pageCount, viewModel.SelectedBook.Pages.Length);
+        // then the title is displayed
+        Assert.NotNull(viewModel.SelectedBookDetails);
+        Assert.NotNull(viewModel.SelectedBookDetails.Book);
+        Assert.Equal(testBook, viewModel.SelectedBookDetails.Book.Title);
 
-        // Then each page should display the correct information
-        // [rgR] enable this test by testing the UI controls 
-        // Assert.Equal(pageListItemLabels, viewModel.SelectedBook.Pages.Select(p => p.Label));
-
-        // Then I am informed the book is open and the number of pages
-        Assert.True(notificationQueue.Any());
-        Assert.Equal($"7 books were found", notificationQueue.Pop());
+        // then a page count is displyed
+        Assert.Equal(pageCount, viewModel.SelectedBookDetails.PageCount);
     }
 
     [Fact]
@@ -67,18 +64,16 @@ public class ReadonlyBookView_ListPagesTests
         Assert.NotNull(viewModel);
         await viewModel.PreRender();
         Assert.NotNull(viewModel.Books);
-        viewModel.SelectedBook = viewModel.Books.First();
+        viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
+        viewModel.UpdateSelectedViewModels();
         
-        // Then the book title should be displayed
-        Assert.Equal(testBook, viewModel.SelectedBook.Title);
+        // then the title is displayed
+        Assert.NotNull(viewModel.SelectedBookDetails);
+        Assert.NotNull(viewModel.SelectedBookDetails.Book);
+        Assert.Equal(testBook, viewModel.SelectedBookDetails.Book.Title);
 
-        // Then there should be pages displayed
-        Assert.True(viewModel.SelectedBook.Pages.Any());
-        Assert.Equal(pageCount, viewModel.SelectedBook.Pages.Count());
-
-        // Then I am informed the book is open and the number of pages
-        Assert.True(notificationQueue.Any());
-        Assert.Equal($"1 book was found", notificationQueue.Pop());
+        // then a page count is displyed
+        Assert.Equal(pageCount, viewModel.SelectedBookDetails.PageCount);
     }
     
     [Theory]

@@ -118,4 +118,35 @@ public class XmlLibrary_IntegrationTests
         Assert.NotNull(book);
         Assert.Equal("", book.Title);
     }
+    
+    
+    [Fact]
+    public async Task GetBooksFromManyFiles()
+    {
+        // given I have a library on file
+        string[] libraryNames = ["Warlock_of_Firetop_Mountain", "Books_With_Pages", "Empty_Library"];
+        var library = new XmlLibrary("../../../TestData", libraryNames);
+
+        // when I get all books
+        var asyncbooks = library.GetAllBooks();
+
+        // then I should receive all available books:
+        Assert.NotNull(asyncbooks);
+        List<Book> books = new List<Book>();
+        await foreach (var book in asyncbooks)
+        {
+            books.Add(book);
+        }
+
+        Assert.NotEmpty(books);
+        Assert.Equal(8, books.Count);
+        Assert.NotNull(books.FirstOrDefault(b => b.Title == "Warlock of Firetop Mountain"));
+        Assert.NotNull(books.FirstOrDefault(b => b.Title == "Empty book"));
+        Assert.NotNull(books.FirstOrDefault(b => b.Title == "Single Intro book"));
+        Assert.NotNull(books.FirstOrDefault(b => b.Title == "Single Game book"));
+        Assert.NotNull(books.FirstOrDefault(b => b.Title == "Single Game and Intro book"));
+        Assert.NotNull(books.FirstOrDefault(b => b.Title == "Many Intro book"));
+        Assert.NotNull(books.FirstOrDefault(b => b.Title == "Many Game book"));
+        Assert.NotNull(books.FirstOrDefault(b => b.Title == "Many Game and Intro book"));
+    }
 }

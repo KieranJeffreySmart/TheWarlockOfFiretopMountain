@@ -1,0 +1,18 @@
+@viewModel bookeditor.ViewModels.BookEditorHomeViewModel, bookeditor
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<p>
+    <div>
+        <bookCtrl:LibraryBookSelect DataContext={value: LibraryBookList} />
+        <bookCtrl:BookPageList DataContext={value: SelectedBookPageList} Book={value: SelectedBook} SelectedPage={value: SelectedPage} />
+        <bookCtrl:PageDetailPanel DataContext={value: SelectedPageDetail} Page={value: SelectedPage} />
+    </div>
+</p>
+</body>
+</html>

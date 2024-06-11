@@ -1,13 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace bookeditor;
-
+[XmlRoot("book")]
 public class Book
 {
     [XmlElement("title")]
     public string Title { get; set; } = "";
 
     [XmlElement("page")]
-    public List<Page> Pages { get; set; } = new List<Page>();
+    public Page[] Pages { get; set; } = [];
 }

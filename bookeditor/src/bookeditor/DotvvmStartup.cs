@@ -31,7 +31,7 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
         config.RouteTable.Add(
             "BookPageListViewModel", 
             "bookPages", 
-            "Pages/BookPageList/bookPageList.dothtml");
+            "Pages/BookEditorHomePage/bookEditorHome.dothtml");
         config.RouteTable.Add("Error", "error", "Pages/Error/error.dothtml");
 
         // Uncomment the following line to auto-register all dothtml files in the Pages folder
@@ -41,6 +41,8 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
     private void ConfigureControls(DotvvmConfiguration config, string applicationPath)
     {
         // register code-only controls and markup controls
+        config.Markup.AddMarkupControl("bookctrl", "BookPageList", "Pages/Controls/bookPageList.dotcontrol");
+        config.Markup.AddMarkupControl("bookctrl", "PageDetailPanel", "Pages/Controls/pageDetailPanel.dotcontrol");
     }
 
     private void ConfigureResources(DotvvmConfiguration config, string applicationPath)

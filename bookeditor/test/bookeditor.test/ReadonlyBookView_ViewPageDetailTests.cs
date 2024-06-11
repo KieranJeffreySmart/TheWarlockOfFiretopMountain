@@ -6,28 +6,30 @@ public class ReadonlyBookView_ViewPageDetailTests
 {
     [Theory]
     [InlineData("Single caret story", "My single caret story")]
-    [InlineData("Some caret story", "My first caretMy second caret\n                \nMy third caret")]
+    [InlineData("Some caret story", "My first caretMy second caret\n                \nMy third caret\n                ")]
     public void ViewFirstPage(string testBook, string story)
     {
         // Given I have a library
-        var library = "Books_With_Stories";
-        var testDataRepository = new XmlLibrary("../../../TestData", [library]);
+        var libraryName = "Books_With_Stories";
+        var library = new XmlLibrary("../../../TestData", [libraryName]);
 
         // Given I have a notification service
         InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
 
         // When I open the book
-        var viewModel = new BookPageListViewModel(testDataRepository, notificationQueue);
-        viewModel.OpenBook(testBook);
+        var listViewModel = new BookPageListViewModel() { Book = library.GetBook(testBook) };
         
         // Then there should be pages displayed
-        Assert.True(viewModel.Pages.Any());
+        Assert.True(listViewModel.Pages.Any());
 
         // Then the first page is selected
-        Assert.NotNull(viewModel.SelectedPage);
-        Assert.Equal(1, viewModel.SelectedPage.Index);
+        Assert.NotNull(listViewModel.SelectedPage);
+        Assert.Equal(1, listViewModel.SelectedPage.Index);
+        Assert.Equal("Intro", listViewModel.SelectedPage.Type);
 
         // then the story text is displayed
-        Assert.Equal(story, viewModel.SelectedPage.StoryTextRaw.Trim());
+        PageDetailViewModel detailViewModel = new PageDetailViewModel();
+        detailViewModel.Page = listViewModel.SelectedPage;
+        Assert.Equal(story, detailViewModel.StoryTextRaw);
     }
 }

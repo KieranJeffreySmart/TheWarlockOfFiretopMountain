@@ -8,8 +8,8 @@ public class ReadOnlyBookView_OpenBookTests
     public void OpenMissingBook()
     {
         // Given I have a library
-        var library = "Books_With_Pages";
-        var testDataRepository = new XmlLibrary("../../../TestData", [library]);
+        var libraryName = "Books_With_Pages";
+        var library = new XmlLibrary("../../../TestData", [libraryName]);
 
         //Given I have a notification service
         InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
@@ -18,8 +18,7 @@ public class ReadOnlyBookView_OpenBookTests
         var testBook = "Missing book";
 
         // when I open the book
-        var viewModel = new BookPageListViewModel(testDataRepository, notificationQueue);
-        viewModel.OpenBook(testBook);
+        var viewModel = new BookPageListViewModel() { Book = library.GetBook(testBook) };
         
         // Then I am informed the book is empty
         Assert.True(notificationQueue.Any());
@@ -33,8 +32,8 @@ public class ReadOnlyBookView_OpenBookTests
     public void OpenEmptyBook()
     {
         // Given I have a library
-        var library = "Books_With_Pages";
-        var testDataRepository = new XmlLibrary("../../../TestData", [library]);
+        var libraryName = "Books_With_Pages";
+        var library = new XmlLibrary("../../../TestData", [libraryName]);
 
         //Given I have a notification service
         InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
@@ -43,8 +42,7 @@ public class ReadOnlyBookView_OpenBookTests
         var testBook = "Empty book";
 
         // when I open the book
-        var viewModel = new BookPageListViewModel(testDataRepository, notificationQueue);
-        viewModel.OpenBook(testBook);
+        var viewModel = new BookPageListViewModel() { Book = library.GetBook(testBook) };
         
         // Then I am informed the book is empty
         Assert.True(notificationQueue.Any());
@@ -64,13 +62,10 @@ public class ReadOnlyBookView_OpenBookTests
         // Given I the library has an empty book
         var testBook = "Empty book";
 
-        BookPageListViewModel viewModel = new BookPageListViewModel(testDataRepository, notificationQueue);
+        var viewModel = new BookPageListViewModel();
         
         // when I select a book
-        viewModel.SelectedBookTitle = testBook;
-
-        // when I open the book
-        viewModel.OpenSelectedBook();
+        viewModel.Book = testDataRepository.GetBook(testBook);
         
         // Then I am informed the book is empty
         Assert.True(notificationQueue.Any());
@@ -94,8 +89,7 @@ public class ReadOnlyBookView_OpenBookTests
         InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
 
         // when I get the book
-        var viewModel = new BookPageListViewModel(library, notificationQueue);
-        viewModel.OpenBook(booktitle);
+        var viewModel = new BookPageListViewModel() { Book = library.GetBook(booktitle) };
 
         // Then I am informed the book is missing
         Assert.True(notificationQueue.Any());
@@ -108,17 +102,17 @@ public class ReadOnlyBookView_OpenBookTests
         string rootPath = "../../../TestData";
         
         // when I set the root path
-        viewModel.LibraryPath = rootPath;
+        library.RootPath = rootPath;
 
         // when I get the book
-        viewModel.OpenBook(booktitle);
+        viewModel.Book = library.GetBook(booktitle);
 
         // Then the book title should be displayed
-        Assert.Equal(booktitle, viewModel.BookTitle);
+        Assert.Equal(booktitle, viewModel.Book.Title);
 
         // Then there should be pages displayed
         Assert.True(viewModel.Pages.Any());
-        Assert.Equal(403, viewModel.Pages.Count);
+        Assert.Equal(403, viewModel.Pages.Count());
 
         // Then I am informed the book is open and the number of pages
         Assert.True(notificationQueue.Any());

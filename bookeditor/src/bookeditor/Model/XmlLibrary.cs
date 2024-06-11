@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
@@ -20,7 +22,6 @@ public class XmlLibrary
 
     public Book GetBook(string bookName)
     {
-
         try
         {
             var serializer = new XmlSerializer(typeof(Library));
@@ -54,6 +55,39 @@ public class XmlLibrary
             Library libraryModel = (serializer.Deserialize(reader) as Library) ?? new Library();
 
             return libraryModel?.Books?.FirstOrDefault() ?? new Book() { Title = "" };
+        }
+    }
+
+    public async IAsyncEnumerable<Book> GetAllBooks()
+    {
+        XmlReaderSettings settings = new XmlReaderSettings 
+        {
+            Async = true   
+        };
+
+        if (!librarieNames.Any())
+            yield return new Book();
+
+
+        List<XmlReader> readers = new List<XmlReader>();
+
+        foreach (string name in librarieNames)
+        {
+            XmlReader reader = XmlReader.Create(Path.Combine(rootpath, $"{name}.xml"), settings);
+            readers.Add(reader);
+        }
+
+        var readerenumerator = readers.GetEnumerator();
+
+        var serializer = new XmlSerializer(typeof(Book));
+        readerenumerator.MoveNext();
+
+        while (await readerenumerator.Current.ReadAsync() || readerenumerator.MoveNext())
+        {
+            if (readerenumerator.Current.Name == "book")
+            {
+                yield return (serializer.Deserialize(readerenumerator.Current) as Book) ?? new Book();
+            }
         }
     }
 }

@@ -14,8 +14,8 @@ public class ReadonlyBookView_ListPagesTests
     public void ListSomePages(string testBook, int pageCount, string[] pageListItemLabels)
     {
         // Given I have a library
-        var library = "Books_With_Pages";
-        var testDataRepository = new XmlLibrary("../../../TestData", [library]);
+        var libraryName = "Books_With_Pages";
+        var library = new XmlLibrary("../../../TestData", [libraryName]);
 
         // Given I have a notification service
         InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
@@ -28,12 +28,11 @@ public class ReadonlyBookView_ListPagesTests
         // Given I the library has a book with many intro pages and game pages
 
         // When I open the book
-        var viewModel = new BookPageListViewModel(testDataRepository, notificationQueue);
-        viewModel.OpenBook(testBook);
+        var viewModel = new BookPageListViewModel() { Book = library.GetBook(testBook) };
         
         // Then there should be pages displayed
         Assert.True(viewModel.Pages.Any());
-        Assert.Equal(pageCount, viewModel.Pages.Count);
+        Assert.Equal(pageCount, viewModel.Pages.Count());
 
         // Then each page should display the correct information
         Assert.Equal(pageListItemLabels, viewModel.Pages.Select(p => p.Label));
@@ -47,8 +46,8 @@ public class ReadonlyBookView_ListPagesTests
     public void ListManyPages()
     {
         // Given I have a library
-        var library = "Warlock_of_Firetop_Mountain";
-        var testDataRepository = new XmlLibrary("../../../TestData", [library]);
+        var libraryName = "Warlock_of_Firetop_Mountain";
+        var library = new XmlLibrary("../../../TestData", [libraryName]);
 
         // Given I have a notification service
         InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
@@ -58,15 +57,14 @@ public class ReadonlyBookView_ListPagesTests
         int pageCount = 403;
 
         // When I open the book
-        var viewModel = new BookPageListViewModel(testDataRepository, notificationQueue);
-        viewModel.OpenBook(testBook);
+        var viewModel = new BookPageListViewModel() { Book = library.GetBook(testBook) };
         
         // Then the book title should be displayed
-        Assert.Equal(testBook, viewModel.BookTitle);
+        Assert.Equal(testBook, viewModel.Book.Title);
 
         // Then there should be pages displayed
         Assert.True(viewModel.Pages.Any());
-        Assert.Equal(pageCount, viewModel.Pages.Count);
+        Assert.Equal(pageCount, viewModel.Pages.Count());
 
         // Then I am informed the book is open and the number of pages
         Assert.True(notificationQueue.Any());
@@ -85,17 +83,16 @@ public class ReadonlyBookView_ListPagesTests
     public void DisplaySomeOptions(string testBook)
     {
         // Given I have a library
-        var library = "Books_With_Options";
-        var testDataRepository = new XmlLibrary("../../../TestData", [library]);
+        var libraryName = "Books_With_Options";
+        var library = new XmlLibrary("../../../TestData", [libraryName]);
 
         // Given I have a notification service
         InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
 
         // Given the library has a book with next and back
 
-        // When I open the book
-        var viewModel = new BookPageListViewModel(testDataRepository, notificationQueue);
-        viewModel.OpenBook(testBook);
+        // When I open the book        
+        var viewModel = new BookPageListViewModel() { Book = library.GetBook(testBook) };
 
         // Then the number of options for each page should be displayed
 

@@ -1,0 +1,4 @@
+@viewModel bookeditor.ViewModels.PageDetailViewModel, bookeditor
+
+<h2>{{value: Page.Type}} page {{value: Page.Index}}</h2>
+{{value: StoryTextRaw}}

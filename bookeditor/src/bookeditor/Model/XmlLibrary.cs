@@ -35,7 +35,7 @@ public class XmlLibrary
                 }
             }
         }
-        catch (System.Exception)
+        catch (System.Exception e)
         {
             /// [rgR] Dodgy af how should we handle exceptions? (see tests)
             return new Book() { Title = "" };

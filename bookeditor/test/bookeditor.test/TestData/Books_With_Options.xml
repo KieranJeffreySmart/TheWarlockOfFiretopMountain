@@ -1,40 +1,97 @@
 <library>
     <book>
-        <title></title>
+        <title>Start Command</title>
+        <page state="published" idx="1">
+            <type>Intro</type>
+            <index>1</index>
+            <story>
+                <text>Intro Page 1</text>
+            </story>
+            <option key="q" command="START_GAME"><label>Start</label></option>
+        </page>
+        <page state="published" idx="1">
+            <type>Game</type>
+            <index>1</index>
+            <story>
+                <text>Game Page 1</text>
+            </story>
+            <option key="q" command="START_GAME"><label>Start</label></option>
+        </page>
     </book>
     <book>
-        <intropage state="published" idx="1">
+        <title>Quit Command</title>
+        <page state="published" idx="1">
+            <type>Intro</type>
+            <index>1</index>
             <story>
-                <text>
-                </text>
+                <text>Page 1</text>
             </story>
-            <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
-            <option key="b" command="PREVIOUS_PAGE"><label>Back</label></option>
-        </intropage>
-        <intropage state="published" idx="2">
-            <story>
-                <text>
-                </text>
-                <text>
-                </text>
-            </story>
-            <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
-            <option key="b" command="PREVIOUS_PAGE"><label>Back</label></option>
-        </intropage>
+            <option key="q" command="QUIT_GAME"><label>Quit</label></option>
+        </page>
     </book>
     <book>
-        <gamepage state="published" idx="1">
-            <scene>
-                <image></image>
-                <text>
-                </text>
-            </scene>
+        <title>Continue Command</title>
+        <page state="published" idx="1">
+            <type>Intro</type>
+            <index>1</index>
             <story>
-                <text>
-                </text>
+                <text>Page 1</text>
+            </story>
+            <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
+        </page>
+        <page state="published" idx="2">
+            <type>Intro</type>
+            <index>2</index>
+            <story>
+                <text>Page 2</text>
+            </story>
+        </page>
+    </book>
+    <book>
+        <title>Continue and Back Commands</title>
+        <page state="published" idx="1">
+            <type>Intro</type>
+            <index>1</index>
+            <story>
+                <text>Page 1</text>
+            </story>
+            <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
+        </page>
+        <page state="published" idx="2">
+            <type>Intro</type>
+            <index>2</index>
+            <story>
+                <text>Page 2</text>
             </story>
             <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
             <option key="b" command="PREVIOUS_PAGE"><label>Back</label></option>
-        </gamepage>
+        </page>
+    </book>
+    <book>
+        <title>Goto Command</title>
+        <page state="published" idx="1">
+            <type>Intro</type>
+            <index>1</index>
+            <story>
+                <text>Page 1</text>
+            </story>
+            <option key="g" command="GOTO_PAGE" page="3"><label>Goto Page 3</label></option>
+        </page>
+        <page state="published" idx="2">
+            <type>Intro</type>
+            <index>2</index>
+            <story>
+                <text>Page 2</text>
+            </story>
+            <option key="g" command="GOTO_PAGE" page="1"><label>Goto Page 1</label></option>
+        </page>
+        <page>
+            <type>Intro</type>
+            <index>3</index>
+            <story>
+                <text>Page 2</text>
+            </story>
+            <option key="g" command="GOTO_PAGE" page="2"><label>Goto Page 2</label></option>
+        </page>
     </book>
 </library>

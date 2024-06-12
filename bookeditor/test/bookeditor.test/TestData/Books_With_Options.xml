@@ -7,7 +7,7 @@
             <story>
                 <text>Intro Page 1</text>
             </story>
-            <option key="q" command="START_GAME"><label>Start</label></option>
+            <option key="s" command="START_GAME"><label>Start</label></option>
         </page>
         <page state="published" idx="1">
             <type>Game</type>
@@ -15,7 +15,6 @@
             <story>
                 <text>Game Page 1</text>
             </story>
-            <option key="q" command="START_GAME"><label>Start</label></option>
         </page>
     </book>
     <book>
@@ -63,7 +62,6 @@
             <story>
                 <text>Page 2</text>
             </story>
-            <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
             <option key="b" command="PREVIOUS_PAGE"><label>Back</label></option>
         </page>
     </book>
@@ -75,7 +73,7 @@
             <story>
                 <text>Page 1</text>
             </story>
-            <option key="g" command="GOTO_PAGE" page="3"><label>Goto Page 3</label></option>
+            <option key="g" command="GOTO_PAGE" page="3"><label>Go to Page 3</label></option>
         </page>
         <page state="published" idx="2">
             <type>Intro</type>
@@ -83,15 +81,45 @@
             <story>
                 <text>Page 2</text>
             </story>
-            <option key="g" command="GOTO_PAGE" page="1"><label>Goto Page 1</label></option>
+            <option key="g" command="GOTO_PAGE" page="1"><label>Go to Page 1</label></option>
+            <option key="g" command="GOTO_PAGE" page="3"><label>Go to Page 3</label></option>
         </page>
         <page>
             <type>Intro</type>
             <index>3</index>
             <story>
+                <text>Page 3</text>
+            </story>
+            <option key="g" command="GOTO_PAGE" page="2"><label>Go to Page 2</label></option>
+        </page>
+    </book>
+    <book>
+        <title>Goto Continue and Back</title>
+        <page state="published" idx="1">
+            <type>Intro</type>
+            <index>1</index>
+            <story>
+                <text>Page 1</text>
+            </story>
+            <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
+        </page>
+        <page state="published" idx="2">
+            <type>Intro</type>
+            <index>2</index>
+            <story>
                 <text>Page 2</text>
             </story>
-            <option key="g" command="GOTO_PAGE" page="2"><label>Goto Page 2</label></option>
+            <option key="g" command="GOTO_PAGE" page="1"><label>Go to Page 1</label></option>
+            <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
+            <option key="b" command="PREVIOUS_PAGE"><label>Back</label></option>
+        </page>
+        <page>
+            <type>Intro</type>
+            <index>3</index>
+            <story>
+                <text>Page 3</text>
+            </story>
+            <option key="g" command="GOTO_PAGE" page="2"><label>Go to Page 2</label></option>
         </page>
     </book>
 </library>

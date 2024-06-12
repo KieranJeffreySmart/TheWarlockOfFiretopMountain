@@ -1,89 +1,89 @@
 <Library>
     <book>
-        <title>Empty story</title>
+        <title>Empty scene</title>
         <page>
             <type>Intro</type>
             <index>1</index>
-            <story>
-            </story>
+            <scene>
+            </scene>
         </page>
     </book>
     <book>
-        <title>Whitespace story</title>
+        <title>Whitespace scene</title>
         <page>
             <type>Intro</type>
             <index>1</index>
-            <story>
+            <scene>
                 <text>
 
                 </text>
-            </story>
+            </scene>
         </page>
     </book>
     <book>
-        <title>Single caret story</title>
+        <title>Single caret scene</title>
         <page>
             <type>Intro</type>
             <index>1</index>
-            <story>
+            <scene>
                 <text>My single caret</text>
-            </story>
+            </scene>
         </page>
     </book>
     <book>
-        <title>Many caret story</title>
+        <title>Many caret scene</title>
         <page>
             <type>Intro</type>
             <index>1</index>
-            <story>
+            <scene>
                 <text>My first caret</text>
                 <text>My second caret
                 </text>
                 <text>
 My third caret
                 </text>
-            </story>
+            </scene>
         </page>
     </book>
     <book>
-        <title>Single image story</title>
+        <title>Single image scene</title>
         <page>
             <type>Intro</type>
             <index>1</index>
-            <story>
+            <scene>
                 <image>image1.jpg</image>
-            </story>
+            </scene>
         </page>
     </book>
     <book>
-        <title>Many image story</title>
+        <title>Many image scene</title>
         <page>
             <type>Intro</type>
             <index>1</index>
-            <story>
+            <scene>
                 <image>image1.jpg</image>
                 <image>image2.png</image>
                 <image>image3.bmp</image>
-            </story>
+            </scene>
         </page>
     </book>
     <book>
-        <title>Single image and caret story</title>
+        <title>Single image and caret scene</title>
         <page>
             <type>Intro</type>
             <index>1</index>
-            <story>
+            <scene>
                 <text>My single caret</text>
                 <image>image1.jpg</image>
-            </story>
+            </scene>
         </page>
     </book>
     <book>
-        <title>Many image and caret story</title>
+        <title>Many image and caret scene</title>
         <page>
             <type>Intro</type>
             <index>1</index>
-            <story>
+            <scene>
                 <text>My first caret</text>
                 <text>My second caret
                 </text>
@@ -93,15 +93,15 @@ My third caret
                 <image>image1.jpg</image>
                 <image>image2.png</image>
                 <image>image3.bmp</image>
-            </story>
+            </scene>
         </page>
     </book>
     <book>
-        <title>Many carets one line story</title>
+        <title>Many carets one line scene</title>
         <page>
             <type>Intro</type>
             <index>1</index>
-            <story>
+            <scene>
                 <text>My first caret</text>
                 <text>My second caret</text>
                 <text>My third caret</text>
@@ -189,15 +189,15 @@ My third caret
                 <text>... another caret</text>
                 <text>... another caret</text>
                 <text>final caret</text>
-            </story>
+            </scene>
         </page>
     </book>
     <book>
-        <title>Many carets with new lines story</title>
+        <title>Many carets with new lines scene</title>
         <page>
             <type>Intro</type>
             <index>1</index>
-            <story>
+            <scene>
                 <text>
 My first caret
                 </text>
@@ -417,7 +417,7 @@ My third caret
                 <text>
 final caret
                 </text>
-            </story>
+            </scene>
         </page>
     </book>
 </Library>

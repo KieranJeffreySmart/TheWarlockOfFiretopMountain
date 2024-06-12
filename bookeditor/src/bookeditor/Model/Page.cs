@@ -40,7 +40,7 @@ public class Option
 public class Story
 {
     [XmlElement("text")]
-    public string[] TextCarets { get; set; } = [];
+    public string[]? TextCarets { get; set; } = [];
 
     [XmlElement("image")]
     public string[]? Images { get; set; } = [];
@@ -58,8 +58,8 @@ public class Scene
 public class OptionArgument 
 {
     [XmlElement("key")]
-    public string TextCarets { get; set; } = string.Empty;
+    public string Key { get; set; } = string.Empty;
 
     [XmlElement("value")]
-    public string Images { get; set; } = string.Empty;
+    public string Value { get; set; } = string.Empty;
 }

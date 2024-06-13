@@ -1,4 +1,5 @@
 using DotVVM.Framework.Configuration;
+using DotVVM.Framework.ResourceManagement;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace bookeditor;
@@ -48,6 +49,10 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
     private void ConfigureResources(DotvvmConfiguration config, string applicationPath)
     {
         // register custom resources and adjust paths to the built-in resources
+        config.Resources.Register("custom-css", new StylesheetResource()
+        {
+            Location = new UrlResourceLocation("~/Pages/custom.css")
+        });
     }
 
     public void ConfigureServices(IDotvvmServiceCollection options)

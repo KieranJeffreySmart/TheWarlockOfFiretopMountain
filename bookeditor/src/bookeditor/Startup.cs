@@ -15,7 +15,7 @@ public class Startup
         services.AddWebEncoders();
 
         services.AddDotVVM<DotvvmStartup>();
-        services.AddSingleton(new XmlLibrary("./books", ["Warlock_of_Firetop_Mountain"]));
+        services.AddSingleton(new XmlLibrary("./books", ["*"]));
         services.AddSingleton(new InMemoryNotificationsQueue());
     }
 

@@ -183,4 +183,27 @@ public class XmlLibrary_IntegrationTests
         File.Delete(completeFilePath);
         Assert.False(File.Exists(completeFilePath));
     }
+
+    
+        
+    [Fact]
+    public async Task OpenAllFiles()
+    {
+        // given I have a folder with many libraries on file
+        var libraryName = "*";
+        var path = "../../../TestData/OpenAllFiles";
+        var library = new XmlLibrary(path, [libraryName]);
+
+        // when I get all books
+        var asyncbooks = library.GetAllBooks();
+        Assert.NotNull(asyncbooks);
+        List<Book> books = new List<Book>();
+        await foreach (var book in asyncbooks)
+        {
+            books.Add(book);
+        }
+
+        // then I should be receive the expected number of books
+        Assert.Equal(17, books.Count);        
+    }
 }

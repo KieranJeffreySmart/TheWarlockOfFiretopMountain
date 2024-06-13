@@ -5,6 +5,20 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <style>
+        .caret{
+            border-radius:5px;
+            border:1px solid #000;
+            background:#fff;
+            padding: 8px 15px;
+            font-size:14px;
+        }
+            
+        .caret span{
+            font-size:10px;
+            padding-left:5px;
+        }
+    </style>
 </head>
 <body>
 <p>

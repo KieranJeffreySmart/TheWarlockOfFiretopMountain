@@ -25,9 +25,17 @@ public class XmlLibrary
         try
         {
             var serializer = new XmlSerializer(typeof(Library));
-            foreach (string libraryName in librarieNames)
+
+            string[] libraryPaths;
+
+            if (librarieNames.Contains("*"))
+                libraryPaths = Directory.GetFiles(Path.Combine(rootpath, "*.xml"));
+            else
+                libraryPaths = librarieNames.Select(n => Path.Combine(rootpath, $"{n}.xml")).ToArray();
+
+            foreach (string libraryPath in libraryPaths)
             {
-                using (XmlReader reader = XmlReader.Create(Path.Combine(rootpath, $"{libraryName}.xml")))
+                using (XmlReader reader = XmlReader.Create(libraryPath))
                 {
                     Library libraryModel = (serializer.Deserialize(reader) as Library) ?? new Library();
 
@@ -70,23 +78,39 @@ public class XmlLibrary
 
         List<string> readers = new List<string>();
         var serializer = new XmlSerializer(typeof(Book));
+        
+        string[] libraryPaths;
 
-        foreach (string name in librarieNames)
+        if (librarieNames.Contains("*"))
+            libraryPaths = Directory.GetFiles(rootpath, "*.xml");
+        else
+            libraryPaths = librarieNames.Select(n => Path.Combine(rootpath, $"{n}.xml")).ToArray();
+
+        foreach (string path in libraryPaths)
         {
-            using (XmlReader reader = XmlReader.Create(Path.Combine(rootpath, $"{name}.xml"), settings))
+            using (XmlReader reader = XmlReader.Create(path, settings))
             {
-                while (await reader.ReadAsync())
+                var canRead = true;
+                while (canRead)
                 {
-                    if (reader.Name == "book")
+                    try 
                     {
-                        yield return (serializer.Deserialize(reader) as Book) ?? new Book();
+                        canRead = await reader.ReadAsync();
                     }
-                }                
+                    catch (Exception e)
+                    {
+                        // [rgR] ignore eronous files
+                    }  
+
+                    if (canRead)
+                    {
+                        if (reader.Name == "book")
+                        {
+                            yield return (serializer.Deserialize(reader) as Book) ?? new Book();
+                        }
+                    }
+                }           
             }
         }
-
-        var readerenumerator = readers.GetEnumerator();
-
-        readerenumerator.MoveNext();
     }
 }

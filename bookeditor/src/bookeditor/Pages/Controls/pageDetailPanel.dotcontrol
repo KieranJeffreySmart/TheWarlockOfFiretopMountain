@@ -12,11 +12,11 @@ Story:<br />
 <p DataContext={value: Page} >
     Story Carets:
     <dot:Repeater DataSource={value: Story.Carets} >
-        <p>{{value: StringValue}}</p>
+        <span class="caret" ><pre>{{value: StringValue}}</pre></span>
     </dot:Repeater>
     Scene Carets:
     <dot:Repeater DataSource={value: Scene.Carets} >
-        <p>{{value: StringValue}}</p>
+        <span class="caret" ><pre>{{value: StringValue}}</pre></span>
     </dot:Repeater>
     Options:
     <dot:Repeater DataSource={value: Options} >

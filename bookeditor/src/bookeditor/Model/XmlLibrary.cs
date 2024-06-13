@@ -60,34 +60,33 @@ public class XmlLibrary
 
     public async IAsyncEnumerable<Book> GetAllBooks()
     {
-        XmlReaderSettings settings = new XmlReaderSettings 
+        XmlReaderSettings settings = new()
         {
             Async = true   
         };
 
-        if (!librarieNames.Any())
+        if (librarieNames.Length == 0)
             yield return new Book();
 
-
-        List<XmlReader> readers = new List<XmlReader>();
+        List<string> readers = new List<string>();
+        var serializer = new XmlSerializer(typeof(Book));
 
         foreach (string name in librarieNames)
         {
-            XmlReader reader = XmlReader.Create(Path.Combine(rootpath, $"{name}.xml"), settings);
-            readers.Add(reader);
+            using (XmlReader reader = XmlReader.Create(Path.Combine(rootpath, $"{name}.xml"), settings))
+            {
+                while (await reader.ReadAsync())
+                {
+                    if (reader.Name == "book")
+                    {
+                        yield return (serializer.Deserialize(reader) as Book) ?? new Book();
+                    }
+                }                
+            }
         }
 
         var readerenumerator = readers.GetEnumerator();
 
-        var serializer = new XmlSerializer(typeof(Book));
         readerenumerator.MoveNext();
-
-        while (await readerenumerator.Current.ReadAsync() || readerenumerator.MoveNext())
-        {
-            if (readerenumerator.Current.Name == "book")
-            {
-                yield return (serializer.Deserialize(readerenumerator.Current) as Book) ?? new Book();
-            }
-        }
     }
 }

@@ -1,3 +1,5 @@
+using System.Xml;
+
 namespace bookeditor.test;
 
 public class XmlLibrary_IntegrationTests
@@ -148,5 +150,37 @@ public class XmlLibrary_IntegrationTests
         Assert.NotNull(books.FirstOrDefault(b => b.Title == "Many Intro book"));
         Assert.NotNull(books.FirstOrDefault(b => b.Title == "Many Game book"));
         Assert.NotNull(books.FirstOrDefault(b => b.Title == "Many Game and Intro book"));
+    }
+        
+    [Fact]
+    public async Task CanDeleteFileAfterOpening()
+    {
+        // given I have a new library on file
+        var libraryName = "Can_Delete_Library";
+        var path = "../../../TestData";
+        var completeFilePath = Path.Combine(path, $"{libraryName}.xml");
+        
+        XmlDocument xdoc = new XmlDocument();
+        xdoc.LoadXml("<library></library>");
+
+        using (var writer = XmlWriter.Create(completeFilePath))
+        {
+            xdoc.WriteContentTo(writer);
+        }
+
+        var library = new XmlLibrary(path, [libraryName]);
+
+        // when I get all books
+        var asyncbooks = library.GetAllBooks();
+        Assert.NotNull(asyncbooks);
+        List<Book> books = new List<Book>();
+        await foreach (var book in asyncbooks)
+        {
+            books.Add(book);
+        }
+
+        // then I should be able to delete the file
+        File.Delete(completeFilePath);
+        Assert.False(File.Exists(completeFilePath));
     }
 }

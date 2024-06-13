@@ -5,7 +5,7 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <text>Intro Page 1</text>
+                <caret type="text">Intro Page 1</caret>
             </story>
             <option key="s" command="START_GAME"><label>Start</label></option>
         </page>
@@ -13,7 +13,7 @@
             <type>Game</type>
             <index>1</index>
             <story>
-                <text>Game Page 1</text>
+                <caret type="text">Game Page 1</caret>
             </story>
         </page>
     </book>
@@ -23,7 +23,7 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <text>Page 1</text>
+                <caret type="text">Page 1</caret>
             </story>
             <option key="q" command="QUIT_GAME"><label>Quit</label></option>
         </page>
@@ -34,7 +34,7 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <text>Page 1</text>
+                <caret type="text">Page 1</caret>
             </story>
             <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
         </page>
@@ -42,7 +42,7 @@
             <type>Intro</type>
             <index>2</index>
             <story>
-                <text>Page 2</text>
+                <caret type="text">Page 2</caret>
             </story>
         </page>
     </book>
@@ -52,7 +52,7 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <text>Page 1</text>
+                <caret type="text">Page 1</caret>
             </story>
             <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
         </page>
@@ -60,7 +60,7 @@
             <type>Intro</type>
             <index>2</index>
             <story>
-                <text>Page 2</text>
+                <caret type="text">Page 2</caret>
             </story>
             <option key="b" command="PREVIOUS_PAGE"><label>Back</label></option>
         </page>
@@ -71,7 +71,7 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <text>Page 1</text>
+                <caret type="text">Page 1</caret>
             </story>
             <option key="g" command="GOTO_PAGE" page="3"><label>Go to Page 3</label></option>
         </page>
@@ -79,7 +79,7 @@
             <type>Intro</type>
             <index>2</index>
             <story>
-                <text>Page 2</text>
+                <caret type="text">Page 2</caret>
             </story>
             <option key="g" command="GOTO_PAGE" page="1"><label>Go to Page 1</label></option>
             <option key="g" command="GOTO_PAGE" page="3"><label>Go to Page 3</label></option>
@@ -88,7 +88,7 @@
             <type>Intro</type>
             <index>3</index>
             <story>
-                <text>Page 3</text>
+                <caret type="text">Page 3</caret>
             </story>
             <option key="g" command="GOTO_PAGE" page="2"><label>Go to Page 2</label></option>
         </page>
@@ -99,7 +99,7 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <text>Page 1</text>
+                <caret type="text">Page 1</caret>
             </story>
             <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
         </page>
@@ -107,7 +107,7 @@
             <type>Intro</type>
             <index>2</index>
             <story>
-                <text>Page 2</text>
+                <caret type="text">Page 2</caret>
             </story>
             <option key="g" command="GOTO_PAGE" page="1"><label>Go to Page 1</label></option>
             <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
@@ -117,7 +117,7 @@
             <type>Intro</type>
             <index>3</index>
             <story>
-                <text>Page 3</text>
+                <caret type="text">Page 3</caret>
             </story>
             <option key="g" command="GOTO_PAGE" page="2"><label>Go to Page 2</label></option>
         </page>

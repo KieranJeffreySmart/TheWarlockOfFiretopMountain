@@ -5,20 +5,18 @@ namespace bookeditor.test;
 public class ViewPageStory_Tests
 {
     [Theory]
-    [InlineData("Single caret story", new string[] {"My single caret"}, "My single caret", null)]
+    [InlineData("Single caret story", new string[] {"My single caret"}, "My single caret")]
     [InlineData(
         "Many caret story",
         new string[] {"My first caret", "My second caret\n                ", "\nMy third caret\n                "}, 
-        "My first caretMy second caret\n                \nMy third caret\n                ", 
-        null)]
-    [InlineData("Single image story", null, "", new string[] {"image1.jpg"})]
-    [InlineData("Many image story", null, "", new string[] {"image1.jpg", "image2.png", "image3.bmp"})]
-    [InlineData("Single image and caret story", new string[] {"My single caret"}, "My single caret", new string[] {"image1.jpg"})]
+        "My first caretMy second caret\n                \nMy third caret\n                ")]
+    [InlineData("Single image story", new string[] {"image1.jpg"}, "")]
+    [InlineData("Many image story", new string[] {"image1.jpg", "image2.png", "image3.bmp"}, "")]
+    [InlineData("Single image and caret story", new string[] {"My single caret", "image1.jpg"}, "My single caret")]
     [InlineData("Many image and caret story",
-        new string[] {"My first caret", "My second caret\n                ", "\nMy third caret\n                "}, 
-        "My first caretMy second caret\n                \nMy third caret\n                ", 
-        new string[] {"image1.jpg", "image2.png", "image3.bmp"})]
-    public async Task ViewPageStory(string testBook, string[] carets, string rawText, string[] images)
+        new string[] {"My first caret", "My second caret\n                ", "\nMy third caret\n                ", "image1.jpg", "image2.png", "image3.bmp"}, 
+        "My first caretMy second caret\n                \nMy third caret\n                ")]
+    public async Task ViewPageStory(string testBook, string[] carets, string rawText)
     {
         // Given I have a library
         var libraryName = "Books_With_Stories";
@@ -52,43 +50,31 @@ public class ViewPageStory_Tests
 
         if (carets == null)
         {
-            Assert.Null(viewModel.SelectedPageDetails.Page.Story.TextCarets);
+            Assert.Null(viewModel.SelectedPageDetails.Page.Story.Carets);
         }
         else
         {
-            Assert.NotNull(viewModel.SelectedPageDetails.Page.Story.TextCarets);
-            Assert.Equal(carets, viewModel.SelectedPageDetails.Page.Story.TextCarets);
+            Assert.NotNull(viewModel.SelectedPageDetails.Page.Story.Carets);
+            Assert.Equal(carets, viewModel.SelectedPageDetails.Page.Story.Carets.Select(c => c.StringValue));
         }
 
         Assert.Equal(rawText, viewModel.SelectedPageDetails.StoryTextRaw);
-        
-        if (images == null)
-        {
-            Assert.Null(viewModel.SelectedPageDetails.Page.Story.Images);
-        }
-        else
-        {
-            Assert.NotNull(viewModel.SelectedPageDetails.Page.Story.Images);
-            Assert.Equal(images, viewModel.SelectedPageDetails.Page.Story.Images);
-        }
     }
 
 
     [Theory]
-    [InlineData("Single caret scene", new string[] {"My single caret"}, "My single caret", null)]
+    [InlineData("Single caret scene", new string[] {"My single caret"}, "My single caret")]
     [InlineData(
         "Many caret scene",
         new string[] {"My first caret", "My second caret\n                ", "\nMy third caret\n                "}, 
-        "My first caretMy second caret\n                \nMy third caret\n                ", 
-        null)]
-    [InlineData("Single image scene", null, "", new string[] {"image1.jpg"})]
-    [InlineData("Many image scene", null, "", new string[] {"image1.jpg", "image2.png", "image3.bmp"})]
-    [InlineData("Single image and caret scene", new string[] {"My single caret"}, "My single caret", new string[] {"image1.jpg"})]
+        "My first caretMy second caret\n                \nMy third caret\n                ")]
+    [InlineData("Single image scene",  new string[] {"image1.jpg"}, "")]
+    [InlineData("Many image scene", new string[] {"image1.jpg", "image2.png", "image3.bmp"}, "")]
+    [InlineData("Single image and caret scene", new string[] {"My single caret", "image1.jpg"}, "My single caret")]
     [InlineData("Many image and caret scene",
-        new string[] {"My first caret", "My second caret\n                ", "\nMy third caret\n                "}, 
-        "My first caretMy second caret\n                \nMy third caret\n                ", 
-        new string[] {"image1.jpg", "image2.png", "image3.bmp"})]
-    public async Task ViewPageScene(string testBook, string[] carets, string rawText, string[] images)
+        new string[] {"My first caret", "My second caret\n                ", "\nMy third caret\n                ", "image1.jpg", "image2.png", "image3.bmp"}, 
+        "My first caretMy second caret\n                \nMy third caret\n                ")]
+    public async Task ViewPageScene(string testBook, string[] carets, string rawText)
     {
         // Given I have a library
         var libraryName = "Books_With_Scenes";
@@ -122,24 +108,14 @@ public class ViewPageStory_Tests
 
         if (carets == null)
         {
-            Assert.Null(viewModel.SelectedPageDetails.Page.Scene.TextCarets);
+            Assert.Null(viewModel.SelectedPageDetails.Page.Scene.Carets);
         }
         else
         {
-            Assert.NotNull(viewModel.SelectedPageDetails.Page.Scene.TextCarets);
-            Assert.Equal(carets, viewModel.SelectedPageDetails.Page.Scene.TextCarets);
+            Assert.NotNull(viewModel.SelectedPageDetails.Page.Scene.Carets);
+            Assert.Equal(carets, viewModel.SelectedPageDetails.Page.Scene.Carets.Select(c => c.StringValue));
         }
 
         Assert.Equal(rawText, viewModel.SelectedPageDetails.SceneTextRaw);
-        
-        if (images == null)
-        {
-            Assert.Null(viewModel.SelectedPageDetails.Page.Scene.Images);
-        }
-        else
-        {
-            Assert.NotNull(viewModel.SelectedPageDetails.Page.Scene.Images);
-            Assert.Equal(images, viewModel.SelectedPageDetails.Page.Scene.Images);
-        }
     }
 }

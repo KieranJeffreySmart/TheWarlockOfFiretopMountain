@@ -2,4 +2,24 @@
 @viewModel bookeditor.ViewModels.PageDetailViewModel
 
 <h2 DataContext={value: Page} >{{value: PageType}} page {{value: Index}}</h2>
-{{value: StoryTextRaw}}
+
+<br />
+Scene:<br />
+<pre>{{value: SceneTextRaw}}</pre>
+Story:<br />
+<pre>{{value: StoryTextRaw}}</pre>
+
+<p DataContext={value: Page} >
+    Story Carets:
+    <dot:Repeater DataSource={value: Story.Carets} >
+        <p>{{value: StringValue}}</p>
+    </dot:Repeater>
+    Scene Carets:
+    <dot:Repeater DataSource={value: Scene.Carets} >
+        <p>{{value: StringValue}}</p>
+    </dot:Repeater>
+    Options:
+    <dot:Repeater DataSource={value: Options} >
+        <p>{{value: Key}} - {{value: Label}}</p>
+    </dot:Repeater>
+</p>

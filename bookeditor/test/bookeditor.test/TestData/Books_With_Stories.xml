@@ -14,9 +14,9 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <text>
+                <caret type="text">
 
-                </text>
+                </caret>
             </story>
         </page>
     </book>
@@ -26,7 +26,7 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <text>My single caret</text>
+                <caret type="text">My single caret</caret>
             </story>
         </page>
     </book>
@@ -36,12 +36,12 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <text>My first caret</text>
-                <text>My second caret
-                </text>
-                <text>
+                <caret type="text">My first caret</caret>
+                <caret type="text">My second caret
+                </caret>
+                <caret type="text">
 My third caret
-                </text>
+                </caret>
             </story>
         </page>
     </book>
@@ -51,7 +51,7 @@ My third caret
             <type>Intro</type>
             <index>1</index>
             <story>
-                <image>image1.jpg</image>
+                <caret type="image">image1.jpg</caret>
             </story>
         </page>
     </book>
@@ -61,9 +61,9 @@ My third caret
             <type>Intro</type>
             <index>1</index>
             <story>
-                <image>image1.jpg</image>
-                <image>image2.png</image>
-                <image>image3.bmp</image>
+                <caret type="image">image1.jpg</caret>
+                <caret type="image">image2.png</caret>
+                <caret type="image">image3.bmp</caret>
             </story>
         </page>
     </book>
@@ -73,8 +73,8 @@ My third caret
             <type>Intro</type>
             <index>1</index>
             <story>
-                <text>My single caret</text>
-                <image>image1.jpg</image>
+                <caret type="text">My single caret</caret>
+                <caret type="image">image1.jpg</caret>
             </story>
         </page>
     </book>
@@ -84,15 +84,15 @@ My third caret
             <type>Intro</type>
             <index>1</index>
             <story>
-                <text>My first caret</text>
-                <text>My second caret
-                </text>
-                <text>
+                <caret type="text">My first caret</caret>
+                <caret type="text">My second caret
+                </caret>
+                <caret type="text">
 My third caret
-                </text>
-                <image>image1.jpg</image>
-                <image>image2.png</image>
-                <image>image3.bmp</image>
+                </caret>
+                <caret type="image">image1.jpg</caret>
+                <caret type="image">image2.png</caret>
+                <caret type="image">image3.bmp</caret>
             </story>
         </page>
     </book>
@@ -102,93 +102,93 @@ My third caret
             <type>Intro</type>
             <index>1</index>
             <story>
-                <text>My first caret</text>
-                <text>My second caret</text>
-                <text>My third caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>... another caret</text>
-                <text>final caret</text>
+                <caret type="text">My first caret</caret>
+                <caret type="text">My second caret</caret>
+                <caret type="text">My third caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">... another caret</caret>
+                <caret type="text">final caret</caret>
             </story>
         </page>
     </book>
@@ -198,225 +198,225 @@ My third caret
             <type>Intro</type>
             <index>1</index>
             <story>
-                <text>
+                <caret type="text">
 My first caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 My second caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 My third caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 ... another caret
-                </text>
-                <text>
+                </caret>
+                <caret type="text">
 final caret
-                </text>
+                </caret>
             </story>
         </page>
     </book>

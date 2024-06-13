@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
+using bookeditor.ViewModels;
 
 namespace bookeditor;
 
@@ -39,20 +41,23 @@ public class Option
 
 public class Story
 {
-    [XmlElement("text")]
-    public string[]? TextCarets { get; set; } = [];
-
-    [XmlElement("image")]
-    public string[]? Images { get; set; } = [];
+    [XmlElement("caret")]
+    public Caret[]? Carets { get; set; } = [];
 }
 
 public class Scene
 {
-    [XmlElement("text")]
-    public string[]? TextCarets { get; set; } = [];
+    [XmlElement("caret")]
+    public Caret[]? Carets { get; set; } = [];
+}
 
-    [XmlElement("image")]
-    public string[]? Images { get; set; } = [];
+public class Caret
+{
+    [XmlAttribute("type")]
+    public string? CaretType { get; set;}
+    
+    [XmlText]
+    public string? StringValue { get; set;}
 }
 
 public class OptionArgument 

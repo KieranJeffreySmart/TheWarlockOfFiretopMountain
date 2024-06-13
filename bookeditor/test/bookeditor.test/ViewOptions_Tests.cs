@@ -44,7 +44,6 @@ public class ViewOptions_Tests
         Assert.NotNull(viewModel.SelectedPage);
         Assert.NotNull(viewModel.SelectedPageDetails);
         Assert.NotNull(viewModel.SelectedPageDetails.Page);
-
         Assert.Equal(optionCount, viewModel.SelectedPageDetails.Page.Options.Length);
         Assert.Equal(optionsKeys, viewModel.SelectedPageDetails.Page.Options.Select(o => o.Key).ToArray());
         Assert.Equal(labels, viewModel.SelectedPageDetails.Page.Options.Select(o => o.Label).ToArray());

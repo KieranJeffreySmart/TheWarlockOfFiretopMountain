@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using DotVVM.Framework.ViewModel;
 
 namespace bookeditor.ViewModels;
@@ -7,8 +5,4 @@ namespace bookeditor.ViewModels;
 public class PageDetailViewModel : DotvvmViewModelBase
 {
     public Page? Page { get; set; }
-
-    public string StoryTextRaw => string.Join("", Page?.Story?.Carets?.Where(c => c.CaretType == "text").Select(c => c.StringValue) ?? []);
-
-    public string SceneTextRaw  => string.Join("", Page?.Scene?.Carets?.Where(c => c.CaretType == "text").Select(c => c.StringValue) ?? []);
 }

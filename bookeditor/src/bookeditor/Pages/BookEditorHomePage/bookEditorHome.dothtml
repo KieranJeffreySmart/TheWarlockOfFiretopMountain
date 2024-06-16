@@ -44,21 +44,33 @@
         
     </script>
 <p>
-    <div>
-        <dot:ComboBox Style-width="200px" 
-            DataSource="{value: Books}" 
-            SelectedValue="{value: SelectedBook}" 
-            ItemTextBinding="{value: Title}" 
-            SelectionChanged={command: UpdateSelectedBook()}/>
-
-        <bookctrl:BookDetailPanel DataContext={value: SelectedBookDetails}  />
-        <dot:ListBox Style-width="400px" 
-            DataSource="{value: SelectedBook.Pages}" 
-            SelectedValue={value: SelectedPage} 
-            ItemTextBinding="{value: (PageType + " page " + Index)}" 
-            SelectionChanged={command: UpdateSelectedPage()}/>
-
-        <bookctrl:PageDetailPanel DataContext={value: SelectedPageDetails} />
+    <div  class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <dot:ComboBox Style-width="250px"
+                    DataSource="{value: Books}" 
+                    SelectedValue="{value: SelectedBook}" 
+                    ItemTextBinding="{value: Title}" 
+                    SelectionChanged={command: UpdateSelectedBook()}/>
+            </div>        
+            <div class="col-md-3">        
+                <dot:ListBox Style-width="150px"
+                    DataSource="{value: SelectedBook.Pages}" 
+                    SelectedValue={value: SelectedPage} 
+                    ItemTextBinding="{value: (PageType + " page " + Index)}" 
+                    SelectionChanged={command: UpdateSelectedPage()}/>
+            </div>
+            <div class="col-md-4"><bookctrl:BookDetailPanel DataContext={value: SelectedBookDetails}  /></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <bookctrl:PageDetailPanel DataContext={value: SelectedPageDetails} />
+            </div>
+            <div class="col-md-4">
+                <bookctrl:PagePreviewPanel DataContext={value: SelectedPagePreview} />
+            </div>
+        </div>     
     </div>
 </p>
 </body>

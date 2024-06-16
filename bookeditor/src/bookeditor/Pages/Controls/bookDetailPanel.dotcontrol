@@ -1,5 +1,7 @@
 @baseType bookeditor.Controls.BookDetailPanel, bookeditor
 @viewModel bookeditor.ViewModels.BookDetailViewModel
 
-<h2 DataContext={value: Book} >{{value: Title}}</h2>
-<span>pages: {{value: PageCount}}</span>
+<div class="read-only-panel">
+    <h2 DataContext={value: Book} >{{value: Title}}</h2>
+    <span>pages: {{value: PageCount}}</span>
+</div>

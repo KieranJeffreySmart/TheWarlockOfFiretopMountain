@@ -49,30 +49,30 @@ public class Option
 
 public class DefeatOutcome: Outcome
 {
-    public override string? OutcomeType => "DEFEAT";
+    public new string? OutcomeType => "DEFEAT";
 }
 
 public class EscapeOutcome: Outcome
 {
-    public override string? OutcomeType => "ESCAPE";
+    public new string? OutcomeType => "ESCAPE";
 }
 
 public class WinOutcome: Outcome
 {
-    public override string? OutcomeType => "WIN";
+    public new string? OutcomeType => "WIN";
 }
 
 public class FailOutcome: Outcome
 {   
-    public override string? OutcomeType => "FAIL";
+    public new string? OutcomeType => "FAIL";
 }
 
 public class PassOutcome : Outcome
 {
-    public override string? OutcomeType => "PASS";
+    public new string? OutcomeType => "PASS";
 }
 
-public abstract class Outcome
+public class Outcome
 {
     [XmlElement("story")]
     public Story? Story { get; set; } = null;
@@ -83,7 +83,7 @@ public abstract class Outcome
     [XmlElement("option")]
     public Option[]? Options { get; set; } = [];
 
-    public abstract string? OutcomeType { get; }
+    public string? OutcomeType => "NONE";
 }
 
 

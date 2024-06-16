@@ -125,11 +125,12 @@ public class ViewOptions_Tests
         Assert.Equal(["Luck"], viewModel.SelectedPageDetails.Page.Options.Where(o => o.Arguments != null).SelectMany(o => o.Arguments.Select(a => a.Value)).ToArray());
         
         var fightOption = viewModel.SelectedPageDetails.Page.Options.First();
+        Assert.NotNull(fightOption.Outcomes);
         Assert.Equal(2, fightOption.Outcomes.Count());
-        Outcome passOutcome = fightOption.Outcomes[0];
-        Outcome failOutcome = fightOption.Outcomes[1];
-        Assert.IsType<PassOutcome>(passOutcome);
-        Assert.IsType<FailOutcome>(failOutcome);
+        PassOutcome? passOutcome = fightOption.Outcomes[0] as PassOutcome;
+        FailOutcome? failOutcome = fightOption.Outcomes[1] as FailOutcome;
+        Assert.NotNull(passOutcome);
+        Assert.NotNull(failOutcome);
 
         Assert.Equal("PASS", passOutcome.OutcomeType);
 

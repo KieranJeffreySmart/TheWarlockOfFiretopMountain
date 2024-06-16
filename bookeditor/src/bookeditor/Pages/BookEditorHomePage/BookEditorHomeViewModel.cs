@@ -39,6 +39,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
             this.SelectedBookDetails.Book = this.SelectedBook;
             this.SelectedPageDetails.Page = this.SelectedPage;
+            this.SelectedPagePreview.Page = this.SelectedPage;
         }
     }
 
@@ -59,21 +60,25 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
             this.stateCache.CurrentState.SelectedPageNumber = this.SelectedBook?.Pages?.FindIndex(p => p.PageType == SelectedPage?.PageType && p.Index == SelectedPage?.Index);
     }
 
-
     public void UpdateSelectedBook()
     {
         this.SelectedBookDetails.Book = this.SelectedBook;
         this.SelectedPage = null;
         this.SelectedPageDetails.Page = this.SelectedPage;
+        this.SelectedPagePreview.Page = this.SelectedPage;
         this.CacheChanges();
     }
+
     public void UpdateSelectedPage()
     {
         this.SelectedPageDetails.Page = this.SelectedPage;
+        this.SelectedPagePreview.Page = this.SelectedPage;
         this.CacheChanges();
     }
 
     public Page? SelectedPage { get; set; }
 
     public PageDetailViewModel SelectedPageDetails { get; } = new PageDetailViewModel();
+
+    public PagePreviewViewModel SelectedPagePreview { get; } = new PagePreviewViewModel();
 }

@@ -54,7 +54,7 @@ public class XmlLibrary
                 }
             }
         }
-        catch (System.Exception e)
+        catch (System.Exception)
         {
             /// [rgR] Dodgy af how should we handle exceptions? (see tests)
             return new Book() { Title = "" };
@@ -154,7 +154,7 @@ public class XmlLibrary
                     {
                         canRead = reader.Read();
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         // [rgR] ignore eronous files
                     }  

@@ -55,7 +55,8 @@ public class ViewPageStory_Tests
             Assert.Equal(carets, viewModel.SelectedPageDetails.Page.Story.Carets.Select(c => c.StringValue));
         }
 
-        Assert.Equal(rawText, viewModel.SelectedPageDetails.StoryTextRaw);
+        Assert.NotNull(viewModel.SelectedPagePreview.Page);
+        Assert.Equal(rawText, viewModel.SelectedPagePreview.StoryTextRaw);
     }
 
 
@@ -109,7 +110,7 @@ public class ViewPageStory_Tests
             Assert.NotNull(viewModel.SelectedPageDetails.Page.Scene.Carets);
             Assert.Equal(carets, viewModel.SelectedPageDetails.Page.Scene.Carets.Select(c => c.StringValue));
         }
-
-        Assert.Equal(rawText, viewModel.SelectedPageDetails.SceneTextRaw);
+        Assert.NotNull(viewModel.SelectedPagePreview.Page);
+        Assert.Equal(rawText, viewModel.SelectedPagePreview.SceneTextRaw);
     }
 }

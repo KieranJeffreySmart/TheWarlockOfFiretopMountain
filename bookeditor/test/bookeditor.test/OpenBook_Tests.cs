@@ -11,19 +11,17 @@ public class OpenBook_Tests
         var libraryName = "Books_With_Pages";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
 
-        //Given I have a notification service
-        InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
 
         // Given I the library has an empty book
         var testBook = "Empty book";
 
         // when I open the book
-        var viewModel = new BookEditorHomeViewModel(library, notificationQueue);
+        var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.PreRender();
+        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedViewModels();
+        viewModel.UpdateSelectedBook();
 
 
         // then the title is displayed
@@ -41,20 +39,17 @@ public class OpenBook_Tests
         var libraryName = "Books_With_Pages";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
 
-        //Given I have a notification service
-        InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
-
         // Given I the library has an empty book
         var testBook = "Single Intro book";
 
-        var viewModel = new BookEditorHomeViewModel(library, notificationQueue);
+        var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.PreRender();
+        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         
         // when I select a book
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedViewModels();
+        viewModel.UpdateSelectedBook();
         
         // then the title is displayed
         Assert.NotNull(viewModel.SelectedBookDetails);
@@ -71,20 +66,17 @@ public class OpenBook_Tests
         var libraryName = "Warlock_of_Firetop_Mountain";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
 
-        //Given I have a notification service
-        InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
-
         // Given I the library has an empty book
         var testBook = "Warlock of Firetop Mountain";
 
-        var viewModel = new BookEditorHomeViewModel(library, notificationQueue);
+        var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.PreRender();
+        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         
         // when I select a book
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedViewModels();
+        viewModel.UpdateSelectedBook();
         
         // then the title is displayed
         Assert.NotNull(viewModel.SelectedBookDetails);

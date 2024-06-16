@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DotVVM.Framework.Utils;
 using DotVVM.Framework.ViewModel;
 
 namespace bookeditor.ViewModels;
@@ -11,55 +11,69 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     public string? LibraryPath { get {return this.library?.RootPath; } set { if (this.library != null) {this.library.RootPath = value; } } }
 
     private readonly XmlLibrary? library;
-    private readonly InMemoryNotificationsQueue? notificationsQueue;
 
-    private Book[] books = Array.Empty<Book>();
+    private readonly EditorStateCache stateCache;
 
-    public BookEditorHomeViewModel(XmlLibrary library, InMemoryNotificationsQueue notificationsQueue)
+    public BookEditorHomeViewModel(XmlLibrary library, EditorStateCache stateCache)
     {
         this.library = library;
-        this.notificationsQueue = notificationsQueue;
+        this.stateCache = stateCache;
+        this.SetStateFromCache();
     }
 
-    public override async Task PreRender() 
+    private void SetStateFromCache()
     {
-        await this.OpenLibrary();
-        await base.PreRender();
+        if (this.stateCache.CurrentState != null)
+        {
+            var state = this.stateCache.CurrentState;
+            if (!string.IsNullOrWhiteSpace(state.SelectedBookTitle)) 
+            {
+                this.SelectedBook = Books?.FirstOrDefault(b => b.Title == state.SelectedBookTitle);
+
+                if (state.SelectedPageNumber.HasValue && state.SelectedPageNumber.Value >= 0) 
+                {
+                    // [rgR] using the pagenumber to identify array index is dangerous, need to find a better way
+                    this.SelectedPage = this.SelectedBook?.Pages[state.SelectedPageNumber.Value];
+                }
+            }
+
+            this.SelectedBookDetails.Book = this.SelectedBook;
+            this.SelectedPageDetails.Page = this.SelectedPage;
+        }
     }
 
-    public IQueryable<Book>? Books => books.AsQueryable(); 
+    [Bind(Direction.ServerToClientFirstRequest)]
+    public Book[]? Books => library?.Books;
 
     public Book? SelectedBook { get; set; }
 
     public BookDetailViewModel SelectedBookDetails { get; } = new BookDetailViewModel();
-    public void UpdateSelectedViewModels()
+
+    private void CacheChanges()
     {
-        this.SelectedBookDetails.Book = SelectedBook;
+            this.stateCache.CurrentState ??= new EditorState();
+
+            this.stateCache.CurrentState.SelectedBookTitle = this.SelectedBook?.Title;
+
+            // [rgR] using the pagenumber to identify array index is dangerous, need to find a better way
+            this.stateCache.CurrentState.SelectedPageNumber = this.SelectedBook?.Pages?.FindIndex(p => p.PageType == SelectedPage?.PageType && p.Index == SelectedPage?.Index);
+    }
+
+
+    public void UpdateSelectedBook()
+    {
+        this.SelectedBookDetails.Book = this.SelectedBook;
+        this.SelectedPage = null;
         this.SelectedPageDetails.Page = this.SelectedPage;
+        this.CacheChanges();
+    }
+    public void UpdateSelectedPage()
+    {
+        this.SelectedPageDetails.Page = this.SelectedPage;
+        this.CacheChanges();
     }
 
     public Page? SelectedPage { get; set; }
 
     public PageDetailViewModel SelectedPageDetails { get; } = new PageDetailViewModel();
-    
-    public async Task OpenLibrary()
-    {
-        if ( library != null)
-        {
-            List<Book> asyncBooks = new List<Book>();
-            await foreach (var book in library.GetAllBooks())
-            {
-                asyncBooks.Add(book);
-            }
-
-            this.books = [.. asyncBooks];
-
-            this.RaiseNotification($"{(this.books.Length == 0 ? "no" : this.books.Length)} book{(this.books.Length != 1 ? "s were" : " was")} found");
-        }
-    } 
-
-    private void RaiseNotification(string notification)
-    {
-        this.notificationsQueue?.Push(notification);
-    }
 }

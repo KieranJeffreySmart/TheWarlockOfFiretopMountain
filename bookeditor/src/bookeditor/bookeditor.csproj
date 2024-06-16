@@ -9,14 +9,6 @@
     <!--Include DotVVM Views, MasterPages and Controls -->
     <Content Include="**/*.dothtml;**/*.dotmaster;**/*.dotlayout;**/*.dotcontrol" Exclude="obj/**/*.*;bin/**/*.*" CopyToPublishDirectory="PreserveNewest" />
 
-    <None Remove="dotvvm_serialized_config.json.tmp" />
-
-    <None Remove="Pages\BookPageList\bookEditorHome.dothtml" />
-
-    <None Remove="Pages\BookPageList\bookPageList.dotcontrol" />
-
-    <None Remove="Pages\BookPageList\pageDetailPanel.dotcontrol" />
-
     <Folder Include="books\" />
 
     <Folder Include="Pages\BookPageList\Controls\" />

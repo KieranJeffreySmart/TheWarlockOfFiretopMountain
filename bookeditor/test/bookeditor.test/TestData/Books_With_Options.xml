@@ -1,7 +1,7 @@
 <library>
     <book>
         <title>Start Command</title>
-        <page state="published" idx="1">
+        <page >
             <type>Intro</type>
             <index>1</index>
             <story>
@@ -9,7 +9,7 @@
             </story>
             <option key="s" command="START_GAME"><label>Start</label></option>
         </page>
-        <page state="published" idx="1">
+        <page >
             <type>Game</type>
             <index>1</index>
             <story>
@@ -19,7 +19,7 @@
     </book>
     <book>
         <title>Quit Command</title>
-        <page state="published" idx="1">
+        <page >
             <type>Intro</type>
             <index>1</index>
             <story>
@@ -30,7 +30,7 @@
     </book>
     <book>
         <title>Continue Command</title>
-        <page state="published" idx="1">
+        <page >
             <type>Intro</type>
             <index>1</index>
             <story>
@@ -38,7 +38,7 @@
             </story>
             <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
         </page>
-        <page state="published" idx="2">
+        <page >
             <type>Intro</type>
             <index>2</index>
             <story>
@@ -48,7 +48,7 @@
     </book>
     <book>
         <title>Continue and Back Commands</title>
-        <page state="published" idx="1">
+        <page >
             <type>Intro</type>
             <index>1</index>
             <story>
@@ -56,7 +56,7 @@
             </story>
             <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
         </page>
-        <page state="published" idx="2">
+        <page >
             <type>Intro</type>
             <index>2</index>
             <story>
@@ -67,59 +67,185 @@
     </book>
     <book>
         <title>Goto Command</title>
-        <page state="published" idx="1">
-            <type>Intro</type>
+        <page >
+            <type>Game</type>
             <index>1</index>
             <story>
                 <caret type="text">Page 1</caret>
             </story>
-            <option key="g" command="GOTO_PAGE" page="3"><label>Go to Page 3</label></option>
+            <option key="g" command="GOTO_GAME_PAGE" page="3">
+                <arg><key>page</key><value>3</value></arg>
+                <label>Go to Page 3</label>
+                </option>
         </page>
-        <page state="published" idx="2">
-            <type>Intro</type>
+        <page >
+            <type>Game</type>
             <index>2</index>
             <story>
                 <caret type="text">Page 2</caret>
             </story>
-            <option key="g" command="GOTO_PAGE" page="1"><label>Go to Page 1</label></option>
-            <option key="g" command="GOTO_PAGE" page="3"><label>Go to Page 3</label></option>
+            <option key="g" command="GOTO_GAME_PAGE" page="1">
+                <arg><key>page</key><value>1</value></arg>
+                <label>Go to Page 1</label>
+            </option>
+            <option key="g" command="GOTO_GAME_PAGE" page="3">
+                <arg><key>page</key><value>3</value></arg>
+                <label>Go to Page 3</label>
+            </option>
         </page>
         <page>
-            <type>Intro</type>
+            <type>Game</type>
             <index>3</index>
             <story>
                 <caret type="text">Page 3</caret>
             </story>
-            <option key="g" command="GOTO_PAGE" page="2"><label>Go to Page 2</label></option>
+            <option key="g" command="GOTO_GAME_PAGE" page="2">
+                <arg><key>page</key><value>2</value></arg>
+                <label>Go to Page 2</label>
+            </option>
         </page>
     </book>
     <book>
         <title>Goto Continue and Back</title>
-        <page state="published" idx="1">
-            <type>Intro</type>
+        <page >
+            <type>Game</type>
             <index>1</index>
             <story>
                 <caret type="text">Page 1</caret>
             </story>
             <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
         </page>
-        <page state="published" idx="2">
-            <type>Intro</type>
+        <page >
+            <type>Game</type>
             <index>2</index>
             <story>
                 <caret type="text">Page 2</caret>
             </story>
-            <option key="g" command="GOTO_PAGE" page="1"><label>Go to Page 1</label></option>
+            <option key="g" command="GOTO_GAME_PAGE" page="1">
+                <arg><key>page</key><value>1</value></arg>
+                <label>Go to Page 1</label>
+            </option>
             <option key="c" command="NEXT_PAGE"><label>Continue</label></option>
             <option key="b" command="PREVIOUS_PAGE"><label>Back</label></option>
         </page>
         <page>
-            <type>Intro</type>
+            <type>Game</type>
             <index>3</index>
             <story>
                 <caret type="text">Page 3</caret>
             </story>
-            <option key="g" command="GOTO_PAGE" page="2"><label>Go to Page 2</label></option>
+            <option key="g" command="GOTO_GAME_PAGE" page="2">
+                <arg><key>page</key><value>2</value></arg>
+                <label>Go to Page 2</label>
+            </option>
+        </page>
+    </book>
+    <book>
+        <title>Attack Single Monster</title>
+        <page >
+            <type>Game</type>
+            <index>1</index>
+            <story>
+                <caret type="text">Attack a single monster</caret>
+            </story>
+		<monster>
+			<name>OGRE</name>
+			<skill>8</skill>
+			<stamina>10</stamina>
+		</monster>
+            <option key="b" command="FIGHT_MONSTERS">
+                <label>Battle</label>
+                <win>
+                    <story>
+                        <caret type="text">You have prevailed</caret>
+                    </story>
+                    <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>2</value></arg><label>Continue</label></option>
+                </win>
+                <escape>
+                    <story>
+                        <caret type="text">You have escaped down the passage</caret>
+                    </story>
+                    <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>4</value></arg><label>Continue</label></option>
+                </escape>
+                <defeat>
+                    <story>
+                        <caret type="text">
+                            You were defeated
+                        </caret>
+                    </story>
+                    <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>3</value></arg><label>Continue</label></option>
+                </defeat>
+            </option>
+        </page>
+        <page >
+            <type>Game</type>
+            <index>2</index>
+            <story>
+                <caret type="text">Win!</caret>
+            </story>
+        </page>
+        <page >
+            <type>Game</type>
+            <index>3</index>
+            <story>
+                <caret type="text">Defeat!</caret>
+            </story>
+        </page>
+        <page >
+            <type>Game</type>
+            <index>4</index>
+            <story>
+                <caret type="text">Escape!</caret>
+            </story>
+        </page>
+    </book>
+    <book>
+        <title>Stats test</title>
+        <page >
+            <type>Game</type>
+            <index>1</index>
+            <story>
+                <caret type="text">Attack a single monster</caret>
+            </story>
+            <option key="l" command="TEST_STAT">
+                <arg><key>stat</key><value>Luck</value></arg>
+                <label>Luck test</label>
+                <outcomes>
+                    <pass>
+                        <story>
+                            <caret type="text">
+you escape without attracting
+the Ogre's attention
+                            </caret>
+                        </story>
+                        <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>1</value></arg><label>Continue</label></option>
+                    </pass>
+                    <fail>
+                        <story>
+                            <caret type="text">
+you curse as you kick a small stone which goes
+skidding across the cavern floor. You draw your
+sword in case the Ogre has heard it
+                            </caret>
+                        </story>
+                        <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>2</value></arg><label>Continue</label></option>
+                    </fail>
+                </outcomes>
+            </option>
+        </page>
+        <page >
+            <type>Game</type>
+            <index>2</index>
+            <story>
+                <caret type="text">Passed!</caret>
+            </story>
+        </page>
+        <page >
+            <type>Game</type>
+            <index>3</index>
+            <story>
+                <caret type="text">Passed!</caret>
+            </story>
         </page>
     </book>
 </library>

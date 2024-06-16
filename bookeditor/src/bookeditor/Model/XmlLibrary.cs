@@ -20,6 +20,17 @@ public class XmlLibrary
 
     public string? RootPath { get => rootpath; set => rootpath = value ?? string.Empty; }
 
+    private Book[]? books;
+    public Book[]? Books 
+    { 
+        get
+        {
+            this.books ??= this.GetBooks();
+
+            return this.books;
+        }
+    }
+
     public Book GetBook(string bookName)
     {
         try
@@ -113,4 +124,54 @@ public class XmlLibrary
             }
         }
     }
+
+
+    private Book[]? GetBooks()
+    {
+        if (librarieNames.Length == 0)
+            return [];
+
+        List<string> readers = new List<string>();
+        var serializer = new XmlSerializer(typeof(Book));
+        
+        string[] libraryPaths;
+
+        if (librarieNames.Contains("*"))
+            libraryPaths = Directory.GetFiles(rootpath, "*.xml");
+        else
+            libraryPaths = librarieNames.Select(n => Path.Combine(rootpath, $"{n}.xml")).ToArray();
+
+        List<Book> allbooks = [];
+
+        foreach (string path in libraryPaths)
+        {
+            using (XmlReader reader = XmlReader.Create(path))
+            {
+                var canRead = true;
+                while (canRead)
+                {
+                    try 
+                    {
+                        canRead = reader.Read();
+                    }
+                    catch (Exception e)
+                    {
+                        // [rgR] ignore eronous files
+                    }  
+
+                    if (canRead)
+                    {
+                        if (reader.Name == "book")
+                        {
+                            var libbook = serializer.Deserialize(reader) as Book;
+                            allbooks.Add(libbook ?? new Book());
+                        }
+                    }
+                }           
+            }
+        }
+
+        return [.. allbooks];
+    }
+
 }

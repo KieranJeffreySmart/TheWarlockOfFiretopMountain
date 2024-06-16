@@ -22,16 +22,13 @@ public class ViewPageStory_Tests
         var libraryName = "Books_With_Stories";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
 
-        // Given I have a notification service
-        InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
-
         // When I open the book
-        var viewModel = new BookEditorHomeViewModel(library, notificationQueue);
+        var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.PreRender();
+        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedViewModels();
+        viewModel.UpdateSelectedBook();
         
         // Then there should be pages displayed
         Assert.NotNull(viewModel.SelectedBook);
@@ -40,7 +37,7 @@ public class ViewPageStory_Tests
 
         // When the page is selected
         viewModel.SelectedPage = viewModel.SelectedBook.Pages[0];
-        viewModel.UpdateSelectedViewModels();
+        viewModel.UpdateSelectedPage();
 
         // then the story text is displayed
         Assert.NotNull(viewModel.SelectedPage);
@@ -80,16 +77,13 @@ public class ViewPageStory_Tests
         var libraryName = "Books_With_Scenes";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
 
-        // Given I have a notification service
-        InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
-
         // When I open the book
-        var viewModel = new BookEditorHomeViewModel(library, notificationQueue);
+        var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.PreRender();
+        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedViewModels();
+        viewModel.UpdateSelectedBook();
         
         // Then there should be pages displayed
         Assert.NotNull(viewModel.SelectedBook);
@@ -98,7 +92,7 @@ public class ViewPageStory_Tests
 
         // When the page is selected
         viewModel.SelectedPage = viewModel.SelectedBook.Pages[0];
-        viewModel.UpdateSelectedViewModels();
+        viewModel.UpdateSelectedPage();
 
         // then the scene text is displayed
         Assert.NotNull(viewModel.SelectedPage);

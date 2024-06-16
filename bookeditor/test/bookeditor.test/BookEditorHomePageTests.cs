@@ -10,22 +10,17 @@ public class BookEditorHomePage_LandingTests
         // Given I have a library
         var libraryName = "Empty_Library";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
-        var notificationQueue = new InMemoryNotificationsQueue();
 
         // given I have a home page 
-        BookEditorHomeViewModel homePage = new(library, notificationQueue);
+        BookEditorHomeViewModel homePage = new(library, new EditorStateCache());
 
         // when I open the home page
-        await homePage.PreRender();
+        await homePage.Init();
 
         // then a book selector is displayed with no books
         Assert.NotNull(homePage);
         Assert.NotNull(homePage.Books);
         Assert.Empty(homePage.Books);
-        
-        // then I am informed that the library opened with 1 book
-        Assert.True(notificationQueue.Any());
-        Assert.Equal($"no books were found", notificationQueue.Pop());
     }
 
     [Fact]
@@ -34,13 +29,12 @@ public class BookEditorHomePage_LandingTests
         // Given I have a library
         var libraryName = "Warlock_Of_Firetop_Mountain";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
-        var notificationQueue = new InMemoryNotificationsQueue();
 
         // given I have a home page 
-        BookEditorHomeViewModel homePage = new BookEditorHomeViewModel(library, notificationQueue);
+        BookEditorHomeViewModel homePage = new BookEditorHomeViewModel(library, new EditorStateCache());
 
         // when I open the home page
-        await homePage.PreRender();
+        await homePage.Init();
 
         // then a book selector is displayed with 1 book
         Assert.NotNull(homePage);
@@ -48,9 +42,6 @@ public class BookEditorHomePage_LandingTests
         Assert.Single(homePage.Books);
         Assert.Equal("Warlock of Firetop Mountain", homePage.Books.First().Title);
 
-        // then I am informed that the library opened with 1 book
-        Assert.True(notificationQueue.Any());
-        Assert.Equal($"1 book was found", notificationQueue.Pop());
     }
     
     [Fact]
@@ -59,21 +50,145 @@ public class BookEditorHomePage_LandingTests
         // Given I have a library
         string[] libraryNames = ["Warlock_Of_Firetop_Mountain", "Books_With_Pages"];
         var library = new XmlLibrary("../../../TestData", libraryNames);
-        var notificationQueue = new InMemoryNotificationsQueue();
 
         // given I have a home page 
-        BookEditorHomeViewModel homePage = new(library, notificationQueue);
+        BookEditorHomeViewModel homePage = new(library, new EditorStateCache());
 
         // when I open the home page
-        await homePage.PreRender();
+        await homePage.Init();
 
         // then a book selector is displayed with 1 book
         Assert.NotNull(homePage);
         Assert.NotNull(homePage.Books);
         Assert.Equal(8, homePage.Books.Count());
         
-        // then I am informed that the library opened with 1 book
-        Assert.True(notificationQueue.Any());
-        Assert.Equal($"8 books were found", notificationQueue.Pop());
+    }
+    
+    [Fact]
+    public async Task ReOpenningHomePageWithSelectedBookAndPage()
+    {
+        // Given I have a library
+        string[] libraryNames = ["Warlock_Of_Firetop_Mountain", "Books_With_Pages"];
+        var library = new XmlLibrary("../../../TestData", libraryNames);
+        var cache = new EditorStateCache();
+
+        // given I have a home page 
+        BookEditorHomeViewModel homePage = new(library, cache);
+
+        // when I open the home page
+        Assert.NotNull(homePage);
+        await homePage.Init();
+        
+        // when I select the first book
+        Assert.NotNull(homePage.Books);
+        homePage.SelectedBook = homePage.Books.First();
+        homePage.UpdateSelectedBook();
+
+        // when I select the first page
+        homePage.SelectedPage = homePage.SelectedBook.Pages.First();
+        homePage.UpdateSelectedPage();
+
+        // then the page selected details are displayed
+        Assert.NotNull(homePage.SelectedPage);
+        Assert.NotNull(homePage.SelectedPageDetails);
+        Assert.NotNull(homePage.SelectedPageDetails.Page);
+        Assert.NotNull(homePage.SelectedPageDetails.Page.Story);
+        Assert.NotNull(homePage.SelectedPageDetails.Page.Story.Carets);
+        Assert.NotNull(homePage.SelectedPageDetails.Page.Options);
+        Assert.Equal("Intro", homePage.SelectedPageDetails.Page.PageType);
+        Assert.Equal(1, homePage.SelectedPageDetails.Page.Index);
+        Assert.Equal(2, homePage.SelectedPageDetails.Page.Story.Carets.Length);
+        Assert.Equal(2, homePage.SelectedPageDetails.Page.Options.Length);
+
+        // when I refresh the page
+        homePage.SelectedBook = null;
+        homePage.SelectedPage = null;
+        homePage.SelectedBookDetails.Book = null;
+        homePage.SelectedPageDetails.Page = null;
+        homePage = new(library, cache);
+
+
+        // then I the selected page details to be displayed
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.NotNull(homePage.SelectedBook.Title = "The Warlock of Firetop Mountain");
+        Assert.NotNull(homePage.SelectedBookDetails.Book);
+        Assert.NotNull(homePage.SelectedBookDetails.Book.Title = "The Warlock of Firetop Mountain");
+        Assert.NotNull(homePage.SelectedPage);
+        
+        Assert.NotNull(homePage.SelectedPage.Story);
+        Assert.NotNull(homePage.SelectedPage.Story.Carets);
+        Assert.NotNull(homePage.SelectedPage.Options);
+        Assert.Equal("Intro", homePage.SelectedPage.PageType);
+        Assert.Equal(1, homePage.SelectedPage.Index);
+        Assert.Equal(2, homePage.SelectedPage.Story.Carets.Length);
+        Assert.Equal(2, homePage.SelectedPage.Options.Length);
+
+        Assert.NotNull(homePage.SelectedPageDetails);
+        Assert.NotNull(homePage.SelectedPageDetails.Page);
+        Assert.NotNull(homePage.SelectedPageDetails.Page.Story);
+        Assert.NotNull(homePage.SelectedPageDetails.Page.Story.Carets);
+        Assert.NotNull(homePage.SelectedPageDetails.Page.Options);
+        Assert.Equal("Intro", homePage.SelectedPageDetails.Page.PageType);
+        Assert.Equal(1, homePage.SelectedPageDetails.Page.Index);
+        Assert.Equal(2, homePage.SelectedPageDetails.Page.Story.Carets.Length);
+        Assert.Equal(2, homePage.SelectedPageDetails.Page.Options.Length);
+
+    }
+
+    [Fact]
+    public async Task ReOpenningHomePageAfterChangingSelectedBookAndPage()
+    {
+        // Given I have a library
+        string[] libraryNames = ["Warlock_Of_Firetop_Mountain", "Books_With_Pages"];
+        var library = new XmlLibrary("../../../TestData", libraryNames);
+        var cache = new EditorStateCache();
+
+        // given I have a home page 
+        BookEditorHomeViewModel homePage = new(library, cache);
+
+        // when I open the home page
+        Assert.NotNull(homePage);
+        await homePage.Init();
+        
+        // when I select the first book
+        Assert.NotNull(homePage.Books);
+        homePage.SelectedBook = homePage.Books.First();
+        homePage.UpdateSelectedBook();
+
+        // when I select the first page
+        homePage.SelectedPage = homePage.SelectedBook.Pages.First();
+        homePage.UpdateSelectedPage();
+
+        // then the page selected details are displayed
+        Assert.NotNull(homePage.SelectedPage);
+        Assert.NotNull(homePage.SelectedPageDetails);
+        Assert.NotNull(homePage.SelectedPageDetails.Page);
+        Assert.NotNull(homePage.SelectedPageDetails.Page.Story);
+        Assert.NotNull(homePage.SelectedPageDetails.Page.Story.Carets);
+        Assert.NotNull(homePage.SelectedPageDetails.Page.Options);
+        Assert.Equal("Intro", homePage.SelectedPageDetails.Page.PageType);
+        Assert.Equal(1, homePage.SelectedPageDetails.Page.Index);
+        Assert.Equal(2, homePage.SelectedPageDetails.Page.Story.Carets.Length);
+        Assert.Equal(2, homePage.SelectedPageDetails.Page.Options.Length);
+        
+        // when I select the last book
+        Assert.NotNull(homePage.Books);
+        homePage.SelectedBook = homePage.Books.Last();
+        homePage.UpdateSelectedBook();
+
+        // when I refresh the page
+        homePage.SelectedBook = null;
+        homePage.SelectedPage = null;
+        homePage.SelectedBookDetails.Book = null;
+        homePage.SelectedPageDetails.Page = null;
+        homePage = new(library, cache);
+
+
+        // then I the selected page details to be displayed
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.NotNull(homePage.SelectedBook.Title = "The Warlock of Firetop Mountain");
+        Assert.NotNull(homePage.SelectedBookDetails.Book);
+        Assert.NotNull(homePage.SelectedBookDetails.Book.Title = "The Warlock of Firetop Mountain");
+        Assert.Null(homePage.SelectedPage);
     }
 }

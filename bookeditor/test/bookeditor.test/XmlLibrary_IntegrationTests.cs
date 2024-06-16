@@ -206,4 +206,20 @@ public class XmlLibrary_IntegrationTests
         // then I should be receive the expected number of books
         Assert.Equal(17, books.Count);        
     }
+
+    
+    [Fact]
+    public void GetAllBooksFromAllFiles()
+    {
+        // given I have a folder with many libraries on file
+        var libraryName = "*";
+        var path = "../../../TestData/OpenAllFiles";
+        var library = new XmlLibrary(path, [libraryName]);
+
+        // when I get all books
+        var books = library.Books;
+        Assert.NotNull(books);
+        // then I should be receive the expected number of books
+        Assert.Equal(17, books.Length);
+    }
 }

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using bookeditor.ViewModels;
 
 namespace bookeditor;
 
@@ -21,7 +20,7 @@ public class Page
     public Scene? Scene { get; set; } = null;
 
     [XmlElement("option")]
-    public Option[] Options { get; set; } = [];
+    public Option[]? Options { get; set; } = [];
 }
 
 public class Option
@@ -36,8 +35,57 @@ public class Option
     public string? Command { get; set; } = string.Empty;
 
     [XmlElement("arg")]
-    public OptionArgument[] Arguments { get; set; } = [];
+    public OptionArgument[]? Arguments { get; set; } = [];
+
+    
+    [XmlArray("outcomes")]
+    [XmlArrayItem("pass", typeof(PassOutcome))]
+    [XmlArrayItem("fail", typeof(FailOutcome))]
+    [XmlArrayItem("win", typeof(WinOutcome))]
+    [XmlArrayItem("escape", typeof(EscapeOutcome))]
+    [XmlArrayItem("defeat", typeof(DefeatOutcome))]
+    public Outcome[]? Outcomes { get; set; } = [];
 }
+
+public class DefeatOutcome: Outcome
+{
+    public override string? OutcomeType => "DEFEAT";
+}
+
+public class EscapeOutcome: Outcome
+{
+    public override string? OutcomeType => "ESCAPE";
+}
+
+public class WinOutcome: Outcome
+{
+    public override string? OutcomeType => "WIN";
+}
+
+public class FailOutcome: Outcome
+{   
+    public override string? OutcomeType => "FAIL";
+}
+
+public class PassOutcome : Outcome
+{
+    public override string? OutcomeType => "PASS";
+}
+
+public abstract class Outcome
+{
+    [XmlElement("story")]
+    public Story? Story { get; set; } = null;
+    
+    [XmlElement("scene")]
+    public Scene? Scene { get; set; } = null;
+
+    [XmlElement("option")]
+    public Option[]? Options { get; set; } = [];
+
+    public abstract string? OutcomeType { get; }
+}
+
 
 public class Story
 {

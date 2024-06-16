@@ -3,23 +3,29 @@
 
 <h2 DataContext={value: Page} >{{value: PageType}} page {{value: Index}}</h2>
 
-<br />
-Scene:<br />
-<pre>{{value: SceneTextRaw}}</pre>
-Story:<br />
-<pre>{{value: StoryTextRaw}}</pre>
+<div class="read-only-panel">
+    <h3>Scene</h3>
+    <pre>{{value: SceneTextRaw}}</pre>
+</div>
+<div class="read-only-panel">
+    <h3>Story</h3>
+    <pre>{{value: StoryTextRaw}}</pre>
+</div>
 
-<p DataContext={value: Page} >
-    Story Carets:
-    <dot:Repeater DataSource={value: Story.Carets} >
-        <span class="caret" ><pre>{{value: StringValue}}</pre></span>
+<div class="list-panel" DataContext={value: Page} >
+    <h3>Scene Carets</h3>
+    <dot:Repeater Style-width="500px" DataSource={value: Scene.Carets} >
+        <div class="caret" ><span>&lt;{{value: CaretType}}&gt;</span><pre>{{value: StringValue}}</pre></div>
     </dot:Repeater>
-    Scene Carets:
-    <dot:Repeater DataSource={value: Scene.Carets} >
-        <span class="caret" ><pre>{{value: StringValue}}</pre></span>
+    <h3>Story Carets</h3>
+    <dot:Repeater Style-width="500px" DataSource={value: Story.Carets} >
+        <div class="caret" ><span>&lt;{{value: CaretType}}&gt;</span><pre>{{value: StringValue}}</pre></div>
     </dot:Repeater>
-    Options:
-    <dot:Repeater DataSource={value: Options} >
-        <p>{{value: Key}} - {{value: Label}}</p>
+    <h3>Options</h3>
+    <dot:Repeater Style-width="500px" DataSource={value: Options} >
+        <div class="option" >{{value: Key}} - {{value: Label}}</div>
+        <dot:Repeater Style-width="500px" DataSource={value: Arguments} >
+            <div>{{value: Key}}: {{value: Value}}</div>
+        </dot:Repeater>
     </dot:Repeater>
-</p>
+</div>

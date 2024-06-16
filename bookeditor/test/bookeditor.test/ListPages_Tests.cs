@@ -17,9 +17,6 @@ public class ListPages_ViewModelTests
         var libraryName = "Books_With_Pages";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
 
-        // Given I have a notification service
-        InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
-
         // Given I the library has a book with a single intro page
         // Given I the library has a book with many intro pages
         // Given I the library has a book with a single game page
@@ -28,13 +25,13 @@ public class ListPages_ViewModelTests
         // Given I the library has a book with many intro pages and game pages
 
         // When I open the book
-        var viewModel = new BookEditorHomeViewModel(library, notificationQueue);
+        var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.PreRender();
+        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         Assert.NotEmpty(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedViewModels();
+        viewModel.UpdateSelectedBook();
         
         // then the title is displayed
         Assert.NotNull(viewModel.SelectedBookDetails);
@@ -52,20 +49,18 @@ public class ListPages_ViewModelTests
         var libraryName = "Warlock_of_Firetop_Mountain";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
 
-        // Given I have a notification service
-        InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
 
         // Given the library has a book with a lot of pages
         string testBook = "Warlock of Firetop Mountain";
         int pageCount = 403;
 
         // When I open the book
-        var viewModel = new BookEditorHomeViewModel(library, notificationQueue);
+        var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.PreRender();
+        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedViewModels();
+        viewModel.UpdateSelectedBook();
         
         // then the title is displayed
         Assert.NotNull(viewModel.SelectedBookDetails);
@@ -91,15 +86,13 @@ public class ListPages_ViewModelTests
         var libraryName = "Books_With_Options";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
 
-        // Given I have a notification service
-        InMemoryNotificationsQueue notificationQueue = new InMemoryNotificationsQueue();
 
         // Given the library has a book with next and back
 
         // When I open the book        
-        var viewModel = new BookEditorHomeViewModel(library, notificationQueue);
+        var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.PreRender();
+        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
 
         // Then the number of options for each page should be displayed

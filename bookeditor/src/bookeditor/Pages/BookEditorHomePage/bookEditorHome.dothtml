@@ -20,7 +20,7 @@
             <div class="col-md-3">
                 <div class="dropdown">
                     <button id="book-dropdown-toggle" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Select Book
+                      {{value: SelectedBook.Title ?? "Select Book"}}
                     </button>
                     <div id="book-dropdown-menu" class="dropdown-menu" aria-labelledby="book-dropdown-toggle">
                         <button onclick="$(#book-dropdown-toggle).dropdown('toggle')">X</button>
@@ -44,7 +44,7 @@
                         type="button" 
                         data-toggle="dropdown" 
                         aria-haspopup="true" 
-                        aria-expanded="false">Select Page</button>
+                        aria-expanded="false">{{value: (SelectedPage.PageType ?? "Select") + " Page " + (SelectedPage.Index.ToString() ?? "")}}</button>
                     <div class="dropdown-menu" aria-labelledby="page-dropdown-toggle">
                         <button onclick="$(#page-dropdown-toggle).dropdown('toggle')">X</button>
                         <dot:Repeater Style-width="200px" DataSource={value: SelectedBook.Pages}>

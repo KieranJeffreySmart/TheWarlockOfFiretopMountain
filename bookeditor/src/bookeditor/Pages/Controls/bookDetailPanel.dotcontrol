@@ -2,6 +2,5 @@
 @viewModel bookeditor.ViewModels.BookDetailViewModel
 
 <div class="container">
-    <h2 DataContext={value: Book} >{{value: Title}}</h2>
     <span>pages: {{value: PageCount}}</span>
 </div>

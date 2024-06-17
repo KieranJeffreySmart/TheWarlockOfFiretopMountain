@@ -1,7 +1,5 @@
 @viewModel bookeditor.ViewModels.PagePreviewViewModel
 
-<h3 DataContext={value: Page} >{{value: PageType}} page {{value: Index}}</h3>
-
 <style>
     .preview pre{
         border-radius:5px;

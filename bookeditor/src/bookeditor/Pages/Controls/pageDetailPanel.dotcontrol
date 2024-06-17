@@ -4,18 +4,44 @@
 <h3 DataContext={value: Page} >{{value: PageType}} page {{value: Index}}</h3>
 
 <div class="Container" DataContext={value: Page} >
-    <h4>Scene Carets</h4>
-    <dot:Repeater Style-width="500px" DataSource={value: Scene.Carets} >
-        <div class="row" ><span>&lt;{{value: CaretType}}&gt;</span><pre>{{value: StringValue}}</pre></div>
-    </dot:Repeater>
-    <h4>Story Carets</h4>
-    <dot:Repeater Style-width="500px" DataSource={value: Story.Carets} >
-        <div class="row" ><span>&lt;{{value: CaretType}}&gt;</span><pre>{{value: StringValue}}</pre></div>
-    </dot:Repeater>
+    <div class="row">
+        <div class="col-md-5 preview">
+            <h4>Story Carets</h4>
+            <dot:Repeater Style-width="600px" DataSource={value: Story.Carets} >
+                <div class="row">
+                    <span>&lt;{{value: CaretType}}&gt;</span>
+                    <button>Edit</button>
+                    <button>Remove</button>
+                </div>
+                <div class="row">
+                    <pre>{{value: StringValue}}</pre>
+                </div>
+                <div class="row">
+                    <dot:TextBox Style-width="450px" Style-height="600px" Text={value: StringValue} Type="MultiLine"/>
+                </div>
+            </dot:Repeater>
+        </div>
+        <div class="col-md-5 preview">
+            <h4>Scene Carets</h4>
+            <dot:Repeater Style-width="600px" DataSource={value: Scene.Carets} >
+                <div class="row">
+                    <span>&lt;{{value: CaretType}}&gt;</span>
+                    <button>Edit</button>
+                    <button>Remove</button>
+                </div>
+                <div class="row">
+                    <pre>{{value: StringValue}}</pre>
+                </div>
+                <div class="row">
+                    <dot:TextBox Style-width="450px" Style-height="600px" Text={value: StringValue} Type="MultiLine"/>
+                </div>
+            </dot:Repeater>
+        </div>
+    </div>
 </div>
 <div class="container" Visible={value: HasOptions}>
     <h4>Options</h4>
-    <dot:Repeater Style-width="500px" DataSource={value: OptionViewModels} >
+    <dot:Repeater Style-width="600px" DataSource={value: OptionViewModels} >
         <div class="row" >
             <bookctrl:OptionDetailPanel DataContext={value: _this} ></bookctrl:OptionDetailPanel>
         </div>

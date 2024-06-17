@@ -12,11 +12,12 @@
     <dot:Repeater Style-width="500px" DataSource={value: Story.Carets} >
         <div class="caret" ><span>&lt;{{value: CaretType}}&gt;</span><pre>{{value: StringValue}}</pre></div>
     </dot:Repeater>
+</div>
+<div class="container" Visible={value: HasOptions}>
     <h3>Options</h3>
-    <dot:Repeater Style-width="500px" DataSource={value: Options} >
-        <div class="option" >{{value: Key}} - {{value: Label}}</div>
-        <dot:Repeater Style-width="500px" DataSource={value: Arguments} >
-            <div>{{value: Key}}: {{value: Value}}</div>
-        </dot:Repeater>
+    <dot:Repeater Style-width="500px" DataSource={value: OptionViewModels} >
+        <div class="list-panel" >
+            <bookctrl:OptionDetailPanel DataContext={value: _this} ></bookctrl:OptionDetailPanel>
+        </div>
     </dot:Repeater>
 </div>

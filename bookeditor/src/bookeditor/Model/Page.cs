@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Serialization;
+using bookeditor.ViewModels;
 
 namespace bookeditor;
 
@@ -36,40 +34,9 @@ public class Option
 
     [XmlElement("arg")]
     public OptionArgument[]? Arguments { get; set; } = [];
-
     
-    [XmlArray("outcomes")]
-    [XmlArrayItem("pass", typeof(PassOutcome))]
-    [XmlArrayItem("fail", typeof(FailOutcome))]
-    [XmlArrayItem("win", typeof(WinOutcome))]
-    [XmlArrayItem("escape", typeof(EscapeOutcome))]
-    [XmlArrayItem("defeat", typeof(DefeatOutcome))]
+    [XmlElement("outcome")]
     public Outcome[]? Outcomes { get; set; } = [];
-}
-
-public class DefeatOutcome: Outcome
-{
-    public new string? OutcomeType => "DEFEAT";
-}
-
-public class EscapeOutcome: Outcome
-{
-    public new string? OutcomeType => "ESCAPE";
-}
-
-public class WinOutcome: Outcome
-{
-    public new string? OutcomeType => "WIN";
-}
-
-public class FailOutcome: Outcome
-{   
-    public new string? OutcomeType => "FAIL";
-}
-
-public class PassOutcome : Outcome
-{
-    public new string? OutcomeType => "PASS";
 }
 
 public class Outcome
@@ -79,11 +46,12 @@ public class Outcome
     
     [XmlElement("scene")]
     public Scene? Scene { get; set; } = null;
-
+ 
     [XmlElement("option")]
     public Option[]? Options { get; set; } = [];
 
-    public string? OutcomeType => "NONE";
+    [XmlElement("type")]
+    public virtual string? OutcomeType { get; set; } = "NONE";
 }
 
 

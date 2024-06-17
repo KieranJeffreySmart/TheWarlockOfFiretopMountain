@@ -205,32 +205,32 @@
             <type>Game</type>
             <index>1</index>
             <story>
-                <caret type="text">Attack a single monster</caret>
+                <caret type="text">Try to escape sleeping ogre</caret>
             </story>
             <option key="l" command="TEST_STAT">
                 <arg><key>stat</key><value>Luck</value></arg>
                 <label>Luck test</label>
-                <outcomes>
-                    <pass>
-                        <story>
-                            <caret type="text">
+                <outcome>
+                    <type>PASS</type>
+                    <story>
+                        <caret type="text">
 you escape without attracting
 the Ogre's attention
-                            </caret>
-                        </story>
-                        <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>1</value></arg><label>Continue</label></option>
-                    </pass>
-                    <fail>
-                        <story>
-                            <caret type="text">
+                        </caret>
+                    </story>
+                    <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>1</value></arg><label>Continue</label></option>
+                </outcome>
+                <outcome>
+                    <type>FAIL</type>
+                    <story>
+                        <caret type="text">
 you curse as you kick a small stone which goes
 skidding across the cavern floor. You draw your
 sword in case the Ogre has heard it
-                            </caret>
-                        </story>
-                        <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>2</value></arg><label>Continue</label></option>
-                    </fail>
-                </outcomes>
+                        </caret>
+                    </story>
+                    <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>2</value></arg><label>Continue</label></option>
+                </outcome>
             </option>
         </page>
         <page >

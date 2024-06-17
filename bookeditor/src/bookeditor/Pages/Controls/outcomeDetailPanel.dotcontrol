@@ -1,0 +1,33 @@
+@viewModel bookeditor.ViewModels.OutcomeDetailViewModel
+
+<div class="container" DataContext={value: Outcome}>
+    <div>{{value: OutcomeType}}</div>
+    <h3>Scene Carets</h3>
+    <dot:Repeater Style-width="500px" DataSource={value: Scene.Carets} >
+        <div class="caret" ><span>&lt;{{value: CaretType}}&gt;</span><pre>{{value: StringValue}}</pre></div>
+    </dot:Repeater>
+    <h3>Story Carets</h3>
+    <dot:Repeater Style-width="500px" DataSource={value: Story.Carets} >
+        <div class="caret" ><span>&lt;{{value: CaretType}}&gt;</span><pre>{{value: StringValue}}</pre></div>
+    </dot:Repeater>
+</div>
+<div class="container" Visible={value: HasOptions}>
+    <h3>Options</h3>
+    <dot:Repeater Style-width="500px" DataSource={value: OptionViewModels} >
+        <div class="row" DataContext={value: Option} >
+            <div>{{value: Key}} - {{value: Label}}</div>
+            <h4>Arguments</h4>
+            <dot:Repeater Style-width="500px" DataSource={value: Arguments} >
+                <div>{{value: Key}}: {{value: Value}}</div>
+            </dot:Repeater>
+        </div>
+        <div class="row" Visible={value: OutcomeViewModels.Length > 0}>
+            <h4>Oucomes</h4>
+            <dot:Repeater Style-width="500px" DataSource={value: OutcomeViewModels} >
+                <div>an outcome</div>
+                <%-- This causes Dotvvm to have a fit
+                <bookctrl:OutcomeDetailPanel></bookctrl:OutcomeDetailPanel> --%>
+            </dot:Repeater>
+        </div>
+    </dot:Repeater>
+</div>

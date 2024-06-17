@@ -45,6 +45,8 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
         config.Markup.AddMarkupControl("bookctrl", "PagePreviewPanel", "Pages/Controls/pagePreviewPanel.dotcontrol");
         config.Markup.AddMarkupControl("bookctrl", "PageDetailPanel", "Pages/Controls/pageDetailPanel.dotcontrol");
         config.Markup.AddMarkupControl("bookctrl", "BookDetailPanel", "Pages/Controls/bookDetailPanel.dotcontrol");
+        config.Markup.AddMarkupControl("bookctrl", "OptionDetailPanel", "Pages/Controls/optionDetailPanel.dotcontrol");
+        config.Markup.AddMarkupControl("bookctrl", "OutcomeDetailPanel", "Pages/Controls/outcomeDetailPanel.dotcontrol");
     }
 
     private void ConfigureResources(DotvvmConfiguration config, string applicationPath)

@@ -1,0 +1,19 @@
+@viewModel bookeditor.ViewModels.OptionDetailViewModel
+
+<div class="container">
+    <div class="row" DataContext={value: Option} >
+        <div>{{value: Key}} - {{value: Label}}</div>
+    </div>
+    <div class="row" Visible={value: HasArguments} >
+        <h4>Arguments</h4>
+        <dot:Repeater Style-width="500px" DataSource={value: Option.Arguments} >
+            <div>{{value: Key}}: {{value: Value}}</div>
+        </dot:Repeater>
+    </div>
+    <div class="row" Visible={value: HasOutcomes}>
+        <h4>Oucomes</h4>
+        <dot:Repeater Style-width="500px" DataSource={value: OutcomeViewModels} >
+            <bookctrl:OutcomeDetailPanel></bookctrl:OutcomeDetailPanel>
+        </dot:Repeater>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 using bookeditor.ViewModels;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace bookeditor.test;
 
@@ -101,12 +102,7 @@ public class BookEditorHomePage_LandingTests
         Assert.Equal(2, homePage.SelectedPageDetails.Page.Options.Length);
 
         // when I refresh the page
-        homePage.SelectedBook = null;
-        homePage.SelectedPage = null;
-        homePage.SelectedBookDetails.Book = null;
-        homePage.SelectedPageDetails.Page = null;
         homePage = new(library, cache);
-
 
         // then I the selected page details to be displayed
         Assert.NotNull(homePage.SelectedBook);
@@ -177,10 +173,6 @@ public class BookEditorHomePage_LandingTests
         homePage.UpdateSelectedBook();
 
         // when I refresh the page
-        homePage.SelectedBook = null;
-        homePage.SelectedPage = null;
-        homePage.SelectedBookDetails.Book = null;
-        homePage.SelectedPageDetails.Page = null;
         homePage = new(library, cache);
 
 

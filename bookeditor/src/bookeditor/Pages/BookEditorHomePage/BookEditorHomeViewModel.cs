@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using DotVVM.Framework.Utils;
 using DotVVM.Framework.ViewModel;
 
@@ -38,9 +36,15 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
             }
 
             this.SelectedBookDetails.Book = this.SelectedBook;
-            this.SelectedPageDetails.Page = this.SelectedPage;
+            this.SelectedPageDetails = new PageDetailViewModel(this.SelectedPage);
             this.SelectedPagePreview.Page = this.SelectedPage;
         }
+    }
+
+    public void SelectBook(Book? book)
+    {
+        this.SelectedBook = book;
+        UpdateSelectedBook();
     }
 
     [Bind(Direction.ServerToClientFirstRequest)]
@@ -64,21 +68,21 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     {
         this.SelectedBookDetails.Book = this.SelectedBook;
         this.SelectedPage = null;
-        this.SelectedPageDetails.Page = this.SelectedPage;
+        this.SelectedPageDetails = new PageDetailViewModel(this.SelectedPage);
         this.SelectedPagePreview.Page = this.SelectedPage;
         this.CacheChanges();
     }
 
     public void UpdateSelectedPage()
     {
-        this.SelectedPageDetails.Page = this.SelectedPage;
+        this.SelectedPageDetails = new PageDetailViewModel(this.SelectedPage);
         this.SelectedPagePreview.Page = this.SelectedPage;
         this.CacheChanges();
     }
 
     public Page? SelectedPage { get; set; }
 
-    public PageDetailViewModel SelectedPageDetails { get; } = new PageDetailViewModel();
+    public PageDetailViewModel SelectedPageDetails { get; private set; } = new PageDetailViewModel(null);
 
     public PagePreviewViewModel SelectedPagePreview { get; } = new PagePreviewViewModel();
 }

@@ -1,5 +1,3 @@
-using System;
-using DotVVM.Framework.Binding;
 using DotVVM.Framework.Controls;
 
 namespace bookeditor.Controls;

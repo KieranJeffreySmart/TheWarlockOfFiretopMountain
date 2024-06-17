@@ -1,22 +1,22 @@
 @baseType bookeditor.Controls.PageDetailPanel, bookeditor
 @viewModel bookeditor.ViewModels.PageDetailViewModel
 
-<h2 DataContext={value: Page} >{{value: PageType}} page {{value: Index}}</h2>
+<h3 DataContext={value: Page} >{{value: PageType}} page {{value: Index}}</h3>
 
-<div class="list-panel" DataContext={value: Page} >
-    <h3>Scene Carets</h3>
+<div class="Container" DataContext={value: Page} >
+    <h4>Scene Carets</h4>
     <dot:Repeater Style-width="500px" DataSource={value: Scene.Carets} >
-        <div class="caret" ><span>&lt;{{value: CaretType}}&gt;</span><pre>{{value: StringValue}}</pre></div>
+        <div class="row" ><span>&lt;{{value: CaretType}}&gt;</span><pre>{{value: StringValue}}</pre></div>
     </dot:Repeater>
-    <h3>Story Carets</h3>
+    <h4>Story Carets</h4>
     <dot:Repeater Style-width="500px" DataSource={value: Story.Carets} >
-        <div class="caret" ><span>&lt;{{value: CaretType}}&gt;</span><pre>{{value: StringValue}}</pre></div>
+        <div class="row" ><span>&lt;{{value: CaretType}}&gt;</span><pre>{{value: StringValue}}</pre></div>
     </dot:Repeater>
 </div>
 <div class="container" Visible={value: HasOptions}>
-    <h3>Options</h3>
+    <h4>Options</h4>
     <dot:Repeater Style-width="500px" DataSource={value: OptionViewModels} >
-        <div class="list-panel" >
+        <div class="row" >
             <bookctrl:OptionDetailPanel DataContext={value: _this} ></bookctrl:OptionDetailPanel>
         </div>
     </dot:Repeater>

@@ -46,6 +46,12 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         this.SelectedBook = book;
         UpdateSelectedBook();
     }
+    
+    public void SelectPage(Page? page)
+    {
+        this.SelectedPage = page;
+        UpdateSelectedPage();
+    }
 
     [Bind(Direction.ServerToClientFirstRequest)]
     public Book[]? Books => library?.Books;

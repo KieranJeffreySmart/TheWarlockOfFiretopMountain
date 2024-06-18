@@ -3,41 +3,65 @@
 <div class="container" DataContext={value: Outcome}>
     <div class="row">
         <div>{{value: OutcomeType}}</div>
-        <div class="col-md-5 preview">
-            <h3>Story Carets</h3>
-            <dot:Repeater Style-width="600px" DataSource={value: Story.Carets} >
-                <div class="row"><span>&lt;{{value: CaretType}}&gt;</span></div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-3"><h4>Story Carets</h4></div>
+                <div class="col-md-2"><dot:Button>Append</dot:Button></div>
+            </div>
+            <dot:Repeater DataSource={value: Story.Carets} >
                 <div class="row">
-                    <dot:TextBox Style-width="450px" Style-height="600px" Text={value: StringValue} Type="MultiLine"/>
+                    <div class="col-md-10"><span>&lt;{{value: CaretType}}&gt;</span></div>
                 </div>
-                <div class="row"><pre>{{value: StringValue}}</pre></div>
+                <div class="row">
+                    <div class="col-md-1">
+                        <bookCtrl:TextEditModalButton 
+                        EditedText={value: StringValue} 
+                        ModalIdRef="{value: '#texteditmodal_st_' + _parent.OutcomeType + '_' + _collection.Index}"
+                        ModalId="{value: 'texteditmodal_st_' + _parent.OutcomeType + '_' + _collection.Index}"/> 
+                        <dot:Button>Insert</dot:Button>
+                    </div>
+                    <div class="col-md-9 preview"><pre>{{value: StringValue}}</pre></div>
+                    <div class="col-md-1"><dot:Button>Remove</dot:Button></div>
+                </div>
             </dot:Repeater>
         </div>
-        <div class="col-md-5 preview">
-            <h3>Scene Carets</h3>
-            <dot:Repeater Style-width="600px" DataSource={value: Scene.Carets} >
-                <div class="row"><span>&lt;{{value: CaretType}}&gt;</span></div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-3"><h4>Scene Carets</h4></div>
+                <div class="col-md-2"><dot:Button>Append</dot:Button></div>
+            </div>
+            <dot:Repeater DataSource={value: Scene.Carets} >
                 <div class="row">
-                    <dot:TextBox Style-width="450px" Style-height="600px" Text={value: StringValue} Type="MultiLine"/>
+                    <div class="col-md-10"><span>&lt;{{value: CaretType}}&gt;</span></div>
                 </div>
-                <div class="row"><pre>{{value: StringValue}}</pre></div>
+                <div class="row">
+                    <div class="col-md-1">
+                        <bookCtrl:TextEditModalButton 
+                        EditedText={value: StringValue} 
+                        ModalIdRef="{value: '#texteditmodal_sc_' + _parent.OutcomeType + '_' + _collection.Index}"
+                        ModalId="{value: 'texteditmodal_sc_' + _parent.OutcomeType + '_' + _collection.Index}"/> 
+                        <dot:Button>Insert</dot:Button>
+                    </div>
+                    <div class="col-md-9 preview"><pre>{{value: StringValue}}</pre></div>
+                    <div class="col-md-1"><dot:Button>Remove</dot:Button></div>
+                </div>
             </dot:Repeater>
         </div>
     </div>
 </div>
 <div class="container" Visible={value: HasOptions}>
     <h3>Options</h3>
-    <dot:Repeater Style-width="600px" DataSource={value: OptionViewModels} >
+    <dot:Repeater DataSource={value: OptionViewModels} >
         <div class="row" DataContext={value: Option} >
             <div>{{value: Key}} - {{value: Label}}</div>
             <h4>Arguments</h4>
-            <dot:Repeater Style-width="600px" DataSource={value: Arguments} >
+            <dot:Repeater DataSource={value: Arguments} >
                 <div>{{value: Key}}: {{value: Value}}</div>
             </dot:Repeater>
         </div>
         <div class="row" Visible={value: OutcomeViewModels.Length > 0}>
             <h4>Oucomes</h4>
-            <dot:Repeater Style-width="600px" DataSource={value: OutcomeViewModels} >
+            <dot:Repeater DataSource={value: OutcomeViewModels} >
                 <div>an outcome</div>
                 <%-- This causes Dotvvm to have a fit
                 <bookctrl:OutcomeDetailPanel></bookctrl:OutcomeDetailPanel> --%>

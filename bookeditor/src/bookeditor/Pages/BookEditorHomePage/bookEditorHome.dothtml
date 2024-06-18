@@ -23,9 +23,9 @@
                       {{value: SelectedBook.Title ?? "Select Book"}}
                     </button>
                     <div id="book-dropdown-menu" class="dropdown-menu" aria-labelledby="book-dropdown-toggle">
-                        <button onclick="$(#book-dropdown-toggle).dropdown('toggle')">X</button>
+                        <button  class="btn btn-primary dropdown-item" data-toggle="dropdown" data-target="#book-dropdown-toggle">X</button>
                         <dot:Repeater Style-width="300px" DataSource={value: Books}>
-                            <dot:Button class="dropdown-item" Text="{value: Title}" Click="{command: _root.SelectBook(_this)}" />
+                            <dot:Button Click="{command: _root.SelectBook(_this)}" ButtonTagName="button" class="btn btn-primary dropdown-item" data-toggle="dropdown" data-target="#book-dropdown-toggle"><div>{{value: Title}}</div></dot:Button>
                         </dot:Repeater>
                     </div>
                 </div>
@@ -61,6 +61,7 @@
                 <bookctrl:PageDetailPanel DataContext={value: SelectedPageDetails} />
         </div>     
     </div>
+    
 </p>
 </body>
 </html>

@@ -24,4 +24,10 @@ public class PageDetailViewModel : DotvvmViewModelBase
     public bool HasOptions => (optionViewModels?.Length ?? 0) > 0;
 
     public OptionDetailViewModel[]? OptionViewModels => this.optionViewModels;
+    public Caret? EditingCaret { get; private set; }
+    
+    public void EditCaret(Caret? caret)
+    {
+        this.EditingCaret = caret;
+    }
 }

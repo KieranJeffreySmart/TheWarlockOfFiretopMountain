@@ -1,3 +1,4 @@
+using bookeditor.Controls;
 using DotVVM.Framework.Configuration;
 using DotVVM.Framework.ResourceManagement;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,6 +48,7 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
         config.Markup.AddMarkupControl("bookctrl", "BookDetailPanel", "Pages/Controls/bookDetailPanel.dotcontrol");
         config.Markup.AddMarkupControl("bookctrl", "OptionDetailPanel", "Pages/Controls/optionDetailPanel.dotcontrol");
         config.Markup.AddMarkupControl("bookctrl", "OutcomeDetailPanel", "Pages/Controls/outcomeDetailPanel.dotcontrol");
+        config.Markup.AddCodeControls("bookctrl", typeof(TextEditModalButton));
     }
 
     private void ConfigureResources(DotvvmConfiguration config, string applicationPath)

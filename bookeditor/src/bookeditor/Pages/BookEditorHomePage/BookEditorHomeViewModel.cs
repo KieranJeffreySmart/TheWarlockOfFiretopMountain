@@ -19,6 +19,19 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         this.SetStateFromCache();
     }
 
+    [Bind(Direction.ServerToClientFirstRequest)]
+    public Book[]? Books => library?.Books;
+
+    public Book? SelectedBook { get; set; }
+
+    public BookDetailViewModel SelectedBookDetails { get; } = new BookDetailViewModel();
+
+    public Page? SelectedPage { get; set; }
+
+    public PageDetailViewModel SelectedPageDetails { get; private set; } = new PageDetailViewModel(null);
+
+    public PagePreviewViewModel SelectedPagePreview { get; } = new PagePreviewViewModel();
+
     private void SetStateFromCache()
     {
         if (this.stateCache.CurrentState != null)
@@ -53,12 +66,6 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         UpdateSelectedPage();
     }
 
-    [Bind(Direction.ServerToClientFirstRequest)]
-    public Book[]? Books => library?.Books;
-
-    public Book? SelectedBook { get; set; }
-
-    public BookDetailViewModel SelectedBookDetails { get; } = new BookDetailViewModel();
 
     private void CacheChanges()
     {
@@ -85,10 +92,4 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         this.SelectedPagePreview.Page = this.SelectedPage;
         this.CacheChanges();
     }
-
-    public Page? SelectedPage { get; set; }
-
-    public PageDetailViewModel SelectedPageDetails { get; private set; } = new PageDetailViewModel(null);
-
-    public PagePreviewViewModel SelectedPagePreview { get; } = new PagePreviewViewModel();
 }

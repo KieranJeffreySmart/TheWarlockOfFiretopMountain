@@ -6,13 +6,13 @@
     </div>
     <div class="row" Visible={value: HasArguments} >
         <h4>Arguments</h4>
-        <dot:Repeater Style-width="500px" DataSource={value: Option.Arguments} >
+        <dot:Repeater DataSource={value: Option.Arguments} >
             <div>{{value: Key}}: {{value: Value}}</div>
         </dot:Repeater>
     </div>
     <div class="row" Visible={value: HasOutcomes}>
         <h4>Oucomes</h4>
-        <dot:Repeater Style-width="500px" DataSource={value: OutcomeViewModels} >
+        <dot:Repeater DataSource={value: OutcomeViewModels} >
             <bookctrl:OutcomeDetailPanel></bookctrl:OutcomeDetailPanel>
         </dot:Repeater>
     </div>

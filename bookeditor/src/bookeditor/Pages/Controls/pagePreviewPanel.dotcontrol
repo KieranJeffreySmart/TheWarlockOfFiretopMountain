@@ -11,15 +11,13 @@
     }
 </style>
 <div class="container">
-    <div class="row">
-        <div class="col-md-5 preview">
+    <div class="row preview">
             <h4>Story</h4>
             <pre>{{value: StoryTextRaw}}</pre> 
-        </div>
-        <div class="col-md-5 preview">
-            <h4>Scene</h4>
-            <pre>{{value: SceneTextRaw}}</pre> 
-        </div>
+    </div>
+    <div class="row preview">
+        <h4>Scene</h4>
+        <pre>{{value: SceneTextRaw}}</pre> 
     </div>
 </div>
 <div class="container">

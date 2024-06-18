@@ -5,58 +5,44 @@
 
 <div class="Container" DataContext={value: Page} >
     <div class="row">
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-3"><h4>Story Carets</h4></div>
-                <div class="col-md-2"><dot:Button>Append</dot:Button></div>
-            </div>
-            <dot:Repeater DataSource={value: Story.Carets} >
-                <div class="row">
-                    <div class="col-md-10"><span>&lt;{{value: CaretType}}&gt;</span></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1">
-                        <bookCtrl:TextEditModalButton 
-                            EditedText={value: StringValue} 
-                            ModalIdRef="{value: '#texteditmodal_st_' + _parent.PageType + _parent.Index + '_' + _collection.Index}"
-                            ModalId="{value: 'texteditmodal_st_' + _parent.PageType + _parent.Index + '_' + _collection.Index}"/> 
-                        <dot:Button>Insert</dot:Button>
-                    </div>
-                    
-                    <div class="col-md-9 preview"><pre>{{value: StringValue}}</pre></div>
-                    <div class="col-md-1"><dot:Button>Remove</dot:Button></div>
-                </div>
-            </dot:Repeater>
-        </div>
-        <div class="col-md-6 preview">
-            <div class="row">
-                <div class="col-md-3"><h4>Scene Carets</h4></div>
-                <div class="col-md-2"><dot:Button>Append</dot:Button></div>
-            </div>
-            <dot:Repeater DataSource={value: Scene.Carets} >
-                <div class="row">
-                    <div class="col-md-10"><span>&lt;{{value: CaretType}}&gt;</span></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1">
-                        <bookCtrl:TextEditModalButton 
-                        EditedText={value: StringValue} 
-                        ModalIdRef="{value: '#texteditmodal_sc_' + _parent.PageType + _parent.Index + '_' + _collection.Index}"
-                        ModalId="{value: 'texteditmodal_sc_' + _parent.PageType + _parent.Index + '_' + _collection.Index}"/> 
-                        <dot:Button>Insert</dot:Button>
-                    </div>
-                    <div class="col-md-9 preview"><pre>{{value: StringValue}}</pre></div>
-                    <div class="col-md-1"><dot:Button>Remove</dot:Button></div>
-                </div>
-            </dot:Repeater>
-        </div>
+        <div class="col-md-3"><h4>Scene Carets</h4></div>
+        <div class="col-md-2"><dot:Button>Append</dot:Button></div>
     </div>
-</div>
-<div class="container" Visible={value: HasOptions}>
-    <h4>Options</h4>
-    <dot:Repeater DataSource={value: OptionViewModels} >
-        <div class="row" >
-            <bookctrl:OptionDetailPanel DataContext={value: _this} ></bookctrl:OptionDetailPanel>
+    <dot:Repeater DataSource={value: Scene.Carets} >
+        <div class="row">
+            <div class="col-md-10"><span>&lt;{{value: CaretType}}&gt;</span></div>
+        </div>
+        <div class="row"> 
+            <div class="col-md-1">
+                <bookCtrl:TextEditModalButton 
+                EditedText={value: StringValue} 
+                ModalIdRef="{value: '#texteditmodal_sc_' + _parent.PageType + _parent.Index + '_' + _collection.Index}"
+                ModalId="{value: 'texteditmodal_sc_' + _parent.PageType + _parent.Index + '_' + _collection.Index}"/> 
+                <dot:Button>Insert</dot:Button>
+            </div>
+            <div class="col-md-9 preview"><pre>{{value: StringValue}}</pre></div>
+            <div class="col-md-1"><dot:Button>Remove</dot:Button></div>
+        </div>
+    </dot:Repeater>
+    <div class="row">
+        <div class="col-md-3"><h4>Story Carets</h4></div>
+        <div class="col-md-2"><dot:Button>Append</dot:Button></div>
+    </div>
+    <dot:Repeater DataSource={value: Story.Carets} >
+        <div class="row">
+            <div class="col-md-10"><span>&lt;{{value: CaretType}}&gt;</span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <bookCtrl:TextEditModalButton 
+                    EditedText={value: StringValue} 
+                    ModalIdRef="{value: '#texteditmodal_st_' + _parent.PageType + _parent.Index + '_' + _collection.Index}"
+                    ModalId="{value: 'texteditmodal_st_' + _parent.PageType + _parent.Index + '_' + _collection.Index}"/> 
+                <dot:Button>Insert</dot:Button>
+            </div>
+            
+            <div class="col-md-9 preview"><pre>{{value: StringValue}}</pre></div>
+            <div class="col-md-1"><dot:Button>Remove</dot:Button></div>
         </div>
     </dot:Repeater>
 </div>

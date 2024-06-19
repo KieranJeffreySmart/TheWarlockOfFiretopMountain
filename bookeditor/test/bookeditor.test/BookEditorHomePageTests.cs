@@ -91,15 +91,13 @@ public class BookEditorHomePage_LandingTests
 
         // then the page selected details are displayed
         Assert.NotNull(homePage.SelectedPage);
-        Assert.NotNull(homePage.SelectedPageDetails);
-        Assert.NotNull(homePage.SelectedPageDetails.Page);
-        Assert.NotNull(homePage.SelectedPageDetails.Page.Story);
-        Assert.NotNull(homePage.SelectedPageDetails.Page.Story.Carets);
-        Assert.NotNull(homePage.SelectedPageDetails.Page.Options);
-        Assert.Equal("Intro", homePage.SelectedPageDetails.Page.PageType);
-        Assert.Equal(1, homePage.SelectedPageDetails.Page.Index);
-        Assert.Equal(2, homePage.SelectedPageDetails.Page.Story.Carets.Length);
-        Assert.Equal(2, homePage.SelectedPageDetails.Page.Options.Length);
+        Assert.NotNull(homePage.SelectedPage.Story);
+        Assert.NotNull(homePage.SelectedPage.Story.Carets);
+        Assert.NotNull(homePage.SelectedPage.Options);
+        Assert.Equal("Intro", homePage.SelectedPage.PageType);
+        Assert.Equal(1, homePage.SelectedPage.Index);
+        Assert.Equal(2, homePage.SelectedPage.Story.Carets.Length);
+        Assert.Equal(2, homePage.SelectedPage.Options.Length);
 
         // when I refresh the page
         homePage = new(library, cache);
@@ -118,16 +116,6 @@ public class BookEditorHomePage_LandingTests
         Assert.Equal(1, homePage.SelectedPage.Index);
         Assert.Equal(2, homePage.SelectedPage.Story.Carets.Length);
         Assert.Equal(2, homePage.SelectedPage.Options.Length);
-
-        Assert.NotNull(homePage.SelectedPageDetails);
-        Assert.NotNull(homePage.SelectedPageDetails.Page);
-        Assert.NotNull(homePage.SelectedPageDetails.Page.Story);
-        Assert.NotNull(homePage.SelectedPageDetails.Page.Story.Carets);
-        Assert.NotNull(homePage.SelectedPageDetails.Page.Options);
-        Assert.Equal("Intro", homePage.SelectedPageDetails.Page.PageType);
-        Assert.Equal(1, homePage.SelectedPageDetails.Page.Index);
-        Assert.Equal(2, homePage.SelectedPageDetails.Page.Story.Carets.Length);
-        Assert.Equal(2, homePage.SelectedPageDetails.Page.Options.Length);
 
     }
 
@@ -157,15 +145,13 @@ public class BookEditorHomePage_LandingTests
 
         // then the page selected details are displayed
         Assert.NotNull(homePage.SelectedPage);
-        Assert.NotNull(homePage.SelectedPageDetails);
-        Assert.NotNull(homePage.SelectedPageDetails.Page);
-        Assert.NotNull(homePage.SelectedPageDetails.Page.Story);
-        Assert.NotNull(homePage.SelectedPageDetails.Page.Story.Carets);
-        Assert.NotNull(homePage.SelectedPageDetails.Page.Options);
-        Assert.Equal("Intro", homePage.SelectedPageDetails.Page.PageType);
-        Assert.Equal(1, homePage.SelectedPageDetails.Page.Index);
-        Assert.Equal(2, homePage.SelectedPageDetails.Page.Story.Carets.Length);
-        Assert.Equal(2, homePage.SelectedPageDetails.Page.Options.Length);
+        Assert.NotNull(homePage.SelectedPage.Story);
+        Assert.NotNull(homePage.SelectedPage.Story.Carets);
+        Assert.NotNull(homePage.SelectedPage.Options);
+        Assert.Equal("Intro", homePage.SelectedPage.PageType);
+        Assert.Equal(1, homePage.SelectedPage.Index);
+        Assert.Equal(2, homePage.SelectedPage.Story.Carets.Length);
+        Assert.Equal(2, homePage.SelectedPage.Options.Length);
         
         // when I select the last book
         Assert.NotNull(homePage.Books);

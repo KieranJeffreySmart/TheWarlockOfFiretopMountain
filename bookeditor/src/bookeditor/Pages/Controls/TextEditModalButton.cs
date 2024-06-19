@@ -1,6 +1,8 @@
+using System;
 using System.ComponentModel;
 using DotVVM.Framework.Binding;
 using DotVVM.Framework.Binding.Expressions;
+using DotVVM.Framework.Binding.Properties;
 using DotVVM.Framework.Controls;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
@@ -10,17 +12,26 @@ public class TextEditModalButton : CompositeControl
 {
     public static DotvvmControl GetContents(
         [DefaultValue("text")] ValueOrBinding<string> editedText,
-        [DefaultValue(null)] ValueOrBinding<string?> modalIdRef,
-        [DefaultValue(null)] ValueOrBinding<string?> modalId,
-        ICommandBinding? changed = null)
+        ICommandBinding? closeClick = null)
     {
+
+        string modalId = $"tem_{Guid.NewGuid().ToString()}";
         var editButton = new Button()
         .SetProperty(c => c.ButtonTagName, ButtonTagName.button)
         .AddAttribute("data-toggle", "modal")
-        .SetAttribute("data-target", modalIdRef)
+        .SetAttribute("data-target", $"#{modalId}")
         .AddCssClasses("btn")
-        .SetProperty(c => c.Text, "Edit");
+        .AppendChildren(
+            new HtmlGenericControl("img")
+            .SetAttribute("src", "~/res/bootstrap-icons/pencil.svg")
+        );
 
+
+        var newTextBox = new TextBox()
+        .SetProperty(b => b.CssStyles["width"], "450px")
+        .SetProperty(b => b.CssStyles["height"], "600px")
+        .SetProperty(b => b.Type, TextBoxType.MultiLine)
+        .SetProperty(b => b.Text, editedText);
         
 
         var modalcontrol = new HtmlGenericControl("div")
@@ -47,48 +58,30 @@ public class TextEditModalButton : CompositeControl
                         .AppendChildren(
                             new HtmlGenericControl("span") { InnerText = "x" }
                             .AddAttribute("aria-hidden", "true")
-                        )
+                        ),
+                        new Button()
+                            .SetProperty(c => c.ButtonTagName, ButtonTagName.button)
+                            .SetProperty(c => c.Click, closeClick)
+                            .SetProperty(c => c.Text, "Save")
+                        
                     ),
                     new HtmlGenericControl("div")
                     .AddCssClass("modal-body")
-                    .AppendChildren(
-                        new TextBox()
-                        .SetProperty(b => b.Changed, changed)
-                        .SetProperty(b => b.CssStyles["width"], "450px")
-                        .SetProperty(b => b.CssStyles["height"], "600px")
-                        .SetProperty(b => b.Type, TextBoxType.MultiLine)
-                        .SetProperty(b => b.Text, editedText)
-                    )
+                    .AppendChildren(newTextBox)
                 )
             )
-        );
-
-
+        );        
         
-
-// <div class="modal" id="exampleModalLong" tabindex="-1" role="dialog">
-//     <div class="modal-dialog" role="document">
-//       <div class="modal-content">
-//         <div class="modal-header">
-//           <h5 class="modal-title">Modal title</h5>
-//           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-//             <span aria-hidden="true">&times;</span>
-//           </button>
-//         </div>
-//         <div class="modal-body">
-//           <p>Modal body text goes here.</p>
-//         </div>
-//         <div class="modal-footer">
-//           <button type="button" class="btn btn-primary">Save changes</button>
-//           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-        
-        return new HtmlGenericControl("div")
-        .AddCssClass("mod")
-        // .AddAttribute("role", "dialog")
+        var container = new HtmlGenericControl("div")
+        .AddCssClass("container")
         .AppendChildren(editButton, modalcontrol);
+
+        
+        //modalcontrol.SetProperty(c => c.DataContext, dataContext);
+        
+        // [DefaultValue(null)] ValueOrBinding<object?> dataContext,
+        // object? staticDataContext = null,
+        // container.SetProperty(c => c.DataContext, dataContext);
+        return container;
     }
 }

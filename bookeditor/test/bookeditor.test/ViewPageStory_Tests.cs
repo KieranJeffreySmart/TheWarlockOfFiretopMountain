@@ -41,18 +41,17 @@ public class ViewPageStory_Tests
 
         // then the story text is displayed
         Assert.NotNull(viewModel.SelectedPage);
-        Assert.NotNull(viewModel.SelectedPageDetails);
-        Assert.NotNull(viewModel.SelectedPageDetails.Page);
-        Assert.NotNull(viewModel.SelectedPageDetails.Page.Story);
+        Assert.NotNull(viewModel.SelectedPage);
+        Assert.NotNull(viewModel.SelectedPage.Story);
 
         if (carets == null)
         {
-            Assert.Null(viewModel.SelectedPageDetails.Page.Story.Carets);
+            Assert.Null(viewModel.SelectedPage.Story.Carets);
         }
         else
         {
-            Assert.NotNull(viewModel.SelectedPageDetails.Page.Story.Carets);
-            Assert.Equal(carets, viewModel.SelectedPageDetails.Page.Story.Carets.Select(c => c.StringValue));
+            Assert.NotNull(viewModel.SelectedPage.Story.Carets);
+            Assert.Equal(carets, viewModel.SelectedPage.Story.Carets.Select(c => c.StringValue));
         }
 
         Assert.NotNull(viewModel.SelectedPagePreview.Page);
@@ -97,18 +96,17 @@ public class ViewPageStory_Tests
 
         // then the scene text is displayed
         Assert.NotNull(viewModel.SelectedPage);
-        Assert.NotNull(viewModel.SelectedPageDetails);
-        Assert.NotNull(viewModel.SelectedPageDetails.Page);
-        Assert.NotNull(viewModel.SelectedPageDetails.Page.Scene);
+        Assert.NotNull(viewModel.SelectedPage);
+        Assert.NotNull(viewModel.SelectedPage.Scene);
 
         if (carets == null)
         {
-            Assert.Null(viewModel.SelectedPageDetails.Page.Scene.Carets);
+            Assert.Null(viewModel.SelectedPage.Scene.Carets);
         }
         else
         {
-            Assert.NotNull(viewModel.SelectedPageDetails.Page.Scene.Carets);
-            Assert.Equal(carets, viewModel.SelectedPageDetails.Page.Scene.Carets.Select(c => c.StringValue));
+            Assert.NotNull(viewModel.SelectedPage.Scene.Carets);
+            Assert.Equal(carets, viewModel.SelectedPage.Scene.Carets.Select(c => c.StringValue));
         }
         Assert.NotNull(viewModel.SelectedPagePreview.Page);
         Assert.Equal(rawText, viewModel.SelectedPagePreview.SceneTextRaw);

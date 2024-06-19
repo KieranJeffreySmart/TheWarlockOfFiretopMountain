@@ -4,7 +4,9 @@
     <div>{{value: OutcomeType}}</div>
     <div class="row">
         <div class="col-md-3"><h4>Story Carets</h4></div>
-        <div class="col-md-2"><dot:Button>Append</dot:Button></div>
+        <dot:Button ButtonTagName="button" class="btn">
+            <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
+        </dot:Button>
     </div>
     <dot:Repeater DataSource={value: Story.Carets} >
         <div class="row">
@@ -12,19 +14,23 @@
         </div>
         <div class="row">
             <div class="col-md-1">
-                <bookCtrl:TextEditModalButton 
-                EditedText={value: StringValue} 
-                ModalIdRef="{value: '#texteditmodal_st_' + _parent.OutcomeType + '_' + _collection.Index}"
-                ModalId="{value: 'texteditmodal_st_' + _parent.OutcomeType + '_' + _collection.Index}"/> 
-                <dot:Button>Insert</dot:Button>
+                <bookCtrl:TextEditModalButton  
+                EditedText={value: StringValue} /> 
+                <dot:Button ButtonTagName="button" class="btn">
+                    <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
+                </dot:Button>
             </div>
             <div class="col-md-9 preview"><pre>{{value: StringValue}}</pre></div>
-            <div class="col-md-1"><dot:Button>Remove</dot:Button></div>
+            <dot:Button ButtonTagName="button" class="btn">
+                <img src="~/res/bootstrap-icons/trash.svg" alt="Delete" />
+            </dot:Button>
         </div>
     </dot:Repeater>
     <div class="row">
         <div class="col-md-3"><h4>Scene Carets</h4></div>
-        <div class="col-md-2"><dot:Button>Append</dot:Button></div>
+        <dot:Button ButtonTagName="button" class="btn">
+            <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
+        </dot:Button>
     </div>
     <dot:Repeater DataSource={value: Scene.Carets} >
         <div class="row">
@@ -33,13 +39,15 @@
         <div class="row">
             <div class="col-md-1">
                 <bookCtrl:TextEditModalButton 
-                EditedText={value: StringValue} 
-                ModalIdRef="{value: '#texteditmodal_sc_' + _parent.OutcomeType + '_' + _collection.Index}"
-                ModalId="{value: 'texteditmodal_sc_' + _parent.OutcomeType + '_' + _collection.Index}"/> 
-                <dot:Button>Insert</dot:Button>
+                EditedText={value: StringValue} /> 
+                <dot:Button ButtonTagName="button" class="btn">
+                    <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
+                </dot:Button>
             </div>
             <div class="col-md-9 preview"><pre>{{value: StringValue}}</pre></div>
-            <div class="col-md-1"><dot:Button>Remove</dot:Button></div>
+            <dot:Button ButtonTagName="button" class="btn">
+                <img src="~/res/bootstrap-icons/trash.svg" alt="Delete" />
+            </dot:Button>
         </div>
     </dot:Repeater>
 </div>

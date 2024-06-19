@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using DotVVM.Framework.Utils;
 using DotVVM.Framework.ViewModel;
 
@@ -12,6 +13,9 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     private readonly EditorStateCache stateCache;
 
+
+
+
     public BookEditorHomeViewModel(XmlLibrary library, EditorStateCache stateCache)
     {
         this.library = library;
@@ -19,7 +23,6 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         this.SetStateFromCache();
     }
 
-    [Bind(Direction.ServerToClientFirstRequest)]
     public Book[]? Books => library?.Books;
 
     public Book? SelectedBook { get; set; }
@@ -28,9 +31,18 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     public Page? SelectedPage { get; set; }
 
-    public PageDetailViewModel SelectedPageDetails { get; private set; } = new PageDetailViewModel(null);
-
     public PagePreviewViewModel SelectedPagePreview { get; } = new PagePreviewViewModel();
+
+
+    public Caret? EditableCaret { get; set; } = new Caret { CaretType="texttype", StringValue = "testvalue1"};
+
+    public CaretDetailViewModel EditableCaretViewModel { get; set; } = new CaretDetailViewModel { Caret = new Caret { CaretType="texttype", StringValue = "testvalue2"} };
+
+    public void UpdateEditibleCaret(object? arg)
+    {
+        var rootText = this.EditableCaret?.StringValue;
+        var viewModelText = this.EditableCaretViewModel.StringValue;
+    }
 
     private void SetStateFromCache()
     {
@@ -49,7 +61,6 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
             }
 
             this.SelectedBookDetails.Book = this.SelectedBook;
-            this.SelectedPageDetails = new PageDetailViewModel(this.SelectedPage);
             this.SelectedPagePreview.Page = this.SelectedPage;
         }
     }
@@ -65,6 +76,10 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         this.SelectedPage = page;
         UpdateSelectedPage();
     }
+    
+    private OptionDetailViewModel[]? optionViewModels = Array.Empty<OptionDetailViewModel>();
+    
+    public OptionDetailViewModel[]? OptionViewModels => this.optionViewModels;
 
 
     private void CacheChanges()
@@ -81,14 +96,15 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     {
         this.SelectedBookDetails.Book = this.SelectedBook;
         this.SelectedPage = null;
-        this.SelectedPageDetails = new PageDetailViewModel(this.SelectedPage);
         this.SelectedPagePreview.Page = this.SelectedPage;
         this.CacheChanges();
     }
 
     public void UpdateSelectedPage()
     {
-        this.SelectedPageDetails = new PageDetailViewModel(this.SelectedPage);
+        this.optionViewModels = this.SelectedPage?.Options?.Select(
+            o => new OptionDetailViewModel(o))?.ToArray() 
+            ?? Array.Empty<OptionDetailViewModel>();
         this.SelectedPagePreview.Page = this.SelectedPage;
         this.CacheChanges();
     }

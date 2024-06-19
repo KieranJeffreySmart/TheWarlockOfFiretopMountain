@@ -24,6 +24,11 @@ public class OutcomeDetailViewModel: DotvvmViewModelBase
     private OptionDetailViewModel[]? optionViewModels = [];
 
     public OptionDetailViewModel[]? OptionViewModels => this.optionViewModels;
+    
+    public void UpdateOnCaretChange()
+    {
+        var text = "";
+    }
 }
 
 

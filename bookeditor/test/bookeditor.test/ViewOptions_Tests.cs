@@ -38,12 +38,11 @@ public class ViewOptions_Tests
 
         // then the options are displayed
         Assert.NotNull(viewModel.SelectedPage);
-        Assert.NotNull(viewModel.SelectedPageDetails);
-        Assert.NotNull(viewModel.SelectedPageDetails.Page);
-        Assert.Equal(optionCount, viewModel.SelectedPageDetails.Page.Options.Length);
-        Assert.Equal(optionsKeys, viewModel.SelectedPageDetails.Page.Options.Select(o => o.Key).ToArray());
-        Assert.Equal(labels, viewModel.SelectedPageDetails.Page.Options.Select(o => o.Label).ToArray());
-        Assert.Equal(commands, viewModel.SelectedPageDetails.Page.Options.Select(o => o.Command).ToArray());
+        Assert.NotNull(viewModel.SelectedPage);
+        Assert.Equal(optionCount, viewModel.SelectedPage.Options.Length);
+        Assert.Equal(optionsKeys, viewModel.SelectedPage.Options.Select(o => o.Key).ToArray());
+        Assert.Equal(labels, viewModel.SelectedPage.Options.Select(o => o.Label).ToArray());
+        Assert.Equal(commands, viewModel.SelectedPage.Options.Select(o => o.Command).ToArray());
     }
     
 
@@ -77,15 +76,13 @@ public class ViewOptions_Tests
 
         // then the options are displayed
         Assert.NotNull(viewModel.SelectedPage);
-        Assert.NotNull(viewModel.SelectedPageDetails);
-        Assert.NotNull(viewModel.SelectedPageDetails.Page);
-        Assert.NotNull(viewModel.SelectedPageDetails.Page.Options);
-        Assert.Equal(optionCount, viewModel.SelectedPageDetails.Page.Options.Length);
-        Assert.Equal(optionsKeys, viewModel.SelectedPageDetails.Page.Options.Select(o => o.Key).ToArray());
-        Assert.Equal(labels, viewModel.SelectedPageDetails.Page.Options.Select(o => o.Label).ToArray());
-        Assert.Equal(commands, viewModel.SelectedPageDetails.Page.Options.Select(o => o.Command).ToArray());
-        Assert.Equal(argNames, viewModel.SelectedPageDetails.Page.Options.Where(o => o.Arguments != null).SelectMany(o => o.Arguments.Select(a => a.Key)).ToArray());
-        Assert.Equal(argValues, viewModel.SelectedPageDetails.Page.Options.Where(o => o.Arguments != null).SelectMany(o => o.Arguments.Select(a => a.Value)).ToArray());
+        Assert.NotNull(viewModel.SelectedPage.Options);
+        Assert.Equal(optionCount, viewModel.SelectedPage.Options.Length);
+        Assert.Equal(optionsKeys, viewModel.SelectedPage.Options.Select(o => o.Key).ToArray());
+        Assert.Equal(labels, viewModel.SelectedPage.Options.Select(o => o.Label).ToArray());
+        Assert.Equal(commands, viewModel.SelectedPage.Options.Select(o => o.Command).ToArray());
+        Assert.Equal(argNames, viewModel.SelectedPage.Options.Where(o => o.Arguments != null).SelectMany(o => o.Arguments.Select(a => a.Key)).ToArray());
+        Assert.Equal(argValues, viewModel.SelectedPage.Options.Where(o => o.Arguments != null).SelectMany(o => o.Arguments.Select(a => a.Value)).ToArray());
     }
 
 
@@ -116,16 +113,9 @@ public class ViewOptions_Tests
 
         // then the options are displayed
         Assert.NotNull(viewModel.SelectedPage);
-        Assert.NotNull(viewModel.SelectedPageDetails);
-        Assert.NotNull(viewModel.SelectedPageDetails.Page);
-        Assert.NotNull(viewModel.SelectedPageDetails.Page.Options);
-        Assert.Single(viewModel.SelectedPageDetails.Page.Options);
-        Assert.NotNull(viewModel.SelectedPageDetails.OptionViewModels);
-        Assert.Single(viewModel.SelectedPageDetails.OptionViewModels);
-        var statCheckvm = viewModel.SelectedPageDetails.OptionViewModels.First();
-        Assert.NotNull(statCheckvm.Option);
+        Assert.NotNull(viewModel.SelectedPage.Options);
 
-        var statCheckOpt = statCheckvm.Option;
+        var statCheckOpt = viewModel.SelectedPage.Options.First();
         Assert.Equal("l", statCheckOpt.Key);
         Assert.Equal("Luck test", statCheckOpt.Label);
         Assert.Equal("TEST_STAT", statCheckOpt.Command);
@@ -138,13 +128,8 @@ public class ViewOptions_Tests
         
         Assert.NotNull(statCheckOpt.Outcomes);
         Assert.Equal(2, statCheckOpt.Outcomes.Count());
-        Assert.NotNull(statCheckvm.OutcomeViewModels);
-        Assert.NotEmpty(statCheckvm.OutcomeViewModels);
-        Assert.Equal(2, statCheckvm.OutcomeViewModels.Count());
 
-        var passOutcomevm = statCheckvm.OutcomeViewModels[0];
-        Assert.NotNull(passOutcomevm);
-        var passOutcome = passOutcomevm.Outcome;
+        var passOutcome = statCheckOpt.Outcomes[0];
         Assert.NotNull(passOutcome);
 
         Assert.Equal("PASS", passOutcome.OutcomeType);
@@ -160,20 +145,14 @@ public class ViewOptions_Tests
         Assert.Equal("c", passOutcome.Options.First().Key);
         Assert.Equal("Continue", passOutcome.Options.First().Label);
         Assert.Equal("GOTO_GAME_PAGE", passOutcome.Options.First().Command);
-
-        Assert.NotNull(passOutcomevm.OptionViewModels);
-        Assert.NotNull(passOutcomevm.OptionViewModels.First());
-        var passgotooptionvm = passOutcomevm.OptionViewModels.First();
         
-        var passgotooption = passgotooptionvm.Option;
+        var passgotooption = passOutcome.Options.First();
         Assert.NotNull(passgotooption);
         Assert.NotNull(passgotooption.Arguments);
         Assert.Equal("page",passgotooption.Arguments.First().Key);
         Assert.Equal("1", passgotooption.Arguments.First().Value);
         
-        var failOutcomevm = statCheckvm.OutcomeViewModels[1];        
-        Assert.NotNull(failOutcomevm);
-        var failOutcome = failOutcomevm.Outcome;
+        var failOutcome = statCheckOpt.Outcomes[1];;
         Assert.NotNull(failOutcome);
 
         Assert.Equal("FAIL", failOutcome.OutcomeType);
@@ -190,12 +169,8 @@ public class ViewOptions_Tests
         Assert.Equal("c", failOutcome.Options.First().Key);
         Assert.Equal("Continue", failOutcome.Options.First().Label);
         Assert.Equal("GOTO_GAME_PAGE", failOutcome.Options.First().Command);
-
-        Assert.NotNull(failOutcomevm.OptionViewModels);
-        Assert.NotNull(failOutcomevm.OptionViewModels.First());
-        var failGotoOptionvm = failOutcomevm.OptionViewModels.First();
         
-        var failGotoOption = failGotoOptionvm.Option;
+        var failGotoOption = failOutcome.Options.First();
         Assert.NotNull(failGotoOption);
         Assert.NotNull(failGotoOption.Arguments);
         Assert.Equal("page",failGotoOption.Arguments.First().Key);

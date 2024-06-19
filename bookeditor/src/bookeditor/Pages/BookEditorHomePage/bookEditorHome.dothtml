@@ -17,18 +17,36 @@
 <p>
     <div  class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <div class="dropdown">
-                    <button id="book-dropdown-toggle" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button id="book-dropdown-toggle" 
+                    class="btn btn-secondary dropdown-toggle" 
+                    type="button" 
+                    data-toggle="dropdown" 
+                    aria-haspopup="true" 
+                    aria-expanded="false">
                       {{value: SelectedBook.Title ?? "Select Book"}}
                     </button>
                     <div id="book-dropdown-menu" class="dropdown-menu" aria-labelledby="book-dropdown-toggle">
-                        <button  class="btn btn-primary dropdown-item" data-toggle="dropdown" data-target="#book-dropdown-toggle">X</button>
+                        <button  class="btn btn-primary dropdown-item" 
+                        data-toggle="dropdown" 
+                        data-target="#book-dropdown-toggle">X</button>
                         <dot:Repeater Style-width="300px" DataSource={value: Books}>
-                            <dot:Button Click="{command: _root.SelectBook(_this)}" ButtonTagName="button" class="btn btn-primary dropdown-item" data-toggle="dropdown" data-target="#book-dropdown-toggle"><div>{{value: Title}}</div></dot:Button>
+                            <dot:Button Click="{command: _root.SelectBook(_this)}" 
+                            ButtonTagName="button" 
+                            class="btn btn-primary dropdown-item" 
+                            data-toggle="dropdown" 
+                            data-target="#book-dropdown-toggle">
+                                <div>{{value: Title}}</div>
+                            </dot:Button>
                         </dot:Repeater>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-2">
+                <dot:Button Click={command: SaveToFile()} ButtonTagName="button" >
+                    <img alt="save" src="~/res/bootstrap-icons/save.svg"/>
+                </dot:Button>
             </div>
         </div>
         <div class="row"> 
@@ -36,7 +54,7 @@
                 <bookctrl:BookDetailPanel DataContext={value: SelectedBookDetails}  />
             </div>
         </div>        
-        <div class="row">     
+        <div class="row">
             <div class="col-md-3">        
                 <div class="dropdown">
                     <button id="page-dropdown-toggle" 
@@ -192,7 +210,7 @@
                 </div>
             </div>         
         </div>      
-    
+    </div>
 </p>
 </body>
 </html>

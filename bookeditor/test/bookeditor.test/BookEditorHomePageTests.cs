@@ -69,7 +69,7 @@ public class BookEditorHomePage_LandingTests
     public async Task ReOpenningHomePageWithSelectedBookAndPage()
     {
         // Given I have a library
-        string[] libraryNames = ["Warlock_Of_Firetop_Mountain", "Books_With_Pages"];
+        string[] libraryNames = ["Warlock_of_Firetop_Mountain", "Books_With_Pages"];
         var library = new XmlLibrary("../../../TestData", libraryNames);
         var cache = new EditorStateCache();
 
@@ -123,7 +123,7 @@ public class BookEditorHomePage_LandingTests
     public async Task ReOpenningHomePageAfterChangingSelectedBookAndPage()
     {
         // Given I have a library
-        string[] libraryNames = ["Warlock_Of_Firetop_Mountain", "Books_With_Pages"];
+        string[] libraryNames = ["Warlock_of_Firetop_Mountain", "Books_With_Pages"];
         var library = new XmlLibrary("../../../TestData", libraryNames);
         var cache = new EditorStateCache();
 

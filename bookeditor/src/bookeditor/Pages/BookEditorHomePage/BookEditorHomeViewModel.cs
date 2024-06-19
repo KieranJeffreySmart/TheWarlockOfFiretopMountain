@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using DotVVM.Framework.Utils;
 using DotVVM.Framework.ViewModel;
 
@@ -73,10 +74,6 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     {
         this.SelectedOption = option;
     }
-    
-    private OptionDetailViewModel[]? optionViewModels = Array.Empty<OptionDetailViewModel>();
-    
-    public OptionDetailViewModel[]? OptionViewModels => this.optionViewModels;
 
 
     private void CacheChanges()
@@ -102,5 +99,10 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         this.SelectedPagePreview.Page = this.SelectedPage;
         this.SelectedOption = null;
         this.CacheChanges();
+    }
+
+    public async Task SaveToFile()
+    {
+        await Task.FromResult(true);
     }
 }

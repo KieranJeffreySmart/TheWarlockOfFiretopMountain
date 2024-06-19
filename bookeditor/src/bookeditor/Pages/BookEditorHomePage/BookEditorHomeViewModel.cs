@@ -33,16 +33,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     public PagePreviewViewModel SelectedPagePreview { get; } = new PagePreviewViewModel();
 
-
-    public Caret? EditableCaret { get; set; } = new Caret { CaretType="texttype", StringValue = "testvalue1"};
-
-    public CaretDetailViewModel EditableCaretViewModel { get; set; } = new CaretDetailViewModel { Caret = new Caret { CaretType="texttype", StringValue = "testvalue2"} };
-
-    public void UpdateEditibleCaret(object? arg)
-    {
-        var rootText = this.EditableCaret?.StringValue;
-        var viewModelText = this.EditableCaretViewModel.StringValue;
-    }
+    public Option? SelectedOption { get; set; }
 
     private void SetStateFromCache()
     {
@@ -62,6 +53,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
             this.SelectedBookDetails.Book = this.SelectedBook;
             this.SelectedPagePreview.Page = this.SelectedPage;
+            this.SelectedOption = null;
         }
     }
 
@@ -75,6 +67,11 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     {
         this.SelectedPage = page;
         UpdateSelectedPage();
+    }
+
+    public void SelectOption(Option? option)
+    {
+        this.SelectedOption = option;
     }
     
     private OptionDetailViewModel[]? optionViewModels = Array.Empty<OptionDetailViewModel>();
@@ -102,10 +99,8 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     public void UpdateSelectedPage()
     {
-        this.optionViewModels = this.SelectedPage?.Options?.Select(
-            o => new OptionDetailViewModel(o))?.ToArray() 
-            ?? Array.Empty<OptionDetailViewModel>();
         this.SelectedPagePreview.Page = this.SelectedPage;
+        this.SelectedOption = null;
         this.CacheChanges();
     }
 }

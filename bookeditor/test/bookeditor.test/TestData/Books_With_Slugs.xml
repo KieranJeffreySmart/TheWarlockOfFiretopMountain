@@ -1,0 +1,16 @@
+<library>
+    <book>
+        <slug>test-book-slug</slug>
+        <title>Test slugs book</title>
+        <page>
+            <slug>test-page-slug</slug>
+            <type>Intro</type>
+            <index>1</index>
+            <story>
+                <caret type="text">
+
+                </caret>
+            </story>
+        </page>
+    </book>
+</library>

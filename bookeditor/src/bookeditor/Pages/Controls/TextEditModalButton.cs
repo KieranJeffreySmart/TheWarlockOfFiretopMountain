@@ -2,9 +2,7 @@ using System;
 using System.ComponentModel;
 using DotVVM.Framework.Binding;
 using DotVVM.Framework.Binding.Expressions;
-using DotVVM.Framework.Binding.Properties;
 using DotVVM.Framework.Controls;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
 namespace bookeditor.Controls;
 

@@ -210,6 +210,11 @@ public class XmlLibrary
         {
             saveBook.Slug = Guid.NewGuid().ToString();
         }
+
+        foreach (var page in saveBook.Pages.Where(p => string.IsNullOrWhiteSpace(p.Slug)))
+        {
+            page.Slug = Guid.NewGuid().ToString(); 
+        }
             
         var serializer = new XmlSerializer(typeof(Book));
         StringWriter xout = new StringWriter();

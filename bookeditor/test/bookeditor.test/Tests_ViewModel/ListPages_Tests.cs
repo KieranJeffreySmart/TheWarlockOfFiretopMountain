@@ -17,13 +17,6 @@ public class ListPages_ViewModelTests
         var libraryName = "Books_With_Pages";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
 
-        // Given I the library has a book with a single intro page
-        // Given I the library has a book with many intro pages
-        // Given I the library has a book with a single game page
-        // Given I the library has a book with many game pages
-        // Given I the library has a book with a single intro page and game page
-        // Given I the library has a book with many intro pages and game pages
-
         // When I open the book
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);

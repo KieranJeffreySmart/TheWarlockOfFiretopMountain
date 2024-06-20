@@ -1,5 +1,4 @@
 using bookeditor.ViewModels;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace bookeditor.test;
 

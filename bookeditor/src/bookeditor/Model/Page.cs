@@ -1,5 +1,4 @@
 using System.Xml.Serialization;
-using bookeditor.ViewModels;
 
 namespace bookeditor;
 
@@ -19,6 +18,9 @@ public class Page
 
     [XmlElement("option")]
     public Option[]? Options { get; set; } = [];
+
+    [XmlElement("slug")]
+    public string? Slug { get; set; }
 }
 
 public class Option

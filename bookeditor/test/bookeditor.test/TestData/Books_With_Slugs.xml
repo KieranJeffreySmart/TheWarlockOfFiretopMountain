@@ -1,15 +1,43 @@
 <library>
     <book>
-        <slug>test-book-slug</slug>
+        <slug>test-book1-slug</slug>
         <title>Test slugs book</title>
         <page>
-            <slug>test-page-slug</slug>
+            <slug>test-page1-slug</slug>
             <type>Intro</type>
             <index>1</index>
             <story>
                 <caret type="text">
 
                 </caret>
+            </story>
+        </page>
+        <page>
+            <slug>test-page2-slug</slug>
+            <type>Intro</type>
+            <index>1</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+    </book>
+    <book>
+        <slug>test-book2-slug</slug>
+        <title>Test slugs book</title>
+        <page>
+            <slug>test-page3-slug</slug>
+            <type>Intro</type>
+            <index>1</index>
+            <story>
+                <caret type="text">test-page3</caret>
+            </story>
+        </page>
+        <page>
+            <slug>test-page4-slug</slug>
+            <type>Intro</type>
+            <index>1</index>
+            <story>
+                <caret type="text">test-page4</caret>
             </story>
         </page>
     </book>

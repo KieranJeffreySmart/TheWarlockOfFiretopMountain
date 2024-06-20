@@ -68,7 +68,6 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         this.SelectedOption = option;
     }
 
-
     private void CacheChanges()
     {
             this.stateCache.CurrentState ??= new EditorState();

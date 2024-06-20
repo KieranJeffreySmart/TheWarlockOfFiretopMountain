@@ -103,6 +103,9 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     public async Task SaveToFile()
     {
-        await Task.FromResult(true);
+        if (library == null || this.SelectedBook == null)
+            return;
+
+        await library.WriteBookToLibrary(this.SelectedBook);
     }
 }

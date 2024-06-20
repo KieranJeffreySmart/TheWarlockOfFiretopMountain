@@ -1,3 +1,4 @@
+using System;
 using System.Xml.Serialization;
 
 namespace bookeditor;
@@ -9,4 +10,7 @@ public class Book
 
     [XmlElement("page")]
     public Page[] Pages { get; set; } = [];
+
+    [XmlElement("slug")]
+    public string? Slug { get; set; }
 }

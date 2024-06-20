@@ -2,7 +2,7 @@ using System.Xml;
 
 namespace bookeditor.test;
 
-public class XmlLibrary_IntegrationTests
+public class XmlLibrary_ReadIntegrationTests
 {
     [Fact]
     public void GetBookFromEmptyFile()

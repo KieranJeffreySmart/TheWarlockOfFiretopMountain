@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Serialization;
+using System.Xml.XPath;
 
 namespace bookeditor;
 
@@ -11,6 +15,7 @@ public class XmlLibrary
 {
     private string rootpath;
     private readonly string[] librarieNames;
+    public string DefaultLibraryName { get; set; } = "New_Library";
 
     public XmlLibrary(string rootpath, string[] librarieNames)
     {
@@ -30,6 +35,7 @@ public class XmlLibrary
             return this.books;
         }
     }
+
 
     public Book GetBook(string bookName)
     {
@@ -87,7 +93,6 @@ public class XmlLibrary
         if (librarieNames.Length == 0)
             yield return new Book();
 
-        List<string> readers = new List<string>();
         var serializer = new XmlSerializer(typeof(Book));
         
         string[] libraryPaths;
@@ -131,7 +136,6 @@ public class XmlLibrary
         if (librarieNames.Length == 0)
             return [];
 
-        List<string> readers = new List<string>();
         var serializer = new XmlSerializer(typeof(Book));
         
         string[] libraryPaths;
@@ -174,4 +178,59 @@ public class XmlLibrary
         return [.. allbooks];
     }
 
+    public async Task WriteBookToLibrary(Book saveBook)
+    {        
+        var libPath = Path.Combine(rootpath, $"{DefaultLibraryName}.xml");
+
+        XDocument doc;
+
+        if (File.Exists(libPath))
+        {
+            using(var xmlReader = XmlReader.Create(libPath, new XmlReaderSettings { Async = true }))
+            {
+                doc = await XDocument.LoadAsync(xmlReader, LoadOptions.None, CancellationToken.None);
+            }
+        }
+        else
+        {
+            doc = new XDocument();
+        }
+        
+        var libraryNode = doc.Nodes()
+                            .OfType<XElement>()
+                            .FirstOrDefault(e => e.Name.LocalName.Equals("library", StringComparison.CurrentCultureIgnoreCase));
+        
+        if (libraryNode == null)
+        {
+            libraryNode = new XElement("library");
+            doc.Add(libraryNode);         
+        }
+
+        if (string.IsNullOrEmpty(saveBook.Slug))
+        {
+            saveBook.Slug = Guid.NewGuid().ToString();
+        }
+            
+        var serializer = new XmlSerializer(typeof(Book));
+        StringWriter xout = new StringWriter();
+        serializer.Serialize(xout, saveBook);
+        var booknode = XElement.Parse(xout.ToString());
+
+        var oldBooknode = doc.XPathSelectElement($"./library/book[slug = '{saveBook.Slug}']");
+
+        if (oldBooknode == null)
+        {         
+            libraryNode.Add(booknode);
+        }
+        else
+        {
+            oldBooknode.Remove();
+            libraryNode.Add(booknode);
+        }
+
+        using (XmlWriter writer = XmlWriter.Create(libPath, new XmlWriterSettings { Async = true }))
+        {
+            await doc.SaveAsync(writer, CancellationToken.None);
+        }        
+    }
 }

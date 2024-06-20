@@ -16,7 +16,7 @@ public class ViewPageStory_Tests
     [InlineData("Many image and caret story",
         new string[] {"My first caret", "My second caret\n                ", "\nMy third caret\n                ", "image1.jpg", "image2.png", "image3.bmp"}, 
         "My first caretMy second caret\n                \nMy third caret\n                ")]
-    public async Task ViewPageStory(string testBook, string[] carets, string rawText)
+    public void ViewPageStory(string testBook, string[] carets, string rawText)
     {
         // Given I have a library
         var libraryName = "Books_With_Stories";
@@ -25,7 +25,6 @@ public class ViewPageStory_Tests
         // When I open the book
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
         viewModel.UpdateSelectedBook();
@@ -71,7 +70,7 @@ public class ViewPageStory_Tests
     [InlineData("Many image and caret scene",
         new string[] {"My first caret", "My second caret\n                ", "\nMy third caret\n                ", "image1.jpg", "image2.png", "image3.bmp"}, 
         "My first caretMy second caret\n                \nMy third caret\n                ")]
-    public async Task ViewPageScene(string testBook, string[] carets, string rawText)
+    public void ViewPageScene(string testBook, string[] carets, string rawText)
     {
         // Given I have a library
         var libraryName = "Books_With_Scenes";
@@ -80,7 +79,6 @@ public class ViewPageStory_Tests
         // When I open the book
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
         viewModel.UpdateSelectedBook();

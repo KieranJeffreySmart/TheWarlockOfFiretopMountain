@@ -5,7 +5,7 @@ namespace bookeditor.test;
 public class OpenBook_Tests
 {
     [Fact]
-    public async Task OpenEmptyBook()
+    public void OpenEmptyBook()
     {
         // Given I have a library
         var libraryName = "Books_With_Pages";
@@ -18,7 +18,6 @@ public class OpenBook_Tests
         // when I open the book
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
         viewModel.UpdateSelectedBook();
@@ -32,7 +31,7 @@ public class OpenBook_Tests
     }
     
     [Fact]
-    public async Task OpenBookWithPages()
+    public void OpenBookWithPages()
     {
         // Given I have a library
         var libraryName = "Books_With_Pages";
@@ -43,7 +42,6 @@ public class OpenBook_Tests
 
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         
         // when I select a book
@@ -58,7 +56,7 @@ public class OpenBook_Tests
     }
     
     [Fact]
-    public async Task OpenBookCompleteBook()
+    public void OpenBookCompleteBook()
     {
         // Given I have a library
         var libraryName = "Warlock_of_Firetop_Mountain";
@@ -69,7 +67,6 @@ public class OpenBook_Tests
 
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         
         // when I select a book

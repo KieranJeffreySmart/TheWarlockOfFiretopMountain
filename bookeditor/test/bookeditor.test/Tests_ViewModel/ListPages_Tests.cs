@@ -11,7 +11,7 @@ public class ListPages_ViewModelTests
     [InlineData("Many Intro book", 3, new[] {"Intro Page 1", "Intro Page 2", "Intro Page 3"})]
     [InlineData("Many Game book", 3, new[] {"Game Page 1", "Game Page 2", "Game Page 3"})]
     [InlineData("Many Game and Intro book", 6, new[] {"Intro Page 1", "Intro Page 2", "Intro Page 3", "Game Page 1", "Game Page 2", "Game Page 3"})]
-    public async Task ListSomePages(string testBook, int pageCount, string[] pageListItemLabels)
+    public void ListSomePages(string testBook, int pageCount, string[] pageListItemLabels)
     {
         // Given I have a library
         var libraryName = "Books_With_Pages";
@@ -20,7 +20,6 @@ public class ListPages_ViewModelTests
         // When I open the book
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         Assert.NotEmpty(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
@@ -35,7 +34,7 @@ public class ListPages_ViewModelTests
     }
 
     [Fact]
-    public async Task ListManyPages()
+    public void ListManyPages()
     {
         // Given I have a library
         var libraryName = "Warlock_of_Firetop_Mountain";
@@ -49,7 +48,6 @@ public class ListPages_ViewModelTests
         // When I open the book
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
         viewModel.UpdateSelectedBook();
@@ -71,7 +69,7 @@ public class ListPages_ViewModelTests
     // [InlineData("Single Monster Fight book")]
     // [InlineData("Many Same Monster Fight book")]
     // [InlineData("Many Different Monster Fight book")]
-    public async Task DisplaySomeOptions(string testBook)
+    public void DisplaySomeOptions(string testBook)
     {
         // Given I have a library
         var libraryName = "Books_With_Options";
@@ -83,7 +81,6 @@ public class ListPages_ViewModelTests
         // When I open the book        
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
 
         // Then the number of options for each page should be displayed

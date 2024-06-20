@@ -5,17 +5,14 @@ namespace bookeditor.test;
 public class BookEditorHomePage_LandingTests
 {
     [Fact]
-    public async Task OpenningHomePageWithNoBooks()
+    public void OpenningHomePageWithNoBooks()
     {
         // Given I have a library
         var libraryName = "Empty_Library";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
 
-        // given I have a home page 
-        BookEditorHomeViewModel homePage = new(library, new EditorStateCache());
-
         // when I open the home page
-        await homePage.Init();
+        BookEditorHomeViewModel homePage = new(library, new EditorStateCache());
 
         // then a book selector is displayed with no books
         Assert.NotNull(homePage);
@@ -24,17 +21,16 @@ public class BookEditorHomePage_LandingTests
     }
 
     [Fact]
-    public async Task OpenningHomePageWithSingleBook()
+    public void OpenningHomePageWithSingleBook()
     {
         // Given I have a library
         var libraryName = "Warlock_Of_Firetop_Mountain";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
 
         // given I have a home page 
-        BookEditorHomeViewModel homePage = new BookEditorHomeViewModel(library, new EditorStateCache());
 
         // when I open the home page
-        await homePage.Init();
+        BookEditorHomeViewModel homePage = new BookEditorHomeViewModel(library, new EditorStateCache());
 
         // then a book selector is displayed with 1 book
         Assert.NotNull(homePage);
@@ -45,17 +41,14 @@ public class BookEditorHomePage_LandingTests
     }
     
     [Fact]
-    public async Task OpenningHomePageWithManyBooks()
+    public void OpenningHomePageWithManyBooks()
     {
         // Given I have a library
         string[] libraryNames = ["Warlock_Of_Firetop_Mountain", "Books_With_Pages"];
         var library = new XmlLibrary("../../../TestData", libraryNames);
 
-        // given I have a home page 
-        BookEditorHomeViewModel homePage = new(library, new EditorStateCache());
-
         // when I open the home page
-        await homePage.Init();
+        BookEditorHomeViewModel homePage = new(library, new EditorStateCache());
 
         // then a book selector is displayed with 1 book
         Assert.NotNull(homePage);
@@ -65,19 +58,16 @@ public class BookEditorHomePage_LandingTests
     }
     
     [Fact]
-    public async Task ReOpenningHomePageWithSelectedBookAndPage()
+    public void ReOpenningHomePageWithSelectedBookAndPage()
     {
         // Given I have a library
         string[] libraryNames = ["Warlock_of_Firetop_Mountain", "Books_With_Pages"];
         var library = new XmlLibrary("../../../TestData", libraryNames);
         var cache = new EditorStateCache();
 
-        // given I have a home page 
-        BookEditorHomeViewModel homePage = new(library, cache);
-
         // when I open the home page
+        BookEditorHomeViewModel homePage = new(library, cache);
         Assert.NotNull(homePage);
-        await homePage.Init();
         
         // when I select the first book
         Assert.NotNull(homePage.Books);
@@ -117,19 +107,16 @@ public class BookEditorHomePage_LandingTests
     }
 
     [Fact]
-    public async Task ReOpenningHomePageAfterChangingSelectedBookAndPage()
+    public void ReOpenningHomePageAfterChangingSelectedBookAndPage()
     {
         // Given I have a library
         string[] libraryNames = ["Warlock_of_Firetop_Mountain", "Books_With_Pages"];
         var library = new XmlLibrary("../../../TestData", libraryNames);
         var cache = new EditorStateCache();
 
-        // given I have a home page 
-        BookEditorHomeViewModel homePage = new(library, cache);
-
         // when I open the home page
+        BookEditorHomeViewModel homePage = new(library, cache);
         Assert.NotNull(homePage);
-        await homePage.Init();
         
         // when I select the first book
         Assert.NotNull(homePage.Books);

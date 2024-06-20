@@ -12,7 +12,7 @@ public class ViewOptions_Tests
     [InlineData("Continue and Back Commands", 0, 1, new[] {"c"}, new[] {"Continue"}, new[] {"NEXT_PAGE"})]
     [InlineData("Continue and Back Commands", 1, 1, new[] {"b"}, new[] {"Back"}, new[] {"PREVIOUS_PAGE"})]
 
-    public async Task ViewSimplePageOptions(string testBook, int pageArrayIndex, int optionCount, string[] optionsKeys, string[] labels, string[] commands)
+    public void ViewSimplePageOptions(string testBook, int pageArrayIndex, int optionCount, string[] optionsKeys, string[] labels, string[] commands)
     {
         // Given I have a library
         var libraryName = "Books_With_Options";
@@ -21,7 +21,6 @@ public class ViewOptions_Tests
         // When I open the book
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
         viewModel.UpdateSelectedBook();
@@ -50,7 +49,7 @@ public class ViewOptions_Tests
     [InlineData("Goto Command", 1, 2, new[] {"g", "g"}, new[] {"Go to Page 1", "Go to Page 3"}, new[] {"GOTO_GAME_PAGE", "GOTO_GAME_PAGE"}, new[] {"page", "page"}, new[] {"1", "3"})]
     [InlineData("Goto Continue and Back", 1, 3, new[] {"g", "c", "b"}, new[] {"Go to Page 1", "Continue", "Back"}, new[] {"GOTO_GAME_PAGE", "NEXT_PAGE", "PREVIOUS_PAGE"}, new[] {"page"}, new[] {"1"})]
 
-    public async Task ViewPageOptionsWithArguments(string testBook, int pageArrayIndex, int optionCount, string[] optionsKeys, string[] labels, string[] commands, string[] argNames, string[] argValues)
+    public void ViewPageOptionsWithArguments(string testBook, int pageArrayIndex, int optionCount, string[] optionsKeys, string[] labels, string[] commands, string[] argNames, string[] argValues)
     {
         // Given I have a library
         var libraryName = "Books_With_Options";
@@ -59,7 +58,6 @@ public class ViewOptions_Tests
         // When I open the book
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
         viewModel.UpdateSelectedBook();
@@ -87,7 +85,7 @@ public class ViewOptions_Tests
 
 
     [Fact]
-    public async Task ViewStatCheckOptions()
+    public void ViewStatCheckOptions()
     {
         // Given I have a library
         var libraryName = "Books_With_Options";
@@ -96,7 +94,6 @@ public class ViewOptions_Tests
         // When I open the book
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
-        await viewModel.Init();
         Assert.NotNull(viewModel.Books);
         viewModel.SelectedBook = viewModel.Books.First(b => b.Title == "Stats test");
         viewModel.UpdateSelectedBook();

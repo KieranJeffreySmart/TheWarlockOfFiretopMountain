@@ -44,7 +44,6 @@ public class DotvvmStartup : IDotvvmStartup, IDotvvmServiceConfigurator
     {
         // register code-only controls and markup controls
         config.Markup.AddMarkupControl("bookctrl", "PagePreviewPanel", "Pages/Controls/pagePreviewPanel.dotcontrol");
-        config.Markup.AddMarkupControl("bookctrl", "BookDetailPanel", "Pages/Controls/bookDetailPanel.dotcontrol");
         config.Markup.AddCodeControls("bookctrl", typeof(TextEditModalButton));
     }
 

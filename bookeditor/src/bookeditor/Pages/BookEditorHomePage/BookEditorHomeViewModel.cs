@@ -14,9 +14,6 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     private readonly EditorStateCache stateCache;
 
-
-
-
     public BookEditorHomeViewModel(XmlLibrary library, EditorStateCache stateCache)
     {
         this.library = library;
@@ -28,13 +25,12 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     public Book? SelectedBook { get; set; }
 
-    public BookDetailViewModel SelectedBookDetails { get; } = new BookDetailViewModel();
-
     public Page? SelectedPage { get; set; }
 
     public PagePreviewViewModel SelectedPagePreview { get; } = new PagePreviewViewModel();
 
     public Option? SelectedOption { get; set; }
+    public bool EnableSaving { get; private set; } = false;
 
     private void SetStateFromCache()
     {
@@ -52,8 +48,6 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
                 }
             }
 
-            this.SelectedBookDetails.Book = this.SelectedBook;
-            this.SelectedPagePreview.Page = this.SelectedPage;
             this.SelectedOption = null;
         }
     }
@@ -88,9 +82,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     public void UpdateSelectedBook()
     {
-        this.SelectedBookDetails.Book = this.SelectedBook;
         this.SelectedPage = null;
-        this.SelectedPagePreview.Page = this.SelectedPage;
         this.CacheChanges();
     }
 
@@ -107,5 +99,19 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
             return;
 
         await library.WriteBookToLibrary(this.SelectedBook);
+    }
+
+    public void ComitChange()
+    {
+        if (this.SelectedBook == null || this.SelectedPage == null)
+            return;
+
+        var bookPageIdx = this.SelectedBook.Pages.FindIndex(p => p.PageType == this.SelectedPage.PageType && p.Index == this.SelectedPage.Index);
+        if (bookPageIdx > -1) 
+        {
+            this.SelectedBook.Pages[bookPageIdx] = this.SelectedPage;
+        }
+
+        this.EnableSaving = true;
     }
 }

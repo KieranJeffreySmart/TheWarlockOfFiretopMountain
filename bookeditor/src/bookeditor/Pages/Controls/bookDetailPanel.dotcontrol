@@ -1,6 +1,0 @@
-@baseType bookeditor.Controls.BookDetailPanel, bookeditor
-@viewModel bookeditor.ViewModels.BookDetailViewModel
-
-<div class="container">
-    <span>pages: {{value: PageCount}}</span>
-</div>

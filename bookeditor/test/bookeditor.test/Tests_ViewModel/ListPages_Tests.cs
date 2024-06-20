@@ -34,12 +34,11 @@ public class ListPages_ViewModelTests
         viewModel.UpdateSelectedBook();
         
         // then the title is displayed
-        Assert.NotNull(viewModel.SelectedBookDetails);
-        Assert.NotNull(viewModel.SelectedBookDetails.Book);
-        Assert.Equal(testBook, viewModel.SelectedBookDetails.Book.Title);
+        Assert.NotNull(viewModel.SelectedBook);
+        Assert.Equal(testBook, viewModel.SelectedBook.Title);
 
         // then a page count is displyed
-        Assert.Equal(pageCount, viewModel.SelectedBookDetails.PageCount);
+        Assert.Equal(pageCount, viewModel.SelectedBook.Pages.Length);
     }
 
     [Fact]
@@ -63,12 +62,11 @@ public class ListPages_ViewModelTests
         viewModel.UpdateSelectedBook();
         
         // then the title is displayed
-        Assert.NotNull(viewModel.SelectedBookDetails);
-        Assert.NotNull(viewModel.SelectedBookDetails.Book);
-        Assert.Equal(testBook, viewModel.SelectedBookDetails.Book.Title);
+        Assert.NotNull(viewModel.SelectedBook);
+        Assert.Equal(testBook, viewModel.SelectedBook.Title);
 
         // then a page count is displyed
-        Assert.Equal(pageCount, viewModel.SelectedBookDetails.PageCount);
+        Assert.Equal(pageCount, viewModel.SelectedBook.Pages.Length);
     }
     
     [Theory]

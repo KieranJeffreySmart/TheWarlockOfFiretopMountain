@@ -105,8 +105,6 @@ public class BookEditorHomePage_LandingTests
         // then I the selected page details to be displayed
         Assert.NotNull(homePage.SelectedBook);
         Assert.NotNull(homePage.SelectedBook.Title = "The Warlock of Firetop Mountain");
-        Assert.NotNull(homePage.SelectedBookDetails.Book);
-        Assert.NotNull(homePage.SelectedBookDetails.Book.Title = "The Warlock of Firetop Mountain");
         Assert.NotNull(homePage.SelectedPage);
         
         Assert.NotNull(homePage.SelectedPage.Story);
@@ -165,8 +163,6 @@ public class BookEditorHomePage_LandingTests
         // then I the selected page details to be displayed
         Assert.NotNull(homePage.SelectedBook);
         Assert.NotNull(homePage.SelectedBook.Title = "The Warlock of Firetop Mountain");
-        Assert.NotNull(homePage.SelectedBookDetails.Book);
-        Assert.NotNull(homePage.SelectedBookDetails.Book.Title = "The Warlock of Firetop Mountain");
         Assert.Null(homePage.SelectedPage);
     }
 }

@@ -22,7 +22,7 @@ public class SaveBook_Tests
 
         using (XmlWriter writer = XmlWriter.Create(fullPath, new XmlWriterSettings { Async = true }))
         {
-            await XDocument.Parse($"<library><book><slug>{slug}</slug><title>{title}</title><page><type>Intro</type><index>1</index><story><caret type=\"text\">modify story original value </caret></story></page></book></library>")
+            await XDocument.Parse($"<library><book><slug>{slug}</slug><title>{title}</title><page><type>Intro</type><index>1</index><story><caret type=\"text\">modify story original value</caret></story></page></book></library>")
                 .SaveAsync(writer, CancellationToken.None);
         }
         

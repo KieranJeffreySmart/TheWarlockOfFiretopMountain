@@ -25,11 +25,10 @@ public class OpenBook_Tests
 
 
         // then the title is displayed
-        Assert.NotNull(viewModel.SelectedBookDetails);
-        Assert.NotNull(viewModel.SelectedBookDetails.Book);
-        Assert.Equal(testBook, viewModel.SelectedBookDetails.Book.Title);
+        Assert.NotNull(viewModel.SelectedBook);
+        Assert.Equal(testBook, viewModel.SelectedBook?.Title);
         // then a page count with 0 is displyed
-        Assert.Equal(0, viewModel.SelectedBookDetails.PageCount);
+        Assert.Null(viewModel.SelectedBook?.Pages);
     }
     
     [Fact]
@@ -52,11 +51,10 @@ public class OpenBook_Tests
         viewModel.UpdateSelectedBook();
         
         // then the title is displayed
-        Assert.NotNull(viewModel.SelectedBookDetails);
-        Assert.NotNull(viewModel.SelectedBookDetails.Book);
-        Assert.Equal(testBook, viewModel.SelectedBookDetails.Book.Title);
+        Assert.NotNull(viewModel.SelectedBook);
+        Assert.Equal(testBook, viewModel.SelectedBook?.Title);
         // then a page count with 0 is displyed
-        Assert.Equal(1, viewModel.SelectedBookDetails.PageCount);
+        Assert.Equal(1, viewModel.SelectedBook?.Pages.Length);
     }
     
     [Fact]
@@ -79,10 +77,9 @@ public class OpenBook_Tests
         viewModel.UpdateSelectedBook();
         
         // then the title is displayed
-        Assert.NotNull(viewModel.SelectedBookDetails);
-        Assert.NotNull(viewModel.SelectedBookDetails.Book);
-        Assert.Equal(testBook, viewModel.SelectedBookDetails.Book.Title);
-        // then a page count with 403 is displyed
-        Assert.Equal(403, viewModel.SelectedBookDetails.PageCount);
+        Assert.NotNull(viewModel.SelectedBook);
+        Assert.Equal(testBook, viewModel.SelectedBook?.Title);
+        // then a page count with 0 is displyed
+        Assert.Equal(403, viewModel.SelectedBook?.Pages.Length);
     }
 }

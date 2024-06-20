@@ -1,160 +1,164 @@
-<Library>
-    <book>
-        <title>Empty book</title>
-    </book>
-    <book>
-        <title>Single Intro book</title>
-        <page>
-            <type>Intro</type>
-            <index>1</index>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-    </book>
-    <book>
-        <title>Single Game book</title>
-        <page>
-            <type>Game</type>
-            <index>1</index>
-            <scene>
-                <caret type="image"></caret>
-                <caret type="text">
-                </caret>
-            </scene>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-    </book>
-    <book>
-        <title>Single Game and Intro book</title>
-        <page>
-            <type>Intro</type>
-            <index>1</index>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-        <page>
-            <type>Game</type>
-            <index>1</index>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-    </book>
-    <book>
-        <title>Many Intro book</title>
-        <page>
-            <type>Intro</type>
-            <index>1</index>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-        <page>
-            <type>Intro</type>
-            <index>2</index>
-            <story>
-                <caret type="text">
-                </caret>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-        <page>
-            <type>Intro</type>
-            <index>3</index>
-            <story>
-                <caret type="text">
-                </caret>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-    </book>
-    <book>
-        <title>Many Game book</title>
-        <page>
-            <type>Game</type>
-            <index>1</index>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-        <page>
-            <type>Game</type>
-            <index>2</index>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-        <page>
-            <type>Game</type>
-            <index>3</index>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-    </book>
-    <book>
-        <title>Many Game and Intro book</title>
-        <page>
-            <type>Intro</type>
-            <index>1</index>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-        <page>
-            <type>Intro</type>
-            <index>2</index>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-        <page>
-            <type>Intro</type>
-            <index>3</index>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-        <page>
-            <type>Game</type>
-            <index>1</index>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-        <page>
-            <type>Game</type>
-            <index>2</index>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-        <page>
-            <type>Game</type>
-            <index>3</index>
-            <story>
-                <caret type="text">
-                </caret>
-            </story>
-        </page>
-    </book>
-</Library>
+﻿<library>
+	<book>
+		<title>Empty book</title>
+		<slug>db81995d-556e-4b1b-82f2-dcb3af61823e</slug>
+	</book>
+	<book>
+		<title>Single Intro book</title>
+		<page>
+			<type>Intro</type>
+			<index>1</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<slug>cb112559-53dd-4b8d-9c1e-76dcee524f8a</slug>
+		</page>
+		<slug>45e8d154-9a23-4948-93b3-0336c4a87727</slug>
+	</book>
+	<book>
+		<title>Single Game book</title>
+		<page>
+			<type>Game</type>
+			<index>1</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<scene>
+				<caret type="image"/>
+				<caret type="text"/>
+			</scene>
+			<slug>be4d77da-bdf5-4837-af15-0c07ae2a6f4f</slug>
+		</page>
+		<slug>fffd272b-21b5-4ec0-911e-cfe724bc29e6</slug>
+	</book>
+	<book>
+		<title>Single Game and Intro book</title>
+		<page>
+			<type>Intro</type>
+			<index>1</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<slug>37458718-3263-4aaa-b283-5c1717d03967</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>1</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<slug>c1d83a01-5f4a-4847-925a-4aabdadf8ae4</slug>
+		</page>
+		<slug>498a38ea-e0f1-4793-9a15-b99c18bb889a</slug>
+	</book>
+	<book>
+		<title>Many Intro book</title>
+		<page>
+			<type>Intro</type>
+			<index>1</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<slug>6be09d0d-209d-4847-a1ae-1289c8b3c7c1</slug>
+		</page>
+		<page>
+			<type>Intro</type>
+			<index>2</index>
+			<story>
+				<caret type="text"/>
+				<caret type="text"/>
+			</story>
+			<slug>5b2f8f64-4fce-46a9-b1a3-ea3832bd36b2</slug>
+		</page>
+		<page>
+			<type>Intro</type>
+			<index>3</index>
+			<story>
+				<caret type="text"/>
+				<caret type="text"/>
+			</story>
+			<slug>874b46d2-44db-47dc-931b-4805cbb89f69</slug>
+		</page>
+		<slug>4062e3aa-a436-4cc7-82c5-7a5446d03792</slug>
+	</book>
+	<book>
+		<title>Many Game book</title>
+		<page>
+			<type>Game</type>
+			<index>1</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<slug>7e31c0ee-24af-47e2-81dd-957ef06eb236</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>2</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<slug>cd6d147b-46c9-4571-ad9b-0520968ab0dc</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>3</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<slug>f449cfe7-1ff1-45d8-9485-53420cec2217</slug>
+		</page>
+		<slug>118eeb54-5867-4f2a-bfa0-6d6658a61d82</slug>
+	</book>
+	<book>
+		<title>Many Game and Intro book</title>
+		<page>
+			<type>Intro</type>
+			<index>1</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<slug>b0cf9514-bc78-4c64-9257-4c75e0dd78db</slug>
+		</page>
+		<page>
+			<type>Intro</type>
+			<index>2</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<slug>897b49b8-edd2-4356-896f-4255c89bbc0d</slug>
+		</page>
+		<page>
+			<type>Intro</type>
+			<index>3</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<slug>e98041a7-94e1-4112-9c28-0aa980060ec3</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>1</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<slug>e9b4b780-b269-4492-8a0b-b0efca04231d</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>2</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<slug>e933cb17-f144-4777-89ef-b8c4caab17f9</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>3</index>
+			<story>
+				<caret type="text"/>
+			</story>
+			<slug>590cf454-278f-4afe-a0f8-24ddc6afa799</slug>
+		</page>
+		<slug>2eb54f11-93b0-42e5-b200-f4f5bbd7cda1</slug>
+	</book>
+</library>

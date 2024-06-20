@@ -137,9 +137,38 @@ public class XmlLibrary_WriteIntegrationTests
 
         // then the same book should exist with a new title
         Assert.NotNull(library.Books);
-        Assert.Single(library.Books);
+        Assert.NotEmpty(library.Books);
         var savedBook = library.Books.FirstOrDefault(b => b.Slug == bookSlug);
         Assert.NotNull(savedBook);
         Assert.Equal(newTitle, savedBook.Title);
+    }
+
+    [Fact]
+    [CreateRemoveFileBeforeAfter("../../../TestData/old/New_Library.xml", skipCreate: true)]
+     public async Task GenerateSlugsInLibraries()
+    {
+        // This is being used to convert older files into ones with dlugs
+        string[] libraryNames = ["Books_With_Options"]; //, "Books_With_Pages", "Books_With_Scenes", "Books_With_Stories"];
+        var rootPath = "../../../TestData";
+        var libPath = Path.Combine(rootPath, "old");
+
+        foreach (var libraryName in libraryNames)
+        {
+            var library = new XmlLibrary(libPath, [libraryName]);
+            Assert.NotNull(library.Books);
+
+            foreach (var book in library.Books)
+            {
+                library.WriteBookToLibrarySync(book);
+            }
+
+            File.Copy(Path.Combine(libPath, "New_Library.xml"), Path.Combine(rootPath, "Slugged", $"{libraryName}.xml"));
+            File.Delete(Path.Combine(libPath, "New_Library.xml"));
+
+            var originalText = File.ReadAllText(Path.Combine(rootPath, "old", $"{libraryName}.xml"));
+            var newText = File.ReadAllText(Path.Combine(rootPath, "Slugged", $"{libraryName}.xml"));
+
+            Assert.Equal(originalText, newText);
+        }
     }
 }

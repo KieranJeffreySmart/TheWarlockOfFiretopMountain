@@ -1,0 +1,141 @@
+<Library>
+    <book>
+        <title>Empty book</title>
+    </book>
+    <book>
+        <title>Single Intro book</title>
+        <page>
+            <type>Intro</type>
+            <index>1</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+    </book>
+    <book>
+        <title>Single Game book</title>
+        <page>
+            <type>Game</type>
+            <index>1</index>
+            <scene>
+                <caret type="image"></caret>
+                <caret type="text"></caret>
+            </scene>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+    </book>
+    <book>
+        <title>Single Game and Intro book</title>
+        <page>
+            <type>Intro</type>
+            <index>1</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+        <page>
+            <type>Game</type>
+            <index>1</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+    </book>
+    <book>
+        <title>Many Intro book</title>
+        <page>
+            <type>Intro</type>
+            <index>1</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+        <page>
+            <type>Intro</type>
+            <index>2</index>
+            <story>
+                <caret type="text"></caret>
+                <caret type="text"></caret>
+            </story>
+        </page>
+        <page>
+            <type>Intro</type>
+            <index>3</index>
+            <story>
+                <caret type="text"></caret>
+                <caret type="text"></caret>
+            </story>
+        </page>
+    </book>
+    <book>
+        <title>Many Game book</title>
+        <page>
+            <type>Game</type>
+            <index>1</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+        <page>
+            <type>Game</type>
+            <index>2</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+        <page>
+            <type>Game</type>
+            <index>3</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+    </book>
+    <book>
+        <title>Many Game and Intro book</title>
+        <page>
+            <type>Intro</type>
+            <index>1</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+        <page>
+            <type>Intro</type>
+            <index>2</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+        <page>
+            <type>Intro</type>
+            <index>3</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+        <page>
+            <type>Game</type>
+            <index>1</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+        <page>
+            <type>Game</type>
+            <index>2</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+        <page>
+            <type>Game</type>
+            <index>3</index>
+            <story>
+                <caret type="text"></caret>
+            </story>
+        </page>
+    </book>
+</Library>

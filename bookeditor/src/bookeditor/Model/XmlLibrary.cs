@@ -186,9 +186,9 @@ public class XmlLibrary
 
         if (File.Exists(libPath))
         {
-            using(var xmlReader = XmlReader.Create(libPath, new XmlReaderSettings { Async = true }))
+            using(var xmlReader = XmlReader.Create(libPath, new XmlReaderSettings { Async = true  }))
             {
-                doc = await XDocument.LoadAsync(xmlReader, LoadOptions.None, CancellationToken.None);
+                doc = await XDocument.LoadAsync(xmlReader, LoadOptions.PreserveWhitespace, CancellationToken.None);
             }
         }
         else
@@ -211,15 +211,127 @@ public class XmlLibrary
             saveBook.Slug = Guid.NewGuid().ToString();
         }
 
-        foreach (var page in saveBook.Pages.Where(p => string.IsNullOrWhiteSpace(p.Slug)))
+        if (saveBook.Pages != null)
         {
-            page.Slug = Guid.NewGuid().ToString(); 
+            foreach (var page in saveBook.Pages.Where(p => string.IsNullOrWhiteSpace(p.Slug)))
+            {
+                page.Slug = Guid.NewGuid().ToString(); 
+            }
         }
-            
+
+        var serializer = new XmlSerializer(typeof(Book));
+        StringWriter xout = new StringWriter();
+        var bookwriterSettings = new XmlWriterSettings { 
+            Async = true, 
+            NamespaceHandling = NamespaceHandling.OmitDuplicates, 
+            OmitXmlDeclaration = true,
+            Indent = true,
+            NewLineOnAttributes = true,
+            NewLineChars = "\r\n",
+            IndentChars = "    ",
+            NewLineHandling = NewLineHandling.Replace,
+            Encoding = System.Text.Encoding.UTF8
+        };
+
+        XmlWriter bookwriter = XmlWriter.Create(xout, bookwriterSettings);
+        serializer.Serialize(bookwriter, saveBook);
+        var ns = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
+        var booknode = XElement.Parse(xout.ToString(), LoadOptions.PreserveWhitespace);
+        
+        booknode.Attributes()
+            .Where( x => x.IsNamespaceDeclaration )
+            .Remove();
+        booknode.Descendants()
+            .Attributes()
+            .Where( x => x.IsNamespaceDeclaration )
+            .Remove();
+
+        var oldBooknode = doc.XPathSelectElement($"./library/book[slug = '{saveBook.Slug}']");
+
+        if (oldBooknode == null)
+        {         
+            libraryNode.Add(booknode);
+        }
+        else
+        {
+            oldBooknode.Remove();
+            libraryNode.Add(booknode);
+        }
+        
+        var writerSettings = new XmlWriterSettings { 
+            Async = true, 
+            NamespaceHandling = NamespaceHandling.OmitDuplicates, 
+            OmitXmlDeclaration = true,
+            Indent = true,
+            NewLineOnAttributes = true,
+            NewLineChars = "\r\n",
+            IndentChars = "    " 
+        };
+
+        using (XmlWriter writer = XmlWriter.Create(libPath, writerSettings))
+        {
+            doc.Descendants()
+                .Attributes()
+                .Where( x => x.IsNamespaceDeclaration )
+                .Remove();
+            await doc.SaveAsync(writer, CancellationToken.None);
+        }        
+    }
+
+    public void WriteBookToLibrarySync(Book saveBook)
+    {        
+        var libPath = Path.Combine(rootpath, $"{DefaultLibraryName}.xml");
+
+        XDocument doc;
+
+        if (File.Exists(libPath))
+        {
+            var options = new FileStreamOptions();
+            using(var reader = File.Open(libPath, FileMode.Open))
+            {
+                doc = XDocument.Load(reader, LoadOptions.PreserveWhitespace);
+            }
+        }
+        else
+        {
+            doc = new XDocument();
+        }
+        
+        var libraryNode = doc.Nodes()
+                            .OfType<XElement>()
+                            .FirstOrDefault(e => e.Name.LocalName.Equals("library", StringComparison.CurrentCultureIgnoreCase));
+        
+        if (libraryNode == null)
+        {
+            libraryNode = new XElement("library");
+            doc.Add(libraryNode);         
+        }
+
+        if (string.IsNullOrEmpty(saveBook.Slug))
+        {
+            saveBook.Slug = Guid.NewGuid().ToString();
+        }
+
+        if (saveBook.Pages != null)
+        {
+            foreach (var page in saveBook.Pages.Where(p => string.IsNullOrWhiteSpace(p.Slug)))
+            {
+                page.Slug = Guid.NewGuid().ToString(); 
+            }
+        }
+
         var serializer = new XmlSerializer(typeof(Book));
         StringWriter xout = new StringWriter();
         serializer.Serialize(xout, saveBook);
-        var booknode = XElement.Parse(xout.ToString());
+        var booknode = XElement.Parse(xout.ToString().Replace("</book>", "</book>  \r\n"), LoadOptions.PreserveWhitespace);
+        
+        booknode.Attributes()
+            .Where( x => x.IsNamespaceDeclaration )
+            .Remove();
+        booknode.Descendants()
+            .Attributes()
+            .Where( x => x.IsNamespaceDeclaration )
+            .Remove();
 
         var oldBooknode = doc.XPathSelectElement($"./library/book[slug = '{saveBook.Slug}']");
 
@@ -233,9 +345,13 @@ public class XmlLibrary
             libraryNode.Add(booknode);
         }
 
-        using (XmlWriter writer = XmlWriter.Create(libPath, new XmlWriterSettings { Async = true }))
+        using (FileStream writer = File.Open(libPath, FileMode.OpenOrCreate))
         {
-            await doc.SaveAsync(writer, CancellationToken.None);
+            doc.Descendants()
+                .Attributes()
+                .Where( x => x.IsNamespaceDeclaration )
+                .Remove();
         }        
+        doc.Save(libPath);
     }
 }

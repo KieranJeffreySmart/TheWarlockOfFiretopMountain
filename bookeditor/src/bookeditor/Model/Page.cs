@@ -57,16 +57,21 @@ public class Outcome
 }
 
 
-public class Story
+public class Story: ICaretContainer
 {
     [XmlElement("caret")]
     public Caret[]? Carets { get; set; } = [];
 }
 
-public class Scene
+public class Scene: ICaretContainer
 {
     [XmlElement("caret")]
     public Caret[]? Carets { get; set; } = [];
+}
+
+public interface ICaretContainer
+{
+    Caret[]? Carets { get; set; }
 }
 
 public class Caret

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using DotVVM.Framework.Utils;
 using DotVVM.Framework.ViewModel;
@@ -119,15 +120,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
             return;
 
         this.SelectedPage.Scene ??= new Scene();
-
-        var scene = this.SelectedPage.Scene;
-        scene.Carets ??= [];
-        var length = scene.Carets.Length;
-        var newCarets = new Caret[length+1];
-
-        scene.Carets.CopyTo(newCarets, 0);
-        newCarets[length] = new Caret { CaretType = "text", StringValue = string.Empty };
-        scene.Carets = newCarets;
+        this.AppendCaret(this.SelectedPage.Scene, new Caret { CaretType = "text", StringValue = string.Empty });
     }
 
     public void AppendStoryCaret()
@@ -136,15 +129,18 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
             return;
 
         this.SelectedPage.Story ??= new Story();
+        this.AppendCaret(this.SelectedPage.Story, new Caret { CaretType = "text", StringValue = string.Empty });
+    }
 
-        var story = this.SelectedPage.Story;
-        story.Carets ??= [];
-        var length = story.Carets.Length;
+    private void AppendCaret(ICaretContainer scene, Caret caret)
+    {
+        scene.Carets ??= [];
+        var length = scene.Carets.Length;
         var newCarets = new Caret[length+1];
 
-        story.Carets.CopyTo(newCarets, 0);
-        newCarets[length] = new Caret { CaretType = "text", StringValue = string.Empty };
-        story.Carets = newCarets;
+        scene.Carets.CopyTo(newCarets, 0);
+        newCarets[length] = caret;
+        scene.Carets = newCarets;
     }
     
     public void InsertSceneCaretAfter(int index)

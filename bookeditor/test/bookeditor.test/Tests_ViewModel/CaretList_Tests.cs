@@ -337,12 +337,12 @@ public class CaretList_Tests
         Assert.Equal("My first caret", firstcaret.StringValue);
         
         var secondcaret = homePage.SelectedPage.Story.Carets[1];
-        Assert.Equal("text", firstcaret.CaretType);
-        Assert.Equal("My second caret", firstcaret.StringValue);
+        Assert.Equal("text", secondcaret.CaretType);
+        Assert.Equal("My second caret\n                ", secondcaret.StringValue);
         
         var thirdcaret = homePage.SelectedPage.Story.Carets[2];
-        Assert.Equal("text", firstcaret.CaretType);
-        Assert.Equal("My third caret", firstcaret.StringValue);
+        Assert.Equal("text", thirdcaret.CaretType);
+        Assert.Equal("\nMy third caret\n                ", thirdcaret.StringValue);
 
         // when I insert a caret with an index greater than the length of the list
         homePage.InsertStoryCaretAfter(5);
@@ -356,17 +356,17 @@ public class CaretList_Tests
         Assert.Equal("text", firstcaret.CaretType);
         Assert.Equal("My first caret", firstcaret.StringValue);
         
-        secondcaret = homePage.SelectedPage.Story.Carets[2];
-        Assert.Equal("text", firstcaret.CaretType);
-        Assert.Equal("My second caret", firstcaret.StringValue);
+        secondcaret = homePage.SelectedPage.Story.Carets[1];
+        Assert.Equal("text", secondcaret.CaretType);
+        Assert.Equal("My second caret\n                ", secondcaret.StringValue);
         
-        thirdcaret = homePage.SelectedPage.Story.Carets[3];
-        Assert.Equal("text", firstcaret.CaretType);
-        Assert.Equal("My third caret", firstcaret.StringValue);
+        thirdcaret = homePage.SelectedPage.Story.Carets[2];
+        Assert.Equal("text", thirdcaret.CaretType);
+        Assert.Equal("\nMy third caret\n                ", thirdcaret.StringValue);
 
-        var fourthcaret = homePage.SelectedPage.Story.Carets[1];
-        Assert.Equal("text", firstcaret.CaretType);
-        Assert.Equal("", firstcaret.StringValue);
+        var fourthcaret = homePage.SelectedPage.Story.Carets[3];
+        Assert.Equal("text", fourthcaret.CaretType);
+        Assert.Equal("", fourthcaret.StringValue);
     }
     
     [Fact]

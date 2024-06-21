@@ -95,7 +95,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     public async Task SaveToFile()
     {
         if (library == null || this.SelectedBook == null)
-            return;
+            throw new Exception("No Book Selected");
 
         await library.WriteBookToLibrary(this.SelectedBook);
     }
@@ -103,7 +103,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     public void ComitChange()
     {
         if (this.SelectedBook == null || this.SelectedPage == null)
-            return;
+            throw new Exception("No Page Selected");
 
         var bookPageIdx = this.SelectedBook.Pages.FindIndex(p => p.PageType == this.SelectedPage.PageType && p.Index == this.SelectedPage.Index);
         if (bookPageIdx > -1) 
@@ -117,7 +117,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     public void AppendSceneCaret()
     {
         if (this.SelectedPage == null)
-            return;
+            throw new Exception("No Page Selected");
 
         this.SelectedPage.Scene ??= new Scene();
         this.AppendCaret(this.SelectedPage.Scene, new Caret { CaretType = "text", StringValue = string.Empty });
@@ -126,7 +126,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     public void AppendStoryCaret()
     {
         if (this.SelectedPage == null)
-            return;
+            throw new Exception("No Page Selected");
 
         this.SelectedPage.Story ??= new Story();
         this.AppendCaret(this.SelectedPage.Story, new Caret { CaretType = "text", StringValue = string.Empty });
@@ -150,6 +150,10 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     
     public void InsertStoryCaretAfter(int index)
     {
+        var maxInsertableIndex = this.SelectedPage?.Story?.Carets?.Length-2;
+        if (maxInsertableIndex == null || index < 0 || index > maxInsertableIndex) this.AppendStoryCaret();
+
+
 
     }
     

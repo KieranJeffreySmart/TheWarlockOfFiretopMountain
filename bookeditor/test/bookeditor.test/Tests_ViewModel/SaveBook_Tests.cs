@@ -45,7 +45,7 @@ public class SaveBook_Tests
         caret.StringValue = "new test value";
 
         // when I save to file
-        await homePage.SaveToFile();
+        homePage.SaveToFile();
 
         // when I re-open the app
         library = new XmlLibrary("../../../TestData", [library.DefaultLibraryName]);

@@ -4,7 +4,7 @@ public class XmlLibrary_WriteIntegrationTests
 {
     [Fact]
     [CreateRemoveFileBeforeAfter("../../../TestData/Test_New_Library.xml", skipCreate: true)]
-    public async Task SaveNewBookToNewLibraryFile()
+    public void SaveNewBookToNewLibraryFile()
     {    
         // given I have a default library name and path
         var rootPath = "../../../TestData";
@@ -34,7 +34,7 @@ public class XmlLibrary_WriteIntegrationTests
         ];
 
         // when I write it to the library
-        await library.WriteBookToLibrary(book);
+        library.WriteBookToLibrarySync(book);
 
         // when I open the default library
         library = new XmlLibrary("../../../TestData", [defaultLibrary]);
@@ -54,7 +54,7 @@ public class XmlLibrary_WriteIntegrationTests
     
     [Fact]
     [CreateRemoveFileBeforeAfter("../../../TestData/Write_To_Empty_File.xml")]
-    public async Task SaveBookToEmptyFile()
+    public void SaveBookToEmptyFile()
     {    
         // given I have an empty library file
         var rootPath = "../../../TestData";
@@ -67,7 +67,7 @@ public class XmlLibrary_WriteIntegrationTests
         var book = new Book { Title = title};
 
         // when I write it to the library
-        await library.WriteBookToLibrary(book);
+        library.WriteBookToLibrarySync(book);
 
         // when I open the default library
         library = new XmlLibrary("../../../TestData", [defaultLibrary]);
@@ -83,7 +83,7 @@ public class XmlLibrary_WriteIntegrationTests
     
     [Fact]
     [CreateRemoveFileBeforeAfter("../../../TestData/Write_To_Existing_File.xml", "../../../TestData/Empty_Library.xml")]
-    public async Task SaveBookToExistingLibrary()
+    public void SaveBookToExistingLibrary()
     {    
         // given I have a new library
         var rootPath = "../../../TestData";
@@ -97,7 +97,7 @@ public class XmlLibrary_WriteIntegrationTests
         var book = new Book { Slug = slug, Title = title};
 
         // when I write it to the library
-        await library.WriteBookToLibrary(book);
+        library.WriteBookToLibrarySync(book);
 
         // when I open the default library
         library = new XmlLibrary("../../../TestData", [defaultLibrary]);
@@ -111,7 +111,7 @@ public class XmlLibrary_WriteIntegrationTests
 
     [Fact]
     [CreateRemoveFileBeforeAfter("../../../TestData/Replace_In_Existing_File.xml", "../../../TestData/Books_With_Slugs.xml")]
-    public async Task SaveExistingBookToExistingLibrary()
+    public void SaveExistingBookToExistingLibrary()
     {      
         // given I have a library
         var rootPath = "../../../TestData";
@@ -127,7 +127,7 @@ public class XmlLibrary_WriteIntegrationTests
         var book = new Book { Slug = bookSlug, Title = newTitle};
 
         // when I write it to the library
-        await library.WriteBookToLibrary(book);
+        library.WriteBookToLibrarySync(book);
 
         // when I open the default library
         library = new XmlLibrary("../../../TestData", [defaultLibrary]);
@@ -142,7 +142,7 @@ public class XmlLibrary_WriteIntegrationTests
 
     [Fact]
     [CreateRemoveFileBeforeAfter("../../../TestData/old/New_Library.xml", skipCreate: true)]
-     public async Task GenerateSlugsInLibraries()
+     public void GenerateSlugsInLibraries()
     {
         // This is being used to convert older files into ones with dlugs
         string[] libraryNames = []; //"Books_With_Options", "Books_With_Pages", "Books_With_Scenes", "Books_With_Stories"];

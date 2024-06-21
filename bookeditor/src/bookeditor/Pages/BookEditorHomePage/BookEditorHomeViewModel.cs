@@ -93,12 +93,12 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         this.CacheChanges();
     }
 
-    public async Task SaveToFile()
+    public void SaveToFile()
     {
         if (library == null || this.SelectedBook == null)
             throw new Exception("No Book Selected");
 
-        await library.WriteBookToLibrary(this.SelectedBook);
+        library.WriteBookToLibrarySync(this.SelectedBook);
     }
 
     public void ComitChange()
@@ -133,22 +133,55 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         this.AppendCaret(this.SelectedPage.Story, new Caret { CaretType = "text", StringValue = string.Empty });
     }
 
-    private void AppendCaret(ICaretContainer scene, Caret caret)
+    private void AppendCaret(ICaretContainer container, Caret caret)
     {
-        scene.Carets ??= [];
-        var length = scene.Carets.Length;
+        container.Carets ??= [];
+        var length = container.Carets.Length;
         var newCarets = new Caret[length+1];
 
-        scene.Carets.CopyTo(newCarets, 0);
-        scene.Carets = newCarets;
-        scene.Carets[length] = caret;
+        container.Carets.CopyTo(newCarets, 0);
+        container.Carets = newCarets;
+        container.Carets[length] = caret;
     }
     
     public void InsertSceneCaretAfter(int index)
     {
-        
+        var maxInsertableIndex = this.SelectedPage?.Scene?.Carets?.Length-2 ?? -1;
+        if (this.SelectedPage?.Scene?.Carets == null || index < 0 || index > maxInsertableIndex) 
+        {
+            this.AppendSceneCaret();
+            return;
+        }
+
+        this.InsertCaret(this.SelectedPage.Scene, index, new Caret() { CaretType = "text", StringValue = string.Empty });        
     }
-    
+
+    private void InsertCaret(ICaretContainer container, int index, Caret caret)
+    {        
+        container.Carets ??= [];
+        var newLength = container.Carets.Length+1;
+        var carets = new Caret[newLength];
+
+        for (var i = 0; i < newLength; i++)
+        {
+            if (i <= index)
+            {
+                carets[i] = container.Carets[i];
+                continue;
+            }
+
+            if (i > index+1)
+            {
+                carets[i] = container.Carets[i-1];
+                continue;
+            }
+            
+            carets[i] = caret;
+        }
+
+        container.Carets = carets;
+    }
+
     public void InsertStoryCaretAfter(int index)
     {
         var maxInsertableIndex = this.SelectedPage?.Story?.Carets?.Length-2 ?? -1;

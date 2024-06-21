@@ -370,7 +370,7 @@ public class CaretList_Tests
     }
 
     [Fact]
-    [CreateRemoveFileBeforeAfter("../../../TestData/InsertCaretToEmptyScene.xml", "../../../TestData/Books_With_Stories.xml")]
+    [CreateRemoveFileBeforeAfter("../../../TestData/InsertCaretToEmptyScene.xml", "../../../TestData/Books_With_Scenes.xml")]
     public void InsertCaretToEmptyScene()
     {        
         // given I have a library
@@ -381,7 +381,7 @@ public class CaretList_Tests
         var fullPath = Path.Combine(rootPath, $"{defaultLibrary}.xml");
 
         // given I have opened a book with no scene
-        var slug = "0f19667e-283e-46df-b458-df77cdefc4bb";
+        var slug = "84723c01-b0f9-44a9-87b5-91beb090acaf";
         var title = "No scene";
         
         var cache = new EditorStateCache();
@@ -412,7 +412,7 @@ public class CaretList_Tests
     }
 
     [Fact]
-    [CreateRemoveFileBeforeAfter("../../../TestData/InsertSceneCaret.xml", "../../../TestData/Books_With_Stories.xml")]
+    [CreateRemoveFileBeforeAfter("../../../TestData/InsertSceneCaret.xml", "../../../TestData/Books_With_Scenes.xml")]
     public void InsertSceneCaret()
     {        
         // given I have a library
@@ -423,7 +423,7 @@ public class CaretList_Tests
         var fullPath = Path.Combine(rootPath, $"{defaultLibrary}.xml");
 
         // given I have opened a book with a scene with many carets
-        var slug = "61814cd5-54f0-42ca-9e82-2195cd314abd";
+        var slug = "156c2c19-abc8-4857-abb0-187c74c2d7f4";
         var title = "Many caret scene";
         
         var cache = new EditorStateCache();
@@ -481,7 +481,7 @@ public class CaretList_Tests
     }
 
     [Fact]
-    [CreateRemoveFileBeforeAfter("../../../TestData/InsertSceneCaret.xml", "../../../TestData/Books_With_Stories.xml")]
+    [CreateRemoveFileBeforeAfter("../../../TestData/InsertSceneCaret.xml", "../../../TestData/Books_With_Scenes.xml")]
     public void InsertSceneCaretWithIndexOutOfRange()
     {        
         // given I have a library
@@ -492,7 +492,7 @@ public class CaretList_Tests
         var fullPath = Path.Combine(rootPath, $"{defaultLibrary}.xml");
 
         // given I have opened a book with a scene with many carets
-        var slug = "61814cd5-54f0-42ca-9e82-2195cd314abd";
+        var slug = "156c2c19-abc8-4857-abb0-187c74c2d7f4";
         var title = "Many caret scene";
         
         var cache = new EditorStateCache();

@@ -139,8 +139,8 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         var newCarets = new Caret[length+1];
 
         scene.Carets.CopyTo(newCarets, 0);
-        newCarets[length] = caret;
         scene.Carets = newCarets;
+        scene.Carets[length] = caret;
     }
     
     public void InsertSceneCaretAfter(int index)

@@ -112,4 +112,46 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
         this.EnableSaving = true;
     }
+
+    public void AppendSceneCaret()
+    {
+
+    }
+
+    public void AppendStoryCaret()
+    {
+        if (this.SelectedPage == null)
+            return;
+
+        this.SelectedPage.Story ??= new Story();
+
+        var story = this.SelectedPage.Story;
+        story.Carets ??= [];
+        var length = story.Carets.Length;
+        var newCarets = new Caret[length+1];
+
+        story.Carets.CopyTo(newCarets, 0);
+        newCarets[length] = new Caret { CaretType = "text", StringValue = string.Empty };
+        story.Carets = newCarets;
+    }
+    
+    public void InsertSceneCaretAfter(int index)
+    {
+
+    }
+    
+    public void InsertStoryCaretAfter(int index)
+    {
+
+    }
+    
+    public void DeleteSceneCaret(int index)
+    {
+
+    }
+    
+    public void DeleteStoryCaret(int index)
+    {
+
+    }
 }

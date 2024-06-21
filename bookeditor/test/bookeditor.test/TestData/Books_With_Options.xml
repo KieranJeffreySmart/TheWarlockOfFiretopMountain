@@ -1,338 +1,345 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <library>
-  <book>
-  <title>Start Command</title>
-  <page>
-    <type>Intro</type>
-    <index>1</index>
-    <story>
-      <caret type="text">Intro Page 1</caret>
-    </story>
-    <option key="s" command="START_GAME">
-      <label>Start</label>
-    </option>
-    <slug>787434a2-271a-4d0d-b253-ff466725614e</slug>
-  </page>
-  <page>
-    <type>Game</type>
-    <index>1</index>
-    <story>
-      <caret type="text">Game Page 1</caret>
-    </story>
-    <slug>4eeb5adf-e4f2-4dd5-9a3e-7a78c46ddd87</slug>
-  </page>
-  <slug>df25f52e-a9e9-4345-b52d-580485f6d5b1</slug>
-</book>
-<book>
-  <title>Quit Command</title>
-  <page>
-    <type>Intro</type>
-    <index>1</index>
-    <story>
-      <caret type="text">Page 1</caret>
-    </story>
-    <option key="q" command="QUIT_GAME">
-      <label>Quit</label>
-    </option>
-    <slug>70c55fdc-a0ab-4bc1-a962-a405f28a2b91</slug>
-  </page>
-  <slug>961dc709-f38a-48d8-97b9-a89deb964ef1</slug>
-</book><book>
-  <title>Continue Command</title>
-  <page>
-    <type>Intro</type>
-    <index>1</index>
-    <story>
-      <caret type="text">Page 1</caret>
-    </story>
-    <option key="c" command="NEXT_PAGE">
-      <label>Continue</label>
-    </option>
-    <slug>131fe691-92b3-42cc-803b-4a2afd9b3262</slug>
-  </page>
-  <page>
-    <type>Intro</type>
-    <index>2</index>
-    <story>
-      <caret type="text">Page 2</caret>
-    </story>
-    <slug>ff5ed7dc-a110-43fc-bab9-1b38171600b2</slug>
-  </page>
-  <slug>69fdced5-f4dd-41e2-8571-adb3180e0d0e</slug>
-</book><book>
-  <title>Continue and Back Commands</title>
-  <page>
-    <type>Intro</type>
-    <index>1</index>
-    <story>
-      <caret type="text">Page 1</caret>
-    </story>
-    <option key="c" command="NEXT_PAGE">
-      <label>Continue</label>
-    </option>
-    <slug>bd08c204-516b-4f6f-ae46-10a3fc27a822</slug>
-  </page>
-  <page>
-    <type>Intro</type>
-    <index>2</index>
-    <story>
-      <caret type="text">Page 2</caret>
-    </story>
-    <option key="b" command="PREVIOUS_PAGE">
-      <label>Back</label>
-    </option>
-    <slug>0d13c6f9-b2aa-4594-83c0-1ef55ce172b4</slug>
-  </page>
-  <slug>e3f43301-1b33-4805-ad41-f63be54b6be6</slug>
-</book><book>
-  <title>Goto Command</title>
-  <page>
-    <type>Game</type>
-    <index>1</index>
-    <story>
-      <caret type="text">Page 1</caret>
-    </story>
-    <option key="g" command="GOTO_GAME_PAGE">
-      <label>Go to Page 3</label>
-      <arg>
-        <key>page</key>
-        <value>3</value>
-      </arg>
-    </option>
-    <slug>61f1215a-bede-4c04-889c-1cceb4b52013</slug>
-  </page>
-  <page>
-    <type>Game</type>
-    <index>2</index>
-    <story>
-      <caret type="text">Page 2</caret>
-    </story>
-    <option key="g" command="GOTO_GAME_PAGE">
-      <label>Go to Page 1</label>
-      <arg>
-        <key>page</key>
-        <value>1</value>
-      </arg>
-    </option>
-    <option key="g" command="GOTO_GAME_PAGE">
-      <label>Go to Page 3</label>
-      <arg>
-        <key>page</key>
-        <value>3</value>
-      </arg>
-    </option>
-    <slug>84e9bc66-3b01-4086-a739-db308fb7081a</slug>
-  </page>
-  <page>
-    <type>Game</type>
-    <index>3</index>
-    <story>
-      <caret type="text">Page 3</caret>
-    </story>
-    <option key="g" command="GOTO_GAME_PAGE">
-      <label>Go to Page 2</label>
-      <arg>
-        <key>page</key>
-        <value>2</value>
-      </arg>
-    </option>
-    <slug>6579a3ac-d116-4aec-a285-b7ccadf949ce</slug>
-  </page>
-  <slug>c2148243-d7c8-4e30-97fa-217b9b4c3429</slug>
-</book><book>
-  <title>Goto Continue and Back</title>
-  <page>
-    <type>Game</type>
-    <index>1</index>
-    <story>
-      <caret type="text">Page 1</caret>
-    </story>
-    <option key="c" command="NEXT_PAGE">
-      <label>Continue</label>
-    </option>
-    <slug>d80280ce-10c4-4986-848a-deb94d4a258c</slug>
-  </page>
-  <page>
-    <type>Game</type>
-    <index>2</index>
-    <story>
-      <caret type="text">Page 2</caret>
-    </story>
-    <option key="g" command="GOTO_GAME_PAGE">
-      <label>Go to Page 1</label>
-      <arg>
-        <key>page</key>
-        <value>1</value>
-      </arg>
-    </option>
-    <option key="c" command="NEXT_PAGE">
-      <label>Continue</label>
-    </option>
-    <option key="b" command="PREVIOUS_PAGE">
-      <label>Back</label>
-    </option>
-    <slug>4f5e2e27-3a75-4ebc-8ec9-f4612394fb4c</slug>
-  </page>
-  <page>
-    <type>Game</type>
-    <index>3</index>
-    <story>
-      <caret type="text">Page 3</caret>
-    </story>
-    <option key="g" command="GOTO_GAME_PAGE">
-      <label>Go to Page 2</label>
-      <arg>
-        <key>page</key>
-        <value>2</value>
-      </arg>
-    </option>
-    <slug>aff95523-9946-4b3d-97ef-2c572e732ddf</slug>
-  </page>
-  <slug>a7ea18f6-a18b-4626-af9e-543d5227e6e8</slug>
-</book><book>
-  <title>Attack Single Monster</title>
-  <page>
-    <type>Game</type>
-    <index>1</index>
-    <story>
-      <caret type="text">Attack a single monster</caret>
-    </story>
-    <option key="b" command="FIGHT_MONSTERS">
-      <label>Battle</label>
-      <outcome>
-        <story>
-          <caret type="text">You have prevailed</caret>
-        </story>
-        <option key="c" command="GOTO_GAME_PAGE">
-          <label>Continue</label>
-          <arg>
-            <key>page</key>
-            <value>2</value>
-          </arg>
-        </option>
-        <type>WIN</type>
-      </outcome>
-      <outcome>
-        <story>
-          <caret type="text">You have escaped down the passage</caret>
-        </story>
-        <option key="c" command="GOTO_GAME_PAGE">
-          <label>Continue</label>
-          <arg>
-            <key>page</key>
-            <value>4</value>
-          </arg>
-        </option>
-        <type>ESCAPE</type>
-      </outcome>
-      <outcome>
-        <story>
-          <caret type="text">
+	<book>
+		<title>Start Command</title>
+		<page>
+			<type>Intro</type>
+			<index>1</index>
+			<story>
+				<caret type="text">Intro Page 1</caret>
+			</story>
+			<option key="s" command="START_GAME">
+				<label>Start</label>
+			</option>
+			<slug>787434a2-271a-4d0d-b253-ff466725614e</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>1</index>
+			<story>
+				<caret type="text">Game Page 1</caret>
+			</story>
+			<slug>4eeb5adf-e4f2-4dd5-9a3e-7a78c46ddd87</slug>
+		</page>
+		<slug>df25f52e-a9e9-4345-b52d-580485f6d5b1</slug>
+	</book>
+	<book>
+		<title>Quit Command</title>
+		<page>
+			<type>Intro</type>
+			<index>1</index>
+			<story>
+				<caret type="text">Page 1</caret>
+			</story>
+			<option key="q" command="QUIT_GAME">
+				<label>Quit</label>
+			</option>
+			<slug>70c55fdc-a0ab-4bc1-a962-a405f28a2b91</slug>
+		</page>
+		<slug>961dc709-f38a-48d8-97b9-a89deb964ef1</slug>
+	</book>
+	<book>
+		<title>Continue Command</title>
+		<page>
+			<type>Intro</type>
+			<index>1</index>
+			<story>
+				<caret type="text">Page 1</caret>
+			</story>
+			<option key="c" command="NEXT_PAGE">
+				<label>Continue</label>
+			</option>
+			<slug>131fe691-92b3-42cc-803b-4a2afd9b3262</slug>
+		</page>
+		<page>
+			<type>Intro</type>
+			<index>2</index>
+			<story>
+				<caret type="text">Page 2</caret>
+			</story>
+			<slug>ff5ed7dc-a110-43fc-bab9-1b38171600b2</slug>
+		</page>
+		<slug>69fdced5-f4dd-41e2-8571-adb3180e0d0e</slug>
+	</book>
+	<book>
+		<title>Continue and Back Commands</title>
+		<page>
+			<type>Intro</type>
+			<index>1</index>
+			<story>
+				<caret type="text">Page 1</caret>
+			</story>
+			<option key="c" command="NEXT_PAGE">
+				<label>Continue</label>
+			</option>
+			<slug>bd08c204-516b-4f6f-ae46-10a3fc27a822</slug>
+		</page>
+		<page>
+			<type>Intro</type>
+			<index>2</index>
+			<story>
+				<caret type="text">Page 2</caret>
+			</story>
+			<option key="b" command="PREVIOUS_PAGE">
+				<label>Back</label>
+			</option>
+			<slug>0d13c6f9-b2aa-4594-83c0-1ef55ce172b4</slug>
+		</page>
+		<slug>e3f43301-1b33-4805-ad41-f63be54b6be6</slug>
+	</book>
+	<book>
+		<title>Goto Command</title>
+		<page>
+			<type>Game</type>
+			<index>1</index>
+			<story>
+				<caret type="text">Page 1</caret>
+			</story>
+			<option key="g" command="GOTO_GAME_PAGE">
+				<label>Go to Page 3</label>
+				<arg>
+					<key>page</key>
+					<value>3</value>
+				</arg>
+			</option>
+			<slug>61f1215a-bede-4c04-889c-1cceb4b52013</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>2</index>
+			<story>
+				<caret type="text">Page 2</caret>
+			</story>
+			<option key="g" command="GOTO_GAME_PAGE">
+				<label>Go to Page 1</label>
+				<arg>
+					<key>page</key>
+					<value>1</value>
+				</arg>
+			</option>
+			<option key="g" command="GOTO_GAME_PAGE">
+				<label>Go to Page 3</label>
+				<arg>
+					<key>page</key>
+					<value>3</value>
+				</arg>
+			</option>
+			<slug>84e9bc66-3b01-4086-a739-db308fb7081a</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>3</index>
+			<story>
+				<caret type="text">Page 3</caret>
+			</story>
+			<option key="g" command="GOTO_GAME_PAGE">
+				<label>Go to Page 2</label>
+				<arg>
+					<key>page</key>
+					<value>2</value>
+				</arg>
+			</option>
+			<slug>6579a3ac-d116-4aec-a285-b7ccadf949ce</slug>
+		</page>
+		<slug>c2148243-d7c8-4e30-97fa-217b9b4c3429</slug>
+	</book>
+	<book>
+		<title>Goto Continue and Back</title>
+		<page>
+			<type>Game</type>
+			<index>1</index>
+			<story>
+				<caret type="text">Page 1</caret>
+			</story>
+			<option key="c" command="NEXT_PAGE">
+				<label>Continue</label>
+			</option>
+			<slug>d80280ce-10c4-4986-848a-deb94d4a258c</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>2</index>
+			<story>
+				<caret type="text">Page 2</caret>
+			</story>
+			<option key="g" command="GOTO_GAME_PAGE">
+				<label>Go to Page 1</label>
+				<arg>
+					<key>page</key>
+					<value>1</value>
+				</arg>
+			</option>
+			<option key="c" command="NEXT_PAGE">
+				<label>Continue</label>
+			</option>
+			<option key="b" command="PREVIOUS_PAGE">
+				<label>Back</label>
+			</option>
+			<slug>4f5e2e27-3a75-4ebc-8ec9-f4612394fb4c</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>3</index>
+			<story>
+				<caret type="text">Page 3</caret>
+			</story>
+			<option key="g" command="GOTO_GAME_PAGE">
+				<label>Go to Page 2</label>
+				<arg>
+					<key>page</key>
+					<value>2</value>
+				</arg>
+			</option>
+			<slug>aff95523-9946-4b3d-97ef-2c572e732ddf</slug>
+		</page>
+		<slug>a7ea18f6-a18b-4626-af9e-543d5227e6e8</slug>
+	</book>
+	<book>
+		<title>Attack Single Monster</title>
+		<page>
+			<type>Game</type>
+			<index>1</index>
+			<story>
+				<caret type="text">Attack a single monster</caret>
+			</story>
+			<option key="b" command="FIGHT_MONSTERS">
+				<label>Battle</label>
+				<outcome>
+					<story>
+						<caret type="text">You have prevailed</caret>
+					</story>
+					<option key="c" command="GOTO_GAME_PAGE">
+						<label>Continue</label>
+						<arg>
+							<key>page</key>
+							<value>2</value>
+						</arg>
+					</option>
+					<type>WIN</type>
+				</outcome>
+				<outcome>
+					<story>
+						<caret type="text">You have escaped down the passage</caret>
+					</story>
+					<option key="c" command="GOTO_GAME_PAGE">
+						<label>Continue</label>
+						<arg>
+							<key>page</key>
+							<value>4</value>
+						</arg>
+					</option>
+					<type>ESCAPE</type>
+				</outcome>
+				<outcome>
+					<story>
+						<caret type="text">
                             You were defeated
                         </caret>
-        </story>
-        <option key="c" command="GOTO_GAME_PAGE">
-          <label>Continue</label>
-          <arg>
-            <key>page</key>
-            <value>3</value>
-          </arg>
-        </option>
-        <type>DEFEAT</type>
-      </outcome>
-    </option>
-    <slug>5bfcd336-c3ab-44b5-b7bd-b1b39c7fc227</slug>
-  </page>
-  <page>
-    <type>Game</type>
-    <index>2</index>
-    <story>
-      <caret type="text">Win!</caret>
-    </story>
-    <slug>e8bf0c57-5172-4708-9bf7-ba3fb4459667</slug>
-  </page>
-  <page>
-    <type>Game</type>
-    <index>3</index>
-    <story>
-      <caret type="text">Defeat!</caret>
-    </story>
-    <slug>afea974c-5041-4a4e-a838-eab18b2daa03</slug>
-  </page>
-  <page>
-    <type>Game</type>
-    <index>4</index>
-    <story>
-      <caret type="text">Escape!</caret>
-    </story>
-    <slug>8923399a-6539-4cca-a66e-fea7e501c483</slug>
-  </page>
-  <slug>41e0a8e4-f376-4a66-bfe9-e68a60cb7310</slug>
-</book><book>
-  <title>Stats test</title>
-  <page>
-    <type>Game</type>
-    <index>1</index>
-    <story>
-      <caret type="text">Try to escape sleeping ogre</caret>
-    </story>
-    <option key="l" command="TEST_STAT">
-      <label>Luck test</label>
-      <arg>
-        <key>stat</key>
-        <value>Luck</value>
-      </arg>
-      <outcome>
-        <story>
-          <caret type="text">
+					</story>
+					<option key="c" command="GOTO_GAME_PAGE">
+						<label>Continue</label>
+						<arg>
+							<key>page</key>
+							<value>3</value>
+						</arg>
+					</option>
+					<type>DEFEAT</type>
+				</outcome>
+			</option>
+			<slug>5bfcd336-c3ab-44b5-b7bd-b1b39c7fc227</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>2</index>
+			<story>
+				<caret type="text">Win!</caret>
+			</story>
+			<slug>e8bf0c57-5172-4708-9bf7-ba3fb4459667</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>3</index>
+			<story>
+				<caret type="text">Defeat!</caret>
+			</story>
+			<slug>afea974c-5041-4a4e-a838-eab18b2daa03</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>4</index>
+			<story>
+				<caret type="text">Escape!</caret>
+			</story>
+			<slug>8923399a-6539-4cca-a66e-fea7e501c483</slug>
+		</page>
+		<slug>41e0a8e4-f376-4a66-bfe9-e68a60cb7310</slug>
+	</book>
+	<book>
+		<title>Stats test</title>
+		<page>
+			<type>Game</type>
+			<index>1</index>
+			<story>
+				<caret type="text">Try to escape sleeping ogre</caret>
+			</story>
+			<option key="l" command="TEST_STAT">
+				<label>Luck test</label>
+				<arg>
+					<key>stat</key>
+					<value>Luck</value>
+				</arg>
+				<outcome>
+					<story>
+						<caret type="text">
 you escape without attracting
 the Ogre's attention
                         </caret>
-        </story>
-        <option key="c" command="GOTO_GAME_PAGE">
-          <label>Continue</label>
-          <arg>
-            <key>page</key>
-            <value>1</value>
-          </arg>
-        </option>
-        <type>PASS</type>
-      </outcome>
-      <outcome>
-        <story>
-          <caret type="text">
+					</story>
+					<option key="c" command="GOTO_GAME_PAGE">
+						<label>Continue</label>
+						<arg>
+							<key>page</key>
+							<value>1</value>
+						</arg>
+					</option>
+					<type>PASS</type>
+				</outcome>
+				<outcome>
+					<story>
+						<caret type="text">
 you curse as you kick a small stone which goes
 skidding across the cavern floor. You draw your
 sword in case the Ogre has heard it
                         </caret>
-        </story>
-        <option key="c" command="GOTO_GAME_PAGE">
-          <label>Continue</label>
-          <arg>
-            <key>page</key>
-            <value>2</value>
-          </arg>
-        </option>
-        <type>FAIL</type>
-      </outcome>
-    </option>
-    <slug>dc397bfe-653b-4e69-96d9-68783d120309</slug>
-  </page>
-  <page>
-    <type>Game</type>
-    <index>2</index>
-    <story>
-      <caret type="text">Passed!</caret>
-    </story>
-    <slug>c94d5b15-b5bd-4ed2-82db-cd9d2f67674d</slug>
-  </page>
-  <page>
-    <type>Game</type>
-    <index>3</index>
-    <story>
-      <caret type="text">Passed!</caret>
-    </story>
-    <slug>6ea1ad7f-8aa3-4d55-8da5-0dacd4f39488</slug>
-  </page>
-  <slug>4b2d945a-e894-4db8-ab29-eac1fff4aff5</slug>
-</book></library>
+					</story>
+					<option key="c" command="GOTO_GAME_PAGE">
+						<label>Continue</label>
+						<arg>
+							<key>page</key>
+							<value>2</value>
+						</arg>
+					</option>
+					<type>FAIL</type>
+				</outcome>
+			</option>
+			<slug>dc397bfe-653b-4e69-96d9-68783d120309</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>2</index>
+			<story>
+				<caret type="text">Passed!</caret>
+			</story>
+			<slug>c94d5b15-b5bd-4ed2-82db-cd9d2f67674d</slug>
+		</page>
+		<page>
+			<type>Game</type>
+			<index>3</index>
+			<story>
+				<caret type="text">Passed!</caret>
+			</story>
+			<slug>6ea1ad7f-8aa3-4d55-8da5-0dacd4f39488</slug>
+		</page>
+		<slug>4b2d945a-e894-4db8-ab29-eac1fff4aff5</slug>
+	</book>
+</library>

@@ -1,6 +1,3 @@
-using System.Xml;
-using System.Xml.Linq;
-
 namespace bookeditor.test;
 
 public class XmlLibrary_WriteIntegrationTests
@@ -148,7 +145,7 @@ public class XmlLibrary_WriteIntegrationTests
      public async Task GenerateSlugsInLibraries()
     {
         // This is being used to convert older files into ones with dlugs
-        string[] libraryNames = ["Books_With_Options"]; //, "Books_With_Pages", "Books_With_Scenes", "Books_With_Stories"];
+        string[] libraryNames = []; //"Books_With_Options", "Books_With_Pages", "Books_With_Scenes", "Books_With_Stories"];
         var rootPath = "../../../TestData";
         var libPath = Path.Combine(rootPath, "old");
 

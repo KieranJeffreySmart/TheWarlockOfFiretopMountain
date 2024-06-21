@@ -1,5 +1,3 @@
-using System.Xml;
-using System.Xml.Linq;
 using bookeditor.ViewModels;
 
 namespace bookeditor.test;

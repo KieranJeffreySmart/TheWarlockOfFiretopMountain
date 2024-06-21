@@ -1,6 +1,4 @@
-using System.Reflection;
 using System.Text;
-using Microsoft.CodeAnalysis;
 
 namespace bookeditor.test;
 

@@ -137,7 +137,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     
     public void InsertSceneCaretAfter(int index)
     {
-
+        
     }
     
     public void InsertStoryCaretAfter(int index)

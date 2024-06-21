@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 using DotVVM.Framework.Utils;
@@ -150,11 +151,34 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     
     public void InsertStoryCaretAfter(int index)
     {
-        var maxInsertableIndex = this.SelectedPage?.Story?.Carets?.Length-2;
-        if (maxInsertableIndex == null || index < 0 || index > maxInsertableIndex) this.AppendStoryCaret();
+        var maxInsertableIndex = this.SelectedPage?.Story?.Carets?.Length-2 ?? -1;
+        if (this.SelectedPage?.Story?.Carets == null || index < 0 || index > maxInsertableIndex) 
+        {
+            this.AppendStoryCaret();
+            return;
+        }
 
+        var newLength = this.SelectedPage.Story.Carets.Length+1;
+        var carets = new Caret[newLength];
 
+        for (var i = 0; i < newLength; i++)
+        {
+            if (i <= index)
+            {
+                carets[i] = this.SelectedPage.Story.Carets[i];
+                continue;
+            }
 
+            if (i > index+1)
+            {
+                carets[i] = this.SelectedPage.Story.Carets[i-1];
+                continue;
+            }
+            
+            carets[i] = new Caret() { CaretType = "text", StringValue = string.Empty };
+        }
+
+        this.SelectedPage.Story.Carets = carets;
     }
     
     public void DeleteSceneCaret(int index)

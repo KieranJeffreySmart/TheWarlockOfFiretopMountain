@@ -293,20 +293,20 @@ public class CaretList_Tests
         
         thirdcaret = homePage.SelectedPage.Story.Carets[2];
         Assert.Equal("text", thirdcaret.CaretType);
-        Assert.Equal("My second caret\n                ", secondcaret.StringValue);
+        Assert.Equal("My second caret\n                ", thirdcaret.StringValue);
         
         var fourthcaret = homePage.SelectedPage.Story.Carets[3];
         Assert.Equal("text", fourthcaret.CaretType);
-        Assert.Equal("\nMy third caret\n                ", thirdcaret.StringValue);
+        Assert.Equal("\nMy third caret\n                ", fourthcaret.StringValue);
     }
 
     [Fact]
-    [CreateRemoveFileBeforeAfter("../../../TestData/InsertStoryCaret.xml", "../../../TestData/Books_With_Stories.xml")]
+    [CreateRemoveFileBeforeAfter("../../../TestData/InsertStoryCaretWithIndexOutOfRange.xml", "../../../TestData/Books_With_Stories.xml")]
     public void InsertStoryCaretWithIndexOutOfRange()
     {        
         // given I have a library
         var rootPath = "../../../TestData";
-        var defaultLibrary = "InsertStoryCaret";
+        var defaultLibrary = "InsertStoryCaretWithIndexOutOfRange";
         var library = new XmlLibrary(rootPath, [defaultLibrary]);
         library.DefaultLibraryName = defaultLibrary;
         var fullPath = Path.Combine(rootPath, $"{defaultLibrary}.xml");
@@ -365,6 +365,186 @@ public class CaretList_Tests
         Assert.Equal("\nMy third caret\n                ", thirdcaret.StringValue);
 
         var fourthcaret = homePage.SelectedPage.Story.Carets[3];
+        Assert.Equal("text", fourthcaret.CaretType);
+        Assert.Equal("", fourthcaret.StringValue);
+    }
+
+    [Fact]
+    [CreateRemoveFileBeforeAfter("../../../TestData/InsertCaretToEmptyScene.xml", "../../../TestData/Books_With_Stories.xml")]
+    public void InsertCaretToEmptyScene()
+    {        
+        // given I have a library
+        var rootPath = "../../../TestData";
+        var defaultLibrary = "InsertCaretToEmptyScene";
+        var library = new XmlLibrary(rootPath, [defaultLibrary]);
+        library.DefaultLibraryName = defaultLibrary;
+        var fullPath = Path.Combine(rootPath, $"{defaultLibrary}.xml");
+
+        // given I have opened a book with no scene
+        var slug = "0f19667e-283e-46df-b458-df77cdefc4bb";
+        var title = "No scene";
+        
+        var cache = new EditorStateCache();
+        BookEditorHomeViewModel homePage = new(library, cache);
+        Assert.NotNull(homePage);
+
+        Assert.NotNull(homePage.Books);
+        var book = homePage.Books.First(b => b.Slug == slug);
+        Assert.Equal(title, book.Title);
+        homePage.SelectedBook = book;        
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.NotNull(homePage.SelectedBook.Pages);
+        Assert.NotEmpty(homePage.SelectedBook.Pages);
+        var page = homePage.SelectedBook.Pages.First();
+        homePage.SelectedPage = page;
+        Assert.Null(homePage.SelectedPage.Scene);
+
+        // when I insert a caret after the first
+        homePage.InsertSceneCaretAfter(0);
+
+        // then that scene is displayed with only the new caret
+        Assert.NotNull(homePage.SelectedPage.Scene);
+        Assert.NotNull(homePage.SelectedPage.Scene.Carets);
+        Assert.NotEmpty(homePage.SelectedPage.Scene.Carets);
+        var caret = homePage.SelectedPage.Scene.Carets.First();
+        Assert.Equal("text", caret.CaretType);
+        Assert.Equal("", caret.StringValue);
+    }
+
+    [Fact]
+    [CreateRemoveFileBeforeAfter("../../../TestData/InsertSceneCaret.xml", "../../../TestData/Books_With_Stories.xml")]
+    public void InsertSceneCaret()
+    {        
+        // given I have a library
+        var rootPath = "../../../TestData";
+        var defaultLibrary = "InsertSceneCaret";
+        var library = new XmlLibrary(rootPath, [defaultLibrary]);
+        library.DefaultLibraryName = defaultLibrary;
+        var fullPath = Path.Combine(rootPath, $"{defaultLibrary}.xml");
+
+        // given I have opened a book with a scene with many carets
+        var slug = "61814cd5-54f0-42ca-9e82-2195cd314abd";
+        var title = "Many caret scene";
+        
+        var cache = new EditorStateCache();
+        BookEditorHomeViewModel homePage = new(library, cache);
+        Assert.NotNull(homePage);
+
+        Assert.NotNull(homePage.Books);
+        var book = homePage.Books.First(b => b.Slug == slug);
+        Assert.Equal(title, book.Title);
+        homePage.SelectedBook = book;        
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.NotNull(homePage.SelectedBook.Pages);
+        Assert.NotEmpty(homePage.SelectedBook.Pages);
+        var page = homePage.SelectedBook.Pages.First();
+        homePage.SelectedPage = page;
+        Assert.NotNull(homePage.SelectedPage.Scene);
+        Assert.NotNull(homePage.SelectedPage.Scene.Carets);
+        Assert.Equal(3, homePage.SelectedPage.Scene.Carets.Length);
+
+        var firstcaret = homePage.SelectedPage.Scene.Carets[0];
+        Assert.Equal("text", firstcaret.CaretType);
+        Assert.Equal("My first caret", firstcaret.StringValue);
+        
+        var secondcaret = homePage.SelectedPage.Scene.Carets[1];
+        Assert.Equal("text", secondcaret.CaretType);
+        Assert.Equal("My second caret\n                ", secondcaret.StringValue);
+        
+        var thirdcaret = homePage.SelectedPage.Scene.Carets[2];
+        Assert.Equal("text", thirdcaret.CaretType);
+        Assert.Equal("\nMy third caret\n                ", thirdcaret.StringValue);
+
+        // when I insert a caret after the first
+        homePage.InsertSceneCaretAfter(0);
+
+        // then that scene is displayed with all the carets in order
+        Assert.NotNull(homePage.SelectedPage.Scene);
+        Assert.NotNull(homePage.SelectedPage.Scene.Carets);
+        Assert.Equal(4, homePage.SelectedPage.Scene.Carets.Length);
+
+        firstcaret = homePage.SelectedPage.Scene.Carets[0];
+        Assert.Equal("text", firstcaret.CaretType);
+        Assert.Equal("My first caret", firstcaret.StringValue);
+
+        secondcaret = homePage.SelectedPage.Scene.Carets[1];
+        Assert.Equal("text", secondcaret.CaretType);
+        Assert.Equal("", secondcaret.StringValue);
+        
+        thirdcaret = homePage.SelectedPage.Scene.Carets[2];
+        Assert.Equal("text", thirdcaret.CaretType);
+        Assert.Equal("My second caret\n                ", thirdcaret.StringValue);
+        
+        var fourthcaret = homePage.SelectedPage.Scene.Carets[3];
+        Assert.Equal("text", fourthcaret.CaretType);
+        Assert.Equal("\nMy third caret\n                ", fourthcaret.StringValue);
+    }
+
+    [Fact]
+    [CreateRemoveFileBeforeAfter("../../../TestData/InsertSceneCaret.xml", "../../../TestData/Books_With_Stories.xml")]
+    public void InsertSceneCaretWithIndexOutOfRange()
+    {        
+        // given I have a library
+        var rootPath = "../../../TestData";
+        var defaultLibrary = "InsertSceneCaret";
+        var library = new XmlLibrary(rootPath, [defaultLibrary]);
+        library.DefaultLibraryName = defaultLibrary;
+        var fullPath = Path.Combine(rootPath, $"{defaultLibrary}.xml");
+
+        // given I have opened a book with a scene with many carets
+        var slug = "61814cd5-54f0-42ca-9e82-2195cd314abd";
+        var title = "Many caret scene";
+        
+        var cache = new EditorStateCache();
+        BookEditorHomeViewModel homePage = new(library, cache);
+        Assert.NotNull(homePage);
+
+        Assert.NotNull(homePage.Books);
+        var book = homePage.Books.First(b => b.Slug == slug);
+        Assert.Equal(title, book.Title);
+        homePage.SelectedBook = book;        
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.NotNull(homePage.SelectedBook.Pages);
+        Assert.NotEmpty(homePage.SelectedBook.Pages);
+        var page = homePage.SelectedBook.Pages.First();
+        homePage.SelectedPage = page;
+        Assert.NotNull(homePage.SelectedPage.Scene);
+        Assert.NotNull(homePage.SelectedPage.Scene.Carets);
+        Assert.Equal(3, homePage.SelectedPage.Scene.Carets.Length);
+
+        var firstcaret = homePage.SelectedPage.Scene.Carets[0];
+        Assert.Equal("text", firstcaret.CaretType);
+        Assert.Equal("My first caret", firstcaret.StringValue);
+        
+        var secondcaret = homePage.SelectedPage.Scene.Carets[1];
+        Assert.Equal("text", secondcaret.CaretType);
+        Assert.Equal("My second caret\n                ", secondcaret.StringValue);
+        
+        var thirdcaret = homePage.SelectedPage.Scene.Carets[2];
+        Assert.Equal("text", thirdcaret.CaretType);
+        Assert.Equal("\nMy third caret\n                ", thirdcaret.StringValue);
+
+        // when I insert a caret with an index greater than the length of the list
+        homePage.InsertSceneCaretAfter(5);
+
+        // then that scene is displayed with the new caret appended to the ordered list of carets 
+        Assert.NotNull(homePage.SelectedPage.Scene);
+        Assert.NotNull(homePage.SelectedPage.Scene.Carets);
+        Assert.Equal(4, homePage.SelectedPage.Scene.Carets.Length);
+
+        firstcaret = homePage.SelectedPage.Scene.Carets[0];
+        Assert.Equal("text", firstcaret.CaretType);
+        Assert.Equal("My first caret", firstcaret.StringValue);
+        
+        secondcaret = homePage.SelectedPage.Scene.Carets[1];
+        Assert.Equal("text", secondcaret.CaretType);
+        Assert.Equal("My second caret\n                ", secondcaret.StringValue);
+        
+        thirdcaret = homePage.SelectedPage.Scene.Carets[2];
+        Assert.Equal("text", thirdcaret.CaretType);
+        Assert.Equal("\nMy third caret\n                ", thirdcaret.StringValue);
+
+        var fourthcaret = homePage.SelectedPage.Scene.Carets[3];
         Assert.Equal("text", fourthcaret.CaretType);
         Assert.Equal("", fourthcaret.StringValue);
     }

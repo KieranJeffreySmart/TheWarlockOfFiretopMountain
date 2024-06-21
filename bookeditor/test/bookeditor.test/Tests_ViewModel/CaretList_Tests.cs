@@ -553,9 +553,122 @@ public class CaretList_Tests
     [CreateRemoveFileBeforeAfter("../../../TestData/RemoveStoryCaret.xml", "../../../TestData/Books_With_Stories.xml")]
     public void RemoveStoryCaret()
     {
-        // given I have opened a book with a story that has two caret
+        // given I have a library
+        var rootPath = "../../../TestData";
+        var defaultLibrary = "RemoveStoryCaret";
+        var library = new XmlLibrary(rootPath, [defaultLibrary]);
+        library.DefaultLibraryName = defaultLibrary;
+        var fullPath = Path.Combine(rootPath, $"{defaultLibrary}.xml");
+
+        // given I have opened a book with a story with many carets
+        var slug = "61814cd5-54f0-42ca-9e82-2195cd314abd";
+        var title = "Many caret story";
+        
+        var cache = new EditorStateCache();
+        BookEditorHomeViewModel homePage = new(library, cache);
+        Assert.NotNull(homePage);
+
+        Assert.NotNull(homePage.Books);
+        var book = homePage.Books.First(b => b.Slug == slug);
+        Assert.Equal(title, book.Title);
+        homePage.SelectedBook = book;        
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.NotNull(homePage.SelectedBook.Pages);
+        Assert.NotEmpty(homePage.SelectedBook.Pages);
+        var page = homePage.SelectedBook.Pages.First();
+        homePage.SelectedPage = page;
+        Assert.NotNull(homePage.SelectedPage.Story);
+        Assert.NotNull(homePage.SelectedPage.Story.Carets);
+        Assert.Equal(3, homePage.SelectedPage.Story.Carets.Length);
+
+        var firstcaret = homePage.SelectedPage.Story.Carets[0];
+        Assert.Equal("text", firstcaret.CaretType);
+        Assert.Equal("My first caret", firstcaret.StringValue);
+        
+        var secondcaret = homePage.SelectedPage.Story.Carets[1];
+        Assert.Equal("text", secondcaret.CaretType);
+        Assert.Equal("My second caret\n                ", secondcaret.StringValue);
+        
+        var thirdcaret = homePage.SelectedPage.Story.Carets[2];
+        Assert.Equal("text", thirdcaret.CaretType);
+        Assert.Equal("\nMy third caret\n                ", thirdcaret.StringValue);
+
         // when I delete the second caret
-        // then that story is displayed with only the first caret
-        throw new NotImplementedException();
+        homePage.DeleteStoryCaret(1);
+
+        // then that story is displayed without the second caret but still in order
+        Assert.NotNull(homePage.SelectedPage.Story);
+        Assert.NotNull(homePage.SelectedPage.Story.Carets);
+        Assert.Equal(2, homePage.SelectedPage.Story.Carets.Length);
+
+        firstcaret = homePage.SelectedPage.Story.Carets[0];
+        Assert.Equal("text", firstcaret.CaretType);
+        Assert.Equal("My first caret", firstcaret.StringValue);
+
+        secondcaret = homePage.SelectedPage.Story.Carets[1];
+        Assert.Equal("text", secondcaret.CaretType);
+        Assert.Equal("\nMy third caret\n                ", secondcaret.StringValue);
+    }
+    
+    
+    [Fact]
+    [CreateRemoveFileBeforeAfter("../../../TestData/RemoveSceneCaret.xml", "../../../TestData/Books_With_Scenes.xml")]
+    public void RemoveSceneCaret()
+    {
+        // given I have a library
+        var rootPath = "../../../TestData";
+        var defaultLibrary = "RemoveSceneCaret";
+        var library = new XmlLibrary(rootPath, [defaultLibrary]);
+        library.DefaultLibraryName = defaultLibrary;
+        var fullPath = Path.Combine(rootPath, $"{defaultLibrary}.xml");
+
+        // given I have opened a book with a scene with many carets
+        var slug = "156c2c19-abc8-4857-abb0-187c74c2d7f4";
+        var title = "Many caret scene";
+        
+        var cache = new EditorStateCache();
+        BookEditorHomeViewModel homePage = new(library, cache);
+        Assert.NotNull(homePage);
+
+        Assert.NotNull(homePage.Books);
+        var book = homePage.Books.First(b => b.Slug == slug);
+        Assert.Equal(title, book.Title);
+        homePage.SelectedBook = book;        
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.NotNull(homePage.SelectedBook.Pages);
+        Assert.NotEmpty(homePage.SelectedBook.Pages);
+        var page = homePage.SelectedBook.Pages.First();
+        homePage.SelectedPage = page;
+        Assert.NotNull(homePage.SelectedPage.Scene);
+        Assert.NotNull(homePage.SelectedPage.Scene.Carets);
+        Assert.Equal(3, homePage.SelectedPage.Scene.Carets.Length);
+
+        var firstcaret = homePage.SelectedPage.Scene.Carets[0];
+        Assert.Equal("text", firstcaret.CaretType);
+        Assert.Equal("My first caret", firstcaret.StringValue);
+        
+        var secondcaret = homePage.SelectedPage.Scene.Carets[1];
+        Assert.Equal("text", secondcaret.CaretType);
+        Assert.Equal("My second caret\n                ", secondcaret.StringValue);
+        
+        var thirdcaret = homePage.SelectedPage.Scene.Carets[2];
+        Assert.Equal("text", thirdcaret.CaretType);
+        Assert.Equal("\nMy third caret\n                ", thirdcaret.StringValue);
+
+        // when I delete the second caret
+        homePage.DeleteSceneCaret(1);
+
+        // then that scene is displayed without the second caret but still in order
+        Assert.NotNull(homePage.SelectedPage.Scene);
+        Assert.NotNull(homePage.SelectedPage.Scene.Carets);
+        Assert.Equal(2, homePage.SelectedPage.Scene.Carets.Length);
+
+        firstcaret = homePage.SelectedPage.Scene.Carets[0];
+        Assert.Equal("text", firstcaret.CaretType);
+        Assert.Equal("My first caret", firstcaret.StringValue);
+
+        secondcaret = homePage.SelectedPage.Scene.Carets[1];
+        Assert.Equal("text", secondcaret.CaretType);
+        Assert.Equal("\nMy third caret\n                ", secondcaret.StringValue);
     }
 }

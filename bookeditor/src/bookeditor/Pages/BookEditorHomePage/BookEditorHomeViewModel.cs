@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Linq;
-using System.Threading.Tasks;
 using DotVVM.Framework.Utils;
 using DotVVM.Framework.ViewModel;
 
@@ -96,6 +94,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     public void SaveToFile()
     {
         if (library == null || this.SelectedBook == null)
+            // [rgR] should implement custom exceptions
             throw new Exception("No Book Selected");
 
         library.WriteBookToLibrarySync(this.SelectedBook);
@@ -104,6 +103,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     public void ComitChange()
     {
         if (this.SelectedBook == null || this.SelectedPage == null)
+            // [rgR] should implement custom exceptions
             throw new Exception("No Page Selected");
 
         var bookPageIdx = this.SelectedBook.Pages.FindIndex(p => p.PageType == this.SelectedPage.PageType && p.Index == this.SelectedPage.Index);
@@ -118,6 +118,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     public void AppendSceneCaret()
     {
         if (this.SelectedPage == null)
+            // [rgR] should implement custom exceptions
             throw new Exception("No Page Selected");
 
         this.SelectedPage.Scene ??= new Scene();
@@ -127,6 +128,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     public void AppendStoryCaret()
     {
         if (this.SelectedPage == null)
+            // [rgR] should implement custom exceptions
             throw new Exception("No Page Selected");
 
         this.SelectedPage.Story ??= new Story();
@@ -216,11 +218,27 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     
     public void DeleteSceneCaret(int index)
     {
+        var caretCount = this.SelectedPage?.Scene?.Carets?.Length;
+        if (this.Books == null || this.SelectedPage?.Scene?.Carets == null || caretCount == null || caretCount == 0 || index < 0 || index >= caretCount)
+            // [rgR] should implement custom exceptions
+            throw new Exception("Cannot delete something that doesnt exist");
 
+        var caretList = this.SelectedPage.Scene.Carets.ToList();
+        caretList.RemoveAt(index);
+
+        this.SelectedPage.Scene.Carets = caretList.ToArray();
     }
     
     public void DeleteStoryCaret(int index)
     {
+        var caretCount = this.SelectedPage?.Story?.Carets?.Length;
+        if (this.Books == null || this.SelectedPage?.Story?.Carets == null || caretCount == null || caretCount == 0 || index < 0 || index >= caretCount)
+            // [rgR] should implement custom exceptions
+            throw new Exception("Cannot delete something that doesnt exist");
 
+        var caretList = this.SelectedPage.Story.Carets.ToList();
+        caretList.RemoveAt(index);
+
+        this.SelectedPage.Story.Carets = caretList.ToArray();
     }
 }

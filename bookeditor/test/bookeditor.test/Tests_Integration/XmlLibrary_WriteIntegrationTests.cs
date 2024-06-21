@@ -67,17 +67,10 @@ public class XmlLibrary_WriteIntegrationTests
         var book = new Book { Title = title};
 
         // when I write it to the library
-        library.WriteBookToLibrarySync(book);
+        Action writeToLibrary = () => library.WriteBookToLibrarySync(book);
 
-        // when I open the default library
-        library = new XmlLibrary("../../../TestData", [defaultLibrary]);
-
-        // then the new book should exist
-        Assert.NotNull(library.Books);
-        Assert.Single(library.Books);
-        Assert.Equal(title, library.Books.First().Title);
-        
-        Assert.True(Guid.TryParse(library.Books.First().Slug, out var slug));
+        // then an error should be raised
+        Assert.Throws<Exception>(writeToLibrary);
     }
 
     
@@ -140,11 +133,12 @@ public class XmlLibrary_WriteIntegrationTests
         Assert.Equal(newTitle, savedBook.Title);
     }
 
+
+    // This test is used to convert older files into files with slugs and manually validate xml import export 
     [Fact]
     [CreateRemoveFileBeforeAfter("../../../TestData/old/New_Library.xml", skipCreate: true)]
      public void GenerateSlugsInLibraries()
     {
-        // This is being used to convert older files into ones with dlugs
         string[] libraryNames = []; //"Books_With_Options", "Books_With_Pages", "Books_With_Scenes", "Books_With_Stories"];
         var rootPath = "../../../TestData";
         var libPath = Path.Combine(rootPath, "old");

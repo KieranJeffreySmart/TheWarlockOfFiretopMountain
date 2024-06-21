@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -35,7 +33,6 @@ public class XmlLibrary
         get
         {
             this.books ??= this.GetBooks();
-
             return this.books;
         }
     }
@@ -100,7 +97,15 @@ public class XmlLibrary
             var options = new FileStreamOptions();
             using(var reader = File.Open(libPath, FileMode.Open))
             {
-                doc = XDocument.Load(reader, LoadOptions.PreserveWhitespace);
+                try 
+                {
+                    doc = XDocument.Load(reader, LoadOptions.PreserveWhitespace);
+                }
+                catch(XmlException e)
+                {
+                    // [rgR] use custom exception
+                    throw new Exception($"Failed to save to target library {DefaultLibraryName}");
+                }
             }
         }
         else

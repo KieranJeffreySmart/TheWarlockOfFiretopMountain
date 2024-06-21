@@ -115,7 +115,19 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     public void AppendSceneCaret()
     {
+        if (this.SelectedPage == null)
+            return;
 
+        this.SelectedPage.Scene ??= new Scene();
+
+        var scene = this.SelectedPage.Scene;
+        scene.Carets ??= [];
+        var length = scene.Carets.Length;
+        var newCarets = new Caret[length+1];
+
+        scene.Carets.CopyTo(newCarets, 0);
+        newCarets[length] = new Caret { CaretType = "text", StringValue = string.Empty };
+        scene.Carets = newCarets;
     }
 
     public void AppendStoryCaret()

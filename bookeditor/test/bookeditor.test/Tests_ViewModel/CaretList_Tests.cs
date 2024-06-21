@@ -16,7 +16,7 @@ public class CaretList_Tests
         var fullPath = Path.Combine(rootPath, $"{defaultLibrary}.xml");
 
         // given I have opened a book with no scene
-        var slug = "0f19667e-283e-46df-b458-df77cdefc4bb";
+        var slug = "84723c01-b0f9-44a9-87b5-91beb090acaf";
         var title = "No scene";
         
         var cache = new EditorStateCache();
@@ -62,7 +62,7 @@ public class CaretList_Tests
         var fullPath = Path.Combine(rootPath, $"{defaultLibrary}.xml");
 
         // given I have a book with a scene that has a caret
-        var slug = "596d5e6a-3cfb-41af-b855-8bafa5a632f3";
+        var slug = "2e1f4ebf-b60b-4a10-ba0e-d751514c3841";
         var title = "Single caret scene";
         
         var cache = new EditorStateCache();

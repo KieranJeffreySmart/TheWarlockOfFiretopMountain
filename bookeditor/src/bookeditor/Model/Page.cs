@@ -57,27 +57,27 @@ public class Outcome
 }
 
 
-public class Story: ICaretContainer
+public class Story: IBlockContainer
 {
-    [XmlElement("caret")]
-    public Caret[]? Carets { get; set; } = [];
+    [XmlElement("block")]
+    public Block[]? Blocks { get; set; } = [];
 }
 
-public class Scene: ICaretContainer
+public class Scene: IBlockContainer
 {
-    [XmlElement("caret")]
-    public Caret[]? Carets { get; set; } = [];
+    [XmlElement("block")]
+    public Block[]? Blocks { get; set; } = [];
 }
 
-public interface ICaretContainer
+public interface IBlockContainer
 {
-    Caret[]? Carets { get; set; }
+    Block[]? Blocks { get; set; }
 }
 
-public class Caret
+public class Block
 {
     [XmlAttribute("type")]
-    public string? CaretType { get; set;}
+    public string? BlockType { get; set;}
     
     [XmlText]
     public string? StringValue { get; set;}

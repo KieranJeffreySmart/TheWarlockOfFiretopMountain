@@ -95,48 +95,48 @@
     <div class="tab-content pt-4 container-fluid" id="tab-content">
         <div class="tab-pane fade row" id="storyedit" role="tabpanel" aria-labelledby="storyedit-tab">
             <div class="row">
-                <div class="col-sm"><h4>Scene Carets</h4></div>
+                <div class="col-sm"><h4>Scene Blocks</h4></div>
                 
                 <div class="col-sm-1">
-                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.AppendSceneCaret()} >
+                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.AppendSceneBlock()} >
                         <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
                     </dot:Button>
                 </div>
             </div>  
-            <dot:Repeater class="row" DataContext={value: SelectedPage.Scene}  DataSource={value: Carets} >
-                <div class="col-sm-1"><span>&lt;{{value: CaretType}}&gt;</span></div>
+            <dot:Repeater class="row" DataContext={value: SelectedPage.Scene}  DataSource={value: Blocks} >
+                <div class="col-sm-1"><span>&lt;{{value: BlockType}}&gt;</span></div>
                 <div class="col-sm preview"><pre>{{value: StringValue}}</pre></div>
                 <div class="col-sm-1">
                     <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
                     EditedText="{value: StringValue}"
                     CloseClick="{command: _root.ComitChange()}"/> 
-                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.InsertSceneCaretAfter(_collection.Index)} >
+                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.InsertSceneBlockAfter(_collection.Index)} >
                         <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
                     </dot:Button>      
-                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.DeleteSceneCaret(_collection.Index)} >
+                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.DeleteSceneBlock(_collection.Index)} >
                         <img src="~/res/bootstrap-icons/trash.svg" alt="Delete" />
                     </dot:Button>
                 </div>
             </dot:Repeater>
             <div class="row">
-                <div class="col-sm"><h4>Story Carets</h4></div>
+                <div class="col-sm"><h4>Story Blocks</h4></div>
                 <div class="col-sm-1">
-                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.AppendStoryCaret()} >
+                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.AppendStoryBlock()} >
                         <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
                     </dot:Button>
                 </div>
             </div>  
-            <dot:Repeater class="row" DataContext={value: SelectedPage.Story}  DataSource={value: Carets} >
-                <div class="col-sm-1"><span>&lt;{{value: CaretType}}&gt;</span></div>
+            <dot:Repeater class="row" DataContext={value: SelectedPage.Story}  DataSource={value: Blocks} >
+                <div class="col-sm-1"><span>&lt;{{value: BlockType}}&gt;</span></div>
                 <div class="col-sm preview"><pre>{{value: StringValue}}</pre></div>
                 <div class="col-sm-2">
                     <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
                     EditedText="{value: StringValue}"
                     CloseClick="{command: _root.ComitChange()}"/> 
-                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.InsertStoryCaretAfter(_collection.Index)} >
+                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.InsertStoryBlockAfter(_collection.Index)} >
                         <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
                     </dot:Button>      
-                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.DeleteStoryCaret(_collection.Index)} >
+                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.DeleteStoryBlock(_collection.Index)} >
                         <img src="~/res/bootstrap-icons/trash.svg" alt="Delete" />
                     </dot:Button>
                 </div>
@@ -168,13 +168,13 @@
         <div class="row"><div class="col-sm"><h4>Oucomes</h4></div></div>
         <dot:Repeater DataSource={value: Outcomes} RenderWrapperTag=false>
             <div class="row">
-                <div class="col-sm-3"><h4>Scene Carets</h4></div>
+                <div class="col-sm-3"><h4>Scene Blocks</h4></div>
                 <dot:Button ButtonTagName="button" class="btn">
                     <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
                 </dot:Button>
             </div>  
-            <dot:Repeater class="row" DataContext={value: Scene}  DataSource={value: Carets} >
-                <div class="col-sm-1"><span>&lt;{{value: CaretType}}&gt;</span></div>
+            <dot:Repeater class="row" DataContext={value: Scene}  DataSource={value: Blocks} >
+                <div class="col-sm-1"><span>&lt;{{value: BlockType}}&gt;</span></div>
                 <div class="col-sm preview"><pre>{{value: StringValue}}</pre></div>
                 <div class="col-sm-2">
                     <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
@@ -189,13 +189,13 @@
                 </div>
             </dot:Repeater>
             <div class="row">
-                <div class="col-sm-3"><h4>Story Carets</h4></div>
+                <div class="col-sm-3"><h4>Story Blocks</h4></div>
                 <dot:Button ButtonTagName="button" class="btn">
                     <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
                 </dot:Button>
             </div>  
-            <dot:Repeater class="row" DataContext={value: Story}  DataSource={value: Carets} >
-                <div class="col-sm-1"><span>&lt;{{value: CaretType}}&gt;</span></div>
+            <dot:Repeater class="row" DataContext={value: Story}  DataSource={value: Blocks} >
+                <div class="col-sm-1"><span>&lt;{{value: BlockType}}&gt;</span></div>
                 <div class="col-sm preview"><pre>{{value: StringValue}}</pre></div>
                 <div class="col-sm-2">
                     <bookCtrl:TextEditModalButton DataContext="{value: _this}" 

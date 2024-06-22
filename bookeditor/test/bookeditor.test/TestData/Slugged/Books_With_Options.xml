@@ -6,7 +6,7 @@
     <type>Intro</type>
     <index>1</index>
     <story>
-      <caret type="text">Intro Page 1</caret>
+      <block type="text">Intro Page 1</block>
     </story>
     <option key="s" command="START_GAME">
       <label>Start</label>
@@ -17,7 +17,7 @@
     <type>Game</type>
     <index>1</index>
     <story>
-      <caret type="text">Game Page 1</caret>
+      <block type="text">Game Page 1</block>
     </story>
     <slug>2be90bf5-22ec-4de3-a313-a363eaed5971</slug>
   </page>
@@ -29,7 +29,7 @@
     <type>Intro</type>
     <index>1</index>
     <story>
-      <caret type="text">Page 1</caret>
+      <block type="text">Page 1</block>
     </story>
     <option key="q" command="QUIT_GAME">
       <label>Quit</label>
@@ -43,7 +43,7 @@
     <type>Intro</type>
     <index>1</index>
     <story>
-      <caret type="text">Page 1</caret>
+      <block type="text">Page 1</block>
     </story>
     <option key="c" command="NEXT_PAGE">
       <label>Continue</label>
@@ -54,7 +54,7 @@
     <type>Intro</type>
     <index>2</index>
     <story>
-      <caret type="text">Page 2</caret>
+      <block type="text">Page 2</block>
     </story>
     <slug>36966bff-ce2a-4d08-b007-ad698fd2e320</slug>
   </page>
@@ -65,7 +65,7 @@
     <type>Intro</type>
     <index>1</index>
     <story>
-      <caret type="text">Page 1</caret>
+      <block type="text">Page 1</block>
     </story>
     <option key="c" command="NEXT_PAGE">
       <label>Continue</label>
@@ -76,7 +76,7 @@
     <type>Intro</type>
     <index>2</index>
     <story>
-      <caret type="text">Page 2</caret>
+      <block type="text">Page 2</block>
     </story>
     <option key="b" command="PREVIOUS_PAGE">
       <label>Back</label>
@@ -90,7 +90,7 @@
     <type>Game</type>
     <index>1</index>
     <story>
-      <caret type="text">Page 1</caret>
+      <block type="text">Page 1</block>
     </story>
     <option key="g" command="GOTO_GAME_PAGE">
       <label>Go to Page 3</label>
@@ -105,7 +105,7 @@
     <type>Game</type>
     <index>2</index>
     <story>
-      <caret type="text">Page 2</caret>
+      <block type="text">Page 2</block>
     </story>
     <option key="g" command="GOTO_GAME_PAGE">
       <label>Go to Page 1</label>
@@ -127,7 +127,7 @@
     <type>Game</type>
     <index>3</index>
     <story>
-      <caret type="text">Page 3</caret>
+      <block type="text">Page 3</block>
     </story>
     <option key="g" command="GOTO_GAME_PAGE">
       <label>Go to Page 2</label>
@@ -145,7 +145,7 @@
     <type>Game</type>
     <index>1</index>
     <story>
-      <caret type="text">Page 1</caret>
+      <block type="text">Page 1</block>
     </story>
     <option key="c" command="NEXT_PAGE">
       <label>Continue</label>
@@ -156,7 +156,7 @@
     <type>Game</type>
     <index>2</index>
     <story>
-      <caret type="text">Page 2</caret>
+      <block type="text">Page 2</block>
     </story>
     <option key="g" command="GOTO_GAME_PAGE">
       <label>Go to Page 1</label>
@@ -177,7 +177,7 @@
     <type>Game</type>
     <index>3</index>
     <story>
-      <caret type="text">Page 3</caret>
+      <block type="text">Page 3</block>
     </story>
     <option key="g" command="GOTO_GAME_PAGE">
       <label>Go to Page 2</label>
@@ -195,13 +195,13 @@
     <type>Game</type>
     <index>1</index>
     <story>
-      <caret type="text">Attack a single monster</caret>
+      <block type="text">Attack a single monster</block>
     </story>
     <option key="b" command="FIGHT_MONSTERS">
       <label>Battle</label>
       <outcome>
         <story>
-          <caret type="text">You have prevailed</caret>
+          <block type="text">You have prevailed</block>
         </story>
         <option key="c" command="GOTO_GAME_PAGE">
           <label>Continue</label>
@@ -214,7 +214,7 @@
       </outcome>
       <outcome>
         <story>
-          <caret type="text">You have escaped down the passage</caret>
+          <block type="text">You have escaped down the passage</block>
         </story>
         <option key="c" command="GOTO_GAME_PAGE">
           <label>Continue</label>
@@ -227,9 +227,9 @@
       </outcome>
       <outcome>
         <story>
-          <caret type="text">
+          <block type="text">
                             You were defeated
-                        </caret>
+                        </block>
         </story>
         <option key="c" command="GOTO_GAME_PAGE">
           <label>Continue</label>
@@ -247,7 +247,7 @@
     <type>Game</type>
     <index>2</index>
     <story>
-      <caret type="text">Win!</caret>
+      <block type="text">Win!</block>
     </story>
     <slug>1c8942bd-0cea-4184-b2e9-438da8de6c26</slug>
   </page>
@@ -255,7 +255,7 @@
     <type>Game</type>
     <index>3</index>
     <story>
-      <caret type="text">Defeat!</caret>
+      <block type="text">Defeat!</block>
     </story>
     <slug>180657ee-faad-4dd2-ab1c-6b075871c403</slug>
   </page>
@@ -263,7 +263,7 @@
     <type>Game</type>
     <index>4</index>
     <story>
-      <caret type="text">Escape!</caret>
+      <block type="text">Escape!</block>
     </story>
     <slug>41963f4a-8ea5-499e-9f91-079dd6006875</slug>
   </page>
@@ -274,7 +274,7 @@
     <type>Game</type>
     <index>1</index>
     <story>
-      <caret type="text">Try to escape sleeping ogre</caret>
+      <block type="text">Try to escape sleeping ogre</block>
     </story>
     <option key="l" command="TEST_STAT">
       <label>Luck test</label>
@@ -284,10 +284,10 @@
       </arg>
       <outcome>
         <story>
-          <caret type="text">
+          <block type="text">
 you escape without attracting
 the Ogre's attention
-                        </caret>
+                        </block>
         </story>
         <option key="c" command="GOTO_GAME_PAGE">
           <label>Continue</label>
@@ -300,11 +300,11 @@ the Ogre's attention
       </outcome>
       <outcome>
         <story>
-          <caret type="text">
+          <block type="text">
 you curse as you kick a small stone which goes
 skidding across the cavern floor. You draw your
 sword in case the Ogre has heard it
-                        </caret>
+                        </block>
         </story>
         <option key="c" command="GOTO_GAME_PAGE">
           <label>Continue</label>
@@ -322,7 +322,7 @@ sword in case the Ogre has heard it
     <type>Game</type>
     <index>2</index>
     <story>
-      <caret type="text">Passed!</caret>
+      <block type="text">Passed!</block>
     </story>
     <slug>8caf57b6-8947-4930-b7b4-a78d9c37094b</slug>
   </page>
@@ -330,7 +330,7 @@ sword in case the Ogre has heard it
     <type>Game</type>
     <index>3</index>
     <story>
-      <caret type="text">Passed!</caret>
+      <block type="text">Passed!</block>
     </story>
     <slug>8ed3d20c-21f6-4075-ab5c-94a64a9bad63</slug>
   </page>

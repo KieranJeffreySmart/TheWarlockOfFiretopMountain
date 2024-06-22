@@ -15,36 +15,36 @@
 			<type>Intro</type>
 			<index>1</index>
 			<story>
-				<caret type="text"/>
+				<block type="text"/>
 			</story>
 			<slug>8304e136-1abb-4363-9632-014b5380f5d4</slug>
 		</page>
 		<slug>079076ee-a4fb-4450-8c43-5d873798ce0c</slug>
 	</book>
 	<book>
-		<title>Single caret story</title>
+		<title>Single block story</title>
 		<page>
 			<type>Intro</type>
 			<index>1</index>
 			<story>
-				<caret type="text">My single caret</caret>
+				<block type="text">My single block</block>
 			</story>
 			<slug>1c56ca2b-084b-4988-bb7f-0e1dc62d738a</slug>
 		</page>
 		<slug>596d5e6a-3cfb-41af-b855-8bafa5a632f3</slug>
 	</book>
 	<book>
-		<title>Many caret story</title>
+		<title>Many block story</title>
 		<page>
 			<type>Intro</type>
 			<index>1</index>
 			<story>
-				<caret type="text">My first caret</caret>
-				<caret type="text">My second caret
-                </caret>
-				<caret type="text">
-My third caret
-                </caret>
+				<block type="text">My first block</block>
+				<block type="text">My second block
+                </block>
+				<block type="text">
+My third block
+                </block>
 			</story>
 			<slug>bec2abce-1d52-435f-9048-3319d8d40fc7</slug>
 		</page>
@@ -56,7 +56,7 @@ My third caret
 			<type>Intro</type>
 			<index>1</index>
 			<story>
-				<caret type="image">image1.jpg</caret>
+				<block type="image">image1.jpg</block>
 			</story>
 			<slug>04409697-34c2-4e0e-819e-14bb03218e5d</slug>
 		</page>
@@ -68,42 +68,42 @@ My third caret
 			<type>Intro</type>
 			<index>1</index>
 			<story>
-				<caret type="image">image1.jpg</caret>
-				<caret type="image">image2.png</caret>
-				<caret type="image">image3.bmp</caret>
+				<block type="image">image1.jpg</block>
+				<block type="image">image2.png</block>
+				<block type="image">image3.bmp</block>
 			</story>
 			<slug>9d8f789c-a445-45cb-a429-b3bb9195095f</slug>
 		</page>
 		<slug>085169fa-0e14-41f5-a90b-003dcddf7ed1</slug>
 	</book>
 	<book>
-		<title>Single image and caret story</title>
+		<title>Single image and block story</title>
 		<page>
 			<type>Intro</type>
 			<index>1</index>
 			<story>
-				<caret type="text">My single caret</caret>
-				<caret type="image">image1.jpg</caret>
+				<block type="text">My single block</block>
+				<block type="image">image1.jpg</block>
 			</story>
 			<slug>badceca9-cff6-4776-a8d5-05751c7c04a2</slug>
 		</page>
 		<slug>3cbdc0a1-f217-49c1-bf1e-f590f4d19660</slug>
 	</book>
 	<book>
-		<title>Many image and caret story</title>
+		<title>Many image and block story</title>
 		<page>
 			<type>Intro</type>
 			<index>1</index>
 			<story>
-				<caret type="text">My first caret</caret>
-				<caret type="text">My second caret
-                </caret>
-				<caret type="text">
-My third caret
-                </caret>
-				<caret type="image">image1.jpg</caret>
-				<caret type="image">image2.png</caret>
-				<caret type="image">image3.bmp</caret>
+				<block type="text">My first block</block>
+				<block type="text">My second block
+                </block>
+				<block type="text">
+My third block
+                </block>
+				<block type="image">image1.jpg</block>
+				<block type="image">image2.png</block>
+				<block type="image">image3.bmp</block>
 			</story>
 			<slug>9ddc89a1-e823-461b-9567-054ea5f07fd2</slug>
 		</page>

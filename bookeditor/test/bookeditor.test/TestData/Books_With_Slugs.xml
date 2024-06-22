@@ -7,9 +7,9 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <caret type="text">
+                <block type="text">
 
-                </caret>
+                </block>
             </story>
         </page>
         <page>
@@ -17,7 +17,7 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <caret type="text"></caret>
+                <block type="text"></block>
             </story>
         </page>
     </book>
@@ -29,7 +29,7 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <caret type="text">test-page3</caret>
+                <block type="text">test-page3</block>
             </story>
         </page>
         <page>
@@ -37,7 +37,7 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <caret type="text">test-page4</caret>
+                <block type="text">test-page4</block>
             </story>
         </page>
     </book>

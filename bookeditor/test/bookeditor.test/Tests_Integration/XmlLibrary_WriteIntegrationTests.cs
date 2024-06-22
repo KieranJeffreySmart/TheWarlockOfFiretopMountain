@@ -19,17 +19,17 @@ public class XmlLibrary_WriteIntegrationTests
             new Page {
                 PageType="Intro",
                 Index=1,
-                Story = new Story { Carets = [new Caret { CaretType = "text", StringValue = "test page 1"}]}
+                Story = new Story { Blocks = [new Block { BlockType = "text", StringValue = "test page 1"}]}
             },
             new Page {
                 PageType="Intro",
                 Index=2,
-                Story = new Story { Carets = [new Caret { CaretType = "text", StringValue = "test page 2"}]}
+                Story = new Story { Blocks = [new Block { BlockType = "text", StringValue = "test page 2"}]}
             },
             new Page {
                 PageType="Intro",
                 Index=3,
-                Story = new Story { Carets = [new Caret { CaretType = "text", StringValue = "test page 3"}]}
+                Story = new Story { Blocks = [new Block { BlockType = "text", StringValue = "test page 3"}]}
             }
         ];
 

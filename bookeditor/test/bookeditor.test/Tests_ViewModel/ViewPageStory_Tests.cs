@@ -5,18 +5,18 @@ namespace bookeditor.test;
 public class ViewPageStory_Tests
 {
     [Theory]
-    [InlineData("Single caret story", new string[] {"My single caret"}, "My single caret")]
+    [InlineData("Single block story", new string[] {"My single block"}, "My single block")]
     [InlineData(
-        "Many caret story",
-        new string[] {"My first caret", "My second caret\n                ", "\nMy third caret\n                "}, 
-        "My first caretMy second caret\n                \nMy third caret\n                ")]
+        "Many block story",
+        new string[] {"My first block", "My second block\n                ", "\nMy third block\n                "}, 
+        "My first blockMy second block\n                \nMy third block\n                ")]
     [InlineData("Single image story", new string[] {"image1.jpg"}, "")]
     [InlineData("Many image story", new string[] {"image1.jpg", "image2.png", "image3.bmp"}, "")]
-    [InlineData("Single image and caret story", new string[] {"My single caret", "image1.jpg"}, "My single caret")]
-    [InlineData("Many image and caret story",
-        new string[] {"My first caret", "My second caret\n                ", "\nMy third caret\n                ", "image1.jpg", "image2.png", "image3.bmp"}, 
-        "My first caretMy second caret\n                \nMy third caret\n                ")]
-    public void ViewPageStory(string testBook, string[] carets, string rawText)
+    [InlineData("Single image and block story", new string[] {"My single block", "image1.jpg"}, "My single block")]
+    [InlineData("Many image and block story",
+        new string[] {"My first block", "My second block\n                ", "\nMy third block\n                ", "image1.jpg", "image2.png", "image3.bmp"}, 
+        "My first blockMy second block\n                \nMy third block\n                ")]
+    public void ViewPageStory(string testBook, string[] blocks, string rawText)
     {
         // Given I have a library
         var libraryName = "Books_With_Stories";
@@ -43,14 +43,14 @@ public class ViewPageStory_Tests
         Assert.NotNull(viewModel.SelectedPage);
         Assert.NotNull(viewModel.SelectedPage.Story);
 
-        if (carets == null)
+        if (blocks == null)
         {
-            Assert.Null(viewModel.SelectedPage.Story.Carets);
+            Assert.Null(viewModel.SelectedPage.Story.Blocks);
         }
         else
         {
-            Assert.NotNull(viewModel.SelectedPage.Story.Carets);
-            Assert.Equal(carets, viewModel.SelectedPage.Story.Carets.Select(c => c.StringValue));
+            Assert.NotNull(viewModel.SelectedPage.Story.Blocks);
+            Assert.Equal(blocks, viewModel.SelectedPage.Story.Blocks.Select(c => c.StringValue));
         }
 
         Assert.NotNull(viewModel.SelectedPagePreview.Page);
@@ -59,18 +59,18 @@ public class ViewPageStory_Tests
 
 
     [Theory]
-    [InlineData("Single caret scene", new string[] {"My single caret"}, "My single caret")]
+    [InlineData("Single block scene", new string[] {"My single block"}, "My single block")]
     [InlineData(
-        "Many caret scene",
-        new string[] {"My first caret", "My second caret\n                ", "\nMy third caret\n                "}, 
-        "My first caretMy second caret\n                \nMy third caret\n                ")]
+        "Many block scene",
+        new string[] {"My first block", "My second block\n                ", "\nMy third block\n                "}, 
+        "My first blockMy second block\n                \nMy third block\n                ")]
     [InlineData("Single image scene",  new string[] {"image1.jpg"}, "")]
     [InlineData("Many image scene", new string[] {"image1.jpg", "image2.png", "image3.bmp"}, "")]
-    [InlineData("Single image and caret scene", new string[] {"My single caret", "image1.jpg"}, "My single caret")]
-    [InlineData("Many image and caret scene",
-        new string[] {"My first caret", "My second caret\n                ", "\nMy third caret\n                ", "image1.jpg", "image2.png", "image3.bmp"}, 
-        "My first caretMy second caret\n                \nMy third caret\n                ")]
-    public void ViewPageScene(string testBook, string[] carets, string rawText)
+    [InlineData("Single image and block scene", new string[] {"My single block", "image1.jpg"}, "My single block")]
+    [InlineData("Many image and block scene",
+        new string[] {"My first block", "My second block\n                ", "\nMy third block\n                ", "image1.jpg", "image2.png", "image3.bmp"}, 
+        "My first blockMy second block\n                \nMy third block\n                ")]
+    public void ViewPageScene(string testBook, string[] blocks, string rawText)
     {
         // Given I have a library
         var libraryName = "Books_With_Scenes";
@@ -97,14 +97,14 @@ public class ViewPageStory_Tests
         Assert.NotNull(viewModel.SelectedPage);
         Assert.NotNull(viewModel.SelectedPage.Scene);
 
-        if (carets == null)
+        if (blocks == null)
         {
-            Assert.Null(viewModel.SelectedPage.Scene.Carets);
+            Assert.Null(viewModel.SelectedPage.Scene.Blocks);
         }
         else
         {
-            Assert.NotNull(viewModel.SelectedPage.Scene.Carets);
-            Assert.Equal(carets, viewModel.SelectedPage.Scene.Carets.Select(c => c.StringValue));
+            Assert.NotNull(viewModel.SelectedPage.Scene.Blocks);
+            Assert.Equal(blocks, viewModel.SelectedPage.Scene.Blocks.Select(c => c.StringValue));
         }
         Assert.NotNull(viewModel.SelectedPagePreview.Page);
         Assert.Equal(rawText, viewModel.SelectedPagePreview.SceneTextRaw);

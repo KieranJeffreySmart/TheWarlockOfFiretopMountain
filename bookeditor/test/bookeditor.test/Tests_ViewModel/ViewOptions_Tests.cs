@@ -130,10 +130,10 @@ public class ViewOptions_Tests
 
         Assert.Equal("PASS", passOutcome.OutcomeType);
         Assert.NotNull(passOutcome.Story);
-        Assert.NotNull(passOutcome.Story.Carets);
-        Assert.Single(passOutcome.Story.Carets);
-        Assert.Equal("text", passOutcome.Story.Carets.First().CaretType);
-        Assert.Equal("\nyou escape without attracting\nthe Ogre's attention\n                        ", passOutcome.Story.Carets.First().StringValue);
+        Assert.NotNull(passOutcome.Story.Blocks);
+        Assert.Single(passOutcome.Story.Blocks);
+        Assert.Equal("text", passOutcome.Story.Blocks.First().BlockType);
+        Assert.Equal("\nyou escape without attracting\nthe Ogre's attention\n                        ", passOutcome.Story.Blocks.First().StringValue);
         Assert.NotNull(passOutcome.Options);
         Assert.Single(passOutcome.Options);
         
@@ -153,11 +153,11 @@ public class ViewOptions_Tests
 
         Assert.Equal("FAIL", failOutcome.OutcomeType);
         Assert.NotNull(failOutcome.Story);
-        Assert.NotNull(failOutcome.Story.Carets);
-        Assert.Single(failOutcome.Story.Carets);
-        Assert.Equal("text", failOutcome.Story.Carets.First().CaretType);
+        Assert.NotNull(failOutcome.Story.Blocks);
+        Assert.Single(failOutcome.Story.Blocks);
+        Assert.Equal("text", failOutcome.Story.Blocks.First().BlockType);
 
-        Assert.Equal("\nyou curse as you kick a small stone which goes\nskidding across the cavern floor. You draw your\nsword in case the Ogre has heard it\n                        ", failOutcome.Story.Carets.First().StringValue);
+        Assert.Equal("\nyou curse as you kick a small stone which goes\nskidding across the cavern floor. You draw your\nsword in case the Ogre has heard it\n                        ", failOutcome.Story.Blocks.First().StringValue);
         Assert.NotNull(failOutcome.Options);
         Assert.Single(failOutcome.Options);
         

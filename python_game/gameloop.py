@@ -9,7 +9,7 @@ import json
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
-clock = pygame.time.Clock()
+block = pygame.time.Clock()
 running = True
 
 DEFAULT_BOOK = "Warlock_Of_Firetop_Mountain"
@@ -75,32 +75,32 @@ def applyFormatting(text):
 def printPage(page):
     charpos = TEXT_LEFT
     linepos = TEXT_TOP
-    for caret in page[1]:
-        if (caret[0] == "text"):
+    for block in page[1]:
+        if (block[0] == "text"):
             font = DEFAULT_TEXT_FONT
             fontSize = NORMAL_FONT_SIZE
             textColor = DEFAULT_TEXT_COLOR
             backgroundColor = DEFAULT_TEXT_BACKGROUND_COLOR
 
-            if("font" in caret[2]):
-                font = caret[2]["font"]
+            if("font" in block[2]):
+                font = block[2]["font"]
 
-            if("font-size" in caret[2]):
-                fontSize = int(caret[2]["font-size"])
+            if("font-size" in block[2]):
+                fontSize = int(block[2]["font-size"])
 
-            if("text-color" in caret[2]):
-                textColor = caret[2]["text-color"]
+            if("text-color" in block[2]):
+                textColor = block[2]["text-color"]
 
-            if("background-color" in caret[2]):
-                backgroundColor = caret[2]["background-color"]
+            if("background-color" in block[2]):
+                backgroundColor = block[2]["background-color"]
             
             text_font = pygame.font.SysFont(font, fontSize)
 
             endOfText = False
             newLineIdx = 0
-            text = caret[1]
+            text = block[1]
 
-            lineCarets = []
+            lineBlocks = []
             
 
             while not endOfText:
@@ -109,19 +109,19 @@ def printPage(page):
                     subString = text[newLineIdx:nextNewLineIdx]
 
                     if (subString.strip() != ""):
-                        lineCarets.append(applyFormatting(subString))
+                        lineBlocks.append(applyFormatting(subString))
 
-                    lineCarets.append('\n')
+                    lineBlocks.append('\n')
 
                     newLineIdx = nextNewLineIdx+1
                     
                     if (nextNewLineIdx >= len(text)-1):
                         endOfText = True
                 else:
-                    lineCarets.append(applyFormatting(text[newLineIdx:]))
+                    lineBlocks.append(applyFormatting(text[newLineIdx:]))
                     endOfText = True
 
-            for line in lineCarets:
+            for line in lineBlocks:
                 lineText = line.strip()
                 charOffset = 0
                 if(lineText != ""):
@@ -175,7 +175,7 @@ def printEvents(events):
         newLineIdx = 0
         text = event
 
-        lineCarets = []
+        lineBlocks = []
         
 
         while not endOfText:
@@ -184,19 +184,19 @@ def printEvents(events):
                 subString = text[newLineIdx:nextNewLineIdx]
 
                 if (subString.strip() != ""):
-                    lineCarets.append(applyFormatting(subString))
+                    lineBlocks.append(applyFormatting(subString))
 
-                lineCarets.append('\n')
+                lineBlocks.append('\n')
 
                 newLineIdx = nextNewLineIdx+1
                 
                 if (nextNewLineIdx >= len(text)-1):
                     endOfText = True
             else:
-                lineCarets.append(applyFormatting(text[newLineIdx:]))
+                lineBlocks.append(applyFormatting(text[newLineIdx:]))
                 endOfText = True
 
-        for line in lineCarets:
+        for line in lineBlocks:
             lineText = line.strip()
             charOffset = 0
             if(lineText != ""):
@@ -213,9 +213,9 @@ def printEvents(events):
         
         idx = idx-1
 
-def appendStory(page, carets):
-    for caret in carets:
-        page[1].append(caret)
+def appendStory(page, blocks):
+    for block in blocks:
+        page[1].append(block)
 
 def setOptions(page, options):    
     page[2].clear()
@@ -229,10 +229,10 @@ def appendEventToStory(page, eventdescription):
     gameevents.append(eventdescription)
 
 def getResult(resultNode):
-    carets = [(child.tag, child.text, child.attrib) for child in resultNode.find("story")]
+    blocks = [(child.tag, child.text, child.attrib) for child in resultNode.find("story")]
     options = [(child.get("key"),  getOptionLabel(child), child.get("command"), getOptionArguments(child)) for child in resultNode if child.tag == "option"]
 
-    return (carets, options)
+    return (blocks, options)
 
 
 def getOptionArguments(optionNode):
@@ -262,10 +262,10 @@ def getOptionLabel(optionNode):
     return ""
     
 def getPage(pageNode):
-    carets = [(child.tag, child.text, child.attrib) for child in pageNode.find("story")]
+    blocks = [(child.tag, child.text, child.attrib) for child in pageNode.find("story")]
     options = [(child.get("key"), getOptionLabel(child), child.get("command"), getOptionArguments(child)) for child in pageNode if child.tag == "option"]
     monsters = [{"name": child.find("name").text, "skill": int(child.find("skill").text), "stamina": int(child.find("stamina").text)} for child in pageNode if child.tag == "monster"]
-    return (pageNode.get("idx"), carets, options, monsters)
+    return (pageNode.get("idx"), blocks, options, monsters)
 
 def loadBook(name):
     tree = ET.parse("./books/" + name + ".xml")

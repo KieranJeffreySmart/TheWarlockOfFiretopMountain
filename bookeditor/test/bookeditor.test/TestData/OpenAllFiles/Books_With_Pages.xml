@@ -8,8 +8,8 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
     </book>
@@ -19,13 +19,13 @@
             <type>Game</type>
             <index>1</index>
             <scene>
-                <caret type="image"></caret>
-                <caret type="text">
-                </caret>
+                <block type="image"></block>
+                <block type="text">
+                </block>
             </scene>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
     </book>
@@ -35,16 +35,16 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
         <page>
             <type>Game</type>
             <index>1</index>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
     </book>
@@ -54,28 +54,28 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
         <page>
             <type>Intro</type>
             <index>2</index>
             <story>
-                <caret type="text">
-                </caret>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
+                <block type="text">
+                </block>
             </story>
         </page>
         <page>
             <type>Intro</type>
             <index>3</index>
             <story>
-                <caret type="text">
-                </caret>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
+                <block type="text">
+                </block>
             </story>
         </page>
     </book>
@@ -85,24 +85,24 @@
             <type>Game</type>
             <index>1</index>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
         <page>
             <type>Game</type>
             <index>2</index>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
         <page>
             <type>Game</type>
             <index>3</index>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
     </book>
@@ -112,48 +112,48 @@
             <type>Intro</type>
             <index>1</index>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
         <page>
             <type>Intro</type>
             <index>2</index>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
         <page>
             <type>Intro</type>
             <index>3</index>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
         <page>
             <type>Game</type>
             <index>1</index>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
         <page>
             <type>Game</type>
             <index>2</index>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
         <page>
             <type>Game</type>
             <index>3</index>
             <story>
-                <caret type="text">
-                </caret>
+                <block type="text">
+                </block>
             </story>
         </page>
     </book>

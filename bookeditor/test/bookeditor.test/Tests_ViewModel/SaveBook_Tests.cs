@@ -5,12 +5,12 @@ namespace bookeditor.test;
 public class SaveBook_Tests
 {
     [Fact]
-    [CreateRemoveFileBeforeAfter("../../../TestData/ChangeStoryCaretdBook.xml", "../../../TestData/Books_With_Slugs.xml")]
-    public async Task ChangeStoryCaretdBook()
+    [CreateRemoveFileBeforeAfter("../../../TestData/ChangeStoryBlockdBook.xml", "../../../TestData/Books_With_Slugs.xml")]
+    public async Task ChangeStoryBlockdBook()
     {
         // given I have a library
         var rootPath = "../../../TestData";
-        var defaultLibrary = "ChangeStoryCaretdBook";
+        var defaultLibrary = "ChangeStoryBlockdBook";
         var library = new XmlLibrary(rootPath, [defaultLibrary]);
         library.DefaultLibraryName = defaultLibrary;
         var fullPath = Path.Combine(rootPath, $"{defaultLibrary}.xml");
@@ -36,13 +36,13 @@ public class SaveBook_Tests
         var page = book.Pages.First();
         homePage.SelectedPage = page;
         Assert.NotNull(page.Story);
-        Assert.NotNull(page.Story.Carets);
-        Assert.NotEmpty(page.Story.Carets);
-        var caret = page.Story.Carets.First();
-        Assert.Equal("test-page3", caret.StringValue);
+        Assert.NotNull(page.Story.Blocks);
+        Assert.NotEmpty(page.Story.Blocks);
+        var block = page.Story.Blocks.First();
+        Assert.Equal("test-page3", block.StringValue);
 
         // when I change the story
-        caret.StringValue = "new test value";
+        block.StringValue = "new test value";
 
         // when I save to file
         homePage.SaveToFile();
@@ -62,9 +62,9 @@ public class SaveBook_Tests
         Assert.NotEmpty(book.Pages);
         page = book.Pages.First();
         Assert.NotNull(page.Story);
-        Assert.NotNull(page.Story.Carets);
-        Assert.NotEmpty(page.Story.Carets);
-        caret = page.Story.Carets.First();
-        Assert.Equal("new test value", caret.StringValue);
+        Assert.NotNull(page.Story.Blocks);
+        Assert.NotEmpty(page.Story.Blocks);
+        block = page.Story.Blocks.First();
+        Assert.Equal("new test value", block.StringValue);
     }
 }

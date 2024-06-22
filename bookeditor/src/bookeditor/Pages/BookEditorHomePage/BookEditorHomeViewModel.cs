@@ -115,130 +115,130 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         this.EnableSaving = true;
     }
 
-    public void AppendSceneCaret()
+    public void AppendSceneBlock()
     {
         if (this.SelectedPage == null)
             // [rgR] should implement custom exceptions
             throw new Exception("No Page Selected");
 
         this.SelectedPage.Scene ??= new Scene();
-        this.AppendCaret(this.SelectedPage.Scene, new Caret { CaretType = "text", StringValue = string.Empty });
+        this.AppendBlock(this.SelectedPage.Scene, new Block { BlockType = "text", StringValue = string.Empty });
     }
 
-    public void AppendStoryCaret()
+    public void AppendStoryBlock()
     {
         if (this.SelectedPage == null)
             // [rgR] should implement custom exceptions
             throw new Exception("No Page Selected");
 
         this.SelectedPage.Story ??= new Story();
-        this.AppendCaret(this.SelectedPage.Story, new Caret { CaretType = "text", StringValue = string.Empty });
+        this.AppendBlock(this.SelectedPage.Story, new Block { BlockType = "text", StringValue = string.Empty });
     }
 
-    private void AppendCaret(ICaretContainer container, Caret caret)
+    private void AppendBlock(IBlockContainer container, Block block)
     {
-        container.Carets ??= [];
-        var length = container.Carets.Length;
-        var newCarets = new Caret[length+1];
+        container.Blocks ??= [];
+        var length = container.Blocks.Length;
+        var newBlocks = new Block[length+1];
 
-        container.Carets.CopyTo(newCarets, 0);
-        container.Carets = newCarets;
-        container.Carets[length] = caret;
+        container.Blocks.CopyTo(newBlocks, 0);
+        container.Blocks = newBlocks;
+        container.Blocks[length] = block;
     }
     
-    public void InsertSceneCaretAfter(int index)
+    public void InsertSceneBlockAfter(int index)
     {
-        var maxInsertableIndex = this.SelectedPage?.Scene?.Carets?.Length-2 ?? -1;
-        if (this.SelectedPage?.Scene?.Carets == null || index < 0 || index > maxInsertableIndex) 
+        var maxInsertableIndex = this.SelectedPage?.Scene?.Blocks?.Length-2 ?? -1;
+        if (this.SelectedPage?.Scene?.Blocks == null || index < 0 || index > maxInsertableIndex) 
         {
-            this.AppendSceneCaret();
+            this.AppendSceneBlock();
             return;
         }
 
-        this.InsertCaret(this.SelectedPage.Scene, index, new Caret() { CaretType = "text", StringValue = string.Empty });        
+        this.InsertBlock(this.SelectedPage.Scene, index, new Block() { BlockType = "text", StringValue = string.Empty });        
     }
 
-    private void InsertCaret(ICaretContainer container, int index, Caret caret)
+    private void InsertBlock(IBlockContainer container, int index, Block block)
     {        
-        container.Carets ??= [];
-        var newLength = container.Carets.Length+1;
-        var carets = new Caret[newLength];
+        container.Blocks ??= [];
+        var newLength = container.Blocks.Length+1;
+        var blocks = new Block[newLength];
 
         for (var i = 0; i < newLength; i++)
         {
             if (i <= index)
             {
-                carets[i] = container.Carets[i];
+                blocks[i] = container.Blocks[i];
                 continue;
             }
 
             if (i > index+1)
             {
-                carets[i] = container.Carets[i-1];
+                blocks[i] = container.Blocks[i-1];
                 continue;
             }
             
-            carets[i] = caret;
+            blocks[i] = block;
         }
 
-        container.Carets = carets;
+        container.Blocks = blocks;
     }
 
-    public void InsertStoryCaretAfter(int index)
+    public void InsertStoryBlockAfter(int index)
     {
-        var maxInsertableIndex = this.SelectedPage?.Story?.Carets?.Length-2 ?? -1;
-        if (this.SelectedPage?.Story?.Carets == null || index < 0 || index > maxInsertableIndex) 
+        var maxInsertableIndex = this.SelectedPage?.Story?.Blocks?.Length-2 ?? -1;
+        if (this.SelectedPage?.Story?.Blocks == null || index < 0 || index > maxInsertableIndex) 
         {
-            this.AppendStoryCaret();
+            this.AppendStoryBlock();
             return;
         }
 
-        var newLength = this.SelectedPage.Story.Carets.Length+1;
-        var carets = new Caret[newLength];
+        var newLength = this.SelectedPage.Story.Blocks.Length+1;
+        var blocks = new Block[newLength];
 
         for (var i = 0; i < newLength; i++)
         {
             if (i <= index)
             {
-                carets[i] = this.SelectedPage.Story.Carets[i];
+                blocks[i] = this.SelectedPage.Story.Blocks[i];
                 continue;
             }
 
             if (i > index+1)
             {
-                carets[i] = this.SelectedPage.Story.Carets[i-1];
+                blocks[i] = this.SelectedPage.Story.Blocks[i-1];
                 continue;
             }
             
-            carets[i] = new Caret() { CaretType = "text", StringValue = string.Empty };
+            blocks[i] = new Block() { BlockType = "text", StringValue = string.Empty };
         }
 
-        this.SelectedPage.Story.Carets = carets;
+        this.SelectedPage.Story.Blocks = blocks;
     }
     
-    public void DeleteSceneCaret(int index)
+    public void DeleteSceneBlock(int index)
     {
-        var caretCount = this.SelectedPage?.Scene?.Carets?.Length;
-        if (this.Books == null || this.SelectedPage?.Scene?.Carets == null || caretCount == null || caretCount == 0 || index < 0 || index >= caretCount)
+        var blockCount = this.SelectedPage?.Scene?.Blocks?.Length;
+        if (this.Books == null || this.SelectedPage?.Scene?.Blocks == null || blockCount == null || blockCount == 0 || index < 0 || index >= blockCount)
             // [rgR] should implement custom exceptions
             throw new Exception("Cannot delete something that doesnt exist");
 
-        var caretList = this.SelectedPage.Scene.Carets.ToList();
-        caretList.RemoveAt(index);
+        var blockList = this.SelectedPage.Scene.Blocks.ToList();
+        blockList.RemoveAt(index);
 
-        this.SelectedPage.Scene.Carets = caretList.ToArray();
+        this.SelectedPage.Scene.Blocks = blockList.ToArray();
     }
     
-    public void DeleteStoryCaret(int index)
+    public void DeleteStoryBlock(int index)
     {
-        var caretCount = this.SelectedPage?.Story?.Carets?.Length;
-        if (this.Books == null || this.SelectedPage?.Story?.Carets == null || caretCount == null || caretCount == 0 || index < 0 || index >= caretCount)
+        var blockCount = this.SelectedPage?.Story?.Blocks?.Length;
+        if (this.Books == null || this.SelectedPage?.Story?.Blocks == null || blockCount == null || blockCount == 0 || index < 0 || index >= blockCount)
             // [rgR] should implement custom exceptions
             throw new Exception("Cannot delete something that doesnt exist");
 
-        var caretList = this.SelectedPage.Story.Carets.ToList();
-        caretList.RemoveAt(index);
+        var blockList = this.SelectedPage.Story.Blocks.ToList();
+        blockList.RemoveAt(index);
 
-        this.SelectedPage.Story.Carets = caretList.ToArray();
+        this.SelectedPage.Story.Blocks = blockList.ToArray();
     }
 }

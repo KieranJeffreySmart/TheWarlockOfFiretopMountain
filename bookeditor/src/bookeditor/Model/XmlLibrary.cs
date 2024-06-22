@@ -42,7 +42,7 @@ public class XmlLibrary
         if (librarieNames.Length == 0)
             return [];
 
-        var serializer = new XmlSerializer(typeof(Book));
+        var serializer = new XmlSerializer(typeof(Library));
         
         string[] libraryPaths;
 
@@ -57,29 +57,18 @@ public class XmlLibrary
         {
             if (!File.Exists(path)) continue;
 
-            using (XmlReader reader = XmlReader.Create(path))
+            using (FileStream reader = File.OpenRead(path))
             {
-                var canRead = true;
-                while (canRead)
+                try 
                 {
-                    try 
-                    {
-                        canRead = reader.Read();
-                    }
-                    catch (Exception)
-                    {
-                        // [rgR] ignore eronous files
-                    }  
-
-                    if (canRead)
-                    {
-                        if (reader.Name == "book")
-                        {
-                            var libbook = serializer.Deserialize(reader) as Book;
-                            allbooks.Add(libbook ?? new Book());
-                        }
-                    }
-                }           
+                    var lib = serializer.Deserialize(reader) as Library;
+                    allbooks.AddRange(lib?.Books?.ToList() ?? new List<Book>());
+                }
+                catch (Exception e)
+                {
+                    // [rgR] ignore eronous files
+                    var msg = e.Message;
+                }       
             }
         }
 

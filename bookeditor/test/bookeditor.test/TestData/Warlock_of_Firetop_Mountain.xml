@@ -1,4 +1,4 @@
-<Library><book>
+<library><book>
 	<title>Warlock of Firetop Mountain</title>
 	<page>
 		<type>Intro</type>
@@ -7137,4 +7137,4 @@ domain of Firetop Mountain
 			<label>Quit</label>
 		</option>	
 	</page>
-</book></Library>
+</book></library>

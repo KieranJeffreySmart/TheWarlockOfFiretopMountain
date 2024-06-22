@@ -1,4 +1,4 @@
-<Library>
+<library>
     <book>
         <title>Empty book</title>
     </book>
@@ -157,4 +157,4 @@
             </story>
         </page>
     </book>
-</Library>
+</library>

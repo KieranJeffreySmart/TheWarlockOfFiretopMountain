@@ -1,4 +1,4 @@
-<Library>
+<library>
     <book>
         <title>Empty story</title>
         <page>
@@ -420,4 +420,4 @@ final block
             </story>
         </page>
     </book>
-</Library>
+</library>

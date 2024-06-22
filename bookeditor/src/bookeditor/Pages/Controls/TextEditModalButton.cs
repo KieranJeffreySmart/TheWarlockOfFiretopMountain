@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel;
 using DotVVM.Framework.Binding;
 using DotVVM.Framework.Binding.Expressions;
@@ -8,16 +7,17 @@ namespace bookeditor.Controls;
 
 public class TextEditModalButton : CompositeControl
 {
-    public static DotvvmControl GetContents(
+    public DotvvmControl GetContents(
         [DefaultValue("text")] ValueOrBinding<string> editedText,
-        ICommandBinding? closeClick = null)
+        [DefaultValue(null)] ValueOrBinding<string?> modalId,
+        [DefaultValue(null)] ValueOrBinding<string?> modalRef,
+        ICommandBinding? textChanged = null)
     {
-
-        string modalId = $"tem_{Guid.NewGuid()}";
         var editButton = new Button()
         .SetProperty(c => c.ButtonTagName, ButtonTagName.button)
         .AddAttribute("data-toggle", "modal")
-        .SetAttribute("data-target", $"#{modalId}")
+        .SetAttribute("data-target", modalRef)
+        .SetAttribute("generated-id", modalId)
         .AddCssClasses("btn")
         .AppendChildren(
             new HtmlGenericControl("img")
@@ -29,7 +29,9 @@ public class TextEditModalButton : CompositeControl
         .SetProperty(b => b.CssStyles["width"], "450px")
         .SetProperty(b => b.CssStyles["height"], "600px")
         .SetProperty(b => b.Type, TextBoxType.MultiLine)
-        .SetProperty(b => b.Text, editedText);
+        .SetProperty(b => b.Text, editedText)
+        .SetProperty(b => b.Changed, textChanged);
+
         
 
         var modalcontrol = new HtmlGenericControl("div")
@@ -50,20 +52,16 @@ public class TextEditModalButton : CompositeControl
                     .AppendChildren(
                         new HtmlGenericControl("button")
                         .AddCssClass("close")
+                        .AddCssClass("btn")
                         .AddAttribute("type", "button")
                         .AddAttribute("data-dismiss", "modal")
                         .AddAttribute("aria-label", "Close")
                         .AppendChildren(
                             new HtmlGenericControl("span") { InnerText = "x" }
                             .AddAttribute("aria-hidden", "true")
-                        ),
-                        new Button()
-                            .SetProperty(c => c.ButtonTagName, ButtonTagName.button)
-                            .SetProperty(c => c.Click, closeClick)
-                            .SetProperty(c => c.Text, "Save")
-                        
+                        )                        
                     ),
-                    new HtmlGenericControl("div")
+                    new HtmlGenericControl("span")
                     .AddCssClass("modal-body")
                     .AppendChildren(newTextBox)
                 )
@@ -75,4 +73,5 @@ public class TextEditModalButton : CompositeControl
 
         return container;
     }
+
 }

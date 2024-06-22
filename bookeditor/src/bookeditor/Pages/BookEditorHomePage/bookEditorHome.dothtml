@@ -38,20 +38,26 @@
                     aria-haspopup="true" 
                     aria-expanded="false">
                     <div class="row">
-                        <div class="col-sm-1"><img alt="close" src="~/res/bootstrap-icons/caret-down-white.svg"/></div><div class="col-sm">{{value: SelectedBook.Title ?? "Select Book"}}</div>
+                        <div class="col-sm-1">
+                            <img alt="close" src="~/res/bootstrap-icons/caret-down-white.svg"/>
+                        </div>
+                        <div class="col-sm">{{value: SelectedBook.Title ?? "Select Book"}}</div>
                     </div>
                     </button>
                     <div id="book-dropdown-menu" class="dropdown-menu" aria-labelledby="book-dropdown-toggle">
                         <button  class="btn btn-primary dropdown-item" 
                         data-toggle="dropdown" 
-                        data-target="#book-dropdown-toggle"><div class="text-center" ><img alt="close" src="~/res/bootstrap-icons/caret-up-fill.svg"/></div></button>
+                        data-target="#book-dropdown-toggle">
+                            <div class="text-center" >
+                                <img alt="close" src="~/res/bootstrap-icons/caret-up-fill.svg"/>
+                            </div>
+                        </button>
                         <dot:Repeater RenderWrapperTag=false DataSource={value: Books} >
-                            <dot:Button Click="{command: _root.SelectBook(_this)}" 
+                            <dot:Button 
+                            Click="{command: _root.SelectBook(_this)}" 
                             ButtonTagName="button" 
-                            class="btn btn-primary dropdown-item" 
-                            data-toggle="dropdown" 
-                            data-target="#book-dropdown-toggle">
-                                <div>{{value: Title}}</div>
+                            class="btn dropdown-item" >
+                                <div onClick='$("#book-dropdown-toggle").dropdown("toggle");'>{{value: Title}}</div>
                             </dot:Button>
                         </dot:Repeater>
                     </div>
@@ -61,7 +67,7 @@
         <div class="row"> 
             <div class="col-sm">
                 <span>ID: {{value: SelectedBook.Slug}}</span>
-                <dot:Button class="btn" Click={command: SaveToFile()} ButtonTagName="button" >
+                <dot:Button class="btn" Click={command: SaveToFile()} ButtonTagName="button" Enabled={value: IsSaveEnabled} >
                     <img alt="save" src="~/res/bootstrap-icons/save.svg"/>
                 </dot:Button>
             </div>            
@@ -77,13 +83,29 @@
                         type="button" 
                         data-toggle="dropdown" 
                         aria-haspopup="true" 
-                        aria-expanded="false">{{value: (SelectedPage.PageType ?? "Select") + " Page " + (SelectedPage.Index.ToString() ?? "")}}</button>
+                        aria-expanded="false">
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <img alt="close" src="~/res/bootstrap-icons/caret-down-white.svg"/>
+                            </div>
+                            <div class="col-sm">{{value: (SelectedPage.PageType ?? "Select") + " Page " + (SelectedPage.Index.ToString() ?? "")}}</div>
+                        </div>
+                    </button>
                     <div class="dropdown-menu" aria-labelledby="page-dropdown-toggle">
                         <button  class="btn btn-primary dropdown-item" 
                         data-toggle="dropdown" 
-                        data-target="#page-dropdown-toggle"><div class="text-center" ><img alt="close" src="~/res/bootstrap-icons/caret-up-fill.svg"/></div></button>
+                        data-target="#page-dropdown-toggle">
+                            <div class="text-center" >
+                                <img alt="close" src="~/res/bootstrap-icons/caret-up-fill.svg"/>
+                            </div>
+                        </button>
                         <dot:Repeater Style-width="200px" DataSource={value: SelectedBook.Pages}>
-                            <dot:Button class="dropdown-item" Text="{value: PageType + " page " + Index}" Click="{command: _root.SelectPage(_this)}" />
+                            <dot:Button 
+                            class="btn dropdown-item" 
+                            ButtonTagName="button" 
+                            Click="{command: _root.SelectPage(_this)}" >
+                                <div onClick='$("#page-dropdown-toggle").dropdown("toggle");'>{{value: PageType + " page " + Index}}</div>
+                            </dot:Button>
                         </dot:Repeater>
                     </div>
                 </div>
@@ -123,8 +145,10 @@
                         <div class="col-sm preview"><pre>{{value: StringValue}}</pre></div>
                         <div class="col-sm-1">
                             <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
+                            ModalId={value: "tem_p" + _root.SelectedPage.PageType + _root.SelectedPage.Index + "_scene_c" + _collection.Index}
+                            ModalRef={value: "#tem_p" + _root.SelectedPage.PageType + _root.SelectedPage.Index + "_scene_c" + _collection.Index}
                             EditedText="{value: StringValue}"
-                            CloseClick="{command: _root.ComitChange()}"/> 
+                            TextChanged={command: _root.ApplyChanges()} /> 
                             <dot:Button ButtonTagName="button" class="btn" Click={command: _root.InsertSceneBlockAfter(_collection.Index)} >
                                 <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
                             </dot:Button>      
@@ -142,15 +166,16 @@
                             </dot:Button>
                         </div>
                     </div>  
-                    <dot:Repeater RenderWrapperTag=false  DataContext={value: SelectedPage.Story}  DataSource={value: Blocks} ClientIDMode="Static">
+                    <dot:Repeater RenderWrapperTag=false  DataContext={value: SelectedPage.Story}  DataSource={value: Blocks} >
                     <div class="row">
                         <div class="col-sm-1"><span>&lt;{{value: BlockType}}&gt;</span></div>
                         <div class="col-sm preview"><pre>{{value: StringValue}}</pre></div>
                         <div class="col-sm-2">
                             <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
+                            ModalId={value: "tem_p" + _root.SelectedPage.PageType + _root.SelectedPage.Index + "_story_c" + _collection.Index}
+                            ModalRef={value: "#tem_p" + _root.SelectedPage.PageType + _root.SelectedPage.Index + "_story_c" + _collection.Index}
                             EditedText="{value: _this.StringValue}"
-                            CloseClick="{command: _root.ComitChange()}"
-                            ClientIDMode="Static"/> 
+                            TextChanged={command: _root.ApplyChanges()} /> 
                             <dot:Button ButtonTagName="button" class="btn" Click={command: _root.InsertStoryBlockAfter(_collection.Index)} >
                                 <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
                             </dot:Button>      
@@ -193,18 +218,23 @@
                                 <div class="row"><div class="col-sm"><h4>Oucomes</h4></div></div>
                                 <dot:Repeater DataSource={value: Outcomes} RenderWrapperTag=false>
                                     <div class="row">
+                                        <div class="col-sm-2">{{value: _this.OutcomeType}}</div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-sm-3"><h4>Scene Blocks</h4></div>
                                         <dot:Button ButtonTagName="button" class="btn">
                                             <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
                                         </dot:Button>
                                     </div>  
-                                    <dot:Repeater class="row" DataContext={value: Scene}  DataSource={value: Blocks} >
+                                    <dot:Repeater class="row" DataContext={value: Scene}  DataSource={value: Blocks}  >
                                         <div class="col-sm-1"><span>&lt;{{value: BlockType}}&gt;</span></div>
                                         <div class="col-sm preview"><pre>{{value: StringValue}}</pre></div>
                                         <div class="col-sm-2">
                                             <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
+                                            ModalId={value: "tem_p" + _root.SelectedPage.PageType + _root.SelectedPage.Index + "_outcome_" + "_scene_c" + _collection.Index}
+                                            ModalRef={value: "#tem_p" + _root.SelectedPage.PageType + _root.SelectedPage.Index + "_outcome_" + "_scene_c" + _collection.Index}
                                             EditedText="{value: StringValue}"
-                                            CloseClick="{command: _root.ComitChange()}"/> 
+                                            TextChanged={command: _root.ApplyChanges()}/> 
                                             <dot:Button ButtonTagName="button" class="btn">
                                                 <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
                                             </dot:Button>      
@@ -224,8 +254,10 @@
                                         <div class="col-sm preview"><pre>{{value: StringValue}}</pre></div>
                                         <div class="col-sm-2">
                                             <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
+                                            ModalId={value: "tem_p" + _root.SelectedPage.PageType + _root.SelectedPage.Index + "_outcome_" + "_story_c" + _collection.Index}
+                                            ModalRef={value: "#tem_p" + _root.SelectedPage.PageType + _root.SelectedPage.Index + "_outcome_" + "_story_c" + _collection.Index}
                                             EditedText="{value: StringValue}"
-                                            CloseClick="{command: _root.ComitChange()}"/> 
+                                            TextChanged={command: _root.ApplyChanges()} /> 
                                             <dot:Button ButtonTagName="button" class="btn">
                                                 <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
                                             </dot:Button>      

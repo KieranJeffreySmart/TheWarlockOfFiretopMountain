@@ -26,10 +26,8 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     public Page? SelectedPage { get; set; }
 
-    public PagePreviewViewModel SelectedPagePreview { get; } = new PagePreviewViewModel();
-
     public Option? SelectedOption { get; set; }
-    public bool EnableSaving { get; private set; } = false;
+    public bool IsSaveEnabled { get; private set; } = false;
 
     private void SetStateFromCache()
     {
@@ -81,12 +79,12 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
     public void UpdateSelectedBook()
     {
         this.SelectedPage = null;
+        this.SelectedOption = null;
         this.CacheChanges();
     }
 
     public void UpdateSelectedPage()
     {
-        this.SelectedPagePreview.Page = this.SelectedPage;
         this.SelectedOption = null;
         this.CacheChanges();
     }
@@ -100,7 +98,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         library.WriteBookToLibrarySync(this.SelectedBook);
     }
 
-    public void ComitChange()
+    public void ApplyChanges()
     {
         if (this.SelectedBook == null || this.SelectedPage == null)
             // [rgR] should implement custom exceptions
@@ -112,7 +110,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
             this.SelectedBook.Pages[bookPageIdx] = this.SelectedPage;
         }
 
-        this.EnableSaving = true;
+        this.IsSaveEnabled = true;
     }
 
     public void AppendSceneBlock()

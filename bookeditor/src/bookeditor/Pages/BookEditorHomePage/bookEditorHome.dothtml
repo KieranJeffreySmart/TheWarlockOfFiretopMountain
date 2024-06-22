@@ -12,12 +12,16 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title></title>
+
+    <style>
+        .tab-content>.active {display: flex;}
+    </style>
 </head>
 <body>
 <p>
-    <div  class="container">
+    <div  class="container-fluid">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col">
                 <div class="dropdown">
                     <button id="book-dropdown-toggle" 
                     class="btn btn-secondary dropdown-toggle" 
@@ -45,13 +49,13 @@
             </div>
         </div>
         <div class="row"> 
-            <div class="col-md-4">
+            <div class="col">
                 <span>ID: {{value: SelectedBook.Slug}}</span>
                 <span>pages: {{value: SelectedBook.Pages.Length}}</span>
             </div>
-        </div>        
+        </div>       
         <div class="row">
-            <div class="col-md-3">        
+            <div class="col">        
                 <div class="dropdown">
                     <button id="page-dropdown-toggle" 
                         class="btn btn-secondary dropdown-toggle" 
@@ -60,20 +64,24 @@
                         aria-haspopup="true" 
                         aria-expanded="false">{{value: (SelectedPage.PageType ?? "Select") + " Page " + (SelectedPage.Index.ToString() ?? "")}}</button>
                     <div class="dropdown-menu" aria-labelledby="page-dropdown-toggle">
-                        <button onclick="$(#page-dropdown-toggle).dropdown('toggle')">X</button>
+                        <button  class="btn btn-primary dropdown-item" 
+                        data-toggle="dropdown" 
+                        data-target="#page-dropdown-toggle"><img alt="save" src="~/res/bootstrap-icons/save.svg"/></button>
                         <dot:Repeater Style-width="200px" DataSource={value: SelectedBook.Pages}>
                             <dot:Button class="dropdown-item" Text="{value: PageType + " page " + Index}" Click="{command: _root.SelectPage(_this)}" />
                         </dot:Repeater>
                     </div>
                 </div>
             </div>
-            <div class="col-md-1">
+            <div class="col-sm-1">
                 <dot:Button class="btn" Click={command: SaveToFile()} ButtonTagName="button" >
                     <img alt="save" src="~/res/bootstrap-icons/save.svg"/>
                 </dot:Button>
             </div>
         </div>
-        <div class="row"> 
+    </div>
+    <div  class="container-fluid">
+        <div class="row">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="storyedit-tab" data-toggle="tab" data-target="#storyedit" type="button" role="tab" aria-controls="storyedit" aria-selected="false">Story Edit</button>
@@ -82,134 +90,127 @@
                     <button class="nav-link" id="optionsedit-tab" data-toggle="tab" data-target="#optionsedit" type="button" role="tab" aria-controls="optionsedit" aria-selected="false">Options Edit</button>
                 </li>
             </ul>
-            <div class="tab-content pt-4" id="tab-content">
-                <div class="tab-pane fade" id="storyedit" role="tabpanel" aria-labelledby="storyedit-tab">
-                    <div class="row">
-                        <div class="col-md-3"><h4>Scene Carets</h4></div>
-                        <dot:Button ButtonTagName="button" class="btn" Click={command: _root.AppendSceneCaret()} >
-                            <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
-                        </dot:Button>
-                    </div>  
-                    <dot:Repeater DataContext={value: SelectedPage.Scene}  DataSource={value: Carets} >
-                        <div class="row">
-                            <div class="col-md-1"><span>&lt;{{value: CaretType}}&gt;</span></div>
-                            <div class="col-md-5 preview"><pre>{{value: StringValue}}</pre></div>
-                            <div class="col-md-2">
-                                <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
-                                EditedText="{value: StringValue}"
-                                CloseClick="{command: _root.ComitChange()}"/> 
-                                <dot:Button ButtonTagName="button" class="btn" Click={command: _root.InsertSceneCaretAfter(_collection.Index)} >
-                                    <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
-                                </dot:Button>      
-                                <dot:Button ButtonTagName="button" class="btn" Click={command: _root.DeleteSceneCaret(_collection.Index)} >
-                                    <img src="~/res/bootstrap-icons/trash.svg" alt="Delete" />
-                                </dot:Button>
-                            </div>
-                        </div>
-                    </dot:Repeater>
-                    <div class="row">
-                        <div class="col-md-3"><h4>Story Carets</h4></div>
-                        <dot:Button ButtonTagName="button" class="btn" Click={command: _root.AppendStoryCaret()} >
-                            <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
-                        </dot:Button>
-                    </div>  
-                    <dot:Repeater DataContext={value: SelectedPage.Story}  DataSource={value: Carets} >
-                        <div class="row">
-                            <div class="col-md-1"><span>&lt;{{value: CaretType}}&gt;</span></div>
-                            <div class="col-md-5 preview"><pre>{{value: StringValue}}</pre></div>
-                            <div class="col-md-2">
-                                <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
-                                EditedText="{value: StringValue}"
-                                CloseClick="{command: _root.ComitChange()}"/> 
-                                <dot:Button ButtonTagName="button" class="btn" Click={command: _root.InsertStoryCaretAfter(_collection.Index)} >
-                                    <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
-                                </dot:Button>      
-                                <dot:Button ButtonTagName="button" class="btn" Click={command: _root.DeleteStoryCaret(_collection.Index)} >
-                                    <img src="~/res/bootstrap-icons/trash.svg" alt="Delete" />
-                                </dot:Button>
-                            </div>
-                        </div>
-                    </dot:Repeater>
-                </div>
-                <div class="tab-pane fade" id="optionsedit" role="tabpanel" aria-labelledby="optionsedit-tab">
-                    <h4>Options</h4>
-                    <div class="row">
-                        <dot:Repeater DataContext={value: SelectedPage} DataSource={value: Options} class="list-group list-group-horizontal" WrapperTagName="ul"  >
-                            <li class="list-group-item" role="presentation">
-                                <dot:Button class="btn"
-                                Text="{value: $"{Key} - {Label}"}"
-                                Click="{command: _root.SelectOption(_this)}" />
-                            </li>
-                        </dot:Repeater>     
-                    </div>
-                    <div>
-                        <div DataContext={value: SelectedOption}  class="container">
-                            <div class="row">
-                                <div>{{value: Key}} - {{value: Label}}</div>
-                            </div>
-                            <div class="row"  >
-                                <h4>Arguments</h4>
-                                <dot:Repeater DataSource={value: Arguments} >
-                                    <div>{{value: Key}}: {{value: Value}}</div>
-                                </dot:Repeater>
-                            </div>
-                            <div class="row" >
-                                <h4>Oucomes</h4>
-                                <dot:Repeater DataSource={value: Outcomes} >
-                                    <div class="row">
-                                        <div class="col-md-3"><h4>Scene Carets</h4></div>
-                                        <dot:Button ButtonTagName="button" class="btn">
-                                            <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
-                                        </dot:Button>
-                                    </div>  
-                                    <dot:Repeater DataContext={value: Scene}  DataSource={value: Carets} >
-                                        <div class="row">
-                                            <div class="col-md-1"><span>&lt;{{value: CaretType}}&gt;</span></div>
-                                            <div class="col-md-5 preview"><pre>{{value: StringValue}}</pre></div>
-                                            <div class="col-md-2">
-                                                <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
-                                                EditedText="{value: StringValue}"
-                                                CloseClick="{command: _root.ComitChange()}"/> 
-                                                <dot:Button ButtonTagName="button" class="btn">
-                                                    <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
-                                                </dot:Button>      
-                                                <dot:Button ButtonTagName="button" class="btn">
-                                                    <img src="~/res/bootstrap-icons/trash.svg" alt="Delete" />
-                                                </dot:Button>
-                                            </div>
-                                        </div>
-                                    </dot:Repeater>
-                                    <div class="row">
-                                        <div class="col-md-3"><h4>Story Carets</h4></div>
-                                        <dot:Button ButtonTagName="button" class="btn">
-                                            <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
-                                        </dot:Button>
-                                    </div>  
-                                    <dot:Repeater DataContext={value: Story}  DataSource={value: Carets} >
-                                        <div class="row">
-                                            <div class="col-md-1"><span>&lt;{{value: CaretType}}&gt;</span></div>
-                                            <div class="col-md-5 preview"><pre>{{value: StringValue}}</pre></div>
-                                            <div class="col-md-2">
-                                                <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
-                                                EditedText="{value: StringValue}"
-                                                CloseClick="{command: _root.ComitChange()}"/> 
-                                                <dot:Button ButtonTagName="button" class="btn">
-                                                    <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
-                                                </dot:Button>      
-                                                <dot:Button ButtonTagName="button" class="btn">
-                                                    <img src="~/res/bootstrap-icons/trash.svg" alt="Delete" />
-                                                </dot:Button>
-                                            </div>
-                                        </div>
-                                    </dot:Repeater>
-                                </dot:Repeater>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>         
-        </div>      
+        </div>
     </div>
+    <div class="tab-content pt-4 container-fluid" id="tab-content">
+        <div class="tab-pane fade row" id="storyedit" role="tabpanel" aria-labelledby="storyedit-tab">
+            <div class="row">
+                <div class="col-sm"><h4>Scene Carets</h4></div>
+                
+                <div class="col-sm-1">
+                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.AppendSceneCaret()} >
+                        <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
+                    </dot:Button>
+                </div>
+            </div>  
+            <dot:Repeater class="row" DataContext={value: SelectedPage.Scene}  DataSource={value: Carets} >
+                <div class="col-sm-1"><span>&lt;{{value: CaretType}}&gt;</span></div>
+                <div class="col-sm preview"><pre>{{value: StringValue}}</pre></div>
+                <div class="col-sm-1">
+                    <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
+                    EditedText="{value: StringValue}"
+                    CloseClick="{command: _root.ComitChange()}"/> 
+                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.InsertSceneCaretAfter(_collection.Index)} >
+                        <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
+                    </dot:Button>      
+                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.DeleteSceneCaret(_collection.Index)} >
+                        <img src="~/res/bootstrap-icons/trash.svg" alt="Delete" />
+                    </dot:Button>
+                </div>
+            </dot:Repeater>
+            <div class="row">
+                <div class="col-sm"><h4>Story Carets</h4></div>
+                <div class="col-sm-1">
+                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.AppendStoryCaret()} >
+                        <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
+                    </dot:Button>
+                </div>
+            </div>  
+            <dot:Repeater class="row" DataContext={value: SelectedPage.Story}  DataSource={value: Carets} >
+                <div class="col-sm-1"><span>&lt;{{value: CaretType}}&gt;</span></div>
+                <div class="col-sm preview"><pre>{{value: StringValue}}</pre></div>
+                <div class="col-sm-2">
+                    <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
+                    EditedText="{value: StringValue}"
+                    CloseClick="{command: _root.ComitChange()}"/> 
+                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.InsertStoryCaretAfter(_collection.Index)} >
+                        <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
+                    </dot:Button>      
+                    <dot:Button ButtonTagName="button" class="btn" Click={command: _root.DeleteStoryCaret(_collection.Index)} >
+                        <img src="~/res/bootstrap-icons/trash.svg" alt="Delete" />
+                    </dot:Button>
+                </div>
+            </dot:Repeater>
+        </div>
+        <div class="tab-pane fade row" id="optionsedit" role="tabpanel" aria-labelledby="optionsedit-tab">
+            <div class="row"><div class="col-sm"><h4>Options</h4></div></div>
+            <div class="row">
+                <dot:Repeater DataContext={value: SelectedPage} DataSource={value: Options} class="list-group list-group-horizontal" WrapperTagName="ul"  >
+                    <li class="list-group-item" role="presentation">
+                        <dot:Button class="btn" 
+                            Text="{value: $"{Key} - {Label}"}"
+                            Click="{command: _root.SelectOption(_this)}" />
+                    </li>
+                </dot:Repeater>
+            </div>
+        </div>
+    </div>
+    <div  DataContext={value: SelectedOption} class="fluid-container">
+        <div class="row">
+            <div class="col-sm">{{value: Key}} - {{value: Label}}</div>
+        </div>
+        <div class="row">
+            <div class="row"><div class="col-sm"><h4>Arguments</h4></div></div>
+            <dot:Repeater DataSource={value: Arguments} class="ul">
+                <li>{{value: Key}}: {{value: Value}}</li>
+            </dot:Repeater>
+        </div>
+        <div class="row"><div class="col-sm"><h4>Oucomes</h4></div></div>
+        <dot:Repeater DataSource={value: Outcomes} RenderWrapperTag=false>
+            <div class="row">
+                <div class="col-sm-3"><h4>Scene Carets</h4></div>
+                <dot:Button ButtonTagName="button" class="btn">
+                    <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
+                </dot:Button>
+            </div>  
+            <dot:Repeater class="row" DataContext={value: Scene}  DataSource={value: Carets} >
+                <div class="col-sm-1"><span>&lt;{{value: CaretType}}&gt;</span></div>
+                <div class="col-sm preview"><pre>{{value: StringValue}}</pre></div>
+                <div class="col-sm-2">
+                    <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
+                    EditedText="{value: StringValue}"
+                    CloseClick="{command: _root.ComitChange()}"/> 
+                    <dot:Button ButtonTagName="button" class="btn">
+                        <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
+                    </dot:Button>      
+                    <dot:Button ButtonTagName="button" class="btn">
+                        <img src="~/res/bootstrap-icons/trash.svg" alt="Delete" />
+                    </dot:Button>
+                </div>
+            </dot:Repeater>
+            <div class="row">
+                <div class="col-sm-3"><h4>Story Carets</h4></div>
+                <dot:Button ButtonTagName="button" class="btn">
+                    <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
+                </dot:Button>
+            </div>  
+            <dot:Repeater class="row" DataContext={value: Story}  DataSource={value: Carets} >
+                <div class="col-sm-1"><span>&lt;{{value: CaretType}}&gt;</span></div>
+                <div class="col-sm preview"><pre>{{value: StringValue}}</pre></div>
+                <div class="col-sm-2">
+                    <bookCtrl:TextEditModalButton DataContext="{value: _this}" 
+                    EditedText="{value: StringValue}"
+                    CloseClick="{command: _root.ComitChange()}"/> 
+                    <dot:Button ButtonTagName="button" class="btn">
+                        <img src="~/res/bootstrap-icons/plus-square.svg" alt="Insert" />
+                    </dot:Button>      
+                    <dot:Button ButtonTagName="button" class="btn">
+                        <img src="~/res/bootstrap-icons/trash.svg" alt="Delete" />
+                    </dot:Button>
+                </div>
+            </dot:Repeater>
+        </dot:Repeater>
+    </div> 
 </p>
 </body>
 </html>

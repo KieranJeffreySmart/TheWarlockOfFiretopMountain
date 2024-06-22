@@ -104,7 +104,7 @@ public class XmlLibrary
                 catch(XmlException e)
                 {
                     // [rgR] use custom exception
-                    throw new Exception($"Failed to save to target library {DefaultLibraryName}");
+                    throw new Exception($"Failed to save to target library {DefaultLibraryName}", e);
                 }
             }
         }

@@ -13,7 +13,7 @@ public class TextEditModalButton : CompositeControl
         ICommandBinding? closeClick = null)
     {
 
-        string modalId = $"tem_{Guid.NewGuid().ToString()}";
+        string modalId = $"tem_{Guid.NewGuid()}";
         var editButton = new Button()
         .SetProperty(c => c.ButtonTagName, ButtonTagName.button)
         .AddAttribute("data-toggle", "modal")
@@ -71,15 +71,8 @@ public class TextEditModalButton : CompositeControl
         );        
         
         var container = new HtmlGenericControl("div")
-        .AddCssClass("container")
         .AppendChildren(editButton, modalcontrol);
 
-        
-        //modalcontrol.SetProperty(c => c.DataContext, dataContext);
-        
-        // [DefaultValue(null)] ValueOrBinding<object?> dataContext,
-        // object? staticDataContext = null,
-        // container.SetProperty(c => c.DataContext, dataContext);
         return container;
     }
 }

@@ -12,6 +12,7 @@ public class OptionListOptionType_Tests
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendAnUnknownOption";
         BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
         var title = "No options";
@@ -26,7 +27,10 @@ public class OptionListOptionType_Tests
         // when I append an option with an unknown command
         homePage.AppendOptionByCommand("UNKNOWN_OPTION");
 
-        // then the option is displayed with default vlues for key and label and empty argument and outcome lists
+        // then the option is displayed with 
+        // an empty key 
+        // and label with the command name 
+        // and empty argument and outcome lists
         Assert.NotNull(homePage.SelectedPage.Options); 
         Assert.Single(homePage.SelectedPage.Options); 
         var option = homePage.SelectedPage.Options.First();
@@ -40,48 +44,207 @@ public class OptionListOptionType_Tests
     }
 
     [Fact]
+    [CreateRemoveFileBeforeAfter("../../../TestData/AppendAStartOption.xml", "../../../TestData/Books_With_Options.xml")]
     public void AppendAStartOption()
     {
         // given I have a library
+        var rootPath = "../../../TestData";
+        var defaultLibrary = "AppendAStartOption";
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        
         // given I have opened a book to a page with no options
-        // when I append an option
-        // then the page is displayed with only the new option
+        var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
+        var title = "No options";
+
+        OpenPage(homePage, bookSlug);
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
+        Assert.Null(homePage.SelectedPage.Options);
+
+        // when I append an option with a start command
+        homePage.AppendOptionByCommand("START_GAME");
+
+        // then the page is displayed with only the Start game option
+        // and the option has a default key of s and default label Start game
+        // and the options arguments and outcomes are empty
+        Assert.NotNull(homePage.SelectedPage.Options); 
+        Assert.Single(homePage.SelectedPage.Options); 
+        var option = homePage.SelectedPage.Options.First();
+        Assert.Equal("START_GAME", option.Command);
+
+        Assert.Equal("s", option.Key);
+        Assert.Equal("Start game", option.Label);
+
+        Assert.NotNull(option.Arguments);
+        Assert.NotNull(option.Outcomes);
+        Assert.Empty(option.Arguments);
+        Assert.Empty(option.Outcomes);
     }
 
     [Fact]
+    [CreateRemoveFileBeforeAfter("../../../TestData/AppendQuitOption.xml", "../../../TestData/Books_With_Options.xml")]
     public void AppendQuitOption()
     {
         // given I have a library
-        // given I have opened a book to a page with a single option
-        // when I append an option
-        // then the page is displayed with only the new option
+        var rootPath = "../../../TestData";
+        var defaultLibrary = "AppendQuitOption";
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        
+        // given I have opened a book to a page with no options
+        var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
+        var title = "No options";
+
+        OpenPage(homePage, bookSlug);
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
+        Assert.Null(homePage.SelectedPage.Options);
+
+        // when I append an option with the quit game command
+        homePage.AppendOptionByCommand("QUIT_GAME");
+
+        // then the page is displayed with only the quit game option
+        // and the option has a default key of q and default label Quit game
+        // and the options arguments and outcomes are empty
+        Assert.NotNull(homePage.SelectedPage.Options); 
+        Assert.Single(homePage.SelectedPage.Options); 
+        var option = homePage.SelectedPage.Options.First();
+        Assert.Equal("QUIT_GAME", option.Command);
+
+        Assert.Equal("q", option.Key);
+        Assert.Equal("Quit game", option.Label);
+
+        Assert.NotNull(option.Arguments);
+        Assert.NotNull(option.Outcomes);
+        Assert.Empty(option.Arguments);
+        Assert.Empty(option.Outcomes);
     }
 
     [Fact]
-    public void AppendContinueOption()
+    [CreateRemoveFileBeforeAfter("../../../TestData/AppendNextPageOption.xml", "../../../TestData/Books_With_Options.xml")]
+    public void AppendNextPageOption()
     {
         // given I have a library
-        // given I have opened a book to a page with a single option
-        // when I append an option
-        // then the page is displayed with only the new option
+        var rootPath = "../../../TestData";
+        var defaultLibrary = "AppendNextPageOption";
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        
+        // given I have opened a book to a page with no options
+        var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
+        var title = "No options";
+
+        OpenPage(homePage, bookSlug);
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
+        Assert.Null(homePage.SelectedPage.Options);
+
+        // when I append an option with the next page command
+        homePage.AppendOptionByCommand("NEXT_PAGE");
+
+        // then the page is displayed with only the next page option
+        // and the option has a default key of n and default label Next page
+        // and the options arguments and outcomes are empty
+        Assert.NotNull(homePage.SelectedPage.Options); 
+        Assert.Single(homePage.SelectedPage.Options); 
+        var option = homePage.SelectedPage.Options.First();
+        Assert.Equal("NEXT_PAGE", option.Command);
+
+        Assert.Equal("n", option.Key);
+        Assert.Equal("Next page", option.Label);
+
+        Assert.NotNull(option.Arguments);
+        Assert.NotNull(option.Outcomes);
+        Assert.Empty(option.Arguments);
+        Assert.Empty(option.Outcomes);
     }
 
     [Fact]
-    public void AppendBackOption()
+    [CreateRemoveFileBeforeAfter("../../../TestData/AppendPreviousPageOption.xml", "../../../TestData/Books_With_Options.xml")]
+    public void AppendPreviousPageOption()
     {
         // given I have a library
-        // given I have opened a book to a page with a single option
+        var rootPath = "../../../TestData";
+        var defaultLibrary = "AppendPreviousPageOption";
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        
+        // given I have opened a book to a page with no options
+        var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
+        var title = "No options";
+
+        OpenPage(homePage, bookSlug);
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
+        Assert.Null(homePage.SelectedPage.Options);
+
         // when I append an option
-        // then the page is displayed with only the new option
+        homePage.AppendOptionByCommand("PREVIOUS_PAGE");
+
+        // then the page is displayed with only the previous page option
+        // then the option has a default key of p and default label Previous page
+        // then the options arguments and outcomes are empty
+        Assert.NotNull(homePage.SelectedPage.Options); 
+        Assert.Single(homePage.SelectedPage.Options); 
+        var option = homePage.SelectedPage.Options.First();
+        Assert.Equal("PREVIOUS_PAGE", option.Command);
+
+        Assert.Equal("p", option.Key);
+        Assert.Equal("Previous page", option.Label);
+
+        Assert.NotNull(option.Arguments);
+        Assert.NotNull(option.Outcomes);
+        Assert.Empty(option.Arguments);
+        Assert.Empty(option.Outcomes);
     }
 
     [Fact]
+    [CreateRemoveFileBeforeAfter("../../../TestData/AppendGotoOption.xml", "../../../TestData/Books_With_Options.xml")]
     public void AppendGotoOption()
     {
         // given I have a library
-        // given I have opened a book to a page with a single option
-        // when I append an option
-        // then the page is displayed with only the new option
+        var rootPath = "../../../TestData";
+        var defaultLibrary = "AppendGotoOption";
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        
+        // given I have opened a book to a page with no options
+        var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
+        var title = "No options";
+
+        OpenPage(homePage, bookSlug);
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
+        Assert.Null(homePage.SelectedPage.Options);
+
+        // when I append an option with a go to page command
+        homePage.AppendOptionByCommand("GOTO_PAGE");
+        
+        // and the page is displayed with only the go to page option
+        // and the option has a default key of g and default label Go to page
+        // and the options arguments have a single argument named page with a default value of 1
+        // and outcomes are empty
+        Assert.NotNull(homePage.SelectedPage.Options);
+        Assert.Single(homePage.SelectedPage.Options); 
+        var option = homePage.SelectedPage.Options.First();
+        Assert.Equal("GOTO_PAGE", option.Command);
+
+        Assert.Equal("g", option.Key);
+        Assert.Equal("Go to page", option.Label);
+
+        Assert.NotNull(option.Arguments);
+        Assert.Single(option.Arguments);
+        Assert.Equal("page", option.Arguments.First().Key);
+        Assert.Equal("1", option.Arguments.First().Value);
+
+        Assert.NotNull(option.Outcomes);
+        Assert.Empty(option.Outcomes);
     }
 
     [Fact]

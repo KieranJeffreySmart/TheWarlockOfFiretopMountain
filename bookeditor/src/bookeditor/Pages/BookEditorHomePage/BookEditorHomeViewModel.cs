@@ -246,7 +246,6 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
             // [rgR] should implement custom exceptions
             throw new Exception("No Page Selected");
 
-
         this.SelectedPage.Options ??= [];
         
         var length = this.SelectedPage.Options.Length;

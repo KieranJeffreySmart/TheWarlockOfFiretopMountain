@@ -218,6 +218,87 @@ public class OptionList_Tests
         Assert.Equal("Cannot delete something that doesnt exist", exception.Message);
     }
 
+    [Fact]
+    [CreateRemoveFileBeforeAfter("../../../TestData/RemoveSelectedOptionFromPage.xml", "../../../TestData/Books_With_Options.xml")]
+    public void RemoveSelectedOptionFromPage()
+    {
+        // given I have a library
+        var rootPath = "../../../TestData";
+        var defaultLibrary = "RemoveSelectedOptionFromPage";
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+
+        // given I have opened a book to a page with many options
+        var bookSlug = "a7ea18f6-a18b-4626-af9e-543d5227e6e8";
+        var pageSlug = "4f5e2e27-3a75-4ebc-8ec9-f4612394fb4c";
+        var title = "Goto Continue and Back";
+        
+        OpenPage(homePage, bookSlug, p => p.Slug == pageSlug );
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.Equal(title, homePage.SelectedBook.Title);
+        Assert.NotNull(homePage.SelectedPage);
+        Assert.NotNull(homePage.SelectedPage.Options);
+        Assert.Equal(3, homePage.SelectedPage.Options.Length);
+        var option1 = homePage.SelectedPage.Options[0];
+        Assert.Equal("GOTO_GAME_PAGE", option1.Command);
+        var option2 = homePage.SelectedPage.Options[1];
+        Assert.Equal("NEXT_PAGE", option2.Command);
+        var option3 = homePage.SelectedPage.Options[2];
+        Assert.Equal("PREVIOUS_PAGE", option3.Command);
+
+        // given I have selected the second option
+        homePage.SelectOption(option2);
+        Assert.NotNull(homePage.SelectedOption);
+        Assert.Equal("NEXT_PAGE", homePage.SelectedOption.Command);
+
+        // when I remove an option using an index greater than the length of the options list
+        homePage.DeleteSelectedOption();
+
+        // then I am informed of an error
+        Assert.NotNull(homePage.SelectedPage);
+        Assert.Equal(2, homePage.SelectedPage.Options.Length);
+        option1 = homePage.SelectedPage.Options[0];
+        Assert.Equal("GOTO_GAME_PAGE", option1.Command);
+        option2 = homePage.SelectedPage.Options[1];
+        Assert.Equal("PREVIOUS_PAGE", option2.Command);
+        Assert.Null(homePage.SelectedOption);
+    }
+
+    [Fact]
+    [CreateRemoveFileBeforeAfter("../../../TestData/RemoveSelectedOptionFromPageWithNoOptionSelected.xml", "../../../TestData/Books_With_Options.xml")]
+    public void RemoveSelectedOptionFromPageWithNoOptionSelected()
+    {
+        // given I have a library
+        var rootPath = "../../../TestData";
+        var defaultLibrary = "RemoveSelectedOptionFromPageWithNoOptionSelected";
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+
+        // given I have opened a book to a page with many options
+        var bookSlug = "a7ea18f6-a18b-4626-af9e-543d5227e6e8";
+        var pageSlug = "4f5e2e27-3a75-4ebc-8ec9-f4612394fb4c";
+        var title = "Goto Continue and Back";
+        
+        OpenPage(homePage, bookSlug, p => p.Slug == pageSlug);
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.Equal(title, homePage.SelectedBook.Title);
+        Assert.NotNull(homePage.SelectedPage);
+        Assert.NotNull(homePage.SelectedPage.Options);
+        Assert.Equal(3, homePage.SelectedPage.Options.Length);
+        var option1 = homePage.SelectedPage.Options[0];
+        Assert.Equal("GOTO_GAME_PAGE", option1.Command);
+        var option2 = homePage.SelectedPage.Options[1];
+        Assert.Equal("NEXT_PAGE", option2.Command);
+        var option3 = homePage.SelectedPage.Options[2];
+        Assert.Equal("PREVIOUS_PAGE", option3.Command);
+
+
+        // when I remove an option using an index greater than the length of the options list
+        void deleteOption() => homePage.DeleteSelectedOption();
+
+        // then I am informed of an error
+        var exception = Assert.Throws<Exception>(deleteOption);
+        Assert.Equal("Cannot delete something that doesnt exist", exception.Message);
+    }
+
     private static void OpenPage(BookEditorHomeViewModel homePage, string bookSlug, Func<Page, bool>? predicate = null)
     {
         Assert.NotNull(homePage);

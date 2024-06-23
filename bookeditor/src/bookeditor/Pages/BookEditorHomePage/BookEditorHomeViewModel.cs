@@ -288,7 +288,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         {
             this.SelectedPage.Options[length] = new Option 
             { 
-                Command = command, Key="g", 
+                Command = command, Key="1", 
                 Label="Go to page",
                 Arguments = [ new OptionArgument { Key = "page", Value = "1" } ]
             };
@@ -310,5 +310,23 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         optionList.RemoveAt(index);
 
         this.SelectedPage.Options = [.. optionList];
+    }
+
+    public void DeleteSelectedOption()
+    {
+
+        if (this.Books == null || this.SelectedOption == null || this.SelectedPage?.Options == null)
+            // [rgR] should implement custom exceptions
+            throw new Exception("Cannot delete something that doesnt exist");
+            
+        var option = 
+            this.SelectedPage.Options.FirstOrDefault(o => o.Key == this.SelectedOption?.Key) 
+            ?? throw new Exception("Cannot delete something that doesnt exist");
+
+        var optionList = this.SelectedPage.Options.ToList();
+        optionList.Remove(option);
+
+        this.SelectedPage.Options = [.. optionList];
+        this.SelectedOption = null;
     }
 }

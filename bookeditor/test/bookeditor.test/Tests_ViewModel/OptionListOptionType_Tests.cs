@@ -281,7 +281,7 @@ public class OptionListOptionType_Tests
         var option = homePage.SelectedPage.Options.First();
         Assert.Equal("GOTO_PAGE", option.Command);
 
-        Assert.Equal("g", option.Key);
+        Assert.Equal("1", option.Key);
         Assert.Equal("Go to page", option.Label);
 
         Assert.NotNull(option.Arguments);
@@ -336,4 +336,10 @@ public class OptionListOptionType_Tests
         return new BookEditorHomeViewModel(library, cache);
     }
 
+}
+
+public class OptionDetailUpdate_Tests
+{
+    [Fact]
+    public void ChangeSingleProperty
 }

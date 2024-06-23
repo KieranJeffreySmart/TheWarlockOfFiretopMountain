@@ -1,4 +1,6 @@
+using System.Diagnostics;
 using bookeditor.ViewModels;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace bookeditor.test;
 
@@ -11,22 +13,17 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendBlockToEmptyScene";
-        BookEditorHomeViewModel homePage = this.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with no scene
-        var slug = "84723c01-b0f9-44a9-87b5-91beb090acaf";
+        var bookSlug = "84723c01-b0f9-44a9-87b5-91beb090acaf";
         var title = "No scene";
-        
-        Assert.NotNull(homePage);
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == slug);
-        Assert.Equal(title, book.Title);
-        homePage.SelectedBook = book;        
+
+        OpenFirstPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
-        var page = homePage.SelectedBook.Pages.First();
-        homePage.SelectedPage = page;
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
         Assert.Null(homePage.SelectedPage.Scene);
 
         // when I append a new block to the scene
@@ -48,22 +45,17 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendSceneBlock";
-        BookEditorHomeViewModel homePage = this.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with a scene that has a block
-        var slug = "2e1f4ebf-b60b-4a10-ba0e-d751514c3841";
+        var  bookSlug = "2e1f4ebf-b60b-4a10-ba0e-d751514c3841";
         var title = "Single block scene";
-        
-        Assert.NotNull(homePage);
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == slug);
-        Assert.Equal(title, book.Title);
-        homePage.SelectedBook = book;        
+
+        OpenFirstPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
-        var page = homePage.SelectedBook.Pages.First();
-        homePage.SelectedPage = page;
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
         Assert.NotNull(homePage.SelectedPage.Scene);
         Assert.NotNull(homePage.SelectedPage.Scene.Blocks);
         Assert.Single(homePage.SelectedPage.Scene.Blocks);
@@ -94,22 +86,16 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendToEmptyStoryBlock";
-        BookEditorHomeViewModel homePage = this.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with no story
-        var slug = "0f19667e-283e-46df-b458-df77cdefc4bb";
+        var  bookSlug = "0f19667e-283e-46df-b458-df77cdefc4bb";
         var title = "No story";
-        
-        Assert.NotNull(homePage);
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == slug);
-        Assert.Equal(title, book.Title);
-        homePage.SelectedBook = book;        
+        OpenFirstPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
-        var page = homePage.SelectedBook.Pages.First();
-        homePage.SelectedPage = page;
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
         Assert.Null(homePage.SelectedPage.Story);
 
         // when I append a new block to the story
@@ -131,22 +117,16 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendStoryBlock";
-        BookEditorHomeViewModel homePage = this.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with a story that has a block
-        var slug = "596d5e6a-3cfb-41af-b855-8bafa5a632f3";
+        var  bookSlug = "596d5e6a-3cfb-41af-b855-8bafa5a632f3";
         var title = "Single block story";
-        
-        Assert.NotNull(homePage);
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == slug);
-        Assert.Equal(title, book.Title);
-        homePage.SelectedBook = book;        
+        OpenFirstPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
-        var page = homePage.SelectedBook.Pages.First();
-        homePage.SelectedPage = page;
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
         Assert.NotNull(homePage.SelectedPage.Story);
         Assert.NotNull(homePage.SelectedPage.Story.Blocks);
         Assert.Single(homePage.SelectedPage.Story.Blocks);
@@ -176,22 +156,16 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "InsertBlockToEmptyStory";
-        BookEditorHomeViewModel homePage = this.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with no story
-        var slug = "0f19667e-283e-46df-b458-df77cdefc4bb";
+        var  bookSlug = "0f19667e-283e-46df-b458-df77cdefc4bb";
         var title = "No story";
-        
-        Assert.NotNull(homePage);
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == slug);
-        Assert.Equal(title, book.Title);
-        homePage.SelectedBook = book;        
+        OpenFirstPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
-        var page = homePage.SelectedBook.Pages.First();
-        homePage.SelectedPage = page;
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
         Assert.Null(homePage.SelectedPage.Story);
 
         // when I insert a block after the first
@@ -213,22 +187,16 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "InsertStoryBlock";
-        BookEditorHomeViewModel homePage = this.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with a story with many blocks
-        var slug = "61814cd5-54f0-42ca-9e82-2195cd314abd";
+        var  bookSlug = "61814cd5-54f0-42ca-9e82-2195cd314abd";
         var title = "Many block story";
-        
-        Assert.NotNull(homePage);
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == slug);
-        Assert.Equal(title, book.Title);
-        homePage.SelectedBook = book;        
+        OpenFirstPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
-        var page = homePage.SelectedBook.Pages.First();
-        homePage.SelectedPage = page;
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
         Assert.NotNull(homePage.SelectedPage.Story);
         Assert.NotNull(homePage.SelectedPage.Story.Blocks);
         Assert.Equal(3, homePage.SelectedPage.Story.Blocks.Length);
@@ -277,22 +245,16 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "InsertStoryBlockWithIndexOutOfRange";
-        BookEditorHomeViewModel homePage = this.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with a story with many blocks
-        var slug = "61814cd5-54f0-42ca-9e82-2195cd314abd";
+        var  bookSlug = "61814cd5-54f0-42ca-9e82-2195cd314abd";
         var title = "Many block story";
-        
-        Assert.NotNull(homePage);
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == slug);
-        Assert.Equal(title, book.Title);
-        homePage.SelectedBook = book;        
+        OpenFirstPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
-        var page = homePage.SelectedBook.Pages.First();
-        homePage.SelectedPage = page;
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
         Assert.NotNull(homePage.SelectedPage.Story);
         Assert.NotNull(homePage.SelectedPage.Story.Blocks);
         Assert.Equal(3, homePage.SelectedPage.Story.Blocks.Length);
@@ -341,23 +303,17 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "InsertBlockToEmptyScene";
-        BookEditorHomeViewModel homePage = this.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with no scene
-        var slug = "84723c01-b0f9-44a9-87b5-91beb090acaf";
+        var  bookSlug = "84723c01-b0f9-44a9-87b5-91beb090acaf";
         var title = "No scene";
-        
-        Assert.NotNull(homePage);
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == slug);
-        Assert.Equal(title, book.Title);
-        homePage.SelectedBook = book;        
+        OpenFirstPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
-        var page = homePage.SelectedBook.Pages.First();
-        homePage.SelectedPage = page;
-        Assert.Null(homePage.SelectedPage.Scene);
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
+        Assert.Null(homePage.SelectedPage.Scene); 
 
         // when I insert a block after the first
         homePage.InsertSceneBlockAfter(0);
@@ -378,22 +334,16 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "InsertSceneBlock";
-        BookEditorHomeViewModel homePage = this.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with a scene with many blocks
-        var slug = "156c2c19-abc8-4857-abb0-187c74c2d7f4";
+        var  bookSlug = "156c2c19-abc8-4857-abb0-187c74c2d7f4";
         var title = "Many block scene";
-        
-        Assert.NotNull(homePage);
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == slug);
-        Assert.Equal(title, book.Title);
-        homePage.SelectedBook = book;        
+        OpenFirstPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
-        var page = homePage.SelectedBook.Pages.First();
-        homePage.SelectedPage = page;
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
         Assert.NotNull(homePage.SelectedPage.Scene);
         Assert.NotNull(homePage.SelectedPage.Scene.Blocks);
         Assert.Equal(3, homePage.SelectedPage.Scene.Blocks.Length);
@@ -442,22 +392,16 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "InsertSceneBlock";
-        BookEditorHomeViewModel homePage = this.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with a scene with many blocks
-        var slug = "156c2c19-abc8-4857-abb0-187c74c2d7f4";
+        var  bookSlug = "156c2c19-abc8-4857-abb0-187c74c2d7f4";
         var title = "Many block scene";
-        
-        Assert.NotNull(homePage);
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == slug);
-        Assert.Equal(title, book.Title);
-        homePage.SelectedBook = book;        
+        OpenFirstPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
-        var page = homePage.SelectedBook.Pages.First();
-        homePage.SelectedPage = page;
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
         Assert.NotNull(homePage.SelectedPage.Scene);
         Assert.NotNull(homePage.SelectedPage.Scene.Blocks);
         Assert.Equal(3, homePage.SelectedPage.Scene.Blocks.Length);
@@ -506,23 +450,17 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveStoryBlock";
-        BookEditorHomeViewModel homePage = this.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
-
-        // given I have opened a book with a story with many blocks
-        var slug = "61814cd5-54f0-42ca-9e82-2195cd314abd";
-        var title = "Many block story";
-        
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
         Assert.NotNull(homePage);
 
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == slug);
-        Assert.Equal(title, book.Title);
-        homePage.SelectedBook = book;        
+        // given I have opened a book with a story with many blocks
+        var bookSlug = "61814cd5-54f0-42ca-9e82-2195cd314abd";
+        var title = "Many block story";
+        OpenFirstPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
-        var page = homePage.SelectedBook.Pages.First();
-        homePage.SelectedPage = page;
+        Assert.Equal(title, homePage.SelectedBook.Title);
+
+        Assert.NotNull(homePage.SelectedPage);
         Assert.NotNull(homePage.SelectedPage.Story);
         Assert.NotNull(homePage.SelectedPage.Story.Blocks);
         Assert.Equal(3, homePage.SelectedPage.Story.Blocks.Length);
@@ -555,8 +493,7 @@ public class BlockList_Tests
         Assert.Equal("text", secondblock.BlockType);
         Assert.Equal("\nMy third block\n                ", secondblock.StringValue);
     }
-    
-    
+
     [Fact]
     [CreateRemoveFileBeforeAfter("../../../TestData/RemoveSceneBlock.xml", "../../../TestData/Books_With_Scenes.xml")]
     public void RemoveSceneBlock()
@@ -564,24 +501,18 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveSceneBlock";
-        BookEditorHomeViewModel homePage = this.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
         Assert.NotNull(homePage);
 
         // given I have opened a book with a scene with many blocks
-        var slug = "156c2c19-abc8-4857-abb0-187c74c2d7f4";
+        var  bookSlug = "156c2c19-abc8-4857-abb0-187c74c2d7f4";
         var title = "Many block scene";
 
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == slug);
-        Assert.Equal(title, book.Title);
-
-        homePage.SelectedBook = book;        
+        OpenFirstPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
+        Assert.Equal(title, homePage.SelectedBook.Title);
 
-        var page = homePage.SelectedBook.Pages.First();
-        homePage.SelectedPage = page;
+        Assert.NotNull(homePage.SelectedPage);
         Assert.NotNull(homePage.SelectedPage.Scene);
         Assert.NotNull(homePage.SelectedPage.Scene.Blocks);
         Assert.Equal(3, homePage.SelectedPage.Scene.Blocks.Length);
@@ -615,9 +546,22 @@ public class BlockList_Tests
         Assert.Equal("\nMy third block\n                ", secondblock.StringValue);
     }
 
-    private BookEditorHomeViewModel CreateLibrary(string rootPath, string[] libraryNames, string defaultLibrary = "New_Test_Library")
+    private static void OpenFirstPage(BookEditorHomeViewModel homePage, string bookSlug)
     {
-        var library = new XmlLibrary(rootPath, [defaultLibrary])
+        Assert.NotNull(homePage);
+        Assert.NotNull(homePage.Books);
+        var book = homePage.Books.First(b => b.Slug == bookSlug);
+        homePage.SelectedBook = book;        
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.NotNull(homePage.SelectedBook.Pages);
+        Assert.NotEmpty(homePage.SelectedBook.Pages);
+        var page = homePage.SelectedBook.Pages.First();
+        homePage.SelectedPage = page;
+    }
+
+    private static BookEditorHomeViewModel CreateLibrary(string rootPath, string[] libraryNames, string defaultLibrary = "New_Test_Library")
+    {
+        var library = new XmlLibrary(rootPath, libraryNames)
         {
             DefaultLibraryName = defaultLibrary
         };

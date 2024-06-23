@@ -37,6 +37,8 @@ public class XmlLibrary
         }
     }
 
+    public string[]? Commands { get; internal set; }
+
     private Book[]? GetBooks()
     {
         if (librarieNames.Length == 0)

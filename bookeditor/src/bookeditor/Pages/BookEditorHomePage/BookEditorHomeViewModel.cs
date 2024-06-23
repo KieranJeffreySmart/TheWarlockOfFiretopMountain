@@ -143,7 +143,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         container.Blocks = newBlocks;
         container.Blocks[length] = block;
     }
-    
+
     public void InsertSceneBlockAfter(int index)
     {
         var maxInsertableIndex = this.SelectedPage?.Scene?.Blocks?.Length-2 ?? -1;
@@ -224,7 +224,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         var blockList = this.SelectedPage.Scene.Blocks.ToList();
         blockList.RemoveAt(index);
 
-        this.SelectedPage.Scene.Blocks = blockList.ToArray();
+        this.SelectedPage.Scene.Blocks = [.. blockList];
     }
     
     public void DeleteStoryBlock(int index)
@@ -237,6 +237,36 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         var blockList = this.SelectedPage.Story.Blocks.ToList();
         blockList.RemoveAt(index);
 
-        this.SelectedPage.Story.Blocks = blockList.ToArray();
+        this.SelectedPage.Story.Blocks = [.. blockList];
+    }
+
+    public void AppendOptionByCommand(string command)
+    {
+        if (this.SelectedBook == null || this.SelectedPage == null)
+            // [rgR] should implement custom exceptions
+            throw new Exception("No Page Selected");
+
+
+        this.SelectedPage.Options ??= [];
+        
+        var length = this.SelectedPage.Options.Length;
+        var newOptionss = new Option[length+1];
+
+        this.SelectedPage.Options.CopyTo(newOptionss, 0);
+        this.SelectedPage.Options = newOptionss;
+        this.SelectedPage.Options[length] = new Option { Command = command, Key="", Label=command };
+    }
+
+    public void DeleteOption(int index)
+    {
+        var optionCount = this.SelectedPage?.Options?.Length;
+        if (this.Books == null || this.SelectedPage?.Options == null || optionCount == null || optionCount == 0 || index < 0 || index >= optionCount)
+            // [rgR] should implement custom exceptions
+            throw new Exception("Cannot delete something that doesnt exist");
+
+        var optionList = this.SelectedPage.Options.ToList();
+        optionList.RemoveAt(index);
+
+        this.SelectedPage.Options = [.. optionList];
     }
 }

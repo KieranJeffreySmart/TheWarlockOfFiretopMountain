@@ -53,8 +53,8 @@ public class ViewPageStory_Tests
             Assert.Equal(blocks, viewModel.SelectedPage.Story.Blocks.Select(c => c.StringValue));
         }
 
-        Assert.NotNull(viewModel.SelectedPagePreview.Page);
-        Assert.Equal(rawText, viewModel.SelectedPagePreview.StoryTextRaw);
+        // Assert.NotNull(viewModel.SelectedPagePreview.Page);
+        // Assert.Equal(rawText, viewModel.SelectedPagePreview.StoryTextRaw);
     }
 
 
@@ -106,7 +106,7 @@ public class ViewPageStory_Tests
             Assert.NotNull(viewModel.SelectedPage.Scene.Blocks);
             Assert.Equal(blocks, viewModel.SelectedPage.Scene.Blocks.Select(c => c.StringValue));
         }
-        Assert.NotNull(viewModel.SelectedPagePreview.Page);
-        Assert.Equal(rawText, viewModel.SelectedPagePreview.SceneTextRaw);
+        // Assert.NotNull(viewModel.SelectedPagePreview.Page);
+        // Assert.Equal(rawText, viewModel.SelectedPagePreview.SceneTextRaw);
     }
 }

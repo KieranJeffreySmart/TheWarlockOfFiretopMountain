@@ -342,4 +342,16 @@ sword in case the Ogre has heard it
 		</page>
 		<slug>4b2d945a-e894-4db8-ab29-eac1fff4aff5</slug>
 	</book>
+	<book>
+		<title>No options</title>
+		<page>
+			<type>Intro</type>
+			<index>1</index>
+			<story>
+				<block type="text">Page 1</block>
+			</story>
+			<slug>825b624d-159b-4837-845c-b67bc127f919</slug>
+		</page>
+		<slug>690fdb06-a334-4d33-8e5e-3c45a8bb87cb</slug>
+	</book>
 </library>

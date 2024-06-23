@@ -37,6 +37,7 @@ public class ViewOptions_Tests
         // then the options are displayed
         Assert.NotNull(viewModel.SelectedPage);
         Assert.NotNull(viewModel.SelectedPage);
+        Assert.NotNull(viewModel.SelectedPage.Options);
         Assert.Equal(optionCount, viewModel.SelectedPage.Options.Length);
         Assert.Equal(optionsKeys, viewModel.SelectedPage.Options.Select(o => o.Key).ToArray());
         Assert.Equal(labels, viewModel.SelectedPage.Options.Select(o => o.Label).ToArray());

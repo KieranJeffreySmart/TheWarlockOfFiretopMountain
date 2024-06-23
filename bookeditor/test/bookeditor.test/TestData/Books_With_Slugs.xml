@@ -16,9 +16,9 @@
             <slug>test-page2-slug</slug>
             <type>Intro</type>
             <index>1</index>
-            <story>
+            <scene>
                 <block type="text"></block>
-            </story>
+            </scene>
         </page>
     </book>
     <book>

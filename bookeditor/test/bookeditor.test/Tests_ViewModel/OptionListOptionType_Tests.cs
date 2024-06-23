@@ -341,5 +341,8 @@ public class OptionListOptionType_Tests
 public class OptionDetailUpdate_Tests
 {
     [Fact]
-    public void ChangeSingleProperty
+    public void ChangeSingleProperty() 
+    {
+        
+    }
 }

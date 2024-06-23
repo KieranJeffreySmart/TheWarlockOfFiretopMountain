@@ -93,7 +93,7 @@
                         </div>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="page-dropdown-toggle">
-                        <button  class="btn btn-primary dropdown-item" 
+                        <button  class="btn dropdown-item" 
                         data-toggle="dropdown" 
                         data-target="#page-dropdown-toggle">
                             <div class="text-center" >
@@ -195,10 +195,59 @@
                     <div class="row">
                         <div class="col-sm"><h4>Options</h4></div>                        
                         <div class="col-sm-1">
-                            <dot:Button ButtonTagName="button" class="btn" Click={command: _root.AppendOptionByCommand()} >
-                                <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
-                            </dot:Button>
-                        </div>
+                            <div class="btn-group">
+                                <div class="btn-group dropleft" role="group">
+                                        <button id="new-option-dropdown-toggle" 
+                                        class="btn dropdown-toggle dropdown-toggle-split" 
+                                        type="button" 
+                                        data-toggle="dropdown" 
+                                        aria-haspopup="true" 
+                                        aria-expanded="false" />
+                                        <div id="new-option-dropdown-menu" class="dropdown-menu" aria-labelledby="new-option-dropdown-toggle">
+                                            <button  class="btn btn dropdown-item" 
+                                            data-toggle="dropdown"
+                                            data-target="#new-option-dropdown-toggle">
+                                                <div class="text-center">
+                                                    <img alt="close" src="~/res/bootstrap-icons/caret-up-fill.svg"/>
+                                                </div>
+                                            </button>
+                                            <dot:Button 
+                                            Click="{command: _root.AppendOptionByCommand("START_GAME")}" 
+                                            ButtonTagName="button" 
+                                            class="btn dropdown-item" >
+                                                <div onClick='$("#new-option-dropdown-toggle").dropdown("toggle");'>Start Game</div>
+                                            </dot:Button>
+                                            <dot:Button 
+                                            Click="{command: _root.AppendOptionByCommand("QUIT_GAME")}" 
+                                            ButtonTagName="button" 
+                                            class="btn dropdown-item" >
+                                                <div onClick='$("#new-option-dropdown-toggle").dropdown("toggle");'>Quit Game</div>
+                                            </dot:Button>
+                                            <dot:Button 
+                                            Click="{command: _root.AppendOptionByCommand("NEXT_PAGE")}" 
+                                            ButtonTagName="button" 
+                                            class="btn dropdown-item" >
+                                                <div onClick='$("#new-option-dropdown-toggle").dropdown("toggle");'>Next Page</div>
+                                            </dot:Button>
+                                            <dot:Button 
+                                            Click="{command: _root.AppendOptionByCommand("PREVIOUS_PAGE")}" 
+                                            ButtonTagName="button" 
+                                            class="btn dropdown-item" >
+                                                <div onClick='$("#new-option-dropdown-toggle").dropdown("toggle");'>Previous Page</div>
+                                            </dot:Button>
+                                            <dot:Button 
+                                            Click="{command: _root.AppendOptionByCommand("GOTO_PAGE")}" 
+                                            ButtonTagName="button" 
+                                            class="btn dropdown-item" >
+                                                <div onClick='$("#new-option-dropdown-toggle").dropdown("toggle");'>Go to Page</div>
+                                            </dot:Button>
+                                        </div>
+                                </div>
+                                <dot:Button ButtonTagName="button" class="btn" Click={command: _root.AppendOptionByCommand()}>
+                                    <img src="~/res/bootstrap-icons/plus-square.svg" alt="Append" />
+                                </dot:Button>
+                            </div>
+                            
                     </div>
                     <div class="row">
                         <div class="col-sm">

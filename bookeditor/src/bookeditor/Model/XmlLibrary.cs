@@ -37,7 +37,19 @@ public class XmlLibrary
         }
     }
 
-    public string[]? Commands { get; internal set; }
+    public CommandTemplate[]? CommandTemplates => 
+    [
+        new CommandTemplate { Name = "Start Game", Slug = "d6c87096-e90c-4ccc-b568-2922b3601397" , Factory = () => new Option { Command = "START_GAME", Key="s", Label="Start game" } },
+        new CommandTemplate { Name = "Quit Game", Slug = "8d4b8346-2b2f-4b33-90f4-dc282477bdfe", Factory = () => new Option { Command = "QUIT_GAME", Key="q", Label="Quit game" }},
+        new CommandTemplate { Name = "Next Page", Slug = "ea55b045-2e64-45b8-a1df-f619ab100e86", Factory = () => new Option { Command = "NEXT_PAGE", Key="n", Label="Next page" }},
+        new CommandTemplate { Name = "Previous Page", Slug = "b7c928ff-e97e-4669-a4c7-65f41c291b05", Factory = () => new Option { Command = "PREVIOUS_PAGE", Key="p", Label="Previous page" }},
+        new CommandTemplate { Name = "Go to Page", Slug = "9924c2ae-e716-4075-91e7-56acd24d9a72", Factory = () => new Option 
+            { 
+                Command = "GOTO_PAGE", Key="g", 
+                Label="Go to page",
+                Arguments = [ new OptionArgument { Key = "page", Value = "1" } ]
+            }}
+    ];
 
     private Book[]? GetBooks()
     {
@@ -161,4 +173,11 @@ public class XmlLibrary
         }        
         doc.Save(libPath);
     }
+}
+
+public class CommandTemplate
+{
+    public string? Name { get; set; }
+    public string? Slug { get; set; }
+    public Func<Option>? Factory { get; set; }
 }

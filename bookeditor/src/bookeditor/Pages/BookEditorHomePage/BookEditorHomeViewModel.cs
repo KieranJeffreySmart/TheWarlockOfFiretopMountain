@@ -13,6 +13,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     private readonly EditorStateCache stateCache;
 
+
     public BookEditorHomeViewModel(XmlLibrary library, EditorStateCache stateCache)
     {
         this.library = library;
@@ -28,7 +29,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     public Option? SelectedOption { get; set; }
     public bool IsSaveEnabled { get; private set; } = false;
-
+    
     private void SetStateFromCache()
     {
         if (this.stateCache.CurrentState != null)
@@ -240,7 +241,7 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         this.SelectedPage.Story.Blocks = [.. blockList];
     }
 
-    public void AppendOptionByCommand(string command)
+    public void AppendOptionByCommand(string? command = null)
     {
         if (this.SelectedBook == null || this.SelectedPage == null)
             // [rgR] should implement custom exceptions
@@ -250,9 +251,51 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
         
         var length = this.SelectedPage.Options.Length;
         var newOptionss = new Option[length+1];
-
         this.SelectedPage.Options.CopyTo(newOptionss, 0);
         this.SelectedPage.Options = newOptionss;
+
+        if (string.IsNullOrWhiteSpace(command))
+        {
+            this.SelectedPage.Options[length] = new Option();
+            return;
+        }
+
+        if (command == "START_GAME")
+        {
+            this.SelectedPage.Options[length] = new Option { Command = command, Key="s", Label="Start game" };
+            return;
+        }
+
+        if (command == "QUIT_GAME")
+        {
+            this.SelectedPage.Options[length] = new Option { Command = command, Key="q", Label="Quit game" };
+            return;
+        }
+        
+        if (command == "NEXT_PAGE")
+        {
+            this.SelectedPage.Options[length] = new Option { Command = command, Key="n", Label="Next page" };
+            return;
+        }
+        
+        if (command == "PREVIOUS_PAGE")
+        {
+            this.SelectedPage.Options[length] = new Option { Command = command, Key="p", Label="Previous page" };
+            return;
+        }
+        
+        if (command == "GOTO_PAGE")
+        {
+            this.SelectedPage.Options[length] = new Option 
+            { 
+                Command = command, Key="g", 
+                Label="Go to page",
+                Arguments = [ new OptionArgument { Key = "page", Value = "1" } ]
+            };
+
+            return;
+        }
+
         this.SelectedPage.Options[length] = new Option { Command = command, Key="", Label=command };
     }
 

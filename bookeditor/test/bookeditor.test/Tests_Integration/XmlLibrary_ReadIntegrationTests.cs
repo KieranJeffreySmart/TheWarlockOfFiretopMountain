@@ -45,7 +45,7 @@ public class XmlLibrary_ReadIntegrationTests
     {
         // given I have a library on file in a new folder
         var libraryName = "Warlock_of_Firetop_Mountain";
-        var library = new XmlLibrary("../../../TestData/OpenAllFiles", [libraryName]);
+        var library = new XmlLibrary("../../../", [libraryName]);
 
 
         // when I get books
@@ -133,7 +133,7 @@ public class XmlLibrary_ReadIntegrationTests
         // when I get all books
         Assert.NotNull(library.Books);
         // then I should be receive the expected number of books
-        Assert.Equal(17, library.Books.Length);        
+        Assert.Equal(18, library.Books.Length);        
     }
 
     
@@ -149,6 +149,6 @@ public class XmlLibrary_ReadIntegrationTests
         var books = library.Books;
         Assert.NotNull(books);
         // then I should be receive the expected number of books
-        Assert.Equal(17, books.Length);
+        Assert.Equal(18, books.Length);
     }
 }

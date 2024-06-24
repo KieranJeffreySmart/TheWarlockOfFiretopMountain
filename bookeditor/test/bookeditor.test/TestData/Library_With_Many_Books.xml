@@ -1,0 +1,33 @@
+<library>
+	<book>
+		<title>Empty book</title>
+		<slug>db81995d-556e-4b1b-82f2-dcb3af61823e</slug>
+	</book>
+	<book>
+		<title>Empty page book</title>
+		<page>
+		</page>
+		<slug>45e8d154-9a23-4948-93b3-0336c4a87727</slug>
+	</book>
+	<book>
+		<title>Single page book</title>
+		<page>
+			<type>Intro</type>
+			<index>1</index>
+			<slug>be4d77da-bdf5-4837-af15-0c07ae2a6f4f</slug>
+		</page>
+		<slug>fffd272b-21b5-4ec0-911e-cfe724bc29e6</slug>
+	</book>
+	<book>
+		<title>Another Empty Book</title>
+		<slug>db81995d-556e-4b1b-82f2-dcb3af61823e</slug>
+	</book>
+	<book>
+		<title>Again! An Empty book</title>
+		<slug>db81995d-556e-4b1b-82f2-dcb3af61823e</slug>
+	</book>
+	<book>
+		<title>Ok, The Last Empty book</title>
+		<slug>db81995d-556e-4b1b-82f2-dcb3af61823e</slug>
+	</book>
+</library>

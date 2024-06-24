@@ -6,11 +6,12 @@ namespace bookeditor.test;
 public class OptionDetailUpdate_Tests
 {
     [Fact]
-    public void ChangeKeyProperty() 
+    [CreateRemoveFileBeforeAfter("../../../TestData/ChangeOptionKey.xml", "../../../TestData/Books_With_Options.xml")]
+    public void ChangeOptionKey() 
     {
         // given I have a library
         var rootPath = "../../../TestData";
-        var defaultLibrary = "AppendAnEmptyOption";
+        var defaultLibrary = "ChangeOptionKey";
         BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with a single option
@@ -25,7 +26,7 @@ public class OptionDetailUpdate_Tests
         Assert.NotNull(homePage.SelectedPage.Options);
         Assert.Single(homePage.SelectedPage.Options); 
         var option1 = homePage.SelectedPage.Options.First();
-        Assert.Equal("QUIT_GAME", option1.Command);    
+        Assert.Equal("QUIT_GAME", option1.Command);
 
         homePage.SelectOption(option1);
         Assert.NotNull(homePage.SelectedOption);
@@ -34,7 +35,7 @@ public class OptionDetailUpdate_Tests
         homePage.SelectedOption.Key = "x";
         homePage.ApplyChanges();
 
-        // the the new key is displayed 
+        // the new key is displayed 
         
     }
 }

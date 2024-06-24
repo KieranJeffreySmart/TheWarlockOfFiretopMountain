@@ -14,7 +14,6 @@ public class PageStoryUpdate_Tests
         var defaultLibrary = "ChangeStoryBlockdBook";
         var homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
         Assert.NotNull(homePage);
-
         
         // given I have opened a book with a story text bloxk
         var bookSlug = "596d5e6a-3cfb-41af-b855-8bafa5a632f3";
@@ -31,6 +30,7 @@ public class PageStoryUpdate_Tests
 
         // when I change the story
         block.StringValue = "new test value";
+        homePage.ApplyChanges();
 
         // when I save to file
         homePage.SaveToFile();
@@ -73,6 +73,7 @@ public class PageStoryUpdate_Tests
 
         // when I change the scene
         block.StringValue = "new test value";
+        homePage.ApplyChanges();
 
         // when I save to file
         homePage.SaveToFile();

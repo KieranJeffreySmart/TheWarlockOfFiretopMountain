@@ -44,7 +44,7 @@ public class BookEditorHomePage_LandingTests
     public void OpenningHomePageWithManyBooks()
     {
         // Given I have a library
-        string[] libraryNames = ["Warlock_Of_Firetop_Mountain", "Books_With_Pages"];
+        string[] libraryNames = ["Warlock_Of_Firetop_Mountain", "Library_With_Many_Books"];
         var library = new XmlLibrary("../../../TestData", libraryNames);
 
         // when I open the home page
@@ -53,7 +53,7 @@ public class BookEditorHomePage_LandingTests
         // then a book selector is displayed with 1 book
         Assert.NotNull(homePage);
         Assert.NotNull(homePage.Books);
-        Assert.Equal(8, homePage.Books.Count());
+        Assert.Equal(7, homePage.Books.Length);
         
     }
     

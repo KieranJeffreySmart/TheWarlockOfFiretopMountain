@@ -2,7 +2,9 @@ using bookeditor.ViewModels;
 
 namespace bookeditor.test;
 
-public class ListPages_ViewModelTests
+using Arrange = bookeditor.test.ViewModelArrangement;
+
+public class ViewPagesList_ViewModelTests
 {
     [Theory]
     [InlineData("Single Intro book", 1, new[] {"Intro Page 1"})]
@@ -15,16 +17,14 @@ public class ListPages_ViewModelTests
     {
         // Given I have a library
         var libraryName = "Books_With_Pages";
-        var library = new XmlLibrary("../../../TestData", [libraryName]);
+        var viewModel = Arrange.CreateHomePageVM("../../../TestData", [libraryName]);
 
         // When I open the book
-        var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
         Assert.NotNull(viewModel.Books);
         Assert.NotEmpty(viewModel.Books);
         viewModel.SelectBook(viewModel.Books.First(b => b.Title == testBook));
-        
-        
+
         // then the title is displayed
         Assert.NotNull(viewModel.SelectedBook);
         Assert.Equal(testBook, viewModel.SelectedBook.Title);
@@ -40,7 +40,6 @@ public class ListPages_ViewModelTests
         var libraryName = "Warlock_of_Firetop_Mountain";
         var library = new XmlLibrary("../../../TestData", [libraryName]);
 
-
         // Given the library has a book with a lot of pages
         string testBook = "Warlock of Firetop Mountain";
         int pageCount = 403;
@@ -49,8 +48,7 @@ public class ListPages_ViewModelTests
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
         Assert.NotNull(viewModel.Books);
-        viewModel.SelectBook(viewModel.Books.First(b => b.Title == testBook));
-        
+        viewModel.SelectBook(viewModel.Books.First(b => b.Title == testBook));        
         
         // then the title is displayed
         Assert.NotNull(viewModel.SelectedBook);
@@ -58,33 +56,5 @@ public class ListPages_ViewModelTests
 
         // then a page count is displyed
         Assert.Equal(pageCount, viewModel.SelectedBook.Pages.Length);
-    }
-    
-    [Theory]
-    [InlineData("Next and Back book")]
-    // [InlineData("Single Goto book")]
-    // [InlineData("Many Gotos book")]
-    // [InlineData("Luck Test book")]
-    // [InlineData("Skill Test book")]
-    // [InlineData("Single Monster Fight book")]
-    // [InlineData("Many Same Monster Fight book")]
-    // [InlineData("Many Different Monster Fight book")]
-    public void DisplaySomeOptions(string testBook)
-    {
-        // Given I have a library
-        var libraryName = "Books_With_Options";
-        var library = new XmlLibrary("../../../TestData", [libraryName]);
-
-
-        // Given the library has a book with next and back
-
-        // When I open the book        
-        var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
-        Assert.NotNull(viewModel);
-        Assert.NotNull(viewModel.Books);
-
-        // Then the number of options for each page should be displayed
-
-        // Then I am informed the book is open and the number of pages
     }
 }

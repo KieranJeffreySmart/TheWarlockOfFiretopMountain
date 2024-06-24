@@ -25,7 +25,7 @@ public static class ViewModelArrangement
         homePage.SelectPage(pagedto);
     }
 
-    public static BookEditorHomeViewModel CreateLibrary(string rootPath, string[] libraryNames, string defaultLibrary = "New_Test_Library")
+    public static BookEditorHomeViewModel CreateHomePageVM(string rootPath, string[] libraryNames, string defaultLibrary = "New_Test_Library")
     {
         var library = new XmlLibrary(rootPath, libraryNames)
         {

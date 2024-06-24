@@ -4,7 +4,7 @@ using Arrange = bookeditor.test.ViewModelArrangement;
 
 namespace bookeditor.test;
 
-public class OptionList_Tests
+public class UpdateOptionsList_Tests
 {
     [Fact]
     [CreateRemoveFileBeforeAfter("../../../TestData/AppendOptionToPageWithNoOptions.xml", "../../../TestData/Books_With_Options.xml")]
@@ -13,7 +13,7 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendOptionToPageWithNoOptions";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
@@ -43,7 +43,7 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendOptionToPageWithSingleOption";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with a single option
         var  bookSlug = "961dc709-f38a-48d8-97b9-a89deb964ef1";
@@ -78,7 +78,7 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendQuitOptionToPageWithManyOptions";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with many options
         var  bookSlug = "a7ea18f6-a18b-4626-af9e-543d5227e6e8";
@@ -121,7 +121,7 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveOptionFromPageWithSingleOption";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with a single option
         var  bookSlug = "961dc709-f38a-48d8-97b9-a89deb964ef1";
@@ -152,7 +152,7 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveOptionFromPageWithManyOptions";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with many options
         var  bookSlug = "a7ea18f6-a18b-4626-af9e-543d5227e6e8";
@@ -191,7 +191,7 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveOptionFromPageWithIndexOutOfBounds";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with many options
         var bookSlug = "a7ea18f6-a18b-4626-af9e-543d5227e6e8";
@@ -226,7 +226,7 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveSelectedOptionFromPage";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with many options
         var bookSlug = "a7ea18f6-a18b-4626-af9e-543d5227e6e8";
@@ -271,7 +271,7 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveSelectedOptionFromPageWithNoOptionSelected";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with many options
         var bookSlug = "a7ea18f6-a18b-4626-af9e-543d5227e6e8";

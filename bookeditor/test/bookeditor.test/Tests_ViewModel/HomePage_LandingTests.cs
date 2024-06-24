@@ -2,7 +2,7 @@ using bookeditor.ViewModels;
 
 namespace bookeditor.test;
 
-public class BookEditorHomePage_LandingTests
+public class HomePage_LandingTests
 {
     [Fact]
     public void OpenningHomePageWithNoBooks()

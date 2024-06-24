@@ -4,7 +4,7 @@ namespace bookeditor.test;
 
 using Arrange = bookeditor.test.ViewModelArrangement;
 
-public class OptionListOptionType_Tests
+public class UpdateOptionsListByTemplate_Tests
 {
     [Fact]
     [CreateRemoveFileBeforeAfter("../../../TestData/AppendAnEmptyOption.xml", "../../../TestData/Books_With_Options.xml")]
@@ -13,7 +13,7 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendAnEmptyOption";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
@@ -53,7 +53,7 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendAnUnknownOption";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
@@ -93,7 +93,7 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendAStartOption";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
@@ -134,7 +134,7 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendQuitOption";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
@@ -175,7 +175,7 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendNextPageOption";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
@@ -216,7 +216,7 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendPreviousPageOption";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
@@ -257,7 +257,7 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendGotoOption";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";

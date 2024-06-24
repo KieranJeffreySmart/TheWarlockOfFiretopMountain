@@ -3,7 +3,7 @@ using bookeditor.ViewModels;
 namespace bookeditor.test;
 
 using Arrange = bookeditor.test.ViewModelArrangement;
-public class PageStoryUpdate_Tests
+public class UpdatePageStory_Tests
 {    
     [Fact]
     [CreateRemoveFileBeforeAfter("../../../TestData/ChangeStoryBlockdBook.xml", "../../../TestData/Books_With_Stories.xml")]
@@ -12,7 +12,7 @@ public class PageStoryUpdate_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "ChangeStoryBlockdBook";
-        var homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        var homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         Assert.NotNull(homePage);
         
         // given I have opened a book with a story text bloxk
@@ -36,7 +36,7 @@ public class PageStoryUpdate_Tests
         homePage.SaveToFile();
 
         // when I re-open the app
-        homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         Assert.NotNull(homePage);
         Arrange.OpenPage(homePage, bookSlug);
         page = homePage.SelectedPage;
@@ -55,7 +55,7 @@ public class PageStoryUpdate_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "ChangeSceneBlockdBook";
-        var homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        var homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         Assert.NotNull(homePage);
         
         // given I have a book with a single scene block
@@ -79,7 +79,7 @@ public class PageStoryUpdate_Tests
         homePage.SaveToFile();
 
         // when I re-open the app
-        homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         Assert.NotNull(homePage);
         Arrange.OpenPage(homePage, bookSlug);
 

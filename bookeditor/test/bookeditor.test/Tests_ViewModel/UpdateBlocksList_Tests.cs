@@ -4,7 +4,7 @@ namespace bookeditor.test;
 
 using Arrange = bookeditor.test.ViewModelArrangement;
 
-public class BlockList_Tests
+public class UpdateBlocksList_Tests
 {
     [Fact]
     [CreateRemoveFileBeforeAfter("../../../TestData/AppendBlockToEmptyScene.xml", "../../../TestData/Books_With_Scenes.xml")]
@@ -13,7 +13,7 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendBlockToEmptyScene";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with no scene
         var bookSlug = "84723c01-b0f9-44a9-87b5-91beb090acaf";
@@ -45,7 +45,7 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendSceneBlock";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with a scene that has a block
         var  bookSlug = "2e1f4ebf-b60b-4a10-ba0e-d751514c3841";
@@ -86,7 +86,7 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendToEmptyStoryBlock";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with no story
         var  bookSlug = "0f19667e-283e-46df-b458-df77cdefc4bb";
@@ -117,7 +117,7 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendStoryBlock";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with a story that has a block
         var  bookSlug = "596d5e6a-3cfb-41af-b855-8bafa5a632f3";
@@ -156,7 +156,7 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "InsertBlockToEmptyStory";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with no story
         var  bookSlug = "0f19667e-283e-46df-b458-df77cdefc4bb";
@@ -187,7 +187,7 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "InsertStoryBlock";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with a story with many blocks
         var  bookSlug = "61814cd5-54f0-42ca-9e82-2195cd314abd";
@@ -245,7 +245,7 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "InsertStoryBlockWithIndexOutOfRange";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with a story with many blocks
         var  bookSlug = "61814cd5-54f0-42ca-9e82-2195cd314abd";
@@ -303,7 +303,7 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "InsertBlockToEmptyScene";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with no scene
         var  bookSlug = "84723c01-b0f9-44a9-87b5-91beb090acaf";
@@ -334,7 +334,7 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "InsertSceneBlock";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with a scene with many blocks
         var  bookSlug = "156c2c19-abc8-4857-abb0-187c74c2d7f4";
@@ -392,7 +392,7 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "InsertSceneBlock";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book with a scene with many blocks
         var  bookSlug = "156c2c19-abc8-4857-abb0-187c74c2d7f4";
@@ -450,7 +450,7 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveStoryBlock";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         Assert.NotNull(homePage);
 
         // given I have opened a book with a story with many blocks
@@ -501,7 +501,7 @@ public class BlockList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveSceneBlock";
-        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         Assert.NotNull(homePage);
 
         // given I have opened a book with a scene with many blocks

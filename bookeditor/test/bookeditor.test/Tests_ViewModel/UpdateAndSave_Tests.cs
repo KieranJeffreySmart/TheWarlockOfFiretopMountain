@@ -4,7 +4,7 @@ namespace bookeditor.test;
 
 using Arrange = bookeditor.test.ViewModelArrangement;
 
-public class EditBookAndSave_Tests
+public class UpdateAndSave_Tests
 {
     [Fact]
     [CreateRemoveFileBeforeAfter("../../../TestData/SaveChangesToSinglePage.xml", "../../../TestData/Books_With_Pages.xml")]
@@ -13,7 +13,7 @@ public class EditBookAndSave_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "SaveChangesToSinglePage";
-        var homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        var homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         Assert.NotNull(homePage);
         
         // given I have opened a book with a page
@@ -99,7 +99,7 @@ public class EditBookAndSave_Tests
         homePage.SaveToFile();
 
         // when I re-open the app
-        homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
 
         Arrange.OpenPage(homePage, bookSlug, p => p.Slug == pageSlug);
         Assert.NotNull(homePage);
@@ -185,7 +185,7 @@ public class EditBookAndSave_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "SaveChangesToSinglePage";
-        var homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        var homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         Assert.NotNull(homePage);
         
         // given I have opened a book with a page
@@ -301,7 +301,7 @@ public class EditBookAndSave_Tests
         homePage.SaveToFile();
 
         // when I re-open the app
-        homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        homePage = Arrange.CreateHomePageVM(rootPath, [defaultLibrary], defaultLibrary);
         Arrange.OpenPage(homePage, bookSlug, p => p.Slug == pageSlug);
         Assert.NotNull(homePage);
         Assert.NotNull(homePage.SelectedBook);

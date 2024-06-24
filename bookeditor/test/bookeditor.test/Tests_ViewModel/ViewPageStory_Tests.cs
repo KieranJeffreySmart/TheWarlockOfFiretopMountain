@@ -26,8 +26,7 @@ public class ViewPageStory_Tests
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
         Assert.NotNull(viewModel.Books);
-        viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedBook();
+        viewModel.SelectBook(viewModel.Books.First(b => b.Title == testBook));
         
         // Then there should be pages displayed
         Assert.NotNull(viewModel.SelectedBook);
@@ -35,8 +34,8 @@ public class ViewPageStory_Tests
         Assert.NotEmpty(viewModel.SelectedBook.Pages);
 
         // When the page is selected
-        viewModel.SelectedPage = viewModel.SelectedBook.Pages[0];
-        viewModel.UpdateSelectedPage();
+        viewModel.SelectPage(viewModel.SelectedBook.Pages[0]);
+        
 
         // then the story text is displayed
         Assert.NotNull(viewModel.SelectedPage);
@@ -80,8 +79,7 @@ public class ViewPageStory_Tests
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
         Assert.NotNull(viewModel.Books);
-        viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedBook();
+        viewModel.SelectBook(viewModel.Books.First(b => b.Title == testBook));
         
         // Then there should be pages displayed
         Assert.NotNull(viewModel.SelectedBook);
@@ -89,8 +87,8 @@ public class ViewPageStory_Tests
         Assert.NotEmpty(viewModel.SelectedBook.Pages);
 
         // When the page is selected
-        viewModel.SelectedPage = viewModel.SelectedBook.Pages[0];
-        viewModel.UpdateSelectedPage();
+        viewModel.SelectPage(viewModel.SelectedBook.Pages[0]);
+        
 
         // then the scene text is displayed
         Assert.NotNull(viewModel.SelectedPage);

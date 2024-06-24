@@ -116,8 +116,8 @@ few yards you arrive at a junction. Will you turn
 west or east?
 			</block>
 		</story>
-		<option key="w" command="GOTO_GAME_PAGE"><arg><key>page</key><value>71</value></arg><label>West</label></option>
-		<option key="e" command="GOTO_GAME_PAGE"><arg><key>page</key><value>278</value></arg><label>East</label></option>
+		<option key="w" command="GOTO_PAGE"><arg><key>page</key><value>71</value></arg><label>West</label></option>
+		<option key="e" command="GOTO_PAGE"><arg><key>page</key><value>278</value></arg><label>East</label></option>
 	</page>
 		<page>
 		<type>Game</type>
@@ -136,7 +136,7 @@ you escape without attracting
 the Ogre's attention
 					</block>
 				</story>
-				<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>269</value></arg><label>Continue</label></option>
+				<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>269</value></arg><label>Continue</label></option>
 			</pass>
 			<fail>
 				<story>
@@ -146,7 +146,7 @@ the Ogre's attention
 						sword in case the Ogre has heard it
 					</block>
 				</story>
-				<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>16</value></arg><label>Continue</label></option>
+				<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>16</value></arg><label>Continue</label></option>
 			</fail>
 		</option>
 	</page>
@@ -166,8 +166,8 @@ protestations. Do you pay him the 3 Gold Pieces
 or threaten him?
 			</block>
 		</story>
-		<option key="p" command="GOTO_GAME_PAGE"><arg><key>page</key><value>272</value></arg><label>Pay</label></option>
-		<option key="t" command="GOTO_GAME_PAGE"><arg><key>page</key><value>127</value></arg><label>Threaten</label></option>
+		<option key="p" command="GOTO_PAGE"><arg><key>page</key><value>272</value></arg><label>Pay</label></option>
+		<option key="t" command="GOTO_PAGE"><arg><key>page</key><value>127</value></arg><label>Threaten</label></option>
 	</page>
 		<page>
 		<type>Game</type>
@@ -180,8 +180,8 @@ the south, the passageway also turns east.
 Do you go north or south?.
 			</block>
 		</story>
-		<option key="n" command="GOTO_GAME_PAGE"><arg><key>page</key><value>46</value></arg><label>North</label></option>
-		<option key="s" command="GOTO_GAME_PAGE"><arg><key>page</key><value>332</value></arg><label>South</label></option>
+		<option key="n" command="GOTO_PAGE"><arg><key>page</key><value>46</value></arg><label>North</label></option>
+		<option key="s" command="GOTO_PAGE"><arg><key>page</key><value>332</value></arg><label>South</label></option>
 	</page>
 		<page>
 		<type>Game</type>
@@ -195,8 +195,8 @@ the door and go in or will you continue
 northwards?
 			</block>
 		</story>
-		<option key="k" command="GOTO_GAME_PAGE"><arg><key>page</key><value>97</value></arg><label>Knock</label></option>
-		<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>292</value></arg><label>Continue</label></option>
+		<option key="k" command="GOTO_PAGE"><arg><key>page</key><value>97</value></arg><label>Knock</label></option>
+		<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>292</value></arg><label>Continue</label></option>
 	</page>
 		<page>
 		<type>Game</type>
@@ -210,7 +210,7 @@ passed in the east-west passageway some way
 back.
 			</block>
 		</story>
-		<option key="r" command="GOTO_GAME_PAGE"><arg><key>page</key><value>89</value></arg><label>Return to east-west passage</label></option>
+		<option key="r" command="GOTO_PAGE"><arg><key>page</key><value>89</value></arg><label>Return to east-west passage</label></option>
 	</page>
 		<page>
 		<type>Game</type>
@@ -221,7 +221,7 @@ You are on the north bank of a fast-flowing river in a
 large underground cavern.
 			</block>
 		</story>
-		<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>214</value></arg><label>Continue</label></option>
+		<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>214</value></arg><label>Continue</label></option>
 	</page>
 		<page>
 		<type>Game</type>
@@ -252,7 +252,7 @@ which you may Escape during the battle.
 Congratulations you defeated the Barbarian
 					</block>
 				</story>
-				<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>273</value></arg><label>Continue</label></option>
+				<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>273</value></arg><label>Continue</label></option>
 			</win>
 			<loose>
 				<story>
@@ -265,7 +265,7 @@ Sorry you were defeated in battle and died!
 				</option>
 			</loose>
 		</option>
-		<option key="e" command="GOTO_GAME_PAGE"><arg><key>page</key><value>189</value></arg><label>Escape</label></option>
+		<option key="e" command="GOTO_PAGE"><arg><key>page</key><value>189</value></arg><label>Escape</label></option>
 	</page>
 
 		<page>
@@ -284,8 +284,8 @@ You hear a noise from behind the north door and
 realize you will have to hurry!
 			</block>
 		</story>
-		<option key="t" command="GOTO_GAME_PAGE"><arg><key>page</key><value>34</value></arg><label>Tools</label></option>
-		<option key="d" command="GOTO_GAME_PAGE"><arg><key>page</key><value>322</value></arg><label>Draws</label></option>
+		<option key="t" command="GOTO_PAGE"><arg><key>page</key><value>34</value></arg><label>Tools</label></option>
+		<option key="d" command="GOTO_PAGE"><arg><key>page</key><value>322</value></arg><label>Draws</label></option>
 	</page>
 
 		<page>
@@ -297,7 +297,7 @@ You arrive back at the junction and turn north-
 wards.
 			</block>
 		</story>
-		<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>77</value></arg><label>Continue</label></option>
+		<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>77</value></arg><label>Continue</label></option>
 	</page>
 
 		<page>
@@ -336,8 +336,8 @@ crossroads where you may go either northwards or
 southwards.
 			</block>
 		</story>
-		<option key="n" command="GOTO_GAME_PAGE"><arg><key>page</key><value>366</value></arg><label>North</label></option>
-		<option key="s" command="GOTO_GAME_PAGE"><arg><key>page</key><value>250</value></arg><label>South</label></option>
+		<option key="n" command="GOTO_PAGE"><arg><key>page</key><value>366</value></arg><label>North</label></option>
+		<option key="s" command="GOTO_PAGE"><arg><key>page</key><value>250</value></arg><label>South</label></option>
 	</page>
 
 	<page>
@@ -429,7 +429,7 @@ hears you and prepares to attack
 						You have prevailed
 					</block>
 				</story>
-				<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>50</value></arg><label>Continue</label></option>
+				<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>50</value></arg><label>Continue</label></option>
 			</win>
 			<escape>
 				<story>
@@ -437,7 +437,7 @@ hears you and prepares to attack
 						You have escaped down the passage
 					</block>
 				</story>
-				<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>269</value></arg><label>Continue</label></option>
+				<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>269</value></arg><label>Continue</label></option>
 			</escape>
 			<defeat>
 				<story>
@@ -445,7 +445,7 @@ hears you and prepares to attack
 						You were defeated
 					</block>
 				</story>
-				<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>401</value></arg><label>Continue</label></option>
+				<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>401</value></arg><label>Continue</label></option>
 			</defeat>
 		</option>
 	</page>
@@ -1362,7 +1362,7 @@ post. You try to tip-toe past him. Test your Luck.
 he does not wake up and remains snoring loudly
 					</block>
 				</story>
-				<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>269</value></arg><label>Continue</label></option>
+				<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>269</value></arg><label>Continue</label></option>
 			</pass>
 			<fail>
 				<story>
@@ -1371,7 +1371,7 @@ you step with a crunch on some loose ground
 and his eyes flick open
 					</block>
 				</story>
-				<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>16</value></arg><label>Continue</label></option>
+				<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>16</value></arg><label>Continue</label></option>
 			</fail>
 		</option>
 	</page>
@@ -1718,7 +1718,7 @@ look left to see the cave entrance in the dim distance
 but walk straight on
 			</block>
 		</story>
-		<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>71</value></arg><label>Continue</label></option>
+		<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>71</value></arg><label>Continue</label></option>
 	</page>
 		<page>
 		<type>Game</type>
@@ -1729,7 +1729,7 @@ You arrive back at the junction and this time you
 turn northwards.
 			</block>
 		</story>
-		<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>8</value></arg><label>Continue</label></option>
+		<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>8</value></arg><label>Continue</label></option>
 	</page>
 		<page>
 		<type>Game</type>
@@ -2878,7 +2878,7 @@ Test your skill
 the door breaks open
 					</block>
 				</story>
-				<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>349</value></arg><label>Continue</label></option>
+				<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>349</value></arg><label>Continue</label></option>
 			</pass>
 			<fail>
 				<story>
@@ -2888,7 +2888,7 @@ against trying again.
 Return to the junction.
 					</block>
 				</story>
-				<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>92</value></arg><label>Continue</label></option>
+				<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>92</value></arg><label>Continue</label></option>
 			</fail>
 		</option>
 	</page>
@@ -5017,8 +5017,8 @@ nothing. Will you try to charge the door down
 or turn around?
 			</block>
 		</story>
-		<option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>156</value></arg><label>Charge the door</label></option>
-		<option key="t" command="GOTO_GAME_PAGE"><arg><key>page</key><value>92</value></arg><label>Turn around</label></option>
+		<option key="c" command="GOTO_PAGE"><arg><key>page</key><value>156</value></arg><label>Charge the door</label></option>
+		<option key="t" command="GOTO_PAGE"><arg><key>page</key><value>92</value></arg><label>Turn around</label></option>
 	</page>
 		<page>
 		<type>Game</type>

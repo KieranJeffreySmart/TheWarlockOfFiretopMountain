@@ -71,12 +71,12 @@ public class BookEditorHomePage_LandingTests
         
         // when I select the first book
         Assert.NotNull(homePage.Books);
-        homePage.SelectedBook = homePage.Books.First();
-        homePage.UpdateSelectedBook();
+        homePage.SelectBook(homePage.Books.First());
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.NotNull(homePage.SelectedBook.Pages);
 
         // when I select the first page
-        homePage.SelectedPage = homePage.SelectedBook.Pages.First();
-        homePage.UpdateSelectedPage();
+        homePage.SelectPage(homePage.SelectedBook.Pages.First());
 
         // then the page selected details are displayed
         Assert.NotNull(homePage.SelectedPage);
@@ -120,12 +120,12 @@ public class BookEditorHomePage_LandingTests
         
         // when I select the first book
         Assert.NotNull(homePage.Books);
-        homePage.SelectedBook = homePage.Books.First();
-        homePage.UpdateSelectedBook();
+        homePage.SelectBook(homePage.Books.First());
+        Assert.NotNull(homePage.SelectedBook);
+        Assert.NotNull(homePage.SelectedBook.Pages);
 
         // when I select the first page
-        homePage.SelectedPage = homePage.SelectedBook.Pages.First();
-        homePage.UpdateSelectedPage();
+        homePage.SelectPage(homePage.SelectedBook.Pages.First());
 
         // then the page selected details are displayed
         Assert.NotNull(homePage.SelectedPage);
@@ -139,8 +139,7 @@ public class BookEditorHomePage_LandingTests
         
         // when I select the last book
         Assert.NotNull(homePage.Books);
-        homePage.SelectedBook = homePage.Books.Last();
-        homePage.UpdateSelectedBook();
+        homePage.SelectBook(homePage.Books.Last());
 
         // when I refresh the page
         homePage = new(library, cache);

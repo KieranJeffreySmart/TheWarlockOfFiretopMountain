@@ -73,7 +73,7 @@
             <story>
                 <block type="text">Page 1</block>
             </story>
-            <option key="g" command="GOTO_GAME_PAGE" page="3">
+            <option key="g" command="GOTO_PAGE" page="3">
                 <arg><key>page</key><value>3</value></arg>
                 <label>Go to Page 3</label>
                 </option>
@@ -84,11 +84,11 @@
             <story>
                 <block type="text">Page 2</block>
             </story>
-            <option key="g" command="GOTO_GAME_PAGE" page="1">
+            <option key="g" command="GOTO_PAGE" page="1">
                 <arg><key>page</key><value>1</value></arg>
                 <label>Go to Page 1</label>
             </option>
-            <option key="g" command="GOTO_GAME_PAGE" page="3">
+            <option key="g" command="GOTO_PAGE" page="3">
                 <arg><key>page</key><value>3</value></arg>
                 <label>Go to Page 3</label>
             </option>
@@ -99,7 +99,7 @@
             <story>
                 <block type="text">Page 3</block>
             </story>
-            <option key="g" command="GOTO_GAME_PAGE" page="2">
+            <option key="g" command="GOTO_PAGE" page="2">
                 <arg><key>page</key><value>2</value></arg>
                 <label>Go to Page 2</label>
             </option>
@@ -121,7 +121,7 @@
             <story>
                 <block type="text">Page 2</block>
             </story>
-            <option key="g" command="GOTO_GAME_PAGE" page="1">
+            <option key="g" command="GOTO_PAGE" page="1">
                 <arg><key>page</key><value>1</value></arg>
                 <label>Go to Page 1</label>
             </option>
@@ -134,7 +134,7 @@
             <story>
                 <block type="text">Page 3</block>
             </story>
-            <option key="g" command="GOTO_GAME_PAGE" page="2">
+            <option key="g" command="GOTO_PAGE" page="2">
                 <arg><key>page</key><value>2</value></arg>
                 <label>Go to Page 2</label>
             </option>
@@ -160,14 +160,14 @@
                     <story>
                         <block type="text">You have prevailed</block>
                     </story>
-                    <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>2</value></arg><label>Continue</label></option>
+                    <option key="c" command="GOTO_PAGE"><arg><key>page</key><value>2</value></arg><label>Continue</label></option>
                 </outcome>
                 <outcome>
                     <type>ESCAPE</type>
                     <story>
                         <block type="text">You have escaped down the passage</block>
                     </story>
-                    <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>4</value></arg><label>Continue</label></option>
+                    <option key="c" command="GOTO_PAGE"><arg><key>page</key><value>4</value></arg><label>Continue</label></option>
                 </outcome>
                 <outcome>
                     <type>DEFEAT</type>
@@ -176,7 +176,7 @@
                             You were defeated
                         </block>
                     </story>
-                    <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>3</value></arg><label>Continue</label></option>
+                    <option key="c" command="GOTO_PAGE"><arg><key>page</key><value>3</value></arg><label>Continue</label></option>
                 </outcome>
             </option>
         </page>
@@ -221,7 +221,7 @@ you escape without attracting
 the Ogre's attention
                         </block>
                     </story>
-                    <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>1</value></arg><label>Continue</label></option>
+                    <option key="c" command="GOTO_PAGE"><arg><key>page</key><value>1</value></arg><label>Continue</label></option>
                 </outcome>
                 <outcome>
                     <type>FAIL</type>
@@ -232,7 +232,7 @@ skidding across the cavern floor. You draw your
 sword in case the Ogre has heard it
                         </block>
                     </story>
-                    <option key="c" command="GOTO_GAME_PAGE"><arg><key>page</key><value>2</value></arg><label>Continue</label></option>
+                    <option key="c" command="GOTO_PAGE"><arg><key>page</key><value>2</value></arg><label>Continue</label></option>
                 </outcome>
             </option>
         </page>

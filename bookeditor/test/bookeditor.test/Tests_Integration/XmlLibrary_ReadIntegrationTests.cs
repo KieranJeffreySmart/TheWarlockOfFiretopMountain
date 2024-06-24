@@ -75,15 +75,13 @@ public class XmlLibrary_ReadIntegrationTests
     {
         // given I have a library on file
         string[] libraryNames = ["Warlock_of_Firetop_Mountain", "Books_With_Pages", "Empty_Library"];
-        var library = new XmlLibrary("../../../TestData", libraryNames);
+        var library = new XmlLibrary("../../../TestData/OpenAllFiles", libraryNames);
 
         // when I get all books
         Assert.NotNull(library.Books);
         Assert.NotEmpty(library.Books);
 
         // then I should receive all available books:
-
-        Assert.Equal(8, library.Books.Length);
         Assert.NotNull(library.Books.FirstOrDefault(b => b.Title == "Warlock of Firetop Mountain"));
         Assert.NotNull(library.Books.FirstOrDefault(b => b.Title == "Empty book"));
         Assert.NotNull(library.Books.FirstOrDefault(b => b.Title == "Single Intro book"));
@@ -92,6 +90,8 @@ public class XmlLibrary_ReadIntegrationTests
         Assert.NotNull(library.Books.FirstOrDefault(b => b.Title == "Many Intro book"));
         Assert.NotNull(library.Books.FirstOrDefault(b => b.Title == "Many Game book"));
         Assert.NotNull(library.Books.FirstOrDefault(b => b.Title == "Many Game and Intro book"));
+
+        Assert.Equal(8, library.Books.Length);
     }
         
     [Fact]

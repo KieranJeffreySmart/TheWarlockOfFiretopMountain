@@ -22,8 +22,8 @@ public class ViewOptions_Tests
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
         Assert.NotNull(viewModel.Books);
-        viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedBook();
+        viewModel.SelectBook(viewModel.Books.First(b => b.Title == testBook));
+        
         
         // Then there should be pages displayed
         Assert.NotNull(viewModel.SelectedBook);
@@ -31,8 +31,8 @@ public class ViewOptions_Tests
         Assert.NotEmpty(viewModel.SelectedBook.Pages);
 
         // When the page is selected
-        viewModel.SelectedPage = viewModel.SelectedBook.Pages[pageArrayIndex];
-        viewModel.UpdateSelectedPage();
+        viewModel.SelectPage(viewModel.SelectedBook.Pages[pageArrayIndex]);
+        
 
         // then the options are displayed
         Assert.NotNull(viewModel.SelectedPage);
@@ -46,9 +46,9 @@ public class ViewOptions_Tests
     
 
     [Theory]
-    [InlineData("Goto Command", 0, 1, new[] {"g"}, new[] {"Go to Page 3"}, new[] {"GOTO_GAME_PAGE"}, new[] {"page"}, new[] {"3"})]
-    [InlineData("Goto Command", 1, 2, new[] {"g", "g"}, new[] {"Go to Page 1", "Go to Page 3"}, new[] {"GOTO_GAME_PAGE", "GOTO_GAME_PAGE"}, new[] {"page", "page"}, new[] {"1", "3"})]
-    [InlineData("Goto Continue and Back", 1, 3, new[] {"g", "c", "b"}, new[] {"Go to Page 1", "Continue", "Back"}, new[] {"GOTO_GAME_PAGE", "NEXT_PAGE", "PREVIOUS_PAGE"}, new[] {"page"}, new[] {"1"})]
+    [InlineData("Goto Command", 0, 1, new[] {"g"}, new[] {"Go to Page 3"}, new[] {"GOTO_PAGE"}, new[] {"page"}, new[] {"3"})]
+    [InlineData("Goto Command", 1, 2, new[] {"g", "g"}, new[] {"Go to Page 1", "Go to Page 3"}, new[] {"GOTO_PAGE", "GOTO_PAGE"}, new[] {"page", "page"}, new[] {"1", "3"})]
+    [InlineData("Goto Continue and Back", 1, 3, new[] {"g", "c", "b"}, new[] {"Go to Page 1", "Continue", "Back"}, new[] {"GOTO_PAGE", "NEXT_PAGE", "PREVIOUS_PAGE"}, new[] {"page"}, new[] {"1"})]
 
     public void ViewPageOptionsWithArguments(string testBook, int pageArrayIndex, int optionCount, string[] optionsKeys, string[] labels, string[] commands, string[] argNames, string[] argValues)
     {
@@ -60,8 +60,8 @@ public class ViewOptions_Tests
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
         Assert.NotNull(viewModel.Books);
-        viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedBook();
+        viewModel.SelectBook(viewModel.Books.First(b => b.Title == testBook));
+        
         
         // Then there should be pages displayed
         Assert.NotNull(viewModel.SelectedBook);
@@ -69,8 +69,8 @@ public class ViewOptions_Tests
         Assert.NotEmpty(viewModel.SelectedBook.Pages);
 
         // When the page is selected
-        viewModel.SelectedPage = viewModel.SelectedBook.Pages[pageArrayIndex];
-        viewModel.UpdateSelectedPage();
+        viewModel.SelectPage(viewModel.SelectedBook.Pages[pageArrayIndex]);
+        
 
         // then the options are displayed
         Assert.NotNull(viewModel.SelectedPage);
@@ -96,8 +96,8 @@ public class ViewOptions_Tests
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
         Assert.NotNull(viewModel.Books);
-        viewModel.SelectedBook = viewModel.Books.First(b => b.Title == "Stats test");
-        viewModel.UpdateSelectedBook();
+        viewModel.SelectBook(viewModel.Books.First(b => b.Title == "Stats test"));
+        
         
         // Then there should be pages displayed
         Assert.NotNull(viewModel.SelectedBook);
@@ -105,8 +105,8 @@ public class ViewOptions_Tests
         Assert.NotEmpty(viewModel.SelectedBook.Pages);
 
         // When the page is selected
-        viewModel.SelectedPage = viewModel.SelectedBook.Pages[0];
-        viewModel.UpdateSelectedPage();
+        viewModel.SelectPage(viewModel.SelectedBook.Pages[0]);
+        
 
         // then the options are displayed
         Assert.NotNull(viewModel.SelectedPage);
@@ -141,7 +141,7 @@ public class ViewOptions_Tests
         Assert.NotNull(passOutcome.Options.First());
         Assert.Equal("c", passOutcome.Options.First().Key);
         Assert.Equal("Continue", passOutcome.Options.First().Label);
-        Assert.Equal("GOTO_GAME_PAGE", passOutcome.Options.First().Command);
+        Assert.Equal("GOTO_PAGE", passOutcome.Options.First().Command);
         
         var passgotooption = passOutcome.Options.First();
         Assert.NotNull(passgotooption);
@@ -165,7 +165,7 @@ public class ViewOptions_Tests
         Assert.NotNull(failOutcome.Options.First());
         Assert.Equal("c", failOutcome.Options.First().Key);
         Assert.Equal("Continue", failOutcome.Options.First().Label);
-        Assert.Equal("GOTO_GAME_PAGE", failOutcome.Options.First().Command);
+        Assert.Equal("GOTO_PAGE", failOutcome.Options.First().Command);
         
         var failGotoOption = failOutcome.Options.First();
         Assert.NotNull(failGotoOption);

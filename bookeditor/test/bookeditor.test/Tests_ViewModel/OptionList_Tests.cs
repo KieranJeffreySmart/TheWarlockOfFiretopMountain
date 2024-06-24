@@ -1,5 +1,6 @@
 using System.Reflection;
 using bookeditor.ViewModels;
+using Arrange = bookeditor.test.ViewModelArrangement;
 
 namespace bookeditor.test;
 
@@ -12,13 +13,13 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendOptionToPageWithNoOptions";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
         var title = "No options";
 
-        OpenPage(homePage, bookSlug);
+        Arrange.OpenPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
 
@@ -42,13 +43,13 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendOptionToPageWithSingleOption";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with a single option
         var  bookSlug = "961dc709-f38a-48d8-97b9-a89deb964ef1";
         var title = "Quit Command";
 
-        OpenPage(homePage, bookSlug);
+        Arrange.OpenPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
 
@@ -77,21 +78,21 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendQuitOptionToPageWithManyOptions";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with many options
         var  bookSlug = "a7ea18f6-a18b-4626-af9e-543d5227e6e8";
         var pageSlug = "4f5e2e27-3a75-4ebc-8ec9-f4612394fb4c";
         var title = "Goto Continue and Back";
 
-        OpenPage(homePage, bookSlug, p => p.Slug == pageSlug );
+        Arrange.OpenPage(homePage, bookSlug, p => p.Slug == pageSlug );
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
         Assert.NotNull(homePage.SelectedPage);
         Assert.NotNull(homePage.SelectedPage.Options);
         Assert.Equal(3, homePage.SelectedPage.Options.Length);
         var option1 = homePage.SelectedPage.Options[0];
-        Assert.Equal("GOTO_GAME_PAGE", option1.Command);
+        Assert.Equal("GOTO_PAGE", option1.Command);
         var option2 = homePage.SelectedPage.Options[1];
         Assert.Equal("NEXT_PAGE", option2.Command);
         var option3 = homePage.SelectedPage.Options[2];
@@ -104,7 +105,7 @@ public class OptionList_Tests
         Assert.NotNull(homePage.SelectedPage.Options); 
         Assert.Equal(4, homePage.SelectedPage.Options.Length); 
         option1 = homePage.SelectedPage.Options[0];
-        Assert.Equal("GOTO_GAME_PAGE", option1.Command);
+        Assert.Equal("GOTO_PAGE", option1.Command);
         option2 = homePage.SelectedPage.Options[1];
         Assert.Equal("NEXT_PAGE", option2.Command);
         option3 = homePage.SelectedPage.Options[2];
@@ -120,13 +121,13 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveOptionFromPageWithSingleOption";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with a single option
         var  bookSlug = "961dc709-f38a-48d8-97b9-a89deb964ef1";
         var title = "Quit Command";
 
-        OpenPage(homePage, bookSlug);
+        Arrange.OpenPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
 
@@ -151,21 +152,21 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveOptionFromPageWithManyOptions";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with many options
         var  bookSlug = "a7ea18f6-a18b-4626-af9e-543d5227e6e8";
         var pageSlug = "4f5e2e27-3a75-4ebc-8ec9-f4612394fb4c";
         var title = "Goto Continue and Back";
         
-        OpenPage(homePage, bookSlug, p => p.Slug == pageSlug );
+        Arrange.OpenPage(homePage, bookSlug, p => p.Slug == pageSlug );
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
         Assert.NotNull(homePage.SelectedPage);
         Assert.NotNull(homePage.SelectedPage.Options);
         Assert.Equal(3, homePage.SelectedPage.Options.Length);
         var option1 = homePage.SelectedPage.Options[0];
-        Assert.Equal("GOTO_GAME_PAGE", option1.Command);
+        Assert.Equal("GOTO_PAGE", option1.Command);
         var option2 = homePage.SelectedPage.Options[1];
         Assert.Equal("NEXT_PAGE", option2.Command);
         var option3 = homePage.SelectedPage.Options[2];
@@ -190,21 +191,21 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveOptionFromPageWithIndexOutOfBounds";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with many options
         var bookSlug = "a7ea18f6-a18b-4626-af9e-543d5227e6e8";
         var pageSlug = "4f5e2e27-3a75-4ebc-8ec9-f4612394fb4c";
         var title = "Goto Continue and Back";
         
-        OpenPage(homePage, bookSlug, p => p.Slug == pageSlug );
+        Arrange.OpenPage(homePage, bookSlug, p => p.Slug == pageSlug );
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
         Assert.NotNull(homePage.SelectedPage);
         Assert.NotNull(homePage.SelectedPage.Options);
         Assert.Equal(3, homePage.SelectedPage.Options.Length);
         var option1 = homePage.SelectedPage.Options[0];
-        Assert.Equal("GOTO_GAME_PAGE", option1.Command);
+        Assert.Equal("GOTO_PAGE", option1.Command);
         var option2 = homePage.SelectedPage.Options[1];
         Assert.Equal("NEXT_PAGE", option2.Command);
         var option3 = homePage.SelectedPage.Options[2];
@@ -225,21 +226,21 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveSelectedOptionFromPage";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with many options
         var bookSlug = "a7ea18f6-a18b-4626-af9e-543d5227e6e8";
         var pageSlug = "4f5e2e27-3a75-4ebc-8ec9-f4612394fb4c";
         var title = "Goto Continue and Back";
         
-        OpenPage(homePage, bookSlug, p => p.Slug == pageSlug );
+        Arrange.OpenPage(homePage, bookSlug, p => p.Slug == pageSlug );
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
         Assert.NotNull(homePage.SelectedPage);
         Assert.NotNull(homePage.SelectedPage.Options);
         Assert.Equal(3, homePage.SelectedPage.Options.Length);
         var option1 = homePage.SelectedPage.Options[0];
-        Assert.Equal("GOTO_GAME_PAGE", option1.Command);
+        Assert.Equal("GOTO_PAGE", option1.Command);
         var option2 = homePage.SelectedPage.Options[1];
         Assert.Equal("NEXT_PAGE", option2.Command);
         var option3 = homePage.SelectedPage.Options[2];
@@ -257,7 +258,7 @@ public class OptionList_Tests
         Assert.NotNull(homePage.SelectedPage);
         Assert.Equal(2, homePage.SelectedPage.Options.Length);
         option1 = homePage.SelectedPage.Options[0];
-        Assert.Equal("GOTO_GAME_PAGE", option1.Command);
+        Assert.Equal("GOTO_PAGE", option1.Command);
         option2 = homePage.SelectedPage.Options[1];
         Assert.Equal("PREVIOUS_PAGE", option2.Command);
         Assert.Null(homePage.SelectedOption);
@@ -270,21 +271,21 @@ public class OptionList_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "RemoveSelectedOptionFromPageWithNoOptionSelected";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with many options
         var bookSlug = "a7ea18f6-a18b-4626-af9e-543d5227e6e8";
         var pageSlug = "4f5e2e27-3a75-4ebc-8ec9-f4612394fb4c";
         var title = "Goto Continue and Back";
         
-        OpenPage(homePage, bookSlug, p => p.Slug == pageSlug);
+        Arrange.OpenPage(homePage, bookSlug, p => p.Slug == pageSlug);
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
         Assert.NotNull(homePage.SelectedPage);
         Assert.NotNull(homePage.SelectedPage.Options);
         Assert.Equal(3, homePage.SelectedPage.Options.Length);
         var option1 = homePage.SelectedPage.Options[0];
-        Assert.Equal("GOTO_GAME_PAGE", option1.Command);
+        Assert.Equal("GOTO_PAGE", option1.Command);
         var option2 = homePage.SelectedPage.Options[1];
         Assert.Equal("NEXT_PAGE", option2.Command);
         var option3 = homePage.SelectedPage.Options[2];
@@ -297,30 +298,5 @@ public class OptionList_Tests
         // then I am informed of an error
         var exception = Assert.Throws<Exception>(deleteOption);
         Assert.Equal("Cannot delete something that doesnt exist", exception.Message);
-    }
-
-    private static void OpenPage(BookEditorHomeViewModel homePage, string bookSlug, Func<Page, bool>? predicate = null)
-    {
-        Assert.NotNull(homePage);
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == bookSlug);
-        homePage.SelectedBook = book;        
-        Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
-
-        homePage.SelectedPage = predicate != null ? homePage.SelectedBook.Pages.First(predicate) : homePage.SelectedBook.Pages.First();
-    }
-
-    private static BookEditorHomeViewModel CreateLibrary(string rootPath, string[] libraryNames, string defaultLibrary = "New_Test_Library")
-    {
-        var library = new XmlLibrary(rootPath, libraryNames)
-        {
-            DefaultLibraryName = defaultLibrary
-        };
-
-        var cache = new EditorStateCache();
-
-        return new BookEditorHomeViewModel(library, cache);
     }
 }

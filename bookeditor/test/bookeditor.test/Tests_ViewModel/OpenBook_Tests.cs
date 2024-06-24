@@ -19,8 +19,8 @@ public class OpenBook_Tests
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
         Assert.NotNull(viewModel.Books);
-        viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedBook();
+        viewModel.SelectBook(viewModel.Books.First(b => b.Title == testBook));
+        
 
 
         // then the title is displayed
@@ -45,8 +45,8 @@ public class OpenBook_Tests
         Assert.NotNull(viewModel.Books);
         
         // when I select a book
-        viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedBook();
+        viewModel.SelectBook(viewModel.Books.First(b => b.Title == testBook));
+        
         
         // then the title is displayed
         Assert.NotNull(viewModel.SelectedBook);
@@ -70,8 +70,8 @@ public class OpenBook_Tests
         Assert.NotNull(viewModel.Books);
         
         // when I select a book
-        viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedBook();
+        viewModel.SelectBook(viewModel.Books.First(b => b.Title == testBook));
+        
         
         // then the title is displayed
         Assert.NotNull(viewModel.SelectedBook);

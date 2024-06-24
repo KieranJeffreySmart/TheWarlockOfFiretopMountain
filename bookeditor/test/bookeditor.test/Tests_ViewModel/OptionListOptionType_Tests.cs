@@ -2,6 +2,8 @@ using bookeditor.ViewModels;
 
 namespace bookeditor.test;
 
+using Arrange = bookeditor.test.ViewModelArrangement;
+
 public class OptionListOptionType_Tests
 {
     [Fact]
@@ -11,13 +13,13 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendAnEmptyOption";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
         var title = "No options";
 
-        OpenPage(homePage, bookSlug);
+        Arrange.OpenPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
 
@@ -51,13 +53,13 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendAnUnknownOption";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
 
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
         var title = "No options";
 
-        OpenPage(homePage, bookSlug);
+        Arrange.OpenPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
 
@@ -91,13 +93,13 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendAStartOption";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
         
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
         var title = "No options";
 
-        OpenPage(homePage, bookSlug);
+        Arrange.OpenPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
 
@@ -132,13 +134,13 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendQuitOption";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
         
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
         var title = "No options";
 
-        OpenPage(homePage, bookSlug);
+        Arrange.OpenPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
 
@@ -173,13 +175,13 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendNextPageOption";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
         
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
         var title = "No options";
 
-        OpenPage(homePage, bookSlug);
+        Arrange.OpenPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
 
@@ -214,13 +216,13 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendPreviousPageOption";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
         
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
         var title = "No options";
 
-        OpenPage(homePage, bookSlug);
+        Arrange.OpenPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
 
@@ -255,13 +257,13 @@ public class OptionListOptionType_Tests
         // given I have a library
         var rootPath = "../../../TestData";
         var defaultLibrary = "AppendGotoOption";
-        BookEditorHomeViewModel homePage = CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
+        BookEditorHomeViewModel homePage = Arrange.CreateLibrary(rootPath, [defaultLibrary], defaultLibrary);
         
         // given I have opened a book to a page with no options
         var  bookSlug = "690fdb06-a334-4d33-8e5e-3c45a8bb87cb";
         var title = "No options";
 
-        OpenPage(homePage, bookSlug);
+        Arrange.OpenPage(homePage, bookSlug);
         Assert.NotNull(homePage.SelectedBook);
         Assert.Equal(title, homePage.SelectedBook.Title);
 
@@ -309,40 +311,5 @@ public class OptionListOptionType_Tests
         // given I have opened a book to a page with a single option
         // when I append an option
         // then the page is displayed with only the new option
-    }
-
-    private static void OpenPage(BookEditorHomeViewModel homePage, string bookSlug, Func<Page, bool>? predicate = null)
-    {
-        Assert.NotNull(homePage);
-        Assert.NotNull(homePage.Books);
-        var book = homePage.Books.First(b => b.Slug == bookSlug);
-        homePage.SelectedBook = book;        
-        Assert.NotNull(homePage.SelectedBook);
-        Assert.NotNull(homePage.SelectedBook.Pages);
-        Assert.NotEmpty(homePage.SelectedBook.Pages);
-
-        homePage.SelectedPage = predicate != null ? homePage.SelectedBook.Pages.First(predicate) : homePage.SelectedBook.Pages.First();
-    }
-
-    private static BookEditorHomeViewModel CreateLibrary(string rootPath, string[] libraryNames, string defaultLibrary = "New_Test_Library")
-    {
-        var library = new XmlLibrary(rootPath, libraryNames)
-        {
-            DefaultLibraryName = defaultLibrary
-        };
-
-        var cache = new EditorStateCache();
-
-        return new BookEditorHomeViewModel(library, cache);
-    }
-
-}
-
-public class OptionDetailUpdate_Tests
-{
-    [Fact]
-    public void ChangeSingleProperty() 
-    {
-        
     }
 }

@@ -22,8 +22,8 @@ public class ListPages_ViewModelTests
         Assert.NotNull(viewModel);
         Assert.NotNull(viewModel.Books);
         Assert.NotEmpty(viewModel.Books);
-        viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedBook();
+        viewModel.SelectBook(viewModel.Books.First(b => b.Title == testBook));
+        
         
         // then the title is displayed
         Assert.NotNull(viewModel.SelectedBook);
@@ -49,8 +49,8 @@ public class ListPages_ViewModelTests
         var viewModel = new BookEditorHomeViewModel(library, new EditorStateCache());
         Assert.NotNull(viewModel);
         Assert.NotNull(viewModel.Books);
-        viewModel.SelectedBook = viewModel.Books.First(b => b.Title == testBook);
-        viewModel.UpdateSelectedBook();
+        viewModel.SelectBook(viewModel.Books.First(b => b.Title == testBook));
+        
         
         // then the title is displayed
         Assert.NotNull(viewModel.SelectedBook);

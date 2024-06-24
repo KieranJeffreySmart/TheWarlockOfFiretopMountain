@@ -23,11 +23,12 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
 
     public Book[]? Books => library?.Books;
 
-    public Book? SelectedBook { get; set; }
+    public Book? SelectedBook { get; private set; }
 
-    public Page? SelectedPage { get; set; }
+    public Page? SelectedPage { get; private set; }
 
-    public Option? SelectedOption { get; set; }
+    public Option? SelectedOption { get; private set; }
+    
     public bool IsSaveEnabled { get; private set; } = false;
     
     private void SetStateFromCache()
@@ -77,14 +78,14 @@ public class BookEditorHomeViewModel : DotvvmViewModelBase
             this.stateCache.CurrentState.SelectedPageNumber = this.SelectedBook?.Pages?.FindIndex(p => p.PageType == SelectedPage?.PageType && p.Index == SelectedPage?.Index);
     }
 
-    public void UpdateSelectedBook()
+    private void UpdateSelectedBook()
     {
         this.SelectedPage = null;
         this.SelectedOption = null;
         this.CacheChanges();
     }
 
-    public void UpdateSelectedPage()
+    private void UpdateSelectedPage()
     {
         this.SelectedOption = null;
         this.CacheChanges();

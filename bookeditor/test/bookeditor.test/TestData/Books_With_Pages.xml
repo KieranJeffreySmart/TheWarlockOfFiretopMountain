@@ -161,4 +161,132 @@
 		</page>
 		<slug>2eb54f11-93b0-42e5-b200-f4f5bbd7cda1</slug>
 	</book>
+	<book>
+		<title>Single page complete book</title>
+		<page>
+			<type>Game</type>
+			<index>1</index>
+			<story>
+				<block type="text">block 1</block>
+				<block type="text">block 2</block>
+				<block type="text">block 3</block>
+				<block type="image">./image1.jpg</block>
+				<block type="image">./image2.jpg</block>
+				<block type="image">./image3.jpg</block>
+			</story>
+			<scene>
+				<block type="text">block 1</block>
+				<block type="text">block 2</block>
+				<block type="text">block 3</block>
+				<block type="image">./image1.jpg</block>
+				<block type="image">./image2.jpg</block>
+				<block type="image">./image3.jpg</block>
+			</scene>
+			<option key="s" command="START_GAME">
+				<label>Start</label>
+			</option>
+			<option key="q" command="QUIT_GAME">
+				<label>Quit</label>
+			</option>
+			<option key="c" command="NEXT_PAGE">
+				<label>Continue</label>
+			</option>
+			<option key="b" command="PREVIOUS_PAGE">
+				<label>Back</label>
+			</option>
+			<option key="g" command="GOTO_PAGE">
+				<label>Go to Page 1</label>
+				<arg>
+					<key>page</key>
+					<value>1</value>
+				</arg>
+			</option>
+			<option key="l" command="TEST_STAT">
+				<label>Test yuor luck</label>
+				<arg>
+					<key>stat</key>
+					<value>Luck</value>
+				</arg>
+				<outcome>
+					<story>
+						<block type="text">
+you escape without attracting
+the Ogre's attention
+                        </block>
+					</story>
+					<option key="c" command="GOTO_PAGE">
+						<label>Continue</label>
+						<arg>
+							<key>page</key>
+							<value>1</value>
+						</arg>
+					</option>
+					<type>PASS</type>
+				</outcome>
+				<outcome>
+					<story>
+						<block type="text">
+you curse as you kick a small stone which goes
+skidding across the cavern floor. You draw your
+sword in case the Ogre has heard it
+                        </block>
+					</story>
+					<option key="c" command="GOTO_PAGE">
+						<label>Continue</label>
+						<arg>
+							<key>page</key>
+							<value>2</value>
+						</arg>
+					</option>
+					<type>FAIL</type>
+				</outcome>
+			</option>			
+			<option key="f" command="FIGHT_MONSTERS">
+				<label>Fight</label>
+				<outcome>
+					<story>
+						<block type="text">You have prevailed</block>
+					</story>
+					<option key="c" command="GOTO_PAGE">
+						<label>Continue</label>
+						<arg>
+							<key>page</key>
+							<value>2</value>
+						</arg>
+					</option>
+					<type>WIN</type>
+				</outcome>
+				<outcome>
+					<story>
+						<block type="text">You have escaped down the passage</block>
+					</story>
+					<option key="c" command="GOTO_PAGE">
+						<label>Continue</label>
+						<arg>
+							<key>page</key>
+							<value>4</value>
+						</arg>
+					</option>
+					<type>ESCAPE</type>
+				</outcome>
+				<outcome>
+					<story>
+						<block type="text">
+                            You were defeated
+                        </block>
+					</story>
+					<option key="c" command="GOTO_PAGE">
+						<label>Continue</label>
+						<arg>
+							<key>page</key>
+							<value>3</value>
+						</arg>
+					</option>
+					<type>DEFEAT</type>
+				</outcome>
+			</option>
+			<slug>2de3bbc7-01e9-4b5a-a78f-ee7eea4eb9c0</slug>
+		</page>
+		<slug>c6b3c0b5-4507-4e69-a2d7-0ad934413270</slug>
+	</book>
 </library>
